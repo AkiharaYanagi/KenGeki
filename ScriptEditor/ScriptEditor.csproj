@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('packages\ILMerge.3.0.41\build\ILMerge.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8FF89271-4D8E-443F-9347-86AC80DE4212}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ScriptEditor</RootNamespace>
+    <AssemblyName>ScriptEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ScriptEditor.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Chara, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ScriptEditorUtility\Chara\bin\x86\Debug\Chara.dll</HintPath>
+    </Reference>
+    <Reference Include="Ctrl_Chara, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ScriptEditorUtility\Ctrl_Chara\bin\x86\Debug\Ctrl_Chara.dll</HintPath>
+    </Reference>
+    <Reference Include="KeyConfig">
+      <HintPath>..\..\ScriptEditorUtility\KeyConfig\bin\x86\Debug\KeyConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC\Microsoft.DirectX\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.DirectInput, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC\Microsoft.DirectX.DirectInput\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualC" />
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="ScriptEditorUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ScriptEditorUtility\ScriptEditorUtility\bin\x86\Debug\ScriptEditorUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\FormMain\FormMain_Ctrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_IO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_SubForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_EstablishChara.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Load.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Func.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Init.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Tab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormMain\FormMain_Utility.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormEfGnrt\_FormEfGnrt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormRect\FormRect2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormRect\FormRect2.Designer.cs">
+      <DependentUpon>FormRect2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FormSub\FormRoute\FormRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormRoute\FormRoute.Designer.cs">
+      <DependentUpon>FormRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FormSub\FormPreview\FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormPreview\FormPreview.Designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FormSub\FormPreview\FrameControl.cs" />
+    <Compile Include="Source\FormSub\FormPreview\GameMain.cs" />
+    <Compile Include="Source\FormSub\FormImage\Form_Image.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormImage\Form_Image.designer.cs">
+      <DependentUpon>Form_Image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FormSub\FormScriptList\Form_ScriptList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormScript\FormScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\FormSub\FormScript\FormScript.Designer.cs">
+      <DependentUpon>FormScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FormSub\SubForm_Compend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormMain\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormEfGnrt\_FormEfGnrt.resx">
+      <DependentUpon>_FormEfGnrt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormRect\FormRect2.resx">
+      <DependentUpon>FormRect2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormRoute\FormRoute.resx">
+      <DependentUpon>FormRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormImage\Form_Image.resx">
+      <DependentUpon>Form_Image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormPreview\FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormScriptList\Form_ScriptList.resx">
+      <DependentUpon>Form_ScriptList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FormSub\FormScript\FormScript.resx">
+      <DependentUpon>FormScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.ico" />
+    <Content Include="Document\Charaデータ構造.txt" />
+    <Content Include="ScriptEditor.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILMerge.3.0.41\build\ILMerge.props'))" />
+  </Target>
+</Project>

@@ -1,0 +1,421 @@
+﻿using System;
+
+using System.Diagnostics;
+using System.IO;
+using System.Drawing;
+
+namespace ScriptEditor
+{
+	//==================================================================================
+	//	IOテスト用Charaデータ
+	//==================================================================================
+	public class TestDataIOChara
+	{
+		//対象データ
+		public Chara Chara { get; } = new Chara ();
+
+		//キャラ編集の参照
+		private EditChara editChara = null;
+
+		//デフォルトアクション名
+		private readonly string[] NAME_ACTION = new string[] 
+		{
+			"Stand", 
+			"FrontMove", 
+			"BackMove", 
+			"FrontDash", 
+			"FrontDashDuration", 
+			"BackDash", 
+			"Attack_L", 
+			"Attack_M", 
+			"Attack_H", 
+			"Poised", 
+			"Clang", 
+			"Avoid", 
+			"Dotty", 
+			"Damaged", 
+			"Down", 
+			"DownDuration", 
+			"Win", 
+			"WinDuration", 
+		};
+
+		//デフォルトコマンド名
+		private readonly string[] NAME_COMMAND = new string[] 
+		{
+			"Attack_L", 
+			"Attack_M", 
+			"Attack_H", 
+			"FrontMove", 
+			"BackMove", 
+			"FrontDuration", 
+			"BackDuration", 
+			"FrontDash", 
+			"BackDash", 
+		};
+
+		//コンストラクタ
+		public TestDataIOChara ()
+		{
+			Init ();
+		}
+
+		//初期化
+		public void Init ()
+		{
+			//test chara.Clear()
+			//		データが０に初期化されているかテスト
+			Chara.Clear ();
+			Debug.Assert ( 0 == Chara.ListImage.Count );
+			Debug.Assert ( 0 == Chara.ListEfImage.Count );
+			Debug.Assert ( 0 == Chara.behavior.ListSequence.Count );
+			Debug.Assert ( 0 == Chara.garnish.ListSequence.Count );
+			Debug.Assert ( 0 == Chara.ListCommand.Count );
+			foreach ( RefInt refi in Chara.BsAction )
+			{
+				Debug.Assert ( 0 == refi.i );
+			}
+
+			//EditCharaに設定
+			editChara = new EditChara ( Chara );
+
+
+			//-----------------------
+			//テストデータの手動作成
+			//-----------------------
+
+#if false
+#endif
+			
+			//-----------------------
+			//test メインイメージ
+			string current = Directory.GetCurrentDirectory ();
+			string[] filenames = Directory.GetFiles ( "test_motion" );
+			foreach ( string filename in filenames )
+			{
+				ImageData imageData = null;	//参照
+				try
+				{
+					//画像からImageData型を作成
+					imageData = new ImageData ( Path.GetFileName ( filename ), Image.FromFile ( filename ), Chara.ListImage.Count );
+					Chara.ListImage.Add ( imageData );			//内部データに保存
+				}
+				catch ( System.OutOfMemoryException ex )
+				{
+					//ファイル形式が有効でないとき
+					Debug.Write ( "テストデータ motionフォルダ内のファイル形式が無効です。\n" + ex.Message );
+					return;
+				}
+			}
+
+			//-----------------------
+			//test エフェクトイメージ
+			string[] efFilenames = Directory.GetFiles ( "testEf" );
+			foreach ( string filename in efFilenames )
+			{
+				ImageData imageData = null;	//参照
+				try
+				{
+					//画像からImageData型を作成
+					imageData = new ImageData ( Path.GetFileName ( filename ), Image.FromFile ( filename ), Chara.ListImage.Count );
+					Chara.ListEfImage.Add ( imageData );			//内部データに保存
+				}
+				catch ( System.OutOfMemoryException ex )
+				{
+					//ファイル形式が有効でないとき
+					Debug.Write ( "テストデータ efフォルダ内のファイル形式が無効です。\n" + ex.Message );
+					return;
+				}
+			}
+
+			//-----------------------
+			//test Action
+
+			//名前からアクション配列の生成
+			int SIZE_ACTION = NAME_ACTION.Length;
+			Action[] action = new Action[ SIZE_ACTION ];
+			for ( int i = 0; i < SIZE_ACTION; ++i )
+			{
+				action[ i ] = new Action ( NAME_ACTION[ i ] );
+			}
+
+			//キャラにEditCharaを用いてアクションを追加
+			for ( int i = 0; i < SIZE_ACTION; ++i )
+			{
+				//				editChara.AddAction ( action[ i ] );
+				editChara.EditAction.AddAction ( action[ i ] );
+			}
+
+
+			//-----------------------
+			//test Script
+
+			Script script0 = new Script ();
+			script0.frame = 10;
+
+			script0.RefPt.Set ( -130, -240 );
+			script0.RefVel.Set ( 50, 60 );
+			script0.RefAcc.Set ( 70, 80 );
+
+			script0.ListCRect.Add ( new RefRect ( -100, -200, 100, 150 ) );
+			//			script0.ListARect.Add ( new RefRect ( 150, 150, 100, 100 ) );
+			script0.ListHRect.Add ( new RefRect ( -70, -200, 80, 200 ) );
+
+			script0.ListGenerateEf.Add ( new EffectGenerate () );
+
+			Script script1 = new Script ( script0 );
+			Script script2 = new Script ();
+			script2.Copy ( script1 );
+
+			Debug.Assert ( script0.frame == script2.frame );
+			Debug.Assert ( script0.ListHRect[ 0 ].h.i == script2.ListHRect[ 0 ].h.i );
+
+			//-----------------
+			//アクション指定
+			//-----------------
+
+			//Stand
+			SetScript ( 0, 32 );
+
+			//FrontMove
+			SetScript ( 1, 16 );
+			SetAllScriptVelX ( 1, 10 );
+
+			//BackMove
+			SetScript ( 2, 16 );
+			SetAllScriptVelX ( 2, -10 );
+
+			//FrontDash
+			SetScript ( 3, 12 );
+			SetAllScriptVelX ( 3, -20 );
+
+			//FrontDashDuration
+			SetScript ( 4, 1 );
+			SetAllScriptVelX ( 3, 20 );
+
+			//"BackDash", 
+			SetScript ( 5, 1 );
+			SetAllScriptVelX ( 3, -20 );
+
+			//"Attack_L", 
+			SetScript ( 6, 12 );
+			Action actionAttack_L = ( Action ) editChara.EditAction.Compend.ListSequence[ 6 ];
+			Script scriptAttack_L_0 = actionAttack_L.ListScript[ 0 ];
+			scriptAttack_L_0.imgIndex = 10;
+
+			//"Attack_M", 
+			SetScript ( 7, 12 );
+
+			//"Attack_H", 
+			SetScript ( 8, 12 );
+
+			//"Clang", 
+			//"Avoid", 
+			//"Dotty", 
+			//"Damaged", 
+			//"Down", 
+			Action actionDown = ( Action ) editChara.EditAction.Compend.ListSequence[ 14 ];
+			actionDown.NextIndex = 15;
+			//"DownDuration", 
+			Action actionDownDuration = ( Action ) editChara.EditAction.Compend.ListSequence[ 15 ];
+			actionDownDuration.NextIndex = 15;
+			//"Win", 
+			Action actionWin = ( Action ) editChara.EditAction.Compend.ListSequence[ 16 ];
+			actionWin.NextIndex = 17;
+			//"WinDuration", 
+			Action actionWinDuration = ( Action ) editChara.EditAction.Compend.ListSequence[ 17 ];
+			actionWinDuration.NextIndex = 17;
+
+
+			//スクリプト再設定
+			Chara.behavior.ListSequence[ 0 ].ListScript[ 0 ].Copy ( script0 );
+
+
+			//test Command
+			int SIZE_COMMAND = NAME_COMMAND.Length;
+			for ( int i = 0; i < SIZE_COMMAND; ++i )
+			{
+				editChara.AddCommand ();
+				Chara.ListCommand[ i ].Name = NAME_COMMAND[ i ];
+				Chara.ListCommand[ i ].ListGameKey.Add ( new GameKey () );
+			}
+
+			Chara.ListCommand[ 0 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 0 ].ListGameKey[ 1 ].Button[ 0 ] = GameKey.GameKeyButton.BTN_ON;
+			Chara.ListCommand[ 0 ].LimitTime.Set ( 2 );
+
+			Chara.ListCommand[ 1 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 1 ].ListGameKey[ 1 ].Button[ 1 ] = GameKey.GameKeyButton.BTN_ON;
+			Chara.ListCommand[ 1 ].LimitTime.Set ( 2 );
+
+			Chara.ListCommand[ 2 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 2 ].ListGameKey[ 1 ].Button[ 2 ] = GameKey.GameKeyButton.BTN_ON;
+			Chara.ListCommand[ 2 ].LimitTime.Set ( 2 );
+
+			Chara.ListCommand[ 3 ].ListGameKey[ 0 ].Direction = GameKey.GameKeyDirection.DIR_6E;
+			Chara.ListCommand[ 3 ].LimitTime.Set ( 1 );
+
+			Chara.ListCommand[ 4 ].ListGameKey[ 0 ].Direction = GameKey.GameKeyDirection.DIR_4E;
+			Chara.ListCommand[ 4 ].LimitTime.Set ( 1 );
+
+			Chara.ListCommand[ 5 ].ListGameKey[ 0 ].Not = true;
+			Chara.ListCommand[ 5 ].ListGameKey[ 0 ].Direction = GameKey.GameKeyDirection.DIR_6E;
+			Chara.ListCommand[ 5 ].LimitTime.Set ( 1 );
+
+			Chara.ListCommand[ 6 ].ListGameKey[ 0 ].Not = true;
+			Chara.ListCommand[ 6 ].ListGameKey[ 0 ].Direction = GameKey.GameKeyDirection.DIR_4E;
+			Chara.ListCommand[ 6 ].LimitTime.Set ( 1 );
+
+			Chara.ListCommand[ 7 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 7 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 7 ].ListGameKey[ 0 ].Direction = GameKey.GameKeyDirection.DIR_6E;
+			Chara.ListCommand[ 7 ].ListGameKey[ 1 ].Direction = GameKey.GameKeyDirection.NEUTRAL;
+			Chara.ListCommand[ 7 ].ListGameKey[ 2 ].Direction = GameKey.GameKeyDirection.DIR_6E;
+			Chara.ListCommand[ 7 ].LimitTime.Set ( 12 );
+
+			Chara.ListCommand[ 8 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 8 ].ListGameKey.Add ( new GameKey () );
+			Chara.ListCommand[ 8 ].ListGameKey[ 0 ].Direction = GameKey.GameKeyDirection.DIR_4E;
+			Chara.ListCommand[ 8 ].ListGameKey[ 1 ].Direction = GameKey.GameKeyDirection.NEUTRAL;
+			Chara.ListCommand[ 8 ].ListGameKey[ 2 ].Direction = GameKey.GameKeyDirection.DIR_4E;
+			Chara.ListCommand[ 8 ].LimitTime.Set ( 12 );
+
+
+			//test Branch
+			//			script0.ListBranch.Add ( new Branch ( 0, chara.ListCommand[ 0 ], 0, chara.behavior.ListSequence[ 0 ] ) );
+			script0.ListBranch.Add ( new Branch ( 0, Chara.ListCommand[ 0 ], 0, ( Action ) Chara.behavior.ListSequence[ 0 ] ) );
+
+			//Stand
+			editChara.EditAction.SetSelectedScript ( new EditCompend.SELECTED_SCRIPT ( 0, 0 ) );
+#if false
+			
+			foreach ( Script script in editChara.GetAction ().ListScript )
+			{
+				script.ListBranch.Add ( new Branch ( 0, chara.ListCommand[ 0 ], 6, chara.compendAction.ListSequence[ 6 ] ) );
+				script.ListBranch.Add ( new Branch ( 1, chara.ListCommand[ 1 ], 7, chara.compendAction.ListSequence[ 7 ] ) );
+				script.ListBranch.Add ( new Branch ( 2, chara.ListCommand[ 2 ], 8, chara.compendAction.ListSequence[ 8 ] ) );
+				script.ListBranch.Add ( new Branch ( 7, chara.ListCommand[ 7 ], 3, chara.compendAction.ListSequence[ 3 ] ) );
+				script.ListBranch.Add ( new Branch ( 8, chara.ListCommand[ 8 ], 5, chara.compendAction.ListSequence[ 5 ] ) );
+				script.ListBranch.Add ( new Branch ( 3, chara.ListCommand[ 3 ], 1, chara.compendAction.ListSequence[ 1 ] ) );
+				script.ListBranch.Add ( new Branch ( 4, chara.ListCommand[ 4 ], 2, chara.compendAction.ListSequence[ 2 ] ) );
+			}
+
+			//FrontMove
+			editChara.EditAction.SetSelectedScript ( new EditCompend.SELECTED_SCRIPT ( 1, 0 ) );
+			foreach ( Script script in editChara.GetAction ().ListScript )
+			{
+				script.ListBranch.Add ( new Branch ( 0, chara.ListCommand[ 0 ], 6, chara.compendAction.ListSequence[ 6 ] ) );
+				script.ListBranch.Add ( new Branch ( 1, chara.ListCommand[ 1 ], 7, chara.compendAction.ListSequence[ 7 ] ) );
+				script.ListBranch.Add ( new Branch ( 2, chara.ListCommand[ 2 ], 8, chara.compendAction.ListSequence[ 8 ] ) );
+				script.ListBranch.Add ( new Branch ( 5, chara.ListCommand[ 5 ], 0, chara.compendAction.ListSequence[ 0 ] ) );
+			}
+
+			//BackMove
+			editChara.EditAction.SetSelectedScript ( new EditCompend.SELECTED_SCRIPT ( 2, 0 ) );
+			foreach ( Script script in editChara.GetAction ().ListScript )
+			{
+				script.ListBranch.Add ( new Branch ( 0, chara.ListCommand[ 0 ], 6, chara.compendAction.ListSequence[ 6 ] ) );
+				script.ListBranch.Add ( new Branch ( 1, chara.ListCommand[ 1 ], 7, chara.compendAction.ListSequence[ 7 ] ) );
+				script.ListBranch.Add ( new Branch ( 2, chara.ListCommand[ 2 ], 8, chara.compendAction.ListSequence[ 8 ] ) );
+				script.ListBranch.Add ( new Branch ( 6, chara.ListCommand[ 6 ], 0, chara.compendAction.ListSequence[ 0 ] ) );
+			}
+
+			//FrontDash
+			editChara.EditAction.SetSelectedScript ( new EditCompend.SELECTED_SCRIPT ( 3, 0 ) );
+			foreach ( Script script in editChara.GetAction ().ListScript )
+			{
+				script.ListBranch.Add ( new Branch ( 0, chara.ListCommand[ 0 ], 6, chara.compendAction.ListSequence[ 6 ] ) );
+				script.ListBranch.Add ( new Branch ( 1, chara.ListCommand[ 1 ], 7, chara.compendAction.ListSequence[ 7 ] ) );
+				script.ListBranch.Add ( new Branch ( 2, chara.ListCommand[ 2 ], 8, chara.compendAction.ListSequence[ 8 ] ) );
+				script.ListBranch.Add ( new Branch ( 5, chara.ListCommand[ 5 ], 0, chara.compendAction.ListSequence[ 0 ] ) );
+			}
+
+			//FrontDashDuration
+			editChara.EditAction.SetSelectedScript ( new EditCompend.SELECTED_SCRIPT ( 4, 0 ) );
+			foreach ( Script script in editChara.GetAction ().ListScript )
+			{
+				script.ListBranch.Add ( new Branch ( 0, chara.ListCommand[ 0 ], 6, chara.compendAction.ListSequence[ 6 ] ) );
+				script.ListBranch.Add ( new Branch ( 1, chara.ListCommand[ 1 ], 7, chara.compendAction.ListSequence[ 7 ] ) );
+				script.ListBranch.Add ( new Branch ( 2, chara.ListCommand[ 2 ], 8, chara.compendAction.ListSequence[ 8 ] ) );
+				script.ListBranch.Add ( new Branch ( 5, chara.ListCommand[ 5 ], 0, chara.compendAction.ListSequence[ 0 ] ) );
+			}
+#endif
+
+
+			//test BasicAction
+			int[] testBsActionNum = new int[] { 0, 9, 10, 11, 12, 13, 14, 16 };
+			for ( int index = 0; index < Chara.BsAction.Length; ++index )
+			{
+				Chara.BsAction[ index ].i = testBsActionNum[ index ];
+			}
+
+			//--------------------------------------------
+			//test Effect
+			//			editChara.AddEffect ( new Effect ( "testEffect0" ) );
+			//			editChara.AddEffect ( new Effect ( "testEffect1" ) );
+			editChara.EditEffect.AddEffect ( new Effect ( "testEffect0" ) );
+			editChara.EditEffect.AddEffect ( new Effect ( "testEffect1" ) );
+
+			editChara.EditEffect.GetSequence ().ListScript[ 0 ].RefPt.Set ( -120, -220 );
+
+			Script efScript = new Script ();
+			efScript.RefPt.Set ( -120, -240 );
+
+			editChara.EditEffect.AddScript ( efScript );
+
+			Chara.garnish.ListSequence[ 1 ].ListScript[ 0 ].imgIndex = 1;
+			Chara.garnish.ListSequence[ 1 ].ListScript[ 0 ].RefPt.Set ( -140, -240 );
+
+			//スクリプトでエフェクト生成を指定する
+			Script sc_ef = Chara.behavior.ListSequence[ 0 ].ListScript[ 0 ];
+			EffectGenerate efGnrt = sc_ef.ListGenerateEf[ 0 ];
+
+			efGnrt.id.i = 0;
+			efGnrt.name = Chara.garnish.ListSequence[ efGnrt.id.i ].Name;
+			efGnrt.ptGnrt.x.i = -20;
+			efGnrt.ptGnrt.y.i = -50;
+		}
+
+
+		public void CopyChara ( Chara dstChara )
+		{
+			dstChara.Copy ( this.Chara );
+
+			Debug.Assert ( this.Chara.ListImage.Count == dstChara.ListImage.Count );
+			Debug.Assert ( this.Chara.ListEfImage.Count == dstChara.ListEfImage.Count );
+			Debug.Assert ( this.Chara.behavior.ListSequence.Count == dstChara.behavior.ListSequence.Count );
+			Debug.Assert ( this.Chara.garnish.ListSequence.Count == dstChara.garnish.ListSequence.Count );
+			Debug.Assert ( this.Chara.ListCommand.Count == dstChara.ListCommand.Count );
+			for ( int index = 0; index < this.Chara.BsAction.Length; ++index )
+			{
+				Debug.Assert ( this.Chara.BsAction[ index ].i == dstChara.BsAction[ index ].i );
+			}
+		}
+
+		//内部　スクリプト設定
+		//引数：アクションID, スクリプト個数
+		private void SetScript ( int idAction, int numScript )
+		{
+			editChara.EditAction.SelectSequence ( idAction );
+			editChara.EditAction.Get ().ListScript.Clear ();		//最初の一つを削除
+			for ( int i = 0; i < numScript; ++i )
+			{
+				Script script = new Script ();
+				script.RefPt.Set ( -87, -224 );
+				editChara.EditAction.AddScript ( script );
+			}
+
+		}
+
+		//内部　スクリプト設定
+		//引数：アクションID, スクリプト個数
+		private void SetAllScriptVelX ( int idAction, int velX )
+		{
+			foreach ( Script script in editChara.EditAction.Get ().ListScript )
+			{
+				script.RefVel.x.Set ( velX );
+			}
+		}
+	}
+
+}

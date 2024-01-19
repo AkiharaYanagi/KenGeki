@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{254a19f5-5fa9-4780-a9b6-c41bd0ea2219}</ProjectGuid>
+    <RootNamespace>KenGeki</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GameLib.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\ExeChara\BtlParam.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispChara.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispGauge.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispInput.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispMainImage.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispRect.h" />
+    <ClInclude Include="Source\ExeChara\Effect\DispEffect.h" />
+    <ClInclude Include="Source\ExeChara\Effect\ExeEffect.h" />
+    <ClInclude Include="Source\ExeChara\Effect\OperateEffect.h" />
+    <ClInclude Include="Source\ExeChara\ExeChara.h" />
+    <ClInclude Include="Source\ExeChara\ExeChara_Actor.h" />
+    <ClInclude Include="Source\ExeChara\ExeChara_Common.h" />
+    <ClInclude Include="Source\ExeChara\ExeChara_State.h" />
+    <ClInclude Include="Source\ExeChara\Input\CharaInput.h" />
+    <ClInclude Include="Source\ExeChara\Input\CPUInput.h" />
+    <ClInclude Include="Source\ExeChara\Input\PlayerInput.h" />
+    <ClInclude Include="Source\ExeChara\Rect\CharaRect.h" />
+    <ClInclude Include="Source\FtgMain\Decision.h" />
+    <ClInclude Include="Source\FtgMain\Ef\EfClang.h" />
+    <ClInclude Include="Source\FtgMain\Ef\EfHit.h" />
+    <ClInclude Include="Source\FtgMain\Ef\EfPart.h" />
+    <ClInclude Include="Source\FtgMain\Ef\EfParticle.h" />
+    <ClInclude Include="Source\FtgMain\Ef\EfSpark.h" />
+    <ClInclude Include="Source\FtgMain\Fighting.h" />
+    <ClInclude Include="Source\FtgMain\FtgConst.h" />
+    <ClInclude Include="Source\FtgMain\FtgDemo.h" />
+    <ClInclude Include="Source\FtgMain\FtgMain.h" />
+    <ClInclude Include="Source\FtgMain\G_Ftg.h" />
+    <ClInclude Include="Source\FtgMain\MutualChara.h" />
+    <ClInclude Include="Source\GameMain\GameConst.h" />
+    <ClInclude Include="Source\GameMain\GameMain.h" />
+    <ClInclude Include="Source\GameMain\GameSettingFile.h" />
+    <ClInclude Include="Source\GameMain\Param.h" />
+    <ClInclude Include="Source\GameMain\resource.h" />
+    <ClInclude Include="Source\GameMain\Scene.h" />
+    <ClInclude Include="Source\GameMain\SceneCommon.h" />
+    <ClInclude Include="Source\GameMain\SoundConst.h" />
+    <ClInclude Include="Source\GameMain\StdAfx.h" />
+    <ClInclude Include="Source\GameMain\WinMain.h" />
+    <ClInclude Include="Source\Menu\PauseMenu.h" />
+    <ClInclude Include="Source\Menu\PauseMenuItem.h" />
+    <ClInclude Include="Source\Menu\PauseMenu_Const.h" />
+    <ClInclude Include="Source\Menu\YesNo_Menu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\ExeChara\BtlParam.cpp" />
+    <ClCompile Include="Source\ExeChara\Disp\DispChara.cpp" />
+    <ClCompile Include="Source\ExeChara\Disp\DispFrontEnd.cpp" />
+    <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp" />
+    <ClCompile Include="Source\ExeChara\Disp\DispInput.cpp" />
+    <ClCompile Include="Source\ExeChara\Disp\DispMainImage.cpp" />
+    <ClCompile Include="Source\ExeChara\Disp\DispRect.cpp" />
+    <ClCompile Include="Source\ExeChara\Effect\DispEffect.cpp" />
+    <ClCompile Include="Source\ExeChara\Effect\ExeEffect.cpp" />
+    <ClCompile Include="Source\ExeChara\Effect\OperateEffect.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_Actor.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_State.cpp" />
+    <ClCompile Include="Source\ExeChara\Input\CharaInput.cpp" />
+    <ClCompile Include="Source\ExeChara\Input\CPUInput.cpp" />
+    <ClCompile Include="Source\ExeChara\Input\PlayerInput.cpp" />
+    <ClCompile Include="Source\ExeChara\Rect\CharaRect.cpp" />
+    <ClCompile Include="Source\FtgMain\Decision.cpp" />
+    <ClCompile Include="Source\FtgMain\Ef\EfClang.cpp" />
+    <ClCompile Include="Source\FtgMain\Ef\EfHit.cpp" />
+    <ClCompile Include="Source\FtgMain\Ef\EfPart.cpp" />
+    <ClCompile Include="Source\FtgMain\Ef\EfParticle.cpp" />
+    <ClCompile Include="Source\FtgMain\Ef\EfSpark.cpp" />
+    <ClCompile Include="Source\FtgMain\Fighting.cpp" />
+    <ClCompile Include="Source\FtgMain\FtgDemo.cpp" />
+    <ClCompile Include="Source\FtgMain\FtgMain.cpp" />
+    <ClCompile Include="Source\FtgMain\G_Ftg.cpp" />
+    <ClCompile Include="Source\FtgMain\MutualChara.cpp" />
+    <ClCompile Include="Source\GameMain\GameSettingFile.cpp" />
+    <ClCompile Include="Source\GameMain\Param.cpp" />
+    <ClCompile Include="Source\GameMain\Scene.cpp" />
+    <ClCompile Include="Source\GameMain\StdAfx.cpp" />
+    <ClCompile Include="Source\GameMain\WinMain.cpp" />
+    <ClCompile Include="Source\Menu\PauseMenu.cpp" />
+    <ClCompile Include="Source\Menu\PauseMenuItem.cpp" />
+    <ClCompile Include="Source\Menu\YesNo_Menu.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

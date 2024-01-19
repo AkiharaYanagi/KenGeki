@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="GameMain">
+      <UniqueIdentifier>{41ceeef4-94c3-48af-92e3-8e09c3628d38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FtgMain">
+      <UniqueIdentifier>{00daefbc-1697-4ccb-8749-5ee6b34e4bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExeChara">
+      <UniqueIdentifier>{7d5088ad-a745-413e-85f4-775da0b5450a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FtgMain\Ef">
+      <UniqueIdentifier>{eae2306e-5145-42da-a18d-643259e14d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExeChara\Disp">
+      <UniqueIdentifier>{82dc41f8-21d9-4b3d-b031-e595e670b0f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExeChara\Effect">
+      <UniqueIdentifier>{cf75c0fd-a329-4f19-8e12-bf7f98892d50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExeChara\Input">
+      <UniqueIdentifier>{a96094e4-ad27-4838-a52b-eb67ebae3fff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExeChara\Rect">
+      <UniqueIdentifier>{4c63ec74-ded8-4866-b134-3ad96c85ac7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{bb1efcae-b5f6-4997-9c84-030e526c88ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\GameMain\GameConst.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\GameMain.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\GameSettingFile.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\Param.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\resource.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\Scene.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\SceneCommon.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\SoundConst.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\StdAfx.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMain\WinMain.h">
+      <Filter>GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Decision.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Fighting.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\FtgConst.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\FtgDemo.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\FtgMain.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\G_Ftg.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\MutualChara.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Ef\EfClang.h">
+      <Filter>FtgMain\Ef</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Ef\EfHit.h">
+      <Filter>FtgMain\Ef</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Ef\EfPart.h">
+      <Filter>FtgMain\Ef</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Ef\EfParticle.h">
+      <Filter>FtgMain\Ef</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\Ef\EfSpark.h">
+      <Filter>FtgMain\Ef</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispRect.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispChara.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispGauge.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispInput.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispMainImage.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Effect\ExeEffect.h">
+      <Filter>ExeChara\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Effect\OperateEffect.h">
+      <Filter>ExeChara\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Effect\DispEffect.h">
+      <Filter>ExeChara\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Input\CPUInput.h">
+      <Filter>ExeChara\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Input\PlayerInput.h">
+      <Filter>ExeChara\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Input\CharaInput.h">
+      <Filter>ExeChara\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Rect\CharaRect.h">
+      <Filter>ExeChara\Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExeChara.h">
+      <Filter>ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExeChara_Actor.h">
+      <Filter>ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExeChara_Common.h">
+      <Filter>ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExeChara_State.h">
+      <Filter>ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\BtlParam.h">
+      <Filter>ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menu\PauseMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menu\PauseMenu_Const.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menu\PauseMenuItem.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Menu\YesNo_Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
+      <Filter>GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMain\Param.cpp">
+      <Filter>GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMain\Scene.cpp">
+      <Filter>GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMain\StdAfx.cpp">
+      <Filter>GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMain\WinMain.cpp">
+      <Filter>GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Decision.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Fighting.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\FtgDemo.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\FtgMain.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\G_Ftg.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\MutualChara.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Ef\EfClang.cpp">
+      <Filter>FtgMain\Ef</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Ef\EfHit.cpp">
+      <Filter>FtgMain\Ef</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Ef\EfPart.cpp">
+      <Filter>FtgMain\Ef</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Ef\EfParticle.cpp">
+      <Filter>FtgMain\Ef</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Ef\EfSpark.cpp">
+      <Filter>FtgMain\Ef</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispChara.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispFrontEnd.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispInput.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispMainImage.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispRect.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Effect\ExeEffect.cpp">
+      <Filter>ExeChara\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Effect\OperateEffect.cpp">
+      <Filter>ExeChara\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Effect\DispEffect.cpp">
+      <Filter>ExeChara\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Input\PlayerInput.cpp">
+      <Filter>ExeChara\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Input\CharaInput.cpp">
+      <Filter>ExeChara\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Input\CPUInput.cpp">
+      <Filter>ExeChara\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Rect\CharaRect.cpp">
+      <Filter>ExeChara\Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Actor.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_State.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\BtlParam.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menu\PauseMenuItem.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menu\YesNo_Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Menu\PauseMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,287 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using System.Drawing;
+using System.ComponentModel;
+
+
+namespace ScriptEditor
+{
+	//---------------------------------------------------------------------
+	//	テキストボックスからすべてのスクリプトの一部を変更するため、
+	//	スクリプト内の各値にアドレスを定義する
+	//---------------------------------------------------------------------
+	//	スクリプト内の項目をコンテンツと定義する
+	//	コンテンツの種類を特定するクラスを作る
+	//	ブランチや枠の添字も特定する
+	//---------------------------------------------------------------------
+
+	//アドレス
+	public class ScriptAddress
+	{
+		//enum
+		public enum ITEM
+		{
+			POS_X, POS_Y,
+			VEL_X, VEL_Y,
+			ACC_X, ACC_Y,
+			BRANCH, BRANCH_FRAME, 
+			CRECT_X, CRECT_Y, CRECT_W, CRECT_H,
+			ARECT_X, ARECT_Y, ARECT_W, ARECT_H,
+			HRECT_X, HRECT_Y, HRECT_W, HRECT_H,
+			ORECT_X, ORECT_Y, ORECT_W, ORECT_H,
+			POWER,
+		}
+
+		//アイテム(項目)
+		public ITEM item { get; set; }
+
+		//インデックス (基本は０で、BRANCH, RECTなど必要な場合のみ指定)
+		public int index { get; set; }
+
+		//コンストラクタ
+		public ScriptAddress ( ITEM it, int id )
+		{
+			item = it;
+			index = id;
+		}
+	}
+
+
+	//================================================================
+	//	スクリプト		キャラにおけるアクションの１フレームの値
+	//		┃
+	//		┣フレーム数
+	//		┣イメージID
+	//		┣画像表示位置
+	//		┣速度
+	//		┣加速度
+	//		┣ブランチ[]
+	//		┣ぶつかり枠[]
+	//		┣攻撃枠[]
+	//		┣ヒット枠[]
+	//		┣攻撃値
+	//		┣エフェクト発生[]
+	//
+	//================================================================
+	//[]指定子でintしか扱えないため
+	//配列のインデックスでもuintではなくintにする
+
+	public class Script
+	{
+		//------------------------------------------------
+		//アクション内スクリプトリストにおける自身のフレーム数(番目)
+		public int frame { get; set; }
+
+		//キャラ内のイメージリストにおけるインデックス
+		public int imgIndex { get; set; }
+
+		//------------------------------------------------
+		//参照型：テキストボックスで数値を指定するためintの参照型が必要
+		//------------------------------------------------
+		//画像表示位置
+		public RefPt RefPt { get; set; } = new RefPt ();
+
+		//速度
+		public RefPt RefVel { get; set; } = new RefPt ();
+
+		//加速度(フレーム毎に指定して、内部処理で減衰する)
+		public RefPt RefAcc { get; set; } = new RefPt ();
+
+		//------------------------------------------------
+		//分岐
+		//------------------------------------------------
+		//ブランチリスト
+		public BindingList<Branch> ListBranch { get; set; } = new BindingList<Branch> ();
+
+		//------------------------------------------------
+		//枠
+		//------------------------------------------------
+		//ぶつかり枠リスト(Collision)
+		public List<RefRect> ListCRect { get; set; } = new List<RefRect> ();
+
+		//攻撃枠リスト(Attack)
+		public List<RefRect> ListARect { get; set; } = new List<RefRect> ();
+
+		//当り枠リスト(Hit)
+		public List<RefRect> ListHRect { get; set; } = new List<RefRect> ();
+
+		//相殺枠リスト(Offset)
+		public List<RefRect> ListORect { get; set; } = new List<RefRect> ();
+
+		//------------------------------------------------
+		//値
+		//------------------------------------------------
+		//攻撃値
+		public RefInt Power { get; set; } = new RefInt ();
+
+		//------------------------------------------------
+		//エフェクト生成
+		//------------------------------------------------
+		public BindingList<EffectGenerate> ListGenerateEf { get; set; } = new BindingList<EffectGenerate> ();
+
+		//----------------------------------------------------------------
+		//コンストラクタ
+		public Script ()
+		{
+			Clear ();
+		}
+
+		//コピーコンストラクタ
+		public Script ( Script script )
+		{
+			Copy ( script );
+		}
+
+		//消去
+		public void Clear ()
+		{
+			frame = 0;
+			imgIndex = 0;
+
+			RefPt.Set ( 0, 0 );
+			RefVel.Set ( 0, 0 );
+			RefAcc.Set ( 0, 0 );
+
+			ListBranch.Clear ();
+			ListCRect.Clear ();
+			ListARect.Clear ();
+			ListHRect.Clear ();
+			ListORect.Clear ();
+
+			Power.i = 0;
+
+			ListGenerateEf.Clear ();
+		}
+
+		//コピー
+		public void Copy ( Script script )
+		{
+			Clear ();
+
+			this.frame = script.frame;
+			this.imgIndex = script.imgIndex;
+
+			this.RefPt.CopyValue ( script.RefPt );
+			this.RefVel.CopyValue ( script.RefVel );
+			this.RefAcc.CopyValue ( script.RefAcc );
+
+			foreach ( Branch branch in script.ListBranch )
+			{
+				this.ListBranch.Add ( branch );
+			}
+			foreach ( RefRect crect in script.ListCRect )
+			{
+				this.ListCRect.Add ( crect );
+			}
+			foreach ( RefRect arect in script.ListARect )
+			{
+				this.ListARect.Add ( arect );
+			}
+			foreach ( RefRect hrect in script.ListHRect )
+			{
+				this.ListHRect.Add ( hrect );
+			}
+			foreach ( RefRect orect in script.ListORect )
+			{
+				this.ListORect.Add ( orect );
+			}
+
+			this.Power.i = script.Power.i;
+
+			foreach ( EffectGenerate efGnrt in script.ListGenerateEf )
+			{
+//				this.listGenerateEf.Add ( ui );
+				this.ListGenerateEf.Add ( efGnrt );
+			}
+//			this.listGenerateEf = new BindingList<EffectGenerate> ( script.listGenerateEf );
+		}
+
+		//アドレスと値から設定する
+		public void SetValueInAdress ( ScriptAddress scriptAdress, int value )
+		{
+			switch ( scriptAdress.item )
+			{
+			case ScriptAddress.ITEM.POS_X:
+				RefPt.x.i = value;
+				break;
+			case ScriptAddress.ITEM.POS_Y:
+				RefPt.y.i = value;
+				break;
+			case ScriptAddress.ITEM.VEL_X:
+				RefVel.x.i = value;
+				break;
+			case ScriptAddress.ITEM.VEL_Y:
+				RefVel.y.i = value;
+				break;
+			case ScriptAddress.ITEM.ACC_X:
+				RefAcc.x.i = value;
+				break;
+			case ScriptAddress.ITEM.ACC_Y:
+				RefAcc.y.i = value;
+				break;
+			case ScriptAddress.ITEM.BRANCH:	//int valueのみでは何もしない
+				break;
+			case ScriptAddress.ITEM.BRANCH_FRAME:
+				ListBranch[ scriptAdress.index ].Frame.i = value;
+				break;
+			case ScriptAddress.ITEM.CRECT_X:
+				ListCRect[ scriptAdress.index ].x.i = value;
+				break;
+			case ScriptAddress.ITEM.CRECT_Y:
+				ListCRect[ scriptAdress.index ].y.i = value;
+				break;
+			case ScriptAddress.ITEM.CRECT_W:
+				ListCRect[ scriptAdress.index ].w.i = value;
+				break;
+			case ScriptAddress.ITEM.CRECT_H:
+				ListCRect[ scriptAdress.index ].h.i = value;
+				break;
+			case ScriptAddress.ITEM.ARECT_X:
+				ListARect[ scriptAdress.index ].x.i = value;
+				break;
+			case ScriptAddress.ITEM.ARECT_Y:
+				ListARect[ scriptAdress.index ].y.i = value;
+				break;
+			case ScriptAddress.ITEM.ARECT_W:
+				ListARect[ scriptAdress.index ].w.i = value;
+				break;
+			case ScriptAddress.ITEM.ARECT_H:
+				ListARect[ scriptAdress.index ].h.i = value;
+				break;
+			case ScriptAddress.ITEM.HRECT_X:
+				ListHRect[ scriptAdress.index ].x.i = value;
+				break;
+			case ScriptAddress.ITEM.HRECT_Y:
+				ListHRect[ scriptAdress.index ].y.i = value;
+				break;
+			case ScriptAddress.ITEM.HRECT_W:
+				ListHRect[ scriptAdress.index ].w.i = value;
+				break;
+			case ScriptAddress.ITEM.HRECT_H:
+				ListHRect[ scriptAdress.index ].h.i = value;
+				break;
+			case ScriptAddress.ITEM.ORECT_X:
+				ListORect[ scriptAdress.index ].x.i = value;
+				break;
+			case ScriptAddress.ITEM.ORECT_Y:
+				ListORect[ scriptAdress.index ].y.i = value;
+				break;
+			case ScriptAddress.ITEM.ORECT_W:
+				ListORect[ scriptAdress.index ].w.i = value;
+				break;
+			case ScriptAddress.ITEM.ORECT_H:
+				ListORect[ scriptAdress.index ].h.i = value;
+				break;
+			case ScriptAddress.ITEM.POWER:
+				Power.i = value;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+}
