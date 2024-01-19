@@ -1,0 +1,4 @@
+Ef_Dash,10,
+Ef_Jump,10,
+Ef_Hit,10,
+Ef_Offset,10,

@@ -1,0 +1,140 @@
+﻿		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
+		<Script Group="1" ImageName="004_FrontJump_00.png" ImageID="12" X="-250" Y="-500" VX="-10" VY="0" AX="2" AY="0" CLC_ST="1" Power="0" BlackOut="0" Vibration="0" Stop="0" Radian="0" AfterImage_pitch="0" AfterImage_N="0" AfterImage_time="0" Vibration_S="0" Color="Color [Empty]" Color_time="0">
+			<RouteList>
+			</RouteList>
+			<EfGenerateList Num="0">
+			</EfGenerateList>
+			<CollisionRectList Num="0">
+			</CollisionRectList>
+			<AttackRectList Num="0">
+			</AttackRectList>
+			<HitRectList Num="0">
+			</HitRectList>
+			<OffsetRectList Num="0">
+			</OffsetRectList>
+		</Script>
