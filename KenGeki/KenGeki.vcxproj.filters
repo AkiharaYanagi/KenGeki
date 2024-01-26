@@ -28,6 +28,9 @@
     <Filter Include="Menu">
       <UniqueIdentifier>{bb1efcae-b5f6-4997-9c84-030e526c88ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00_Document">
+      <UniqueIdentifier>{d2910e88-cf3b-40f2-bfc7-8b5e7f4b04e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameMain\GameConst.h">
@@ -272,5 +275,10 @@
     <ClCompile Include="Source\Menu\PauseMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>00_Document</Filter>
+    </Text>
   </ItemGroup>
 </Project>
