@@ -207,8 +207,14 @@ namespace GAME
 			AddpTask ( p );
 		}
 
+
+
 		//初期ステート
-		mp_FtgDemo = m_Greeting;
+//		mp_FtgDemo = m_Greeting;
+		mp_FtgDemo = m_Main;
+
+
+
 
 		//パラメータ
 		mp_Param = make_shared < FtgDemoParam > ();
@@ -248,7 +254,7 @@ namespace GAME
 		mp_FtgDemo = m_GetReady;
 
 		//BGM
-		SOUND->Play_Loop_BGM ( BGM_Main );
+//		SOUND->Play_Loop_BGM ( BGM_Main );
 	}
 
 	void FtgDemoActor::Change_GetReady_To_Attack ()

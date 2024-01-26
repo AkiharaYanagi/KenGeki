@@ -694,7 +694,7 @@ namespace GAME
 			dirBack = ( iPos.x < ePos.x );
 		}
 
-		float x = iPos.x + ( dirBack ? -1.f : 1.f );
+		float x = iPos.x + 10 * ( dirBack ? -1.f : 1.f );
 		float y = iPos.y;
 		m_btlPrm.SetPos ( VEC2 ( x, y ) );
 	}
