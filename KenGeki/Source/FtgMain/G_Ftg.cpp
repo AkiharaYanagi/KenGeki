@@ -22,7 +22,6 @@ namespace GAME
 	UP_G_Ftg	G_Ftg::m_inst;
 
 	G_Ftg::G_Ftg ()
-	:	  m_posMutualBase ( VEC2 ( 0, 0 ) )
 	{
 	}
 

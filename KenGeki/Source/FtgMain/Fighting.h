@@ -25,6 +25,10 @@ namespace GAME
 		P_GrpAcv		m_bg;
 		P_GrpAcv		m_bg_blackout;
 
+		//test カベ表示 背景
+		P_GrpAcv		m_wall_L;
+
+
 		//キャラ相互処理
 		P_MutualChara	m_mutualChara;
 

@@ -19,7 +19,8 @@ namespace GAME
 		//------------------------------------------------
 		//îwåi
 		m_bg = make_shared < GrpAcv > ();
-		m_bg->AddTexture ( _T ( "ftgmain_bg1.png" ) );
+//		m_bg->AddTexture ( _T ( "ftgmain_bg1.png" ) );
+		m_bg->AddTexture ( _T ( "test_bg.png" ) );
 		m_bg->SetPos ( (float)BG_POS_X, (float)BG_POS_Y );
 		m_bg->SetZ ( Z_BG );
 		AddpTask ( m_bg );
@@ -33,6 +34,14 @@ namespace GAME
 		AddpTask ( m_bg_blackout );
 		GRPLST_INSERT_MAIN ( m_bg_blackout );
 
+		m_wall_L = make_shared < GrpAcv > ();
+		m_wall_L->AddTexture ( _T ( "test_kabe.png" ) );
+		m_wall_L->SetPos ( 0, 0 );
+		m_wall_L->SetZ ( Z_BG );
+		AddpTask ( m_wall_L );
+		GRPLST_INSERT_MAIN ( m_wall_L );
+
+		//------------------------------------------------
 		//ÉQÅ[ÉWòg
 		m_gauge_frame = make_shared < GrpAcv > ();
 		m_gauge_frame->AddTexture ( _T ( "gauge_frame.png" ) );
@@ -114,6 +123,7 @@ namespace GAME
 		Pause ();
 
 		//--------------------------
+		//à√ì]
 		if ( m_tmrBlackOut->IsActive () )	//â“ì≠éû
 		{
 			//èIóπ
