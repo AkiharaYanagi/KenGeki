@@ -27,6 +27,10 @@ namespace GAME
 
 		//test カベ表示 背景
 		P_GrpAcv		m_wall_L;
+		P_GrpAcv		m_wall_R;
+
+		//サブ背景位置差分
+		float			m_subWall_dx { - GAME_WIDTH };
 
 
 		//キャラ相互処理

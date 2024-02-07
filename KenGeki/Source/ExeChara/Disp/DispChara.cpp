@@ -52,12 +52,18 @@ namespace GAME
 	void DispChara::ParamInit ( P_Param pParam )
 	{
 		m_frontEnd->ParamInit ( pParam );
+		
+		OnRect ();
+
+#if 0
 
 #if DEBUG_DISP
 		OnRect ();
 #else
 		OffRect ();
 #endif // DEBUG_DISP
+
+#endif // 0
 
 	}
 

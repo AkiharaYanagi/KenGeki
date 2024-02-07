@@ -78,6 +78,14 @@ namespace GAME
 		return VEC2 ( (float)pos_x, (float)pos_y );
 	}
 
+	//int‚Å“Ç‚ñ‚¾’l‚ð10.f‚ÅŠ„‚é(0.1fŠ|‚¯‚é)
+	VEC2 LoadCharaBinUtl::LoadVec2_Dev10F ( P_CH buf, UINT & pos )
+	{
+		int pos_x = LoadInt ( buf, pos );
+		int pos_y = LoadInt ( buf, pos );
+		return VEC2 ( 0.1f * pos_x, 0.1f * pos_y );
+	}
+
 
 	RECT LoadCharaBinUtl::LoadRect ( P_CH buf, UINT & pos )
 	{

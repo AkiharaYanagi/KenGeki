@@ -31,6 +31,7 @@ namespace GAME
 		int LoadInt ( P_CH buf, UINT & pos );
 		UINT LoadUInt ( P_CH buf, UINT & pos );
 		VEC2 LoadVec2 ( P_CH buf, UINT & pos );
+		VEC2 LoadVec2_Dev10F ( P_CH buf, UINT & pos );
 		RECT LoadRect ( P_CH buf, UINT & pos );
 		void LoadListRect ( P_CH buf, UINT & pos, PV_RECT pvRect );
 		L_UINT LoadAryUint ( P_CH buf, UINT & pos, UINT & refLength );

@@ -20,14 +20,25 @@ namespace GAME
 		//îwåi
 		m_bg = make_shared < GrpAcv > ();
 //		m_bg->AddTexture ( _T ( "ftgmain_bg1.png" ) );
-		m_bg->AddTexture ( _T ( "test_bg.png" ) );
+//		m_bg->AddTexture ( _T ( "test_bg.png" ) );
+//		m_bg->AddTexture ( _T ( "BG0.png" ) );
+		m_bg->AddTexture ( _T ( "training_bg.png" ) );
+//		m_bg->AddTexture ( _T ( "training_bg_blackout.png" ) );
 		m_bg->SetPos ( (float)BG_POS_X, (float)BG_POS_Y );
 		m_bg->SetZ ( Z_BG );
+
+		//ÉIÉuÉWÉFÉNÉgí«â¡
+		m_bg->AddObject ();
+		P_Object pOb = m_bg->GetpvpObject ()->at ( 1 );
+		pOb->SetPos ( 200, 0 );
+
 		AddpTask ( m_bg );
 		GRPLST_INSERT_MAIN ( m_bg );
 
 		m_bg_blackout = make_shared < GrpAcv > ();
-		m_bg_blackout->AddTexture ( _T ( "ftgmain_bg_blackout.png" ) );
+//		m_bg_blackout->AddTexture ( _T ( "ftgmain_bg_blackout.png" ) );
+//		m_bg_blackout->AddTexture ( _T ( "ftgmain_bg1.png" ) );
+		m_bg_blackout->AddTexture ( _T ( "training_bg_blackout.png" ) );
 		m_bg_blackout->SetPos ( (float)BG_POS_X, (float)BG_POS_Y );
 		m_bg_blackout->SetZ ( Z_BG );
 		m_bg_blackout->SetValid ( false );
@@ -40,6 +51,21 @@ namespace GAME
 		m_wall_L->SetZ ( Z_BG );
 		AddpTask ( m_wall_L );
 		GRPLST_INSERT_MAIN ( m_wall_L );
+
+		m_wall_R = make_shared < GrpAcv > ();
+		m_wall_R->AddTexture ( _T ( "test_kabe.png" ) );
+		m_wall_R->SetScaling ( -1.f, 1.f );
+		m_wall_R->SetPos ( GAME_WIDTH - 512, 0 );
+		m_wall_R->SetZ ( Z_BG );
+		AddpTask ( m_wall_R );
+		GRPLST_INSERT_MAIN ( m_wall_R );
+
+
+		//test
+		m_wall_L->SetValid ( F );
+		m_wall_R->SetValid ( F );
+
+
 
 		//------------------------------------------------
 		//ÉQÅ[ÉWòg
@@ -209,7 +235,25 @@ namespace GAME
 		//-------------------------------------------------------
 
 		//îwåià íuï‚ê≥
-		m_bg->SetPos ( G_BASE_POS ().x, (float)BG_POS_Y );
+		int nx = (int) G_BASE_POS ().x;
+		int disp_bg_x = nx % GAME_WIDTH;
+		m_bg->SetPos ( (float)disp_bg_x, (float)BG_POS_Y );
+
+		//ÉTÉuîwåià íu
+		int lx = disp_bg_x - GAME_WIDTH;
+		int rx = disp_bg_x + GAME_WIDTH;
+		const int D = GAME_WINDOW_WIDTH - GAME_WIDTH;	//2048 - 1280 = 768
+		int sub_x = ( - disp_bg_x < 0 )? lx : rx ;
+		P_Object pOb = m_bg->GetpObject ( 1 );
+		pOb->SetPos ( (float)sub_x, (float)BG_POS_Y );
+
+
+		//ÉJÉxà íu
+		float wall_l = G_FTG->GetWallLeft ();
+		m_wall_L->SetPos ( wall_l + G_BASE_POS ().x, 0 );
+
+		float wall_r = G_FTG->GetWallRight ();
+		m_wall_R->SetPos ( wall_r + G_BASE_POS ().x, 0 );
 	}
 
 

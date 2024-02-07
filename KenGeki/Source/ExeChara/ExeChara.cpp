@@ -393,7 +393,9 @@ namespace GAME
 		//スクリプトからのパラメータ反映
 		SetParamFromScript ();
 
-		//特殊アクション指定
+		//==================================================
+		//	特殊アクション指定
+		//==================================================
 
 		//ダッシュ開始
 		if ( IsNameAction ( _T ( "FrontDashStart" ) ) )
@@ -404,6 +406,7 @@ namespace GAME
 				SOUND->Play_SE ( SE_Btl_Dash );
 			}
 		}
+
 		//ジャンプ
 		if ( IsNameAction ( _T ( "FrontJump" ) )
 			|| IsNameAction ( _T ( "VerticalJump" ) )
@@ -417,6 +420,16 @@ namespace GAME
 			}
 		}
 
+		//足払い追撃終了
+//		if ( IsNameAction ( _T ( "足払い初撃" ) ) )
+//		if ( IsNameAction ( _T ( "足払い追撃" ) ) )
+		if ( IsNameAction ( _T ( "足払い追撃ヒット" ) ) )
+		{
+			if ( m_frame == 0 )
+			{
+//				G_FTG->SetResetPos ( T );
+			}
+		}
 	}
 
 	//スクリプトからパラメータを反映する
@@ -799,7 +812,6 @@ namespace GAME
 		//ヒット状態を確認 (ヒット状態設定は OnHit(), OnClang() )
 		bool bHit = m_btlPrm.GetHitEst () || m_btlPrm.GetClang ();
 
-#if DEBUG_DISP
 		//デバッグ表示あり
 		if ( m_playerID == PLAYER_ID_1 )
 		{
@@ -813,6 +825,7 @@ namespace GAME
 			UINT hitnum = m_btlPrm.GetHitNum ();
 			DBGOUT_WND_F ( 7, _T ( "hitnum = %d / %d" ), hitnum, hitmax );
 		}
+#if DEBUG_DISP
 #else
 		//デバッグ表示なし
 #endif // DEBUG_DISP
