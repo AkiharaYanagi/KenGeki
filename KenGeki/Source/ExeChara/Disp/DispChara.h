@@ -67,6 +67,9 @@ namespace GAME
 		//ゲージ類更新
 		void UpdateGauge ( BtlParam btlPrm );
 
+		//ヒット数更新
+		void UpdateChainHitNum ( UINT n );
+
 		//入力更新
 		void UpdateInput ( P_CharaInput p ) { m_dispInput->UpdateInput ( p ); }
 	};

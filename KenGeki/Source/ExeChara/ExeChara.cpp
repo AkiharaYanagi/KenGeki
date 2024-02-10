@@ -8,8 +8,6 @@
 // ヘッダファイルのインクルード
 //-------------------------------------------------------------------------------------------------
 #include "ExeChara.h"
-#include "Input/PlayerInput.h"
-#include "Input/CPUInput.h"
 #include "../GameMain/SoundConst.h"
 
 
@@ -55,15 +53,23 @@ namespace GAME
 		m_name = stg.GetName ( m_playerID );
 		m_playerMode = stg.GetPlayerMode ( m_playerID );
 
+		//入力
+		m_pPlayerInput = make_shared < PlayerInput > ();
+		m_pPlayerInput->SetPlayer ( m_playerID );
+
+		m_pCPUInput = make_shared < CPUInput > ( shared_from_this (), m_pOther );
+		m_pCPUInput->SetPlayer ( m_playerID );
+		m_pCPUInput->Load ();
+
+
 		//プレイヤモード(入力種類)による初期化
 		switch ( m_playerMode )
 		{
-		case MODE_PLAYER: m_pCharaInput = make_shared < PlayerInput > (); break;
-		case MODE_CPU: m_pCharaInput = make_shared < CPUInput > ( shared_from_this (), m_pOther ); break;
-		case MODE_NETWORK: m_pCharaInput = make_shared < PlayerInput > (); break;	//(仮)
+		case MODE_PLAYER: m_pCharaInput = m_pPlayerInput; break;
+		case MODE_CPU: m_pCharaInput = m_pCPUInput; break;
+		case MODE_NETWORK: m_pCharaInput = m_pPlayerInput; break;	//(仮)
 		default: break;
 		}
-		m_pCharaInput->SetPlayer ( m_playerID );
 
 		m_dispChara->ParamInit ( pParam );
 	}
@@ -223,7 +229,8 @@ namespace GAME
 		//バランスアウト
 		if ( m_btlPrm.GetBalance () <= 0 )
 		{
-			SetAction ( _T ( "Dotty" ) );
+			//			SetAction ( _T ( "Dotty" ) );
+			SetAction ( _T ( "立ち" ) );
 		}
 
 
@@ -384,11 +391,13 @@ namespace GAME
 	//スクリプトを遷移させる
 	void ExeChara::TransitScript ()
 	{
+		//------------------------------------------------
 		//今回のフレーム中はm_pActionとm_pScriptを用い、
 		//これ以降はm_actionIDとm_frameを用いない
 		//このフレームでスクリプトを処理するため、移行先アクションとスクリプトを保存
 		m_pAction = m_pChara->GetpAction ( m_actionID );
 		m_pScript = m_pAction->GetpScript ( m_frame );
+		//------------------------------------------------
 
 		//スクリプトからのパラメータ反映
 		SetParamFromScript ();
@@ -396,6 +405,24 @@ namespace GAME
 		//==================================================
 		//	特殊アクション指定
 		//==================================================
+		
+		if ( IsNameAction ( _T ( "立ち" ) ) )
+		{
+			//連続ヒット数のリセット
+			m_pOther.lock()->m_btlPrm.SetChainHitNum ( 0 );
+			if ( m_frame == 0 )
+			{
+			}
+
+			//Test　バランス修正
+			int b = m_btlPrm.GetBalance ();
+			{
+				if ( b < 1000 ) 
+				{
+					m_btlPrm.SetBalance ( 5000 );
+				}
+			}
+		}
 
 		//ダッシュ開始
 		if ( IsNameAction ( _T ( "FrontDashStart" ) ) )
@@ -649,16 +676,51 @@ namespace GAME
 
 		//ゲージ更新
 		m_dispChara->UpdateGauge ( m_btlPrm );
+
+		//ヒット数更新
+		m_dispChara->UpdateChainHitNum ( m_btlPrm.GetChainHitNum () );
 	}
 	//====================================================================================
 
 	//落下・着地
-
-	//@todo ブランチ条件でスクリプト移項するようにする
-
 	void ExeChara::Landing ()
 	{
+		//位置が基準より下だったら
 		VEC2 pos = m_btlPrm.GetPos ();
+		
+		if ( PLAYER_BASE_Y < pos.y )
+		{
+			//着地条件のブランチを取得
+			UINT indexAction = Check_TransitAction_Condition ( BRANCH_CONDITION::BRC_GRD );
+			if ( NO_COMPLETE != indexAction )
+			{
+				//y位置リセット
+				float x = pos.x;
+				float y = PLAYER_BASE_Y;
+				m_btlPrm.SetPos ( VEC2 ( x, y ) );
+				m_btlPrm.SetVg ( 0 );
+				m_btlPrm.SetG ( 0 );
+
+				//遷移先チェック
+				P_Action pAct = m_pChara->GetpAction ( indexAction );
+				P_Script pScr = pAct->GetpScript ( 0 );
+
+				//自身を変更
+				SetAction ( indexAction );	//遷移
+			}
+		}
+
+		//位置が基準より上で立ち状態だったら
+		if (PLAYER_BASE_Y > pos.y)
+		{
+			if ( IsNameAction ( _T ( "立ち" ) ) )
+			{
+				//落下
+				m_btlPrm.SetG ( 5 );
+			}
+		}
+
+#if 0
 		if ( PLAYER_BASE_Y < pos.y )
 		{
 			//デモ時は何もしない
@@ -686,6 +748,7 @@ namespace GAME
 		{
 			m_btlPrm.SetG ( 5 );
 		}
+#endif // 0
 	}
 
 
@@ -973,17 +1036,15 @@ namespace GAME
 	//CPU操作切替
 	void ExeChara::ControlCPU ()
 	{
-		m_pCharaInput = make_shared < CPUInput > ( shared_from_this (), m_pOther );
-		m_pCharaInput->SetPlayer ( m_playerID );
-
+//		m_pCharaInput = make_shared < CPUInput > ( shared_from_this (), m_pOther );
+		m_pCharaInput = m_pCPUInput;
 		m_dispChara->SetControl_CPU ();
 	}
 
 	void ExeChara::ControlPlayer ()
 	{
-		m_pCharaInput = make_shared < PlayerInput > ();
-		m_pCharaInput->SetPlayer ( m_playerID );
-
+//		m_pCharaInput = make_shared < PlayerInput > ();
+		m_pCharaInput = m_pPlayerInput;
 		m_dispChara->SetControl_PLAYER ();
 	}
 
@@ -1016,7 +1077,8 @@ namespace GAME
 		//バランスアウト
 		if ( m_btlPrm.GetBalance () <= 0 )
 		{
-			SetAction ( _T ( "Dotty" ) );
+//			SetAction ( _T ( "Dotty" ) );
+			SetAction ( _T ( "立ち" ) );
 		}
 
 		//自身の状態変更

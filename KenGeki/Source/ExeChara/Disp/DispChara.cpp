@@ -106,6 +106,12 @@ namespace GAME
 		m_frontEnd->UpdateGauge ( btlPrm );
 	}
 
+	//ゲージ類更新
+	void DispChara::UpdateChainHitNum ( UINT n )
+	{
+		m_frontEnd->UpdateHitNum ( n );
+	}
+
 
 }	//namespace GAME
 

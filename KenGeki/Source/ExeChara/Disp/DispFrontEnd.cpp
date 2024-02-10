@@ -86,6 +86,28 @@ namespace GAME
 		m_gaugeLurch.SetAllColor ( _CLR ( 0xffa0ffa0 ) );
 		m_pGrpAry->InsertTask ( & m_gaugeLurch );
 #endif	//0
+
+		//ÉqÉbÉgêî
+		m_grpHitNum = make_shared < GrpAcv > ();
+		m_grpHitNum->AddTexture ( _T("0.png") );
+		m_grpHitNum->AddTexture ( _T("1.png") );
+		m_grpHitNum->AddTexture ( _T("2.png") );
+		m_grpHitNum->AddTexture ( _T("3.png") );
+		m_grpHitNum->AddTexture ( _T("4.png") );
+		m_grpHitNum->AddTexture ( _T("5.png") );
+		m_grpHitNum->AddTexture ( _T("6.png") );
+		m_grpHitNum->AddTexture ( _T("7.png") );
+		m_grpHitNum->AddTexture ( _T("8.png") );
+		m_grpHitNum->AddTexture ( _T("9.png") );
+		m_grpHitNum->SetZ ( Z_EFB + 0.01f );
+		GRPLST_INSERT_MAIN ( m_grpHitNum );
+		AddpTask ( m_grpHitNum );
+
+		m_grpStrHit = make_shared < GrpAcv > ();
+		m_grpStrHit->AddTexture ( _T("Hit.png") );
+		m_grpStrHit->SetZ ( Z_EFB + 0.01f );
+		GRPLST_INSERT_MAIN ( m_grpStrHit );
+		AddpTask ( m_grpStrHit );
 	}
 
 	P_GrpAcv DispFrontEnd::MakepGrpPlyr ( LPCTSTR pstr )
@@ -135,10 +157,19 @@ namespace GAME
 
 		//ÇÃÇØÇºÇËéûä‘ï\é¶
 		m_gaugeLurch.SetRect ( 0, 0, 0, 0 );
-
-		//ògèâä˙âª
-		InitRect ();
 #endif // 0
+
+		//ÉqÉbÉgêî
+		if ( PLAYER_ID_1 == playerID )
+		{
+			m_grpHitNum->SetPos ( VEC2 ( 100, 200 ) );
+			m_grpStrHit->SetPos ( VEC2 ( 100 + 128, 200 ) );
+		}
+		else if ( PLAYER_ID_2 == playerID )
+		{
+			m_grpHitNum->SetPos ( VEC2 ( 1280 - 384 -100, 200 ) );
+			m_grpStrHit->SetPos ( VEC2 ( 1280 - 256 -100, 200 ) );
+		}
 	}
 
 	//------------------------
@@ -207,6 +238,24 @@ namespace GAME
 		}
 #endif // 0
 
+	}
+
+	void DispFrontEnd::UpdateHitNum ( UINT n )
+	{
+		if ( n < 0 || 10 <= n ) { return; }
+
+		m_grpHitNum->SetIndexTexture ( n );
+
+		if ( n == 0 )
+		{
+			m_grpHitNum->SetValid ( F );
+			m_grpStrHit->SetValid ( F );
+		}
+		else
+		{
+			m_grpHitNum->SetValid ( T );
+			m_grpStrHit->SetValid ( T );
+		}
 	}
 
 #if 0

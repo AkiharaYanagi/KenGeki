@@ -24,6 +24,8 @@ namespace GAME
 		~PlayerInput ();
 	};
 
+	using P_PlayerInput = shared_ptr < PlayerInput >;
+
 
 }	//namespace GAME
 

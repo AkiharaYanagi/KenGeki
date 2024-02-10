@@ -51,7 +51,13 @@ namespace GAME
 
 		static VEC2 POS_PL_CP_1P;
 		static VEC2 POS_PL_CP_2P;
+		//-----------------------------------------------------
 
+		//ÉqÉbÉgêî
+		P_GrpAcv	m_grpHitNum;		//"0"~"9"
+		P_GrpAcv	m_grpStrHit;		//"Hit"
+
+		//-----------------------------------------------------
 		enum DISP_FE_CONST
 		{
 			SIDE_1P = 0,
@@ -97,6 +103,8 @@ namespace GAME
 
 		void SetPlayer ();
 		void SetCPU ();
+
+		void UpdateHitNum ( UINT n );
 
 	private:
 		P_GrpAcv MakepGrpPlyr ( LPCTSTR pstr );

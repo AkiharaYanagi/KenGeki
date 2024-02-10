@@ -17,7 +17,8 @@
 #include "../FtgMain/G_Ftg.h"
 #include "../FtgMain/FtgConst.h"
 #include "Disp/DispChara.h"
-#include "Input/CharaInput.h"
+#include "Input/PlayerInput.h"
+#include "Input/CPUInput.h"
 #include "Effect/OperateEffect.h"
 #include "Rect/CharaRect.h"
 #include "BtlParam.h"
@@ -53,6 +54,9 @@ namespace GAME
 		//------------------------------------------------
 		//入力
 		P_CharaInput	m_pCharaInput;	//入力
+		P_PlayerInput	m_pPlayerInput;		//プレイヤ
+		P_CPUInput		m_pCPUInput;		//プレイヤ
+
 
 		//------------------------------------------------
 		//スクリプト実行
