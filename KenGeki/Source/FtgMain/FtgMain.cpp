@@ -100,6 +100,12 @@ namespace GAME
 			return;
 		}
 
+		//トレーニングリセット
+		if ( CFG_PUSH_KEY ( _P1_BTN6 ) || CFG_PUSH_KEY ( _P2_BTN6 ) )
+		{
+			m_fighting->TrainingRestart ();
+		}
+
 		//通常動作
 		Scene::Move ();
 

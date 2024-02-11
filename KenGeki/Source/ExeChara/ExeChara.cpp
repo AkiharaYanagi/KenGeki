@@ -651,9 +651,17 @@ namespace GAME
 		//自分がライフ０
 		if ( 0 >= m_btlPrm.GetLife () )
 		{
+
+
+			//test
+#if 0
 			//ダウン状態に強制変更
 			SetAction ( ACT_DOWN );
 			m_btlPrm.GetTmr_Down ()->Start ();
+#endif // 0
+
+			m_btlPrm.SetLife ( 10000 );
+
 		}
 	}
 
@@ -1036,14 +1044,12 @@ namespace GAME
 	//CPU操作切替
 	void ExeChara::ControlCPU ()
 	{
-//		m_pCharaInput = make_shared < CPUInput > ( shared_from_this (), m_pOther );
 		m_pCharaInput = m_pCPUInput;
 		m_dispChara->SetControl_CPU ();
 	}
 
 	void ExeChara::ControlPlayer ()
 	{
-//		m_pCharaInput = make_shared < PlayerInput > ();
 		m_pCharaInput = m_pPlayerInput;
 		m_dispChara->SetControl_PLAYER ();
 	}
