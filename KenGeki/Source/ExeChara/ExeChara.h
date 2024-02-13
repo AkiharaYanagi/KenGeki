@@ -111,7 +111,7 @@ namespace GAME
 
 		//------------------------------------------------------------
 		//相手を設定
-		void SetpOther ( WP_ExeChara p ) { m_pOther = p; /*m_cpuInput.SetpExeCharaOther ( p );*/ }
+		void SetpOther ( WP_ExeChara p ) { m_pOther = p; }
 
 		//------------------------------------------------------------
 
@@ -253,7 +253,7 @@ namespace GAME
 	//	内部関数
 	//================================================
 	private:
-		void MakeEfOprt ();		//エフェクト処理の生成
+//		void MakeEfOprt ();		//エフェクト処理の生成
 
 	public:
 		//アクション指定
@@ -281,7 +281,7 @@ namespace GAME
 		//Stateから呼ばれる状態別処理
 		void CheckLife ();			//ライフ判定
 		void UpdateGraphic ();		//グラフィック更新
-		void EffectGenerate ();		//エフェクト生成
+//		void EffectGenerate ();		//エフェクト生成
 		void EffectMove ();
 		void MoveTimer () { m_btlPrm.TimerMove (); }
 

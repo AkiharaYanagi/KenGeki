@@ -88,10 +88,14 @@ namespace GAME
 		m_dispChara->SetpCharaRect ( m_charaRect );
 
 		//エフェクト生成ベクタの生成
-		MakeEfOprt ();
+//		MakeEfOprt ();
+		m_oprtEf->MakeEfList ( m_pChara );
 
 		//アクタ・ステートに用いる状態パラメータに登録
 		m_actor.SetwpExeChara ( shared_from_this () );
+
+		//バトルパラメータに設定
+		m_btlPrm.SetpChara ( m_pChara, m_pOther );
 
 		TASK_VEC::Load ();
 	}
@@ -103,10 +107,10 @@ namespace GAME
 
 //名前からスクリプトファイルを指定してキャラのロード
 //※	D3DXのテクスチャを用いるためフォーカス変更時などに再設定(Reset())が必要
-//		tstring name (_T ("testChara.dat"));
+//		tstring name ( _T ("testChara.dat") );
 //		tstring name ( _T ( "chara.dat" ) );
+//		tstring name ( _T ("chara_standBin.dat") );
 		tstring name ( _T ( "charaBin.dat" ) );
-		//		tstring name (_T ("chara_standBin.dat"));
 #if 0
 		switch ( m_name )
 		{
@@ -147,7 +151,6 @@ namespace GAME
 		//入力表示更新
 		m_dispChara->UpdateInput ( m_pCharaInput );
 
-
 		TASK_VEC::Init ();
 	}
 
@@ -168,7 +171,8 @@ namespace GAME
 		m_pChara = make_shared < Chara > ();
 		Load ();
 		m_dispChara->SetpChara ( m_pChara );
-		m_oprtEf->SetpChara ( m_pChara );
+//		m_oprtEf->SetpChara ( m_pChara );
+		m_oprtEf->MakeEfList ( m_pChara );
 
 		//アクション・スクリプト再取得
 		m_pAction = m_pChara->GetpAction ( m_actionID );
@@ -224,7 +228,6 @@ namespace GAME
 		if ( LurchTimer () ) { return; }
 #endif // 0
 
-
 		//-----------------------------------------------------
 		//バランスアウト
 		if ( m_btlPrm.GetBalance () <= 0 )
@@ -232,7 +235,6 @@ namespace GAME
 			//			SetAction ( _T ( "Dotty" ) );
 			SetAction ( _T ( "立ち" ) );
 		}
-
 
 		//-----------------------------------------------------
 		// コマンドによる分岐
@@ -259,12 +261,6 @@ namespace GAME
 
 		//-----------------------------------------------------
 		// スクリプト通常処理
-#if 0
-		//m_frameは0から開始、Move()とDraw()で同一スクリプトを処理する
-		//このフレームでスクリプトを処理するため、移行先アクションとスクリプトを保存
-		m_pAction = m_pChara->GetpAction ( m_actionID );
-		m_pScript = m_pAction->GetpScript ( m_frame );
-#endif // 0
 		TransitScript ();
 
 		//通常処理：スクリプトを１つ進める
@@ -276,18 +272,7 @@ namespace GAME
 	bool ExeChara::TranditAction_Command ()
 	{
 		//-----------------------------------------------------
-		//テスト用
-		//特定のアクション
-		if ( IsNameAction ( _T ( "FrontDash" ) ) )
-		{
-			int i = 0;
-		}
-
-		//-----------------------------------------------------
 		// コマンドによる分岐
-
-//		UINT transitID = m_pCharaInput->GetTransitID ( *m_pChara, m_pScript, m_btlPrm.GetDirRight () );
-
 		//コマンドが完成したIDを優先順に保存したリスト
 		m_pCharaInput->MakeTransitIDList ( *m_pChara, m_pScript, m_btlPrm.GetDirRight () );
 		const std::vector < UINT > & vCompID = m_pCharaInput->GetvCompID ();
@@ -305,7 +290,6 @@ namespace GAME
 			transitID = id;
 			break;
 		}
-
 
 		//コマンドが完成していたら
 		if ( NO_COMPLETE != transitID )
@@ -361,22 +345,6 @@ namespace GAME
 
 
 	//アクションの移項(直接指定)
-#if 0
-	void ExeChara::TransitAction ( UINT actionID )
-	{
-		m_actionID = actionID;		//遷移
-		m_frame = 0;		//スクリプト初期化
-
-		//一時アクションとスクリプトを再設定
-		m_pAction = m_pChara->GetpAction ( m_actionID );
-		m_pScript = m_pAction->GetpScript ( m_frame );
-	}
-#endif // 0
-	void ExeChara::SetAction ( tstring action_name )
-	{
-		SetAction ( m_pChara->GetActionID ( action_name ) );
-	}
-
 	void ExeChara::SetAction ( UINT action_id )
 	{
 		m_actionID = action_id;
@@ -388,13 +356,19 @@ namespace GAME
 		SetParamFromScript ();
 	}
 
+	void ExeChara::SetAction ( tstring action_name )
+	{
+		SetAction ( m_pChara->GetActionID ( action_name ) );
+	}
+
+
 	//スクリプトを遷移させる
 	void ExeChara::TransitScript ()
 	{
 		//------------------------------------------------
+		//このフレームでスクリプトを処理するため、移行先アクションとスクリプトを保存
 		//今回のフレーム中はm_pActionとm_pScriptを用い、
 		//これ以降はm_actionIDとm_frameを用いない
-		//このフレームでスクリプトを処理するため、移行先アクションとスクリプトを保存
 		m_pAction = m_pChara->GetpAction ( m_actionID );
 		m_pScript = m_pAction->GetpScript ( m_frame );
 		//------------------------------------------------
@@ -402,10 +376,11 @@ namespace GAME
 		//スクリプトからのパラメータ反映
 		SetParamFromScript ();
 
+
 		//==================================================
 		//	特殊アクション指定
 		//==================================================
-		
+
 		if ( IsNameAction ( _T ( "立ち" ) ) )
 		{
 			//連続ヒット数のリセット
@@ -448,8 +423,6 @@ namespace GAME
 		}
 
 		//足払い追撃終了
-//		if ( IsNameAction ( _T ( "足払い初撃" ) ) )
-//		if ( IsNameAction ( _T ( "足払い追撃" ) ) )
 		if ( IsNameAction ( _T ( "足払い追撃ヒット" ) ) )
 		{
 			if ( m_frame == 0 )
@@ -465,10 +438,6 @@ namespace GAME
 		//暗転
 		m_btlPrm.SetBlackOut ( m_pScript->m_prmStaging.BlackOut );
 	}
-
-
-
-
 
 	//アクション移行(自身)
 	void  ExeChara::TransitAction_Condition_I ( BRANCH_CONDITION CONDITION, bool forced )
@@ -533,22 +502,15 @@ namespace GAME
 	// 位置計算
 	void ExeChara::CalcPos ()
 	{
-		//バランス処理
-		int b = m_btlPrm.GetBalance ();
-		int sb = m_pScript->m_prmBattle.Balance_I;
-		b -= sb;
-		if ( b < 0 ) { b = 0; }
-		if ( b > BALANCE_MAX ) { b = BALANCE_MAX; }
-
-		m_btlPrm.SetBalance ( b );
-
-		//位置計算
-		m_btlPrm.CalcPos ( m_pScript );
-
+		m_btlPrm.CalcBalance ( m_pScript );	//バランス処理
+		m_btlPrm.CalcPos ( m_pScript );		//位置計算
 		Landing ();	//着地
 	}
 
 	//====================================================================================
+	//エフェクト
+
+#if 0
 	//エフェクト処理の生成
 	void ExeChara::MakeEfOprt ()
 	{
@@ -584,7 +546,33 @@ namespace GAME
 			}
 		}
 	}
+#endif // 0
 
+	void ExeChara::EffectMove ()
+	{
+		//エフェクト生成と動作
+		if ( m_btlPrm.GetFirstEf () )	//ヒット後の初回のみは動作
+		{
+			m_oprtEf->GenerateEffect ( m_pScript, m_btlPrm );
+			m_btlPrm.SetFirstEf ( F );
+		}
+		else
+		{
+			if ( ! m_btlPrm.GetTmr_HitStop ()->IsActive () )	//ヒットストップ時は生成しない
+			{
+				//EffectGenerate ();
+				m_oprtEf->GenerateEffect ( m_pScript, m_btlPrm );
+			}
+		}
+
+		//エフェクト動作
+		m_oprtEf->PreScriptMove ();
+
+		//エフェクト同期
+		m_oprtEf->PostScriptMove ( m_btlPrm.GetPos (), m_btlPrm.GetDirRight () );
+	}
+
+#if 0
 	//エフェクト生成
 	void ExeChara::EffectGenerate ()
 	{
@@ -619,29 +607,8 @@ namespace GAME
 			}
 		}
 	}
+#endif // 0
 
-	void ExeChara::EffectMove ()
-	{
-		//エフェクト生成と動作
-		if ( m_btlPrm.GetFirstEf () )	//ヒット後の初回のみは動作
-		{
-			EffectGenerate ();
-			m_btlPrm.SetFirstEf ( F );
-		}
-		else
-		{
-			if ( ! m_btlPrm.GetTmr_HitStop ()->IsActive () )	//ヒットストップ時は生成しない
-			{
-				EffectGenerate ();
-			}
-		}
-
-		//エフェクト動作
-		m_oprtEf->PreScriptMove ();
-
-		//エフェクト同期
-		m_oprtEf->PostScriptMove ( m_btlPrm.GetPos (), m_btlPrm.GetDirRight () );
-	}
 	//====================================================================================
 
 
@@ -651,17 +618,13 @@ namespace GAME
 		//自分がライフ０
 		if ( 0 >= m_btlPrm.GetLife () )
 		{
-
-
 			//test
 #if 0
 			//ダウン状態に強制変更
 			SetAction ( ACT_DOWN );
 			m_btlPrm.GetTmr_Down ()->Start ();
 #endif // 0
-
 			m_btlPrm.SetLife ( 10000 );
-
 		}
 	}
 
@@ -830,13 +793,13 @@ namespace GAME
 
 			if ( prm.m_pOb->GetValid () )
 			{
-				for ( RECT rect : ( *pvHRect ) )
+				for ( const RECT & rect : ( *pvHRect ) )
 				{
 					//重なっていたとき
 					if ( OverlapPoint ( prm.m_pos, rect ) )
 					{
 						vPrm [ i ].m_gotten = T;
-						++count;
+						++ count;
 						break;	//RECTのループを抜け、EfPartの点を続行
 					}
 				}

@@ -242,9 +242,13 @@ namespace GAME
 
 	void DispFrontEnd::UpdateHitNum ( UINT n )
 	{
-		if ( n < 0 || 10 <= n ) { return; }
+		if ( n < 0 || 100 <= n ) { return; }
 
-		m_grpHitNum->SetIndexTexture ( n );
+		int n1 = n % 10;	//1Œ…–Ú
+		int n2 = (n / 10) % 10;	//2Œ…–Ú
+
+		m_grpHitNum->SetIndexTexture ( n1 );
+
 
 		if ( n == 0 )
 		{
