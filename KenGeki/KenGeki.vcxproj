@@ -188,6 +188,9 @@
     <ClCompile Include="Source\ExeChara\Effect\OperateEffect.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara_Actor.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_Event.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_Load.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara_State.cpp" />
     <ClCompile Include="Source\ExeChara\Input\CharaInput.cpp" />
     <ClCompile Include="Source\ExeChara\Input\CPUInput.cpp" />

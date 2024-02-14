@@ -275,6 +275,15 @@
     <ClCompile Include="Source\Menu\PauseMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Load.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Event.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt">

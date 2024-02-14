@@ -103,6 +103,9 @@ namespace GAME
 		GRPLST_INSERT_MAIN ( m_grpHitNum );
 		AddpTask ( m_grpHitNum );
 
+		//ヒット数２桁目
+		m_grpHitNum->AddObject ();
+
 		m_grpStrHit = make_shared < GrpAcv > ();
 		m_grpStrHit->AddTexture ( _T("Hit.png") );
 		m_grpStrHit->SetZ ( Z_EFB + 0.01f );
@@ -133,7 +136,8 @@ namespace GAME
 		m_gaugeBalance->LoadPlayer ( playerID );
 		m_gaugeMana->LoadPlayer ( playerID );
 
-		//プレイヤにより表示を指定
+
+			//プレイヤにより表示を指定
 		if ( PLAYER_ID_1 == playerID )
 		{
 			m_grp_Cst_Player1P2P->SetPos ( POS_PL_CP_1P );
@@ -160,15 +164,20 @@ namespace GAME
 #endif // 0
 
 		//ヒット数
+		P_Object pOb = m_grpHitNum->GetpObject ( 1 );
 		if ( PLAYER_ID_1 == playerID )
 		{
 			m_grpHitNum->SetPos ( VEC2 ( 100, 200 ) );
 			m_grpStrHit->SetPos ( VEC2 ( 100 + 128, 200 ) );
+			
+			pOb->SetPos ( VEC2 ( 0, 200 ) );
 		}
 		else if ( PLAYER_ID_2 == playerID )
 		{
 			m_grpHitNum->SetPos ( VEC2 ( 1280 - 384 -100, 200 ) );
 			m_grpStrHit->SetPos ( VEC2 ( 1280 - 256 -100, 200 ) );
+
+			pOb->SetPos ( VEC2 (  1280 - 384 - 0, 200 ) );
 		}
 	}
 
@@ -244,11 +253,12 @@ namespace GAME
 	{
 		if ( n < 0 || 100 <= n ) { return; }
 
+
 		int n1 = n % 10;	//1桁目
 		int n2 = (n / 10) % 10;	//2桁目
+		P_Object pOb = m_grpHitNum->GetpObject ( 1 );
 
 		m_grpHitNum->SetIndexTexture ( n1 );
-
 
 		if ( n == 0 )
 		{
@@ -259,6 +269,15 @@ namespace GAME
 		{
 			m_grpHitNum->SetValid ( T );
 			m_grpStrHit->SetValid ( T );
+			if ( n < 10 )
+			{
+				pOb->SetValid ( F );
+			}
+			else
+			{
+				pOb->SetIndexTexture ( n2 );
+				pOb->SetValid ( T );
+			}
 		}
 	}
 
