@@ -1,16 +1,16 @@
 //=================================================================================================
 //
-// DispChara ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispChara ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispChara.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -28,7 +28,7 @@ namespace GAME
 		m_dispInput = make_shared < DispInput > ();
 		AddpTask ( m_dispInput );
 
-		//‰e
+		//å½±
 		m_grpShadow = make_shared < GrpAcv > ();
 		m_grpShadow->AddTexture ( _T ( "shadow.png" ) );
 		m_grpShadow->SetZ ( Z_SHADOW );
@@ -40,7 +40,7 @@ namespace GAME
 	{
 	}
 
-	//ƒvƒŒƒCƒ„ID‚ğİ’è
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤IDã‚’è¨­å®š
 	void DispChara::LoadPlayer ( PLAYER_ID playerID )
 	{
 		m_frontEnd->LoadPlayer ( playerID );
@@ -48,7 +48,7 @@ namespace GAME
 	}
 
 	//------------------------
-	//ƒV[ƒ“ƒpƒ‰ƒ[ƒ^ŠÖ˜A‰Šú‰»
+	//ã‚·ãƒ¼ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢é€£åˆæœŸåŒ–
 	void DispChara::ParamInit ( P_Param pParam )
 	{
 		m_frontEnd->ParamInit ( pParam );
@@ -67,62 +67,62 @@ namespace GAME
 
 	}
 
-	//ƒLƒƒƒ‰ƒf[ƒ^‚ğİ’è
+	//ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	void DispChara::SetpChara ( const P_Chara pChara )
 	{
 		m_mainImage->SetpChara ( pChara );
 	}
 
-	//˜gƒf[ƒ^‚ğİ’è
+	//æ ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	void DispChara::SetpCharaRect ( P_CharaRect pCharaRect )
 	{
 		m_dispRect->SetCharaRect ( pCharaRect );
 	}
 
-	//‘S‘ÌXV
+	//å…¨ä½“æ›´æ–°
 	void DispChara::Update ( P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt )
 	{
-		//ƒƒCƒ“ƒCƒ[ƒW‚ÌXV
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›´æ–°
 		UpdateMainImage ( pScp, btlprm.GetPos (), btlprm.GetDirRight () );
 
-		//ƒQ[ƒW—ŞXV
+		//ã‚²ãƒ¼ã‚¸é¡æ›´æ–°
 		UpdateGauge ( btlprm );
 
-		//“ü—ÍXV
+		//å…¥åŠ›æ›´æ–°
 		UpdateInput ( pChIpt );
 
-		//ƒqƒbƒg”XV
+		//ãƒ’ãƒƒãƒˆæ•°æ›´æ–°
 		UpdateChainHitNum ( btlprm.GetChainHitNum () );
 	}
 
 
-	//–ˆƒtƒŒ[ƒ€‚É‚¨‚¯‚éƒƒCƒ“ƒCƒ[ƒW‚ÌXV
+	//æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«ãŠã‘ã‚‹ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›´æ–°
 	void DispChara::UpdateMainImage ( P_Script pScript, VEC2 posChara, bool dirRight )
 	{
-		//ƒƒCƒ“
+		//ãƒ¡ã‚¤ãƒ³
 		m_mainImage->UpdateMainImage ( pScript, posChara, dirRight );
 
-		//‰e
-		float fDir = dirRight ? ( 1.f ) : ( -1.f );		//Œü‚«
-		float bx = G_Ftg::inst ()->GetPosMutualBase ().x;	//Šî€ˆÊ’u
+		//å½±
+		float fDir = dirRight ? ( 1.f ) : ( -1.f );		//å‘ã
+		float bx = G_Ftg::inst ()->GetPosMutualBase ().x;	//åŸºæº–ä½ç½®
 		VEC2 vecImgShadow = VEC2 ( bx, 0 ) + posChara + VEC2 ( -128 + fDir * 12, 0 );
-		vecImgShadow.y = -32.f + 1.f * PLAYER_BASE_Y;	//y•ûŒü‚Ì‚İw’è
+		vecImgShadow.y = -32.f + 1.f * PLAYER_BASE_Y;	//yæ–¹å‘ã®ã¿æŒ‡å®š
 		m_grpShadow->SetPos ( vecImgShadow );
 
-		//˜g
+		//æ 
 		m_dispRect->Update ();
 
-		//ƒtƒƒ“ƒgƒGƒ“ƒhXV
+		//ãƒ•ãƒ­ãƒ³ãƒˆã‚¨ãƒ³ãƒ‰æ›´æ–°
 		m_frontEnd->UpdateMainImage ( posChara );
 	}
 
-	//ƒQ[ƒW—ŞXV
+	//ã‚²ãƒ¼ã‚¸é¡æ›´æ–°
 	void DispChara::UpdateGauge ( BtlParam btlPrm )
 	{
 		m_frontEnd->UpdateGauge ( btlPrm );
 	}
 
-	//ƒqƒbƒg”XV
+	//ãƒ’ãƒƒãƒˆæ•°æ›´æ–°
 	void DispChara::UpdateChainHitNum ( UINT n )
 	{
 		m_frontEnd->UpdateHitNum ( n );

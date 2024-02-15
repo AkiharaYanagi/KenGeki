@@ -1,16 +1,16 @@
 //=================================================================================================
 //
-//	EfPart �\�[�X�t�@�C��
+//	EfPart ソースファイル
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// �w�b�_�t�@�C���̃C���N���[�h
+// ヘッダファイルのインクルード
 //-------------------------------------------------------------------------------------------------
 #include "EfPart.h"
 
 //-------------------------------------------------------------------------------------------------
-// ��`
+// 定義
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -27,11 +27,11 @@ namespace GAME
 		}
 
 		//-----------------------------------------------------
-		//�O���t�B�b�N�I�u�W�F�N�g���w����ŏ�����
+		//グラフィックオブジェクトを指定個数で初期化
 		ResetObjectNum ( SPARK_MAX );
 
 		//-----------------------------------------------------
-		//�p�x�������p�����_�}�C�U
+		//角度初期化用ランダマイザ
 		std::vector < UINT > v_rnd_ui;
 		Rnd_0_N ( SPARK_MAX, v_rnd_ui );
 
@@ -87,25 +87,25 @@ namespace GAME
 //			if ( ! pOb->GetValid () ) { continue; }
 
 			mv_Prm [ i ].m_vel += mv_Prm [ i ].m_G;
-			mv_Prm [ i ].m_vel += -0.03f * mv_Prm [ i ].m_vel;	//����
+			mv_Prm [ i ].m_vel += -0.03f * mv_Prm [ i ].m_vel;	//減衰
 			mv_Prm [ i ].m_pos += mv_Prm [ i ].m_vel;
 
-			//���n����
+			//着地判定
 			if ( mv_Prm [ i ].m_pos.y >= GROUND_Y )
 			{
 				pOb->SetValid ( F );
 			}
 
-			//��ʈʒu�␳
+			//画面位置補正
 			pOb->SetPos ( mv_Prm [ i ].m_pos + G_BASE_POS () );
 
-			//�J�E���g
+			//カウント
 			if ( 0 != mv_Prm [ i ].m_count ) { -- mv_Prm [ i ].m_count; }
 
 			++ i;
 		}
 
-		//test ���\��
+		//test 個数表示
 		UINT T_count = 0;
 		for ( P_Object pOb : * GetpvpObject () )
 		{
@@ -114,7 +114,7 @@ namespace GAME
 //		DBGOUT_WND_F ( 6, _T ( "T_count = %d" ), T_count );
 
 
-		//�d�Ȃ蔻���
+		//重なり判定後
 		PVP_Object pvpOb = GetpvpObject ();
 		for ( PrmEfPart prm : mv_Prm )
 		{
@@ -132,7 +132,7 @@ namespace GAME
 	void EfPart::On ( VEC2 center )
 	{
 
-		//�L���t���O�𒲂ׁA��ғ��C���f�b�N�X���L�^����
+		//有効フラグを調べ、非稼働インデックスを記録する
 		UINT i = 0;
 		UINT n = 0;
 		for ( P_Object pOb : * GetpvpObject () )
@@ -144,11 +144,11 @@ namespace GAME
 			++ i;
 		}
 
-		//0����N-1�̗���
+		//0からN-1の乱数
 		std::vector < UINT > vecRnd;
 		Rnd_0_N ( n, vecRnd );
 		
-		//�ғ��J�n
+		//稼働開始
 		UINT na = ( n < SPARK_NUM ) ? n : SPARK_NUM;
 		PVP_Object pvpOb = GetpvpObject ();
 		for ( i = 0; i < na; ++ i )
@@ -181,12 +181,12 @@ namespace GAME
 		}
 	}
 
-	//�d�Ȃ蔻��
-	//->ExeChara���ōs��
+	//重なり判定
+	//->ExeChara側で行う
 	UINT EfPart::Collision ( PV_RECT pv_rect )
 	{
 		UINT ret = 0;
-		//�Ώۂ̃R���W�������N�g���擾
+		//対象のコリジョンレクトを取得
 
 		for ( PrmEfPart prm : mv_Prm )
 		{
@@ -202,11 +202,11 @@ namespace GAME
 			}
 		}
 		
-		//1p2p�����ɏd�Ȃ��Ă���ꍇ�A���҂ɔ��肠��
+		//1p2p両方に重なっている場合、両者に判定あり
 		
-		//�����Ȃ��Ă���I�u�W�F�N�g���ғ��ɂ���
+		//かさなっているオブジェクトを非稼働にする
 
-		//ExeChara�ɂ͏d�Ȃ����Ԃ�
+		//ExeCharaには重なり個数を返す
 		return ret;
 	}
 	

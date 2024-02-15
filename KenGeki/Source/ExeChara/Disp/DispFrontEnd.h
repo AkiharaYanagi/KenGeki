@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// DispFrontEnd ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// DispFrontEnd ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "Chara.h"
@@ -16,44 +16,44 @@
 #include "DispGauge.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	class DispFrontEnd : public TASK_VEC
 	{
-		PLAYER_ID	m_playerID;			//ƒvƒŒƒCƒ„‘¤
+		PLAYER_ID	m_playerID;			//ãƒ—ãƒ¬ã‚¤ãƒ¤å´
 
-		P_DispGauge	m_gaugeLife;		//ƒ‰ƒCƒtƒQ[ƒW
-		P_DispGauge	m_gaugeBalance;		//ƒoƒ‰ƒ“ƒXƒQ[ƒW
-		P_DispGauge	m_gaugeMana;		//ƒ}ƒiƒQ[ƒW
+		P_DispGauge	m_gaugeLife;		//ãƒ©ã‚¤ãƒ•ã‚²ãƒ¼ã‚¸
+		P_DispGauge	m_gaugeBalance;		//ãƒãƒ©ãƒ³ã‚¹ã‚²ãƒ¼ã‚¸
+		P_DispGauge	m_gaugeMana;		//ãƒãƒŠã‚²ãƒ¼ã‚¸
 
 #if	0
-		PrmRect		m_gaugeHitStop;			//ƒqƒbƒgƒXƒgƒbƒvŠÔ•\¦
-		PrmRect		m_gaugeLurch;			//‚Ì‚¯‚¼‚èŠÔ•\¦
+		PrmRect		m_gaugeHitStop;			//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—æ™‚é–“è¡¨ç¤º
+		PrmRect		m_gaugeLurch;			//ã®ã‘ãã‚Šæ™‚é–“è¡¨ç¤º
 
-											//ƒGƒtƒFƒNƒg
-		GrpEf		m_grpHitEf;			//ƒqƒbƒgƒGƒtƒFƒNƒg
-		GrpEf		m_grpAvoidEf;		//ƒAƒ”ƒHƒCƒhƒGƒtƒFƒNƒg
-		GrpEf		m_grpPoisedEf;		//\‚¦ƒGƒtƒFƒNƒg
+											//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		GrpEf		m_grpHitEf;			//ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		GrpEf		m_grpAvoidEf;		//ã‚¢ãƒ´ã‚©ã‚¤ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		GrpEf		m_grpPoisedEf;		//æ§‹ãˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-		P_GrpApTx		m_efGraphic;		//ƒGƒtƒFƒNƒgƒOƒ‰ƒtƒBƒbƒN•\¦
+		P_GrpApTx		m_efGraphic;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤º
 		OperateEffect*		m_pOprtEf;
 #endif	//0
 		//-----------------------------------------------------
 
-		P_GrpAcv	m_grp_Cst_Player1P2P;	//ƒvƒŒƒCƒ„‘¤ ŒÅ’è•\¦"1P""2P"
-		P_GrpAcv	m_grp_Cst_InputPlayerCOM;	//“ü—ÍÒ ŒÅ’è•\¦"CPU""Player"
+		P_GrpAcv	m_grp_Cst_Player1P2P;	//ãƒ—ãƒ¬ã‚¤ãƒ¤å´ å›ºå®šè¡¨ç¤º"1P""2P"
+		P_GrpAcv	m_grp_Cst_InputPlayerCOM;	//å…¥åŠ›è€… å›ºå®šè¡¨ç¤º"CPU""Player"
 
-		P_GrpAcv	m_grp_CH_Player1P2P;	//ƒLƒƒƒ‰‹ß–T ƒvƒŒƒCƒ„•\¦"1P""2P"
-		P_GrpAcv	m_grp_CH_InputCOMPLayer;	//ƒLƒƒƒ‰‹ß–T “ü—ÍÒ•\¦"CPU""Player"
+		P_GrpAcv	m_grp_CH_Player1P2P;	//ã‚­ãƒ£ãƒ©è¿‘å‚ ãƒ—ãƒ¬ã‚¤ãƒ¤è¡¨ç¤º"1P""2P"
+		P_GrpAcv	m_grp_CH_InputCOMPLayer;	//ã‚­ãƒ£ãƒ©è¿‘å‚ å…¥åŠ›è€…è¡¨ç¤º"CPU""Player"
 
 		static VEC2 POS_PL_CP_1P;
 		static VEC2 POS_PL_CP_2P;
 		//-----------------------------------------------------
 
-		//ƒqƒbƒg”
+		//ãƒ’ãƒƒãƒˆæ•°
 		P_GrpAcv	m_grpHitNum;		//"0"~"9"
 		P_GrpAcv	m_grpStrHit;		//"Hit"
 
@@ -75,29 +75,29 @@ namespace GAME
 		void ParamInit ( P_Param pParam );
 
 
-		//ƒQ[ƒW—Ş‚Ì•\¦•”‚Ì‚İ‰Šú‰»
+		//ã‚²ãƒ¼ã‚¸é¡ã®è¡¨ç¤ºéƒ¨ã®ã¿åˆæœŸåŒ–
 		void LoadPlayer ( PLAYER_ID playerID );
 
-		//ƒƒCƒ“ƒCƒ[ƒWXV
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸æ›´æ–°
 		void UpdateMainImage ( VEC2 posChara );
 
-		//ƒQ[ƒW—ŞXV
+		//ã‚²ãƒ¼ã‚¸é¡æ›´æ–°
 		void UpdateGauge ( BtlParam btlPrm );
 
 #if 0
-		//ƒqƒbƒgƒXƒgƒbƒvŠÔ•\¦‚ÌXV
+		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—æ™‚é–“è¡¨ç¤ºã®æ›´æ–°
 		void UpdateHitStop ( VEC2 ptChara, bool dirRight, UINT lurch, UINT lurchTimer );
 
-		//‚Ì‚¯‚¼‚èŠÔ•\¦‚ÌXV
+		//ã®ã‘ãã‚Šæ™‚é–“è¡¨ç¤ºã®æ›´æ–°
 		void UpdateLurch ( VEC2 ptChara, bool dirRight, UINT lurch, UINT lurchTimer );
 
-		//ƒqƒbƒg
+		//ãƒ’ãƒƒãƒˆ
 		void OnHit ( VEC2 ptChara, bool dirRight );
 
-		//ƒAƒ”ƒHƒCƒh
+		//ã‚¢ãƒ´ã‚©ã‚¤ãƒ‰
 		void OnAvoid ( VEC2 ptChara, bool dirRight );
 
-		//ƒ|ƒCƒYƒh
+		//ãƒã‚¤ã‚ºãƒ‰
 		void OnPoised ( VEC2 ptChara, bool dirRight );
 #endif // 0
 

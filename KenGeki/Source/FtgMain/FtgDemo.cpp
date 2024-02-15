@@ -1,19 +1,19 @@
 //=================================================================================================
 //
-//	Fighting ƒfƒ‚
+//	Fighting ãƒ‡ãƒ¢
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "FtgDemo.h"
-#include <iomanip>	//std::setw(), std::setfill() ‚È‚Ç
+#include <iomanip>	//std::setw(), std::setfill() ãªã©
 #include "../GameMain/SoundConst.h"
 
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -27,7 +27,7 @@ namespace GAME
 		pGrp->SetScalingCenter ( VEC2 ( 512, 128 ) );
 		pGrp->SetStartScaling ( VEC2 ( 1.3f, 1.3f ) );
 		pGrp->SetSecondVel ( VEC2 ( -0.001f, -0.001f ) );
-		pGrp->SetZ ( Z_SYS );	//@info SetZ‚ÍGRPLST_INSERT()‚ÌŒã‚Å‚Ís‚í‚È‚¢(ƒŠƒXƒg‚ª•ö‚ê‚é)
+		pGrp->SetZ ( Z_SYS );	//@info SetZã¯GRPLST_INSERT()ã®å¾Œã§ã¯è¡Œã‚ãªã„(ãƒªã‚¹ãƒˆãŒå´©ã‚Œã‚‹)
 		pGrp->SetValid ( F );
 
 		AddpTask ( pGrp );
@@ -140,7 +140,7 @@ namespace GAME
 
 	void FTG_DM_Main::Do ()
 	{
-		// Ši“¬I—¹”»’è
+		// æ ¼é—˜çµ‚äº†åˆ¤å®š
 		if ( GetpMutualChara()->CheckZeroLife () )
 		{
 			//GetpMutualChara ()->Stop ( true );
@@ -167,11 +167,11 @@ namespace GAME
 		if ( ! m_grpDown->GetValid () )
 		{
 #if 0
-			//V‹KŠJn
+			//æ–°è¦é–‹å§‹
 			GetpMutualChara ()->StartFighting ();
 			GetwpFtgDemoActor ().lock ()->Change_Down_To_Greeting ();
 #endif // 0
-			//ƒ^ƒCƒgƒ‹‚É–ß‚é
+			//ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 			GetwpFtgDemoActor ().lock ()->End_Down_To_Result ();
 		}
 	}
@@ -187,7 +187,7 @@ namespace GAME
 	FtgDemoActor::FtgDemoActor ()
 		: m_bEnd ( F )
 	{
-		//ƒXƒe[ƒg
+		//ã‚¹ãƒ†ãƒ¼ãƒˆ
 		m_Greeting = make_shared < FTG_DM_Greeting > ();
 		m_GetReady = make_shared < FTG_DM_GetReady > ();
 		m_Attack = make_shared < FTG_DM_Attack > ();
@@ -209,14 +209,14 @@ namespace GAME
 
 
 
-		//‰ŠúƒXƒe[ƒg
+		//åˆæœŸã‚¹ãƒ†ãƒ¼ãƒˆ
 //		mp_FtgDemo = m_Greeting;
 		mp_FtgDemo = m_Main;
 
 
 
 
-		//ƒpƒ‰ƒ[ƒ^
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		mp_Param = make_shared < FtgDemoParam > ();
 		for ( P_FtgDemo p : mvp_FtgDemo )
 		{
@@ -289,7 +289,7 @@ namespace GAME
 
 
 
-	//ƒfƒ‚•ªŠò
+	//ãƒ‡ãƒ¢åˆ†å²
 #if 0
 
 	switch ( G_FTG_STATE () )
@@ -309,7 +309,7 @@ namespace GAME
 		break;
 
 	case FS_GAME_MAIN:
-		// Ši“¬I—¹”»’è
+		// æ ¼é—˜çµ‚äº†åˆ¤å®š
 		if ( m_mutualChara->CheckDown () )
 		{
 			StartGrpDemo ( m_demo_Down, 120 );
@@ -326,7 +326,7 @@ namespace GAME
 			m_mutualChara->Stop ( false );
 			m_mutualChara->CheckWinner ();
 
-			//@info I—¹‚É‹““®‚ª•sˆÀ’è‚È‚½‚ß”ò‚Î‚·
+			//@info çµ‚äº†æ™‚ã«æŒ™å‹•ãŒä¸å®‰å®šãªãŸã‚é£›ã°ã™
 //				G_FTG_STATE_SET ( FS_DOWN_WAIT );
 			StartGrpDemo ( m_demo_Winner, 180 );
 			G_FTG_STATE_SET ( FS_POST_DEMO_START );
@@ -363,7 +363,7 @@ namespace GAME
 		{
 			//G_FTG_STATE_SET ( FS_END );
 
-			//test ‰Šú‰»
+			//test åˆæœŸåŒ–
 			G_FTG_STATE_SET ( FS_GETREADY );
 			m_mutualChara->Start ();
 		}
@@ -371,7 +371,7 @@ namespace GAME
 
 	case FS_END:
 
-		//FS_END‚É‚ÍTransit()‚ª•ªŠò‚µ‚Ä‚¢‚é
+		//FS_ENDæ™‚ã«ã¯Transit()ãŒåˆ†å²ã—ã¦ã„ã‚‹
 
 		break;
 
@@ -380,7 +380,7 @@ namespace GAME
 
 #endif // 0
 
-	//ƒfƒ‚ŠÖ”
+	//ãƒ‡ãƒ¢é–¢æ•°
 #if 0
 	void Fighting::MakeGrpDemo ( P_GrpDemo & pGrp, LPCTSTR txName )
 	{

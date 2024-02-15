@@ -1,24 +1,24 @@
 //=================================================================================================
 //
-// ExeEffect ƒ\[ƒXƒtƒ@ƒCƒ‹
+// ExeEffect ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "ExeEffect.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//------------------------------------------
-	//@Later	‚¢‚¸‚êEffect‚ÉEfGnrt‚ğ“‡
+	//@Later	ã„ãšã‚ŒEffectã«EfGnrtã‚’çµ±åˆ
 	//------------------------------------------
 
-	//@todo Å’á‹óƒ_ƒbƒVƒ…‚ÉƒGƒtƒFƒNƒg‚ªc‚é–â‘è
+	//@todo æœ€ä½ç©ºãƒ€ãƒƒã‚·ãƒ¥æ™‚ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒæ®‹ã‚‹å•é¡Œ
 
 
 	ExeEffect::ExeEffect ( P_Effect pEffect, P_Chara pChara, P_EfGnrt pEfGnrt, VEC2 ptChara, bool dirRight )
@@ -36,13 +36,13 @@ namespace GAME
 		m_vpBranch = pChara->GetvpBranch ();
 		m_vpRoute = pChara->GetvpRoute ();
 
-		//‰ŠúˆÊ’u (ƒLƒƒƒ‰ˆÊ’u+ƒGƒtƒFƒNƒg”­¶ˆÊ’u)
+		//åˆæœŸä½ç½® (ã‚­ãƒ£ãƒ©ä½ç½®+ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿä½ç½®)
 		m_ptEffect = ptChara + Dir ( m_ptGnrt );
 
-		//˜g
+		//æ 
 		m_charaRect = make_shared < CharaRect > ();
 
-		//•\¦
+		//è¡¨ç¤º
 		m_dispEffect = make_shared < DispEffect > ( pChara->GetpvpEfTexture (), pEfGnrt->GetZ () );
 		AddpTask ( m_dispEffect );
 	}
@@ -75,41 +75,41 @@ namespace GAME
 
 	void ExeEffect::PreScriptMove ()
 	{
-		//ƒXƒNƒŠƒvƒg‚ğæ“¾
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
 		m_pScript = m_pEffect->GetpScript ( m_frame );
 
 
 		//---------------------------------------------------------------------
-		//ƒGƒtƒFƒNƒgI—¹ğŒ
-		//‰æ–ÊŠO‚Ì‚Æ‚«I—¹
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†æ¡ä»¶
+		//ç”»é¢å¤–ã®ã¨ãçµ‚äº†
 		if ( m_ptEffect.x < 0 - 100 || GAME_WIDTH + 100 < m_ptEffect.x )
 		{
 			m_end = true;
 		}
 
 
-		//ƒGƒtƒFƒNƒgˆÚ€—p
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç§»é …ç”¨
 		UINT sqcID = 0;
 
-		//Œ»İƒGƒtƒFƒNƒg‚ªÅIƒtƒŒ[ƒ€‚È‚ç‚Î
+		//ç¾åœ¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒæœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ãªã‚‰ã°
 		if ( m_pEffect->IsEndScript ( m_frame ) )
 		{
 			bool bBranch = false;
 
-			//ƒXƒNƒŠƒvƒg•ªŠòğŒ‚©‚ç
+			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ†å²æ¡ä»¶ã‹ã‚‰
 
-			//ƒ‹[ƒg‚Ìƒ`ƒFƒbƒN
+			//ãƒ«ãƒ¼ãƒˆã®ãƒã‚§ãƒƒã‚¯
 			V_UINT vec_RouteID = m_pScript->GetcvRouteID ();
 			for ( UINT indexRoute : vec_RouteID )
 			{
-				//ƒuƒ‰ƒ“ƒ`‚Ìƒ`ƒFƒbƒN
+				//ãƒ–ãƒ©ãƒ³ãƒã®ãƒã‚§ãƒƒã‚¯
 				V_UINT vBranchID = m_vpRoute[indexRoute]->GetcvIDBranch ();
 				for ( UINT indexBranch : vBranchID )
 				{
-					//I—¹ˆÈŠO‚Í”ò‚Î‚·
+					//çµ‚äº†æ™‚ä»¥å¤–ã¯é£›ã°ã™
 					if ( BRC_END == m_vpBranch[indexBranch]->GetCondition () )
 					{
-						//ŸƒV[ƒNƒGƒ“ƒXID
+						//æ¬¡ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ID
 						sqcID = m_vpBranch[indexBranch]->GetIndexSequence ();
 						bBranch = true;
 					}
@@ -118,7 +118,7 @@ namespace GAME
 			
 			if ( bBranch )
 			{
-				//@todo ƒV[ƒNƒGƒ“ƒX(ƒGƒtƒFƒNƒg)“à‚ÅƒGƒtƒFƒNƒg‚ÌˆÚ€
+				//@todo ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ)å†…ã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç§»é …
 				m_pEffect = m_pChara->GetpEffect ( sqcID );
 				m_frame = 0;
 
@@ -129,11 +129,11 @@ namespace GAME
 			{
 				if ( m_loop )
 				{
-					m_frame = 0;	//ƒ‹[ƒv
+					m_frame = 0;	//ãƒ«ãƒ¼ãƒ—
 				}
 				else
 				{
-					m_end = true;	//I—¹
+					m_end = true;	//çµ‚äº†
 				}
 
 			}
@@ -141,46 +141,46 @@ namespace GAME
 		}
 		else
 		{
-			++ m_frame;	//‘±s
+			++ m_frame;	//ç¶šè¡Œ
 		}
 		//---------------------------------------------------------------------
 	}
 
 	void ExeEffect::PostScriptMove ( VEC2 ptChara, bool dirRight )
 	{
-		//ƒQ[ƒ€ˆÊ’uŒvZ (•\¦ˆÊ’u‚ÍDisp‚ÅŒvZ‚·‚é)
-		//@info Exe‚ÅƒQ[ƒ€ˆÊ’u‚ğŒvZ‚µADisp‚Å‰æ–ÊˆÊ’u•â³‚ğ‰ÁZ‚·‚é
+		//ã‚²ãƒ¼ãƒ ä½ç½®è¨ˆç®— (è¡¨ç¤ºä½ç½®ã¯Dispã§è¨ˆç®—ã™ã‚‹)
+		//@info Exeã§ã‚²ãƒ¼ãƒ ä½ç½®ã‚’è¨ˆç®—ã—ã€Dispã§ç”»é¢ä½ç½®è£œæ­£ã‚’åŠ ç®—ã™ã‚‹
 
-		//”»’èŒãƒqƒbƒgor‘ŠE
+		//åˆ¤å®šå¾Œãƒ’ãƒƒãƒˆæ™‚orç›¸æ®ºæ™‚
 		if ( m_hit || m_offset )
 		{
 			m_end = true;
 			return;
 		}
 
-		//ƒGƒtƒFƒNƒgŠî€ˆÊ’u
-		if ( m_sync )		//ƒLƒƒƒ‰“¯Šúƒtƒ‰ƒO‚Å•ªŠò
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåŸºæº–ä½ç½®
+		if ( m_sync )		//ã‚­ãƒ£ãƒ©åŒæœŸãƒ•ãƒ©ã‚°ã§åˆ†å²
 		{
-			//ƒGƒtƒFƒNƒgˆÊ’u = ƒLƒƒƒ‰ˆÊ’u + ”­¶ˆÊ’u
+			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä½ç½® = ã‚­ãƒ£ãƒ©ä½ç½® + ç™ºç”Ÿä½ç½®
 			m_ptEffect = ptChara + Dir ( m_ptGnrt );
 
-			//Œü‚«
+			//å‘ã
 			m_dirRight = dirRight;
 		}
 
-		//‘¬“xŒvZ
+		//é€Ÿåº¦è¨ˆç®—
 		m_ptEffect += Dir ( m_pScript->m_prmBattle.Vel );
 
 //		DBGOUT_WND_F ( 0, _T ( "plpos = (%d,%d)" ), ptChara.x, ptChara.y );
 //		DBGOUT_WND_F ( 1, _T ( "efpos = (%d,%d)" ), m_ptEffect.x, m_ptEffect.y );
 
-		//˜gİ’è
+		//æ è¨­å®š
 		m_charaRect->SetARect ( m_pScript->GetpvARect (), dirRight, m_ptEffect );
 
-		//•\¦XV
+		//è¡¨ç¤ºæ›´æ–°
 		m_dispEffect->Update ( m_pScript, m_ptEffect, dirRight );
 
-		//˜g•\¦
+		//æ è¡¨ç¤º
 		if ( m_bDispRect )
 		{
 			m_dispEffect->OnRect ();

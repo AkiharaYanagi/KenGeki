@@ -1,31 +1,31 @@
 //=================================================================================================
 //
-// OperateEffect ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		Effect‚ğ‚O`•¡”ŒÂ‚ÅÀs‚·‚é
+// OperateEffect ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		Effectã‚’ï¼ã€œè¤‡æ•°å€‹ã§å®Ÿè¡Œã™ã‚‹
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "ExeEffect.h"
 #include "../BtlParam.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class OperateEffect : public TASK_VEC
 	{
-		P_Chara			m_pChara;			//ƒLƒƒƒ‰
-		PLP_ExEf		m_plpExeEffect;		//ƒGƒtƒFƒNƒg‚ÌÀsƒŠƒXƒg(GameMain’†‚É“®“I‚É¶¬E‰ğ•ú‚·‚é)
+		P_Chara			m_pChara;			//ã‚­ãƒ£ãƒ©
+		PLP_ExEf		m_plpExeEffect;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œãƒªã‚¹ãƒˆ(GameMainä¸­ã«å‹•çš„ã«ç”Ÿæˆãƒ»è§£æ”¾ã™ã‚‹)
 
-		PVP_TxBs		m_pvpEfTexture;		//ƒGƒtƒFƒNƒgƒCƒ[ƒW‚ÌƒeƒNƒXƒ`ƒƒƒŠƒXƒg
-		VP_Branch		m_vpBranch;			//ƒGƒtƒFƒNƒg‚Ì•ªŠò
-		VP_Route		m_vpRoute;			//ƒ‹[ƒg
+		PVP_TxBs		m_pvpEfTexture;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚¹ãƒˆ
+		VP_Branch		m_vpBranch;			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆ†å²
+		VP_Route		m_vpRoute;			//ãƒ«ãƒ¼ãƒˆ
 
 	public:
 		OperateEffect ();
@@ -35,36 +35,36 @@ namespace GAME
 		void Init ();
 		void Rele ();
 
-		//ƒGƒtƒFƒNƒg–‘O¶¬
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆäº‹å‰ç”Ÿæˆ
 		void MakeEfList ( P_Chara p );
 
-		//ƒGƒtƒFƒNƒgƒŠƒXƒgæ“¾
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆå–å¾—
 		PLP_ExEf GetplpExEf () { return m_plpExeEffect; }
 
-		//ƒGƒtƒFƒNƒg“®ì
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œ
 		void MoveEffect ( P_Script pScp, BtlParam & btlprm );
 
 		//-----------------------------
-		// ƒGƒtƒFƒNƒg¶¬
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
 		void GenerateEffect ( P_Script pScp, const BtlParam & btlprm );
 		
-		//ƒGƒtƒFƒNƒgƒŠƒXƒg‚É’Ç‰Á
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã«è¿½åŠ 
 		void AddListEffect ( P_Effect pEffect, P_EfGnrt pEfGnrt, VEC2 ptChara, bool dirRight );
 
-		//ƒIƒuƒWƒFƒNƒg‚©‚çExeEf‚ğæ“¾
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ExeEfã‚’å–å¾—
 		P_ExEf GetpExEf ( P_Effect p ) const;
 
-		//ƒIƒuƒWƒFƒNƒg‚ªÀs’†‚©‚Ç‚¤‚©
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå®Ÿè¡Œä¸­ã‹ã©ã†ã‹
 		bool IsActive ( P_Effect p ) const { return GetpExEf ( p )->IsActive (); }
 
-		//ƒIƒuƒWƒFƒNƒg‚É‚æ‚é‰Ò“­ŠJn
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ˆã‚‹ç¨¼åƒé–‹å§‹
 		void DriveEffect ( P_Effect p ) { GetpExEf ( p )->Drive (); }
 
-		//ƒIƒuƒWƒFƒNƒg‚É‚æ‚é‰Ò“­’â~
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ˆã‚‹ç¨¼åƒåœæ­¢
 		void StopEffect ( P_Effect p ) { GetpExEf ( p )->Stop (); }
 
 		//---------------------------------------------------------------
-		//ƒGƒtƒFƒNƒg‚Ì“®ì
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‹•ä½œ
 		void PreScriptMove ();
 		void PostScriptMove ( VEC2 ptChara, bool dirRight );
 		void SynchroScript ( VEC2 ptChara );

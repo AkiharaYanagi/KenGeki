@@ -1,103 +1,103 @@
 //=================================================================================================
 //
-// ƒGƒOƒ[ƒLƒƒƒ‰@ƒ\[ƒXƒtƒ@ƒCƒ‹
+// ã‚¨ã‚°ã‚¼ã‚­ãƒ£ãƒ©ã€€ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "ExeChara.h"
 #include "../GameMain/SoundConst.h"
 
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//================================================
-	//	”»’è˜gŠÖ˜A “à•”ŠÖ”
+	//	åˆ¤å®šæ é–¢é€£ å†…éƒ¨é–¢æ•°
 	//================================================
 
 	//---------------------------------------------
-	//ƒCƒxƒ“ƒg
+	//ã‚¤ãƒ™ãƒ³ãƒˆ
 
 	void ExeChara::OnDashBranch ()
 	{
 		m_btlPrm.AddBalance ( -1000 );
-		TransitAction_Condition_I ( BRC_DASH, F );	//ƒ_ƒbƒVƒ…‘ŠEE©•ª
+		TransitAction_Condition_I ( BRC_DASH, F );	//ãƒ€ãƒƒã‚·ãƒ¥ç›¸æ®ºãƒ»è‡ªåˆ†
 	}
 
-	//‘Å‡”­¶
+	//æ‰“åˆç™ºç”Ÿ
 	void ExeChara::OnClang ( UINT nLurch, CLANG_DECISION_WL clangDecision )
 	{
 #if 0
 		//		if ( CD_LOSE == clangDecision )
 		{
-			//ó‘Ô‚Ì•ÏX
+			//çŠ¶æ…‹ã®å¤‰æ›´
 			m_actionID = m_pChara->GetBsAction ( BA_CLANG );
 			m_frame = 0;
 		}
 #endif // 0
 
-		//‘Šè‚Ìƒpƒ‰ƒ[ƒ^‚Å‘Œ¸
+		//ç›¸æ‰‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§å¢—æ¸›
 		P_Script scp = m_pOther.lock ()->GetpScript ();
 		int balance_e = scp->m_prmBattle.Balance_E;
 		m_btlPrm.AddBalance ( balance_e );
 
-		//ƒoƒ‰ƒ“ƒXƒAƒEƒg
+		//ãƒãƒ©ãƒ³ã‚¹ã‚¢ã‚¦ãƒˆ
 		if ( m_btlPrm.GetBalance () <= 0 )
 		{
 			//			SetAction ( _T ( "Dotty" ) );
-			SetAction ( _T ( "—§‚¿" ) );
+			SetAction ( _T ( "ç«‹ã¡" ) );
 		}
 
-		//©g‚Ìó‘Ô•ÏX
-		m_btlPrm.SetClang ( true );		//‘Å‡ó‘Ô
-		//		m_lurch = nLurch;		//‚Ì‚¯‚¼‚èŠÔ‚Ìİ’è
-		m_btlPrm.GetTmr_HitStop ()->Start ();		//ƒqƒbƒgƒXƒgƒbƒv‚Ìİ’è
+		//è‡ªèº«ã®çŠ¶æ…‹å¤‰æ›´
+		m_btlPrm.SetClang ( true );		//æ‰“åˆçŠ¶æ…‹
+		//		m_lurch = nLurch;		//ã®ã‘ãã‚Šæ™‚é–“ã®è¨­å®š
+		m_btlPrm.GetTmr_HitStop ()->Start ();		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã®è¨­å®š
 	}
 
 
-	//‘ŠèEUŒ‚ ¨ ©•ªE‚­‚ç‚¢
-	//‚­‚ç‚¢ó‘ÔEƒ_ƒ[ƒWˆ—
+	//ç›¸æ‰‹ãƒ»æ”»æ’ƒ â†’ è‡ªåˆ†ãƒ»ãã‚‰ã„
+	//ãã‚‰ã„çŠ¶æ…‹ãƒ»ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
 #if 0
 	void ExeChara::OnDamaged ( int damage )
 	{
 		bool hit = true;
 		bool guard = false;
 
-		//‰ñ”ğ”»’è
+		//å›é¿åˆ¤å®š
 #if 0
-		//UŒ‚’†‚Å‚È‚­A‰º—v‘f‚ª“ü—Í‚³‚ê‚Ä‚¢‚é‚Æ‚«
-		//ƒ_ƒbƒVƒ…’†A‚æ‚ë‚¯’†‚È‚Ç‚àœŠO‚·‚é (•à‚«‚Í‰Â”\)
+		//æ”»æ’ƒä¸­ã§ãªãã€ä¸‹è¦ç´ ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹ã¨ã
+		//ãƒ€ãƒƒã‚·ãƒ¥ä¸­ã€ã‚ˆã‚ã‘ä¸­ãªã©ã‚‚é™¤å¤–ã™ã‚‹ (æ­©ãã¯å¯èƒ½)
 		if ( !IsAttacking () && !( GetActionName () == Chara::DOTTY ) )
 		{
 			if ( IsInput2E () )
 			{
-				//”ğ‚¯‚ÉˆÚ€
+				//é¿ã‘ã«ç§»é …
 				TransitAction ( m_pChara->GetBsAction ( Chara::AVOID ) );
 
-				//ƒqƒbƒgƒXƒgƒbƒv‚Ìİ’è
+				//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã®è¨­å®š
 				m_hitstop = 15;
 
-				//ƒGƒtƒFƒNƒg‚Ì”­¶
-				//				float dispGameBaseX = GetDispGameBaseX ();	//‰æ–Ê’[‚É‚æ‚é•\¦Šî€ˆÊ’u
+				//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç™ºç”Ÿ
+				//				float dispGameBaseX = GetDispGameBaseX ();	//ç”»é¢ç«¯ã«ã‚ˆã‚‹è¡¨ç¤ºåŸºæº–ä½ç½®
 				m_dispChara.OnAvoid ( m_ptChara, m_dirRight );
 
 				//SE
 				SoundArchiver::instance ()->Play ( 2 );
 
-				//©•ª‚Ìƒoƒ‰ƒ“ƒXŒ¸­E’Ç‰Á•ª
-				int balanceDamage0 = 200 - damage;		//ƒ_ƒ[ƒW‚Ì‹t”(L>M>H)
-				if ( m_balance < balanceDamage0 ) { balanceDamage0 = m_balance; }	//Œ»İ’lˆÈã‚Í•\¦§ŒÀ
+				//è‡ªåˆ†ã®ãƒãƒ©ãƒ³ã‚¹æ¸›å°‘ãƒ»è¿½åŠ åˆ†
+				int balanceDamage0 = 200 - damage;		//ãƒ€ãƒ¡ãƒ¼ã‚¸ã®é€†æ•°(L>M>H)
+				if ( m_balance < balanceDamage0 ) { balanceDamage0 = m_balance; }	//ç¾åœ¨å€¤ä»¥ä¸Šã¯è¡¨ç¤ºåˆ¶é™
 				m_balance -= balanceDamage0;
 
-				//‘Šè‚Ìƒoƒ‰ƒ“ƒXŒ¸­
-				int balanceDamage = damage;		//ƒ_ƒ[ƒW•ªƒoƒ‰ƒ“ƒXŒ¸­(L<M<H)
+				//ç›¸æ‰‹ã®ãƒãƒ©ãƒ³ã‚¹æ¸›å°‘
+				int balanceDamage = damage;		//ãƒ€ãƒ¡ãƒ¼ã‚¸åˆ†ãƒãƒ©ãƒ³ã‚¹æ¸›å°‘(L<M<H)
 				int balance = m_pOther->GetBalance ();
-				if ( balance < balanceDamage ) { balanceDamage = balance; }	//Œ»İ’lˆÈã‚Í•\¦§ŒÀ
+				if ( balance < balanceDamage ) { balanceDamage = balance; }	//ç¾åœ¨å€¤ä»¥ä¸Šã¯è¡¨ç¤ºåˆ¶é™
 				m_pOther->AddbBalance ( -1 * balanceDamage );
 
 				return;
@@ -105,19 +105,19 @@ namespace GAME
 		}
 #endif // 0
 
-		//ƒK[ƒh”­¶
+		//ã‚¬ãƒ¼ãƒ‰ç™ºç”Ÿ
 #if 0
-		//UŒ‚’†‚Å‚È‚¢‚Æ‚«
-		//ƒ_ƒbƒVƒ…’†A‚æ‚ë‚¯’†‚È‚Ç‚àœŠO‚·‚é (•à‚«‚Í‰Â”\)
+		//æ”»æ’ƒä¸­ã§ãªã„ã¨ã
+		//ãƒ€ãƒƒã‚·ãƒ¥ä¸­ã€ã‚ˆã‚ã‘ä¸­ãªã©ã‚‚é™¤å¤–ã™ã‚‹ (æ­©ãã¯å¯èƒ½)
 		if ( !IsAttacking () && !IsDamaged () )
 		{
-			//ã’†‰º’i@•ªŠòˆ—
+			//ä¸Šä¸­ä¸‹æ®µã€€åˆ†å²å‡¦ç†
 			ACTION_POSTURE ap = m_pOther.lock ()->GetPosture ();
 
-			//Œã•ûŒü‚ª“ü—Í‚³‚ê‚Ä‚¢‚é‚Æ‚«
+			//å¾Œæ–¹å‘ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹ã¨ã
 			if ( m_pCharaInput->IsInput4 () )
 			{
-				//‘Šè‚Ìó‘Ô‚Å•ªŠò
+				//ç›¸æ‰‹ã®çŠ¶æ…‹ã§åˆ†å²
 				switch ( ap )
 				{
 				case AP_STAND:	hit = false; guard = true; break;
@@ -126,10 +126,10 @@ namespace GAME
 				}
 			}
 
-			//Œã‰º•ûŒü‚ª“ü—Í‚³‚ê‚Ä‚¢‚é‚Æ‚«
+			//å¾Œä¸‹æ–¹å‘ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹ã¨ã
 			if ( m_pCharaInput->IsInput1 () )
 			{
-				//‘Šè‚Ìó‘Ô‚Å•ªŠò
+				//ç›¸æ‰‹ã®çŠ¶æ…‹ã§åˆ†å²
 				switch ( ap )
 				{
 				case AP_STAND:	hit = false; guard = true; break;
@@ -142,7 +142,7 @@ namespace GAME
 
 		//--------------------------------------------------------
 
-		//ƒK[ƒh¬—§
+		//ã‚¬ãƒ¼ãƒ‰æˆç«‹
 		if ( guard )
 		{
 			tstring act;
@@ -154,31 +154,31 @@ namespace GAME
 			}
 			TransitAction ( m_pChara->GetActionID ( act ) );
 
-			m_FirstEf = true;				//‰‰ñ‚Ì‚İƒGƒtƒFƒNƒg”­¶
-			m_tmrHitstop->Start ();				//ƒqƒbƒgƒXƒgƒbƒv‚Ìİ’è
+			m_FirstEf = true;				//åˆå›ã®ã¿ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿ
+			m_tmrHitstop->Start ();				//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã®è¨­å®š
 
 			//SE
 			SOUND->Play ( SE_Guard );
 		}
 #endif // 0
 
-		//‚­‚ç‚¢ ( ƒK[ƒh‚ğ‚µ‚Ä‚¢‚È‚¢ ) && ( ‹­§•ÏX‚³‚ê‚Ä‚¢‚È‚¢ )
+		//ãã‚‰ã„æ™‚ ( ã‚¬ãƒ¼ãƒ‰ã‚’ã—ã¦ã„ãªã„ ) && ( å¼·åˆ¶å¤‰æ›´ã•ã‚Œã¦ã„ãªã„ )
 		if ( hit && ! m_btlPrm.GetForcedChange () )
 		{
 			int lf = m_btlPrm.GetLife ();
-			//ƒ_ƒ[ƒW‚ğƒ‰ƒCƒt‚É‚æ‚Á‚Ä•â³(ª«’l)
+			//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ãƒ©ã‚¤ãƒ•ã«ã‚ˆã£ã¦è£œæ­£(æ ¹æ€§å€¤)
 			if ( lf < LIFE_MAX * 0.5f )
 			{
 				damage = (int)( damage * ( 0.001f * ( 0.5f * LIFE_MAX + lf ) ) );
 			}
 
-			//ƒ_ƒ[ƒWˆ—
-			if ( lf < damage ) { m_btlPrm.SetDamage ( lf ); }	//ƒ‰ƒCƒtˆÈã‚Í•\¦§ŒÀ
-			else { m_btlPrm.SetDamage ( damage ); }		//•\¦—p
+			//ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
+			if ( lf < damage ) { m_btlPrm.SetDamage ( lf ); }	//ãƒ©ã‚¤ãƒ•ä»¥ä¸Šã¯è¡¨ç¤ºåˆ¶é™
+			else { m_btlPrm.SetDamage ( damage ); }		//è¡¨ç¤ºç”¨
 
 			m_btlPrm.SetLife ( lf - damage );
 
-			//ó‘Ô‚Ì•ÏX
+			//çŠ¶æ…‹ã®å¤‰æ›´
 #if 0
 			tstring act;
 			switch ( m_pAction->GetPosture () )
@@ -190,29 +190,29 @@ namespace GAME
 			TransitAction ( m_pChara->GetActionID ( act ) );
 #endif // 0
 
-			//‚»‚Ì‘¼@Œø‰Ê
-			m_btlPrm.GetTmr_HitStop ()->Start ();			//ƒqƒbƒgƒXƒgƒbƒv‚Ìİ’è
-			m_btlPrm.SetFirstEf ( true );			//‰‰ñ‚Ì‚İƒGƒtƒFƒNƒg”­¶
-			m_btlPrm.SetFirstSE ( true );			//‰‰ñ‚Ì‚İSE”­¶
+			//ãã®ä»–ã€€åŠ¹æœ
+			m_btlPrm.GetTmr_HitStop ()->Start ();			//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã®è¨­å®š
+			m_btlPrm.SetFirstEf ( true );			//åˆå›ã®ã¿ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿ
+			m_btlPrm.SetFirstSE ( true );			//åˆå›ã®ã¿SEç™ºç”Ÿ
 
 		}
 	}
 #endif // 0
 
 
-	//‘ŠèEUŒ‚ ¨ ©•ªE‚­‚ç‚¢
-	//‚­‚ç‚¢ó‘ÔEƒ_ƒ[ƒWˆ—
+	//ç›¸æ‰‹ãƒ»æ”»æ’ƒ â†’ è‡ªåˆ†ãƒ»ãã‚‰ã„
+	//ãã‚‰ã„çŠ¶æ…‹ãƒ»ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
 	void ExeChara::OnDamaged ()
 	{
-		//‘Šè
+		//ç›¸æ‰‹
 		P_Script pScp = m_pOther.lock ()->m_pScript;
 
 		//-------------------------------------------------
-		//ƒ_ƒ[ƒWˆ—
+		//ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
 		int damage = pScp->m_prmBattle.Power;
 
 #if 0
-		//ƒ_ƒ[ƒW‚ğƒ‰ƒCƒt‚É‚æ‚Á‚Ä•â³(ª«’l)
+		//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ãƒ©ã‚¤ãƒ•ã«ã‚ˆã£ã¦è£œæ­£(æ ¹æ€§å€¤)
 		int lf = m_btlPrm.GetLife ();
 		if ( lf < LIFE_MAX * 0.5f )
 		{
@@ -221,61 +221,61 @@ namespace GAME
 #endif // 0
 
 #if 0
-		if ( lf < damage ) { m_btlPrm.SetDamage ( lf ); }	//ƒ‰ƒCƒtˆÈã‚Í•\¦§ŒÀ
-		else { m_btlPrm.SetDamage ( damage ); }		//•\¦—p
+		if ( lf < damage ) { m_btlPrm.SetDamage ( lf ); }	//ãƒ©ã‚¤ãƒ•ä»¥ä¸Šã¯è¡¨ç¤ºåˆ¶é™
+		else { m_btlPrm.SetDamage ( damage ); }		//è¡¨ç¤ºç”¨
 		m_btlPrm.SetLife ( lf - damage );
 #endif // 0
 		m_btlPrm.AddLife ( - damage );
 
 		//-------------------------------------------------
-		//ƒoƒ‰ƒ“ƒXˆ—
+		//ãƒãƒ©ãƒ³ã‚¹å‡¦ç†
 		int b_e = pScp->m_prmBattle.Balance_E;
 		int bl = m_btlPrm.GetBalance ();
 		m_btlPrm.SetBalance ( bl - b_e );
 
 		//-------------------------------------------------
-		//‚»‚Ì‘¼@Œø‰Ê
-		m_btlPrm.GetTmr_HitStop ()->Start ();			//ƒqƒbƒgƒXƒgƒbƒv‚Ìİ’è
-		m_btlPrm.SetFirstEf ( true );			//‰‰ñ‚Ì‚İƒGƒtƒFƒNƒg”­¶
-		m_btlPrm.SetFirstSE ( true );			//‰‰ñ‚Ì‚İSE”­¶
+		//ãã®ä»–ã€€åŠ¹æœ
+		m_btlPrm.GetTmr_HitStop ()->Start ();			//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã®è¨­å®š
+		m_btlPrm.SetFirstEf ( true );			//åˆå›ã®ã¿ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿ
+		m_btlPrm.SetFirstSE ( true );			//åˆå›ã®ã¿SEç™ºç”Ÿ
 	}
 
 
-	//©•ªEUŒ‚ -> ‘ŠèE‚­‚ç‚¢
-	//ƒqƒbƒg”­¶(UŒ‚¬—§‘¤)
+	//è‡ªåˆ†ãƒ»æ”»æ’ƒ -> ç›¸æ‰‹ãƒ»ãã‚‰ã„
+	//ãƒ’ãƒƒãƒˆç™ºç”Ÿ(æ”»æ’ƒæˆç«‹å´)
 	void ExeChara::OnHit ()
 	{
 		//-----------------------------------------------------
-		//ğŒ•ªŠò (‘Šè¨©•ª‚Å‚È‚¢‚ÆƒXƒNƒŠƒvƒg‚ª•Ï‚í‚Á‚Ä‚µ‚Ü‚¤)
-		TransitAction_Condition_E ( BRC_THR_E, T );	//“Š‚°E‘Šè
-		TransitAction_Condition_I ( BRC_THR_I, F );	//“Š‚°E©•ª
-		TransitAction_Condition_E ( BRC_HIT_E, T );	//ƒqƒbƒgE‘Šè
-		TransitAction_Condition_I ( BRC_HIT_I, F );	//ƒqƒbƒgE©•ª
+		//æ¡ä»¶åˆ†å² (ç›¸æ‰‹â†’è‡ªåˆ†ã§ãªã„ã¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒå¤‰ã‚ã£ã¦ã—ã¾ã†)
+		TransitAction_Condition_E ( BRC_THR_E, T );	//æŠ•ã’ãƒ»ç›¸æ‰‹
+		TransitAction_Condition_I ( BRC_THR_I, F );	//æŠ•ã’ãƒ»è‡ªåˆ†
+		TransitAction_Condition_E ( BRC_HIT_E, T );	//ãƒ’ãƒƒãƒˆãƒ»ç›¸æ‰‹
+		TransitAction_Condition_I ( BRC_HIT_I, F );	//ãƒ’ãƒƒãƒˆãƒ»è‡ªåˆ†
 
 		//-----------------------------------------------------
 
-		//m_btlPrm.SetHitEst ( true );		//UŒ‚¬—§ƒtƒ‰ƒO
-		//m_btlPrm.GetTmr_HitStop ()->Start ();		//ƒqƒbƒgƒXƒgƒbƒv‚Ìİ’è
+		//m_btlPrm.SetHitEst ( true );		//æ”»æ’ƒæˆç«‹ãƒ•ãƒ©ã‚°
+		//m_btlPrm.GetTmr_HitStop ()->Start ();		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã®è¨­å®š
 		m_btlPrm.OnHit ();
 	}
 
-	//ƒGƒtƒFƒNƒgƒqƒbƒg”­¶(UŒ‚¬—§‘¤)
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ’ãƒƒãƒˆç™ºç”Ÿ(æ”»æ’ƒæˆç«‹å´)
 	void ExeChara::OnEfHit ()
 	{
-		m_btlPrm.SetHitEst ( true );		//UŒ‚¬—§ƒtƒ‰ƒO
-		//		m_tmrHitstop->Start ();		//ƒGƒtƒFƒNƒg‚ÍƒqƒbƒgƒXƒgƒbƒv‚µ‚È‚¢
+		m_btlPrm.SetHitEst ( true );		//æ”»æ’ƒæˆç«‹ãƒ•ãƒ©ã‚°
+		//		m_tmrHitstop->Start ();		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã—ãªã„
 
 		m_btlPrm.GetTmr_HitPitch ()->Start ();
 	}
 
 #if 0
-	//I—¹‰‰o
+	//çµ‚äº†æ¼”å‡º
 	void ExeChara::OnEndAct ()
 	{
 		m_charaState = CHST_WIN_WAIT;
 	}
 
-	//‹­§I—¹ó‘Ô
+	//å¼·åˆ¶çµ‚äº†çŠ¶æ…‹
 	void ExeChara::ForcedEnd ()
 	{
 		if ( m_btlPrm.GetLife () <= 0 )

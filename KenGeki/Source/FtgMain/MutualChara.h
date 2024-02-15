@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-//	MutualChara ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+//	MutualChara ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "G_Ftg.h"
@@ -16,31 +16,31 @@
 #include "Decision.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class MutualChara : public TASK_VEC
 	{
-		//ƒLƒƒƒ‰
+		//ã‚­ãƒ£ãƒ©
 		P_ExeChara		m_exeChara1;
 		P_ExeChara		m_exeChara2;
 
-		//ƒV[ƒ“‹¤—Lƒpƒ‰ƒ[ƒ^
+		//ã‚·ãƒ¼ãƒ³å…±æœ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		P_Param		m_pParam;
 
-		//”»’èƒNƒ‰ƒX
+		//åˆ¤å®šã‚¯ãƒ©ã‚¹
 		P_Decision	m_decision;
 
 		//-------------------------------------------------
-		//ƒtƒ@ƒCƒeƒBƒ“ƒOF1p2p‹¤’ÊƒXƒNƒŠƒvƒgˆ—
-		UINT	m_scpStop {0};		//ƒXƒNƒŠƒvƒg‚©‚ç‚ÌƒXƒgƒbƒv
-		P_Timer	m_tmrHitstop;		//ƒqƒbƒgƒXƒgƒbƒv
+		//ãƒ•ã‚¡ã‚¤ãƒ†ã‚£ãƒ³ã‚°ï¼š1p2på…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆå‡¦ç†
+		UINT	m_scpStop {0};		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã®ã‚¹ãƒˆãƒƒãƒ—
+		P_Timer	m_tmrHitstop;		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—
 
-		//ˆÃ“]ƒEƒFƒCƒg
-		UINT	m_blackOut {0};		//ˆÃ“]
+		//æš—è»¢ã‚¦ã‚§ã‚¤ãƒˆ
+		UINT	m_blackOut {0};		//æš—è»¢
 
-		//ŸÒ
+		//å‹è€…
 		WINNER	m_winner { WINNER::WINNER_DRAW };
 
 	public:
@@ -51,20 +51,20 @@ namespace GAME
 		void ParamInit ( P_Param pParam );
 		void Init ();
 
-		//ƒXƒNƒŠƒvƒg‚Ì–ˆƒtƒŒ[ƒ€ˆ—
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
 		void Conduct ();
-		void Collision ();		//d‚È‚è”»’è
-		void _Decision ();		//UŒ‚”»’è
-		void Grp ();			//ƒOƒ‰ƒtƒBƒbƒN‹¤’Ê
+		void Collision ();		//é‡ãªã‚Šåˆ¤å®š
+		void _Decision ();		//æ”»æ’ƒåˆ¤å®š
+		void Grp ();			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å…±é€š
 
-		//ó‘Ô•ÏX
-		void StartGreeting ();		//ŠJnƒfƒ‚
-		void StartGetReady ();		//ŠJn€”õ
-		void StartFighting ();		//í“¬ŠJn
+		//çŠ¶æ…‹å¤‰æ›´
+		void StartGreeting ();		//é–‹å§‹ãƒ‡ãƒ¢
+		void StartGetReady ();		//é–‹å§‹æº–å‚™
+		void StartFighting ();		//æˆ¦é—˜é–‹å§‹
 
-		bool CheckZeroLife ();	//Ši“¬I—¹”»’è
+		bool CheckZeroLife ();	//æ ¼é—˜çµ‚äº†åˆ¤å®š
 
-		UINT GetBlackOut () const { return m_blackOut; };	//ˆÃ“]
+		UINT GetBlackOut () const { return m_blackOut; };	//æš—è»¢
 		void SetBlackOut ( UINT i )
 		{
 			m_blackOut = i;
@@ -72,38 +72,38 @@ namespace GAME
 			m_exeChara2->SetBlackOut ( i );
 		};
 
-		UINT GetScpStop () const { return m_scpStop; };	//’â~
+		UINT GetScpStop () const { return m_scpStop; };	//åœæ­¢
 		void SetScpStop ( UINT i ) { m_scpStop = i; };
 
-		//ƒgƒŒ[ƒjƒ“ƒOƒ‚[ƒh‰Šú‰»
+		//ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰åˆæœŸåŒ–
 		void TrainingInit ();
 
 		
-		//‰Šú‘€ì ƒvƒŒƒCƒ„/CPU İ’è
+		//åˆæœŸæ“ä½œ ãƒ—ãƒ¬ã‚¤ãƒ¤/CPU è¨­å®š
 		void Set_1P_vs_2P ();
 		void Set_1P_vs_CPU ();
 		void Set_CPU_vs_CPU ();
 
 
-		//ŸÒ
+		//å‹è€…
 		WINNER GetWinner () const { return m_winner; }
 		CHARA_NAME GetWinnerName () const;
 
 	private:
 		//------------------------------------------------------
-		//	“à•”ŠÖ”
+		//	å†…éƒ¨é–¢æ•°
 		//------------------------------------------------------
 
-		//˜g•\¦Ø‘Ö
+		//æ è¡¨ç¤ºåˆ‡æ›¿
 		void SwitchRect ();
 
-		//2P‚ğCPU‘€ìØ‘Ö
+		//2Pã‚’CPUæ“ä½œåˆ‡æ›¿
 		void SwithcCPU ();
 
-		//‡‰Šú‰»
+		//è©¦åˆåˆæœŸåŒ–
 		void ResetMatch ();
 
-		//—£‚ê‚é•ûŒü‚©‚Ç‚¤‚©
+		//é›¢ã‚Œã‚‹æ–¹å‘ã‹ã©ã†ã‹
 		bool LeaveDir ( bool dirRight, float pos0, float pos1 );
 	};
 

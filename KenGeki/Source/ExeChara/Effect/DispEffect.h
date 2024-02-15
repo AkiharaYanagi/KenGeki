@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// DispEffect ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// DispEffect ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "Chara.h"
@@ -14,33 +14,33 @@
 #include "../Disp/DispRect.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class DispEffect : public TASK_VEC
 	{
-		P_GrpApTx		m_grp;			//ƒOƒ‰ƒtƒBƒbƒN•\Ž¦
-		PVP_TxBs		m_pvpEfTx;		//ƒGƒtƒFƒNƒgƒCƒ[ƒW‚ÌƒeƒNƒXƒ`ƒƒƒŠƒXƒg
-		P_DispRect		m_dispRect;		//ƒGƒtƒFƒNƒg˜g•\Ž¦
+		P_GrpApTx		m_grp;			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤º
+		PVP_TxBs		m_pvpEfTx;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚¹ãƒˆ
+		P_DispRect		m_dispRect;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæž è¡¨ç¤º
 
 	public:
 		DispEffect ( PVP_TxBs pvpEfTx, float z );
 		DispEffect ( const DispEffect & rhs ) = delete;
 		~DispEffect ();
 		
-		//—LŒøƒtƒ‰ƒOÝ’è
+		//æœ‰åŠ¹ãƒ•ãƒ©ã‚°è¨­å®š
 		void SetValid ( bool b ) { m_grp->SetValid ( b ); }
 
-		//XV
+		//æ›´æ–°
 		void Update ( P_Script pScript, VEC2 ptEf, bool dirRight );
 
-		//•\Ž¦˜gÝ’è
+		//è¡¨ç¤ºæž è¨­å®š
 		void SetpCharaRect ( P_CharaRect pCharaRect );
 
-		//˜g•\Ž¦
+		//æž è¡¨ç¤º
 		void OnRect () { m_dispRect->OnRect (); }
-		//˜g”ñ•\Ž¦
+		//æž éžè¡¨ç¤º
 		void OffRect () { m_dispRect->OffRect (); }
 	};
 

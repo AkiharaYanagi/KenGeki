@@ -1,11 +1,11 @@
 //=================================================================================================
 //
-// CPUInput ƒ\[ƒXƒtƒ@ƒCƒ‹
+// CPUInput ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Branch.h"
 #include "Action.h"
@@ -17,26 +17,26 @@
 
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//CPU_AI‚ÌŠO•”ƒtƒ@ƒCƒ‹‰»
+	//CPU_AIã®å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«åŒ–
 
-	//¦ —””z•ª ‚Ì•”•ª‚Ì‚Ý‚ðŠO•”ƒtƒ@ƒCƒ‹‚É‚·‚é
+	//â€» ä¹±æ•°é…åˆ† ã®éƒ¨åˆ†ã®ã¿ã‚’å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã«ã™ã‚‹
 
-	// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹
-	//	[n%] [s“®ID]
-	//	[m%] [s“®ID]
-	//	cc
+	// ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
+	//	[n%] [è¡Œå‹•ID]
+	//	[m%] [è¡Œå‹•ID]
+	//	â€¦â€¦
 
-	//æ“ª‚©‚ç“Ç‚ñ‚ÅAŠm—¦(%)‚ª100ˆÈã‚Å‘Å‚¿Ø‚è
+	//å…ˆé ­ã‹ã‚‰èª­ã‚“ã§ã€ç¢ºçŽ‡(%)ãŒ100ä»¥ä¸Šã§æ‰“ã¡åˆ‡ã‚Š
 
-	//‹ß [%][ID]
-	//’† [%][ID]
-	//‰“ [%][ID]
+	//è¿‘ [%][ID]
+	//ä¸­ [%][ID]
+	//é  [%][ID]
 
-	//‚RŽí—Þ
+	//ï¼“ç¨®é¡ž
 
 	CPUInput::CPUInput ( WP_ExeChara p, WP_ExeChara pOther )
 	: m_pExeChara ( p ), m_pExeCharaOther ( pOther )
@@ -46,7 +46,7 @@ namespace GAME
 	, m_actNear { 0 }, m_actMiddle{ 0 }, m_actFar{ 0 }
 	, m_randomKeyNear { CPU_NEUTRAL }, m_randomKeyMiddle{ CPU_NEUTRAL }, m_randomKeyFar{ CPU_NEUTRAL }
 	{
-		//ƒQ[ƒ€ƒL[‚ð‹K’è”‚¾‚¯Šm•Û
+		//ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ã‚’è¦å®šæ•°ã ã‘ç¢ºä¿
 		for ( UINT i = 0; i < CPU_INPUT_GAMEKEY_NUM; ++ i )
 		{
 			_GameKey gameKey;
@@ -57,7 +57,7 @@ namespace GAME
 	void CPUInput::Load ()
 	{
 		//---------------------------------------------------------------------
-		//	¦ —””z•ª
+		//	â€» ä¹±æ•°é…åˆ†
 		//
 		for ( UINT i = 0; i < CENT; ++ i )
 		{
@@ -92,12 +92,12 @@ namespace GAME
 			else if ( i < 40 ) { m_randomKeyFar[i] = CPU_H; }
 		}
 		//
-		//	¦ —””z•ª ‚±‚±‚Ü‚Å
+		//	â€» ä¹±æ•°é…åˆ† ã“ã“ã¾ã§
 		//---------------------------------------------------------------------
 
-		//ŠO•”ƒtƒ@ƒCƒ‹“Çž
+		//å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼
 		tifstream tifStrm;
-		//ƒGƒ‰[Žž‚ÍƒfƒtƒHƒ‹ƒg’l‚ðŽg—p‚µ‚Ä‘±s
+		//ã‚¨ãƒ©ãƒ¼æ™‚ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’ä½¿ç”¨ã—ã¦ç¶šè¡Œ
 		try
 		{
 			tifStrm.open ( _T("CPU_ACT.txt") );
@@ -107,22 +107,22 @@ namespace GAME
 			std::array < int, CPU_ACT_NUM * 3 > iBuf = { 0 };
 			UINT index = 0;
 
-			//ƒtƒ@ƒCƒ‹––”ö‚Ü‚Å“Çž
+			//ãƒ•ã‚¡ã‚¤ãƒ«æœ«å°¾ã¾ã§èª­è¾¼
 			while ( ! tifStrm.eof() )
 			{
-				//1s“Çž
+				//1è¡Œèª­è¾¼
 				tstring tstr = _T("");
 				tifStrm >> tstr;
 
-				//1•¶Žš‚¸‚Âˆ—
+				//1æ–‡å­—ãšã¤å‡¦ç†
 				bool bComp = false;
 				UINT i = 0;
-				TCHAR tchNum[2] = { 0 };	//10i”2Œ… (0`99)
+				TCHAR tchNum[2] = { 0 };	//10é€²æ•°2æ¡ (0ã€œ99)
 				while ( tstr.size() != i )
 				{
 					TCHAR tch = tstr[i];
 
-					// '['‚â‰üs‚ÍI—¹
+					// '['ã‚„æ”¹è¡Œã¯çµ‚äº†
 					if ( '[' == tch || '\n' == tch ) { break; }
 
 					tchNum [ i ] = tch;
@@ -130,7 +130,7 @@ namespace GAME
 					if ( i == 2 ) { bComp = T; }
 				}
 
-				//Š®¬Žž”’l‚É•ÏŠ·
+				//å®Œæˆæ™‚æ•°å€¤ã«å¤‰æ›
 				if ( bComp )
 				{
 					iBuf[index] = ::_ttoi ( tchNum );
@@ -139,7 +139,7 @@ namespace GAME
 				}
 			}
 
-			//•Û‘¶
+			//ä¿å­˜
 			for ( UINT i = 0; i < CPU_ACT_NUM; ++i )
 			{
 				m_actNear[i] = iBuf[ i ];
@@ -162,7 +162,7 @@ namespace GAME
 		}
 		catch ( ... )
 		{
-			TRACE_F ( _T("CPU_ACT:“ÇžƒGƒ‰[\n") );
+			TRACE_F ( _T("CPU_ACT:èª­è¾¼ã‚¨ãƒ©ãƒ¼\n") );
 		}
 
 //		DBGOUT_WND->SetPos ( 0, 100, 400 );
@@ -174,22 +174,22 @@ namespace GAME
 	{
 	}
 
-	//XV
+	//æ›´æ–°
 	void CPUInput::Update ( bool dirRight )
 	{
-		//¡‰ñ‚Ì“ü—Í‚ðƒQ[ƒ€ƒL[‚É’¼‚µ‚Ä•Û‘¶
-		//  (ƒQ[ƒ€ƒL[•Û‘¶‚Í‰E•ûŒü‹¤’Ê‚ÅAƒRƒ}ƒ“ƒh“ü—Í‘¤‚ÅŒü‚«‚ð”½‰f‚µ‚Ä‚¢‚é)
+		//ä»Šå›žã®å…¥åŠ›ã‚’ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ã«ç›´ã—ã¦ä¿å­˜
+		//  (ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ä¿å­˜ã¯å³æ–¹å‘å…±é€šã§ã€ã‚³ãƒžãƒ³ãƒ‰å…¥åŠ›å´ã§å‘ãã‚’åæ˜ ã—ã¦ã„ã‚‹)
 		_GameKey gameKey;
 
 		VEC2 pos = m_pExeChara.lock()->GetPos ();
 		VEC2 posOther = m_pExeCharaOther.lock()->GetPos ();
 
-		//s“®–¢Œˆ’è‚È‚ç‚Î
+		//è¡Œå‹•æœªæ±ºå®šãªã‚‰ã°
 		if ( ! m_bAct ) 
 		{
 			int r = ::rand() % 100;
 
-			//‹——£•Ê‚Ås“®‚ðŽæ“¾
+			//è·é›¢åˆ¥ã§è¡Œå‹•ã‚’å–å¾—
 			float distance = fabsf ( pos.x - posOther.x );
 			if ( distance < 200 )
 			{
@@ -204,7 +204,7 @@ namespace GAME
 				m_act = m_randomKeyFar[r];
 			}
 			
-			//s“®Œˆ’è
+			//è¡Œå‹•æ±ºå®š
 			switch ( m_act )
 			{
 			case CPU_NEUTRAL:					break;
@@ -222,7 +222,7 @@ namespace GAME
 			m_bAct = T;
 		}
 
-		//s“®Œˆ’èÏ
+		//è¡Œå‹•æ±ºå®šæ¸ˆ
 		if ( m_bAct )
 		{
 			switch ( m_act )
@@ -236,7 +236,7 @@ namespace GAME
 				case 1:	gameKey.SetLvrOff (); break;
 				default: 
 					gameKey.SetLvr ( _GameKey::LVR_6, T );
-					//ƒ_ƒbƒVƒ…‚ðˆÛŽ‚µ‚Â‚ÂUŒ‚‚ðƒ‰ƒ“ƒ_ƒ€‚Ås‚¤
+					//ãƒ€ãƒƒã‚·ãƒ¥ã‚’ç¶­æŒã—ã¤ã¤æ”»æ’ƒã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§è¡Œã†
 					switch ( ::rand() % 10 )
 					{
 					case 0: gameKey.SetBtn ( _GameKey::BTN_0, T ); 	break;
@@ -278,10 +278,10 @@ namespace GAME
 			}
 		}
 
-		//‘O‰ñ‚ÌƒL[‚ð¡‰ñ‚É‚à•Û‘¶‚·‚é
+		//å‰å›žã®ã‚­ãƒ¼ã‚’ä»Šå›žã«ã‚‚ä¿å­˜ã™ã‚‹
 		gameKey.ReservePrevious ( m_vGameKey[ 0 ] );
 
-		//ƒQ[ƒ€“ü—Í‚ðXV‚µ‚È‚ª‚çŒ»ÝƒtƒŒ[ƒ€•ª‚ð•Û‘¶
+		//ã‚²ãƒ¼ãƒ å…¥åŠ›ã‚’æ›´æ–°ã—ãªãŒã‚‰ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†ã‚’ä¿å­˜
 		for ( int i = m_vGameKeyNum - 1; i >= 1; --i )
 		{
 			m_vGameKey[i] = m_vGameKey[i - 1];
@@ -289,12 +289,12 @@ namespace GAME
 		m_vGameKey[0] = gameKey;
 
 
-		//eƒNƒ‰ƒX‚É”½‰f
+		//è¦ªã‚¯ãƒ©ã‚¹ã«åæ˜ 
 		CharaInput::SetGameKey ( m_vGameKey );
 	}
 
-	//ƒuƒ‰ƒ“ƒ`ƒŠƒXƒg‚ðƒ`ƒFƒbƒN‚µ‚Ä
-	//ƒRƒ}ƒ“ƒhðŒ‚ª’B¬‚³‚ê‚Ä‚¢‚½‚ç‘JˆÚæ‚ÌƒAƒNƒVƒ‡ƒ“ID‚ð•Ô‚·
+	//ãƒ–ãƒ©ãƒ³ãƒãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦
+	//ã‚³ãƒžãƒ³ãƒ‰æ¡ä»¶ãŒé”æˆã•ã‚Œã¦ã„ãŸã‚‰é·ç§»å…ˆã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’è¿”ã™
 	UINT CPUInput::GetTransitID ( PVP_Branch pvpBranch, bool dirRight )
 	{
 		VP_Branch::iterator it = pvpBranch->begin ();

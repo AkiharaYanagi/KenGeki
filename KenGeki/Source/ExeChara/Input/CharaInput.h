@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// CharaInput ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// CharaInput ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "Chara.h"
@@ -14,59 +14,59 @@
 #include "../../FtgMain/FtgConst.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class CharaInput
 	{
-		static const UINT	m_vGameKeyNum;	//ƒL[“ü—Í‚Ì•Û‘¶ƒtƒŒ[ƒ€”
-		V_GAME_KEY			m_vGameKey;		//ƒL[“ü—Í•Û‘¶
-		PLAYER_ID			m_playerID;		//ƒvƒŒƒCƒ„[ID
-		bool				m_cpu;			//CPUƒtƒ‰ƒO
+		static const UINT	m_vGameKeyNum;	//ã‚­ãƒ¼å…¥åŠ›ã®ä¿å­˜ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+		V_GAME_KEY			m_vGameKey;		//ã‚­ãƒ¼å…¥åŠ›ä¿å­˜
+		PLAYER_ID			m_playerID;		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+		bool				m_cpu;			//CPUãƒ•ãƒ©ã‚°
 
-		//ƒRƒ}ƒ“ƒh‚ªŠ®¬‚µ‚½ID‚ğ—Dæ‡‚É•Û‘¶‚µ‚½ƒŠƒXƒg
+		//ã‚³ãƒãƒ³ãƒ‰ãŒå®Œæˆã—ãŸIDã‚’å„ªå…ˆé †ã«ä¿å­˜ã—ãŸãƒªã‚¹ãƒˆ
 		std::vector < UINT >		m_vCompID;		
 
 	public:
 		CharaInput ();
-		CharaInput ( const CharaInput& rhs ) = delete;		//ƒRƒs[‹Ö~
+		CharaInput ( const CharaInput& rhs ) = delete;		//ã‚³ãƒ”ãƒ¼ç¦æ­¢
 		virtual ~CharaInput ();
 
-		//ƒvƒŒƒCƒ„[ID
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
 		void SetPlayer ( PLAYER_ID id ) { m_playerID = id; }
 
-		//“Ç
+		//èª­è¾¼
 		virtual void Load () {}
 
-		//ƒtƒŒ[ƒ€–ˆ‚É‚¨‚¯‚é“ü—Í‚Ì•Û‘¶
+		//ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«ãŠã‘ã‚‹å…¥åŠ›ã®ä¿å­˜
 		virtual void Update ( bool dirRight );
 
-		//ƒL[“ü—Í”z—ñ‚ÌQÆ
+		//ã‚­ãƒ¼å…¥åŠ›é…åˆ—ã®å‚ç…§
 		const V_GAME_KEY & GetvGameKey () const { return m_vGameKey; }
 
-		//ƒ‹[ƒgƒŠƒXƒg‚ğƒ`ƒFƒbƒN‚µ‚ÄŠeíƒuƒ‰ƒ“ƒ`‚ÌƒRƒ}ƒ“ƒh‚ª’B¬‚³‚ê‚Ä‚¢‚½‚ç
-		//‘JˆÚæ‚ÌƒAƒNƒVƒ‡ƒ“ID‚ğ•Ô‚·
-		//–ß’lFenum { NO_COMPLETE (0xFFFFFFFF) } •s¬—§
+		//ãƒ«ãƒ¼ãƒˆãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦å„ç¨®ãƒ–ãƒ©ãƒ³ãƒã®ã‚³ãƒãƒ³ãƒ‰ãŒé”æˆã•ã‚Œã¦ã„ãŸã‚‰
+		//é·ç§»å…ˆã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’è¿”ã™
+		//æˆ»å€¤ï¼šenum { NO_COMPLETE (0xFFFFFFFF) } ä¸æˆç«‹
 		virtual UINT GetTransitID ( Chara & ch, P_Script pScp, bool dirRight );
 
-		//¬—§ƒŠƒXƒg‚ğ¶¬‚·‚é
+		//æˆç«‹ãƒªã‚¹ãƒˆã‚’ç”Ÿæˆã™ã‚‹
 		virtual void MakeTransitIDList ( Chara & ch, P_Script pScp, bool dirRight );
 
-		//ƒL[‚Ì•Û‘¶
+		//ã‚­ãƒ¼ã®ä¿å­˜
 		void SetGameKey ( V_GAME_KEY & vKey );
 
-		//—DæƒŠƒXƒg‚Ìæ“ª‚ğæ“¾‚·‚é
+		//å„ªå…ˆãƒªã‚¹ãƒˆã®å…ˆé ­ã‚’å–å¾—ã™ã‚‹
 		UINT GetCompID ();
 
-		//—DæƒŠƒXƒg‚ÌQÆ‚ğ“¾‚é
+		//å„ªå…ˆãƒªã‚¹ãƒˆã®å‚ç…§ã‚’å¾—ã‚‹
 		const std::vector < UINT > & GetvCompID () const { return m_vCompID; }
 
 
-		//Œã‚ë“ü‚êó‘Ô [ƒŒƒo[•ûŒü:‚S]‚©‚Ç‚¤‚©
+		//å¾Œã‚å…¥ã‚ŒçŠ¶æ…‹ [ãƒ¬ãƒãƒ¼æ–¹å‘:ï¼”]ã‹ã©ã†ã‹
 		const bool IsInput4 () const;
 
-		//Œã‚ëÎ‚ß‰º “ü‚êó‘Ô[ƒŒƒo[•ûŒü:1]‚©‚Ç‚¤‚©
+		//å¾Œã‚æ–œã‚ä¸‹ å…¥ã‚ŒçŠ¶æ…‹[ãƒ¬ãƒãƒ¼æ–¹å‘:1]ã‹ã©ã†ã‹
 		const bool IsInput1 () const;
 	};
 

@@ -1,20 +1,20 @@
 //=================================================================================================
 //
-// ƒGƒOƒ[ƒLƒƒƒ‰@ƒ\[ƒXƒtƒ@ƒCƒ‹
+// ã‚¨ã‚°ã‚¼ã‚­ãƒ£ãƒ©ã€€ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "CharaRect.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CharaRect::CharaRect ()
 	{
 		m_pvCRect = make_shared < V_RECT > ();
@@ -22,7 +22,7 @@ namespace GAME
 		m_pvARect = make_shared < V_RECT > ();
 		m_pvORect = make_shared < V_RECT > ();
 
-		//Šù’è”‚¾‚¯¶¬
+		//æ—¢å®šæ•°ã ã‘ç”Ÿæˆ
 		m_pvCRect->resize ( NUM_RECT );
 		m_pvHRect->resize ( NUM_RECT );
 		m_pvARect->resize ( NUM_RECT );
@@ -40,13 +40,13 @@ namespace GAME
 #endif // 0
 	}
 
-	//ƒfƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CharaRect::~CharaRect ()
 	{
 	}
 
 
-	//‘SÀŒø˜g‚ÌƒŠƒZƒbƒg
+	//å…¨å®ŸåŠ¹æ ã®ãƒªã‚»ãƒƒãƒˆ
 	void CharaRect::ResetAllRect ()
 	{
 		ZeroVecRect ( m_pvCRect );
@@ -55,7 +55,7 @@ namespace GAME
 		ZeroVecRect ( m_pvORect );
 	}
 
-	//˜gİ’è
+	//æ è¨­å®š
 	void CharaRect::SetpvRect ( PV_RECT pvRectActual, PV_RECT pvRectScript, bool dir, VEC2 pos )
 	{
 		for ( UINT i = 0; i < NUM_RECT; ++ i )
@@ -64,7 +64,7 @@ namespace GAME
 			{
 				RECT r = pvRectScript->at ( i );
 				RECT tempRect;
-				if ( true == dir )	//Œü‚«
+				if ( true == dir )	//å‘ã
 				{
 					tempRect.left	= (LONG)(pos.x + r.left);
 					tempRect.top	= (LONG)(pos.y + r.top);
@@ -73,9 +73,9 @@ namespace GAME
 				}
 				else if ( false == dir )
 				{
-					tempRect.left	= (LONG)(pos.x - r.right);	//right‚Æ“ü‘Ö
+					tempRect.left	= (LONG)(pos.x - r.right);	//rightã¨å…¥æ›¿
 					tempRect.top	= (LONG)(pos.y + r.top);
-					tempRect.right	= (LONG)(pos.x - r.left);	//left‚Æ“ü‘Ö
+					tempRect.right	= (LONG)(pos.x - r.left);	//leftã¨å…¥æ›¿
 					tempRect.bottom	= (LONG)(pos.y + r.bottom);
 				}
 				CopyRect ( pvRectActual->at ( i ), tempRect );
@@ -94,7 +94,7 @@ namespace GAME
 
 	
 #if 0
-	//ÀŒø˜g‚©‚ç•\¦˜g‚Öİ’u
+	//å®ŸåŠ¹æ ã‹ã‚‰è¡¨ç¤ºæ ã¸è¨­ç½®
 	void CharaRect::SetGrpRect ( PrmRect grpRect [], RECT rect [], float dispGameBaseX )
 	{
 		for ( UINT i = 0; i < NUM_RECT; ++i )

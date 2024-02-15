@@ -1,23 +1,23 @@
 //=================================================================================================
 //
-// CharaInput ƒ\[ƒXƒtƒ@ƒCƒ‹
+// CharaInput ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "CharaInput.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//staticŽÀ‘Ì
-	const UINT CharaInput::m_vGameKeyNum = 60;		//ƒL[“ü—Í‚Ì•Û‘¶ƒtƒŒ[ƒ€”
+	//staticå®Ÿä½“
+	const UINT CharaInput::m_vGameKeyNum = 60;		//ã‚­ãƒ¼å…¥åŠ›ã®ä¿å­˜ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CharaInput::CharaInput ()
 		: m_playerID ( PLAYER_ID_1 ), m_cpu ( F )
 	{
@@ -28,33 +28,33 @@ namespace GAME
 		}
 	}
 
-	//ƒfƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CharaInput::~CharaInput ()
 	{
 	}
 
-	//XV
+	//æ›´æ–°
 	void CharaInput::Update ( bool dirRight )
 	{
-		//¡‰ñ‚Ì“ü—Í‚ðƒQ[ƒ€ƒL[‚É’¼‚µ‚Ä•Û‘¶
+		//ä»Šå›žã®å…¥åŠ›ã‚’ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ã«ç›´ã—ã¦ä¿å­˜
 		_GameKey gameKey;
 
-		//ã‰º‘OŒã
-		bool bKey8 = F;	//ã
-		bool bKey2 = F;	//‰º
-		bool bKey4 = F;	//Œã(‰EŒü‚«Žž)
-		bool bKey6 = F;	//‘O(‰EŒü‚«Žž)
+		//ä¸Šä¸‹å‰å¾Œ
+		bool bKey8 = F;	//ä¸Š
+		bool bKey2 = F;	//ä¸‹
+		bool bKey4 = F;	//å¾Œ(å³å‘ãæ™‚)
+		bool bKey6 = F;	//å‰(å³å‘ãæ™‚)
 
 		if ( PLAYER_ID_1 == m_playerID )
 		{
 			bKey8 = CFG_IS_KEY ( _P1_UP );
 			bKey2 = CFG_IS_KEY ( _P1_DOWN );
-			if ( dirRight )	//‰EŒü‚«Žž
+			if ( dirRight )	//å³å‘ãæ™‚
 			{
 				bKey4 = CFG_IS_KEY ( _P1_LEFT );
 				bKey6 = CFG_IS_KEY ( _P1_RIGHT );
 			}
-			else	//¶Œü‚«Žž
+			else	//å·¦å‘ãæ™‚
 			{
 				bKey4 = CFG_IS_KEY ( _P1_RIGHT );
 				bKey6 = CFG_IS_KEY ( _P1_LEFT );
@@ -64,23 +64,23 @@ namespace GAME
 		{
 			bKey8 = CFG_IS_KEY ( _P2_UP );
 			bKey2 = CFG_IS_KEY ( _P2_DOWN );
-			if ( dirRight )	//‰EŒü‚«Žž
+			if ( dirRight )	//å³å‘ãæ™‚
 			{
 				bKey4 = CFG_IS_KEY ( _P2_LEFT );
 				bKey6 = CFG_IS_KEY ( _P2_RIGHT );
 			}
-			else	//¶Œü‚«Žž
+			else	//å·¦å‘ãæ™‚
 			{
 				bKey4 = CFG_IS_KEY ( _P2_RIGHT );
 				bKey6 = CFG_IS_KEY ( _P2_LEFT );
 			}
 		}
 
-		//3‚ÂˆÈã“¯Žž‰Ÿ‚µ‚Í—Dæ‡‚Åˆ—
+		//3ã¤ä»¥ä¸ŠåŒæ™‚æŠ¼ã—ã¯å„ªå…ˆé †ã§å‡¦ç†
 
-		// ƒRƒ}ƒ“ƒhŽw’è‚Å‚Í12369874‡
+		// ã‚³ãƒžãƒ³ãƒ‰æŒ‡å®šã§ã¯12369874é †
 
-		//ŽÎ‚ß—Dæ
+		//æ–œã‚å„ªå…ˆ
 		if ( bKey4 && bKey2 )	{ gameKey.SetLvr ( _GameKey::LVR_1, T ); }
 		if ( bKey2 )			{ gameKey.SetLvr ( _GameKey::LVR_2, T ); }
 		if ( bKey6 && bKey2 )	{ gameKey.SetLvr ( _GameKey::LVR_3, T ); }
@@ -92,7 +92,7 @@ namespace GAME
 
 
 		//==============================================================================
-		//ƒ{ƒ^ƒ“
+		//ãƒœã‚¿ãƒ³
 		bool bBtn0 = F; bool bBtn1 = F; bool bBtn2 = F; bool bBtn3 = F;
 		bool bBtn4 = F; bool bBtn5 = F; bool bBtn6 = F; bool bBtn7 = F;
 
@@ -130,93 +130,93 @@ namespace GAME
 		gameKey.SetBtn ( 7, bBtn7 );
 
 
-		//Œ»ó‚ð‘O‰ñ‚ÌƒL[‚É•Û‘¶‚·‚é
+		//ç¾çŠ¶ã‚’å‰å›žã®ã‚­ãƒ¼ã«ä¿å­˜ã™ã‚‹
 		gameKey.ReservePrevious ( m_vGameKey[0] );
 
 
-		//ƒQ[ƒ€“ü—Í‚ðXV‚µ‚È‚ª‚çŒ»ÝƒtƒŒ[ƒ€•ª‚ð•Û‘¶
+		//ã‚²ãƒ¼ãƒ å…¥åŠ›ã‚’æ›´æ–°ã—ãªãŒã‚‰ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†ã‚’ä¿å­˜
 		for ( int i = m_vGameKeyNum - 1; i >= 1; -- i )
 		{
 			m_vGameKey[i] = m_vGameKey[i - 1];
 		}
-		m_vGameKey[0] = gameKey;	//ÅŒã‚Éæ“ª‚É‹L˜^
+		m_vGameKey[0] = gameKey;	//æœ€å¾Œã«å…ˆé ­ã«è¨˜éŒ²
 	}
 
 
 	//------------------------------------------------------------------------------------
-	//ƒ‹[ƒgƒŠƒXƒg‚ðƒ`ƒFƒbƒN‚µ‚ÄŠeŽíƒuƒ‰ƒ“ƒ`‚ÌƒRƒ}ƒ“ƒh‚ª’B¬‚³‚ê‚Ä‚¢‚½‚ç
-	//‘JˆÚæ‚ÌƒAƒNƒVƒ‡ƒ“ID‚ð•Ô‚·
-	//–ß’lFenum { NO_COMPLETE (0xFFFFFFFF) } •s¬—§
+	//ãƒ«ãƒ¼ãƒˆãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦å„ç¨®ãƒ–ãƒ©ãƒ³ãƒã®ã‚³ãƒžãƒ³ãƒ‰ãŒé”æˆã•ã‚Œã¦ã„ãŸã‚‰
+	//é·ç§»å…ˆã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’è¿”ã™
+	//æˆ»å€¤ï¼šenum { NO_COMPLETE (0xFFFFFFFF) } ä¸æˆç«‹
 	UINT CharaInput::GetTransitID ( Chara & ch, P_Script pScp, bool dirRight )
 	{
-		//ƒLƒƒƒ‰‚ÌŽ‚Âƒ‹[ƒg,ƒuƒ‰ƒ“ƒ`,ƒRƒ}ƒ“ƒh‚ÌŽQÆ
+		//ã‚­ãƒ£ãƒ©ã®æŒã¤ãƒ«ãƒ¼ãƒˆ,ãƒ–ãƒ©ãƒ³ãƒ,ã‚³ãƒžãƒ³ãƒ‰ã®å‚ç…§
 		const VP_Route vpRoute = ch.GetvpRoute ();
 		const VP_Branch vpBranch = ch.GetvpBranch ();
 		const VP_Command vpCommand = ch.GetvpCommand ();
 		
-		//ƒXƒNƒŠƒvƒg‚ÌŽ‚Âƒ‹[ƒgƒŠƒXƒg
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æŒã¤ãƒ«ãƒ¼ãƒˆãƒªã‚¹ãƒˆ
 		for ( UINT indexRoute : pScp->GetcvRouteID () )
 		{
 			const V_UINT vBranchID = vpRoute[indexRoute]->GetcvIDBranch ();
 
-			//‘ÎÛ‚Ìƒuƒ‰ƒ“ƒ`ƒŠƒXƒg
+			//å¯¾è±¡ã®ãƒ–ãƒ©ãƒ³ãƒãƒªã‚¹ãƒˆ
 			for ( UINT indexBranch : vBranchID )
 			{
-				//ƒRƒ}ƒ“ƒh•ªŠòˆÈŠO‚Í”ò‚Î‚·
+				//ã‚³ãƒžãƒ³ãƒ‰åˆ†å²ä»¥å¤–ã¯é£›ã°ã™
 				if ( BRC_CMD != vpBranch[indexBranch]->GetCondition () ) { continue; }
 
-				//ƒRƒ}ƒ“ƒhŽæ“¾
+				//ã‚³ãƒžãƒ³ãƒ‰å–å¾—
 				UINT indexCommand = vpBranch[indexBranch]->GetIndexCommand ();
 				P_Command pCmd = vpCommand[indexCommand];
 
-				//‘ÎÛƒRƒ}ƒ“ƒh‚ª¬—§‚µ‚Ä‚¢‚½‚ç
+				//å¯¾è±¡ã‚³ãƒžãƒ³ãƒ‰ãŒæˆç«‹ã—ã¦ã„ãŸã‚‰
 				if ( pCmd->Compare ( m_vGameKey, dirRight ) )
 				{
-					//‘JˆÚæƒAƒNƒVƒ‡ƒ“ID‚ð•Ô‚·
+					//é·ç§»å…ˆã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’è¿”ã™
 					return vpBranch[indexBranch]->GetIndexSequence ();
 				}
 			}
 		}
-		//•s¬—§‚Ì‚Æ‚«
+		//ä¸æˆç«‹ã®ã¨ã
 		return NO_COMPLETE;
 	}
 
 	
-	//¬—§ƒŠƒXƒg‚ð¶¬‚·‚é
+	//æˆç«‹ãƒªã‚¹ãƒˆã‚’ç”Ÿæˆã™ã‚‹
 	void CharaInput::MakeTransitIDList ( Chara & ch, P_Script pScp, bool dirRight )
 	{
-		//¬—§‚µ‚½‚P‚Â‚ÌID‚Å‚Í‚È‚­A¬—§‚µ‚½ID‚ð—Dæ‡ˆÊ‚Å•Û‘¶‚µ‚½ƒŠƒXƒg‚ð•Ô‚·
+		//æˆç«‹ã—ãŸï¼‘ã¤ã®IDã§ã¯ãªãã€æˆç«‹ã—ãŸIDã‚’å„ªå…ˆé †ä½ã§ä¿å­˜ã—ãŸãƒªã‚¹ãƒˆã‚’è¿”ã™
 		m_vCompID.clear ();
 
-		//ƒLƒƒƒ‰‚ÌŽ‚Âƒ‹[ƒg,ƒuƒ‰ƒ“ƒ`,ƒRƒ}ƒ“ƒh‚ÌŽQÆ
+		//ã‚­ãƒ£ãƒ©ã®æŒã¤ãƒ«ãƒ¼ãƒˆ,ãƒ–ãƒ©ãƒ³ãƒ,ã‚³ãƒžãƒ³ãƒ‰ã®å‚ç…§
 		const VP_Route vpRoute = ch.GetvpRoute ();
 		const VP_Branch vpBranch = ch.GetvpBranch ();
 		const VP_Command vpCommand = ch.GetvpCommand ();
 
-		//ƒXƒNƒŠƒvƒg‚ÌŽ‚Âƒ‹[ƒgƒŠƒXƒg
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æŒã¤ãƒ«ãƒ¼ãƒˆãƒªã‚¹ãƒˆ
 		for ( UINT indexRoute : pScp->GetcvRouteID () )
 		{
-			//ƒ‹[ƒg‚ÌŽæ“¾
+			//ãƒ«ãƒ¼ãƒˆã®å–å¾—
 			P_Route pRut = vpRoute [ indexRoute ];
 			const V_UINT vBranchID = vpRoute [ indexRoute ]->GetcvIDBranch ();
 
-			//‘ÎÛ‚Ìƒuƒ‰ƒ“ƒ`ƒŠƒXƒg
+			//å¯¾è±¡ã®ãƒ–ãƒ©ãƒ³ãƒãƒªã‚¹ãƒˆ
 			for ( UINT indexBranch : vBranchID )
 			{
-				//ƒuƒ‰ƒ“ƒ`‚ÌŽæ“¾
+				//ãƒ–ãƒ©ãƒ³ãƒã®å–å¾—
 				P_Branch pBrc = vpBranch [ indexBranch ];
 
-				//ƒRƒ}ƒ“ƒh•ªŠòˆÈŠO‚Í”ò‚Î‚·
+				//ã‚³ãƒžãƒ³ãƒ‰åˆ†å²ä»¥å¤–ã¯é£›ã°ã™
 				if ( BRC_CMD != pBrc->GetCondition () ) { continue; }
 
-				//ƒRƒ}ƒ“ƒh‚ÌŽæ“¾
+				//ã‚³ãƒžãƒ³ãƒ‰ã®å–å¾—
 				UINT indexCommand = vpBranch [ indexBranch ]->GetIndexCommand ();
 				P_Command pCmd = vpCommand [ indexCommand ];
 
-				//‘ÎÛƒRƒ}ƒ“ƒh‚ª¬—§‚µ‚Ä‚¢‚½‚ç
+				//å¯¾è±¡ã‚³ãƒžãƒ³ãƒ‰ãŒæˆç«‹ã—ã¦ã„ãŸã‚‰
 				if ( pCmd->Compare ( m_vGameKey, dirRight ) )
 				{
-					//‘JˆÚæƒAƒNƒVƒ‡ƒ“ID‚ð“o˜^‚·‚é
+					//é·ç§»å…ˆã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’ç™»éŒ²ã™ã‚‹
 					UINT id = vpBranch [ indexBranch ]->GetIndexSequence ();
 					m_vCompID.push_back ( id );
 				}
@@ -224,7 +224,7 @@ namespace GAME
 		}
 	}
 
-	//—DæƒŠƒXƒg‚Ìæ“ª‚ðŽæ“¾‚·‚é
+	//å„ªå…ˆãƒªã‚¹ãƒˆã®å…ˆé ­ã‚’å–å¾—ã™ã‚‹
 	UINT CharaInput::GetCompID ()
 	{
 		if ( m_vCompID.size() > 0 )

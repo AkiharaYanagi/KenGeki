@@ -1,16 +1,16 @@
 //=================================================================================================
 //
-// DispFrontEnd ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispFrontEnd ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispFrontEnd.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -20,9 +20,9 @@ namespace GAME
 
 	DispFrontEnd::DispFrontEnd ()
 	{
-		//ƒQ[ƒW—Ş
+		//ã‚²ãƒ¼ã‚¸é¡
 
-		//ƒ‰ƒCƒtƒQ[ƒW
+		//ãƒ©ã‚¤ãƒ•ã‚²ãƒ¼ã‚¸
 		m_gaugeLife = make_shared < DispGauge > ();
 		m_gaugeLife->SetPosition ( LIFE_GAUGE_X, LIFE_GAUGE_Y, LIFE_GAUGE_W, LIFE_GAUGE_H );
 		const _CLR c0L = LIFE_GAUGE_VALUE_CLR0;
@@ -34,7 +34,7 @@ namespace GAME
 		m_gaugeLife->SetColor_Decrease ( LIFE_GAUGE_DECREASE_CLR );
 		AddpTask ( m_gaugeLife );
 
-		//ƒoƒ‰ƒ“ƒXƒQ[ƒW
+		//ãƒãƒ©ãƒ³ã‚¹ã‚²ãƒ¼ã‚¸
 		m_gaugeBalance = make_shared < DispGauge > ();
 		m_gaugeBalance->SetPosition ( BALANCE_GAUGE_X, BALANCE_GAUGE_Y, BALANCE_GAUGE_W, BALANCE_GAUGE_H );
 		const _CLR c0B = BALANCE_GAUGE_VALUE_CLR0;
@@ -47,7 +47,7 @@ namespace GAME
 		m_gaugeBalance->OffDecrease ();
 		AddpTask ( m_gaugeBalance );
 
-		//ƒ}ƒiƒQ[ƒW
+		//ãƒãƒŠã‚²ãƒ¼ã‚¸
 		m_gaugeMana = make_shared < DispGauge > ();
 		m_gaugeMana->SetPosition ( MANA_GAUGE_X, MANA_GAUGE_Y, MANA_GAUGE_W, MANA_GAUGE_H );
 		const _CLR c0M = MANA_GAUGE_VALUE_CLR0;
@@ -62,7 +62,7 @@ namespace GAME
 
 
 		//-----------------------------------------------------
-		//ƒvƒŒƒCƒ„[•\¦
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤º
 		//-----------------------------------------------------
 		m_grp_Cst_Player1P2P = MakepGrpPlyr ( _T ( "Player_1P.png" ) );
 		m_grp_Cst_Player1P2P->AddTexture ( _T ( "Player_2P.png" ) );
@@ -78,16 +78,16 @@ namespace GAME
 
 
 #if 0
-		//ƒqƒbƒgƒXƒgƒbƒvŠÔ•\¦
+		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—æ™‚é–“è¡¨ç¤º
 		m_gaugeHitStop.SetAllColor ( _CLR ( 0xffa0a0ff ) );
 		m_pGrpAry->InsertTask ( & m_gaugeHitStop );
 
-		//‚Ì‚¯‚¼‚èŠÔ•\¦
+		//ã®ã‘ãã‚Šæ™‚é–“è¡¨ç¤º
 		m_gaugeLurch.SetAllColor ( _CLR ( 0xffa0ffa0 ) );
 		m_pGrpAry->InsertTask ( & m_gaugeLurch );
 #endif	//0
 
-		//ƒqƒbƒg”
+		//ãƒ’ãƒƒãƒˆæ•°
 		m_grpHitNum = make_shared < GrpAcv > ();
 		m_grpHitNum->AddTexture ( _T("0.png") );
 		m_grpHitNum->AddTexture ( _T("1.png") );
@@ -103,7 +103,7 @@ namespace GAME
 		GRPLST_INSERT_MAIN ( m_grpHitNum );
 		AddpTask ( m_grpHitNum );
 
-		//ƒqƒbƒg”‚QŒ…–Ú
+		//ãƒ’ãƒƒãƒˆæ•°ï¼’æ¡ç›®
 		m_grpHitNum->AddObject ();
 
 		m_grpStrHit = make_shared < GrpAcv > ();
@@ -137,7 +137,7 @@ namespace GAME
 		m_gaugeMana->LoadPlayer ( playerID );
 
 
-			//ƒvƒŒƒCƒ„‚É‚æ‚è•\¦‚ğw’è
+			//ãƒ—ãƒ¬ã‚¤ãƒ¤ã«ã‚ˆã‚Šè¡¨ç¤ºã‚’æŒ‡å®š
 		if ( PLAYER_ID_1 == playerID )
 		{
 			m_grp_Cst_Player1P2P->SetPos ( POS_PL_CP_1P );
@@ -156,14 +156,14 @@ namespace GAME
 		}
 
 #if 0
-		//ƒqƒbƒgƒXƒgƒbƒvŠÔ•\¦
+		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—æ™‚é–“è¡¨ç¤º
 		m_gaugeHitStop.SetRect ( 0, 0, 0, 0 );
 
-		//‚Ì‚¯‚¼‚èŠÔ•\¦
+		//ã®ã‘ãã‚Šæ™‚é–“è¡¨ç¤º
 		m_gaugeLurch.SetRect ( 0, 0, 0, 0 );
 #endif // 0
 
-		//ƒqƒbƒg”
+		//ãƒ’ãƒƒãƒˆæ•°
 		P_Object pOb = m_grpHitNum->GetpObject ( 1 );
 		if ( PLAYER_ID_1 == playerID )
 		{
@@ -182,16 +182,16 @@ namespace GAME
 	}
 
 	//------------------------
-	//ƒV[ƒ“ƒpƒ‰ƒ[ƒ^ŠÖ˜A‰Šú‰»
+	//ã‚·ãƒ¼ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢é€£åˆæœŸåŒ–
 	void DispFrontEnd::ParamInit ( P_Param pParam )
 	{
-		//ƒQ[ƒ€İ’è
+		//ã‚²ãƒ¼ãƒ è¨­å®š
 		GameSettingFile stg = pParam->GetGameSetting ();
 
-		//‘I‘ğƒLƒƒƒ‰–¼‘OEƒ‚[ƒh‚ğæ“¾
+		//é¸æŠã‚­ãƒ£ãƒ©åå‰ãƒ»ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
 		PLAYER_MODE playerMode = stg.GetPlayerMode ( m_playerID );
 
-		//ƒvƒŒƒCƒ„ƒ‚[ƒh(“ü—Íí—Ş)‚É‚æ‚é‰Šú‰»
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¢ãƒ¼ãƒ‰(å…¥åŠ›ç¨®é¡)ã«ã‚ˆã‚‹åˆæœŸåŒ–
 		switch ( playerMode )
 		{
 		case MODE_PLAYER: SetPlayer (); break;
@@ -225,24 +225,24 @@ namespace GAME
 
 	void DispFrontEnd::UpdateMainImage ( VEC2 posChara )
 	{
-		//ƒvƒŒƒCƒ„[•\¦
-		float bx = G_Ftg::inst ()->GetPosMutualBase ().x;	//Šî€ˆÊ’u
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤º
+		float bx = G_Ftg::inst ()->GetPosMutualBase ().x;	//åŸºæº–ä½ç½®
 		VEC2 vecImgPlayer = VEC2 ( bx, 0 ) + posChara + VEC2 ( -32.f, 0 );
-		vecImgPlayer.y = 32.f + 1.f * PLAYER_BASE_Y;	//y•ûŒü‚Ì‚İw’è
+		vecImgPlayer.y = 32.f + 1.f * PLAYER_BASE_Y;	//yæ–¹å‘ã®ã¿æŒ‡å®š
 
 		m_grp_CH_Player1P2P->SetPos ( vecImgPlayer );
 		m_grp_CH_InputCOMPLayer->SetPos ( vecImgPlayer + VEC2 ( 0, 33 ) );
 
-		//d’¼ŠÔ•\¦
+		//ç¡¬ç›´æ™‚é–“è¡¨ç¤º
 #if 0
 		static bool b2 = true;
 		if ( ::GetAsyncKeyState ( '2' ) & 0x0001 ) { b2 ^= 1; }
 		if ( b2 )
 		{
-			//ƒqƒbƒgƒXƒgƒbƒvŠÔ
+			//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—æ™‚é–“
 			m_dispChara.UpdateHitStop ( m_ptChara, m_dirRight, m_hitstop, m_hitstopTimer );
 
-			//‚Ì‚¯‚¼‚èŠÔ
+			//ã®ã‘ãã‚Šæ™‚é–“
 			m_dispChara.UpdateLurch ( m_ptChara, m_dirRight, m_lurch, m_lurchTimer );
 		}
 #endif // 0
@@ -254,8 +254,8 @@ namespace GAME
 		if ( n < 0 || 100 <= n ) { return; }
 
 
-		int n1 = n % 10;	//1Œ…–Ú
-		int n2 = (n / 10) % 10;	//2Œ…–Ú
+		int n1 = n % 10;	//1æ¡ç›®
+		int n2 = (n / 10) % 10;	//2æ¡ç›®
 		P_Object pOb = m_grpHitNum->GetpObject ( 1 );
 
 		m_grpHitNum->SetIndexTexture ( n1 );
@@ -284,7 +284,7 @@ namespace GAME
 #if 0
 	void DispChara::UpdateHitStop ( VEC2 ptChara, bool dirRight, UINT hitstop, UINT hitstopTimer )
 	{
-		//‚Ì‚¯‚¼‚èƒtƒŒ[ƒ€ŠÔ•\¦
+		//ã®ã‘ãã‚Šãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“è¡¨ç¤º
 		float fLurch = 10 * ( (float)hitstop - hitstopTimer );
 		float x = ptChara.x - ( dirRight ? 10 + 64 + 10 : 0 - 64 - 10 );
 		float y = ptChara.y - fLurch;
@@ -295,7 +295,7 @@ namespace GAME
 
 	void DispChara::UpdateLurch ( VEC2 ptChara, bool dirRight, UINT lurch, UINT lurchTimer )
 	{
-		//‚Ì‚¯‚¼‚èƒtƒŒ[ƒ€ŠÔ•\¦
+		//ã®ã‘ãã‚Šãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“è¡¨ç¤º
 		float fLurch = 10 * ( (float)lurch - lurchTimer );
 		float x = ptChara.x - ( dirRight ? 10 + 64 : 0 - 64 );
 		float y = ptChara.y - fLurch;
@@ -307,20 +307,20 @@ namespace GAME
 
 #if 0
 
-	//ƒqƒbƒg
+	//ãƒ’ãƒƒãƒˆ
 	void DispChara::OnHit ( VEC2 ptChara, bool dirRight )
 	{
-		//ƒGƒtƒFƒNƒg‚Ìİ’è
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®è¨­å®š
 		m_grpHitEf.SetWait ( 15 );
 		m_grpHitEf.SetFadeOut ( 15 );
 
-		//Œü‚«‚É‚æ‚éˆÊ’u‚ÌŒvZ
+		//å‘ãã«ã‚ˆã‚‹ä½ç½®ã®è¨ˆç®—
 //		VEC2 img_vec = VEC2 ( dispGameBaseX, 0 ) + ptChara + VEC2 ( 0, -128 );
 //		VEC2 img_vec = VEC2 ( dispGameBaseX, 0 ) + ptChara;
 //		m_grpHitEf.GetpMatrix()->SetPos ( img_vec );
 		m_grpHitEf.SetPos ( ptChara + VEC2 ( 0, -128 ) );
 
-		//Œü‚«‚Í–ˆ‰ñXV‚·‚é
+		//å‘ãã¯æ¯å›æ›´æ–°ã™ã‚‹
 		float dir = dirRight ? 1.f : -1.f;
 		m_grpHitEf.SetStartScaling ( VEC2 ( dir * 1.f, 1.f ) );
 		m_grpHitEf.SetTargetScaling ( VEC2 ( dir * 1.3f, 1.3f ) );
@@ -328,21 +328,21 @@ namespace GAME
 		m_grpHitEf.On ();
 	}
 
-	//ƒAƒ”ƒHƒCƒh
+	//ã‚¢ãƒ´ã‚©ã‚¤ãƒ‰
 	void DispChara::OnAvoid ( VEC2 ptChara, bool dirRight )
 	{
-		//ƒGƒtƒFƒNƒg‚Ìİ’è
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®è¨­å®š
 		m_grpAvoidEf.SetWait ( 15 );
 		m_grpAvoidEf.SetFadeIn ( 15 );
 
-		//Œü‚«‚É‚æ‚éˆÊ’u‚ÌŒvZ
+		//å‘ãã«ã‚ˆã‚‹ä½ç½®ã®è¨ˆç®—
 //		VEC2 img_vec = VEC2 ( dispGameBaseX, 0 ) + ptChara + VEC2 ( -128, -256 );
 //		VEC2 img_vec = VEC2 ( dispGameBaseX, 0 ) + ptChara + VEC2 ( 0, -64 );
 //		m_grpAvoidEf.GetpMatrix()->SetPos ( img_vec );
 //		m_grpAvoidEf.SetPos ( img_vec );
 		m_grpAvoidEf.SetPos ( ptChara + VEC2 ( 0, -64 ) );
 
-		//Œü‚«‚Í–ˆ‰ñXV‚·‚é
+		//å‘ãã¯æ¯å›æ›´æ–°ã™ã‚‹
 		float dir = dirRight ? 1.f : -1.f;
 		m_grpAvoidEf.SetStartScaling ( VEC2 ( dir * 1.f, 1.f ) );
 		m_grpAvoidEf.SetTargetScaling ( VEC2 ( dir * 1.3f, 1.3f ) );
@@ -350,17 +350,17 @@ namespace GAME
 		m_grpAvoidEf.On ();
 	}
 
-	//ƒ|ƒCƒYƒh
+	//ãƒã‚¤ã‚ºãƒ‰
 	void DispChara::OnPoised ( VEC2 ptChara, bool dirRight )
 	{
-		//ƒGƒtƒFƒNƒg‚Ìİ’è
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®è¨­å®š
 		m_grpPoisedEf.SetWait ( 15 );
 		m_grpPoisedEf.SetFadeIn ( 15 );
 
-		//ˆÊ’u‚ÌŒvZ
+		//ä½ç½®ã®è¨ˆç®—
 		m_grpPoisedEf.SetPos ( ptChara + VEC2 ( 0, -96 ) );
 
-		//Œü‚«‚Í–ˆ‰ñXV‚·‚é
+		//å‘ãã¯æ¯å›æ›´æ–°ã™ã‚‹
 		float dir = dirRight ? 1.f : -1.f;
 		m_grpPoisedEf.SetStartScaling ( VEC2 ( dir * 1.f, 1.f ) );
 		m_grpPoisedEf.SetTargetScaling ( VEC2 ( dir * 1.5f, 1.5f ) );

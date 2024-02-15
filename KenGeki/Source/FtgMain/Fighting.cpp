@@ -1,23 +1,23 @@
 //=================================================================================================
 //
-//	Fighting ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	Fighting ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Fighting.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	Fighting::Fighting ()
 	{
 		//------------------------------------------------
-		//”wŒi
+		//èƒŒæ™¯
 		m_bg = make_shared < GrpAcv > ();
 //		m_bg->AddTexture ( _T ( "ftgmain_bg1.png" ) );
 //		m_bg->AddTexture ( _T ( "test_bg.png" ) );
@@ -27,7 +27,7 @@ namespace GAME
 		m_bg->SetPos ( (float)BG_POS_X, (float)BG_POS_Y );
 		m_bg->SetZ ( Z_BG );
 
-		//ƒIƒuƒWƒFƒNƒg’Ç‰Á
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ 
 		m_bg->AddObject ();
 		P_Object pOb = m_bg->GetpvpObject ()->at ( 1 );
 		pOb->SetPos ( 200, 0 );
@@ -68,33 +68,33 @@ namespace GAME
 
 
 		//------------------------------------------------
-		//ƒQ[ƒW˜g
+		//ã‚²ãƒ¼ã‚¸æ 
 		m_gauge_frame = make_shared < GrpAcv > ();
 		m_gauge_frame->AddTexture ( _T ( "gauge_frame.png" ) );
 		m_gauge_frame->SetZ ( Z_SYS );
 		AddpTask ( m_gauge_frame );
 //		GRPLST_INSERT_MAIN ( m_gauge_frame );
 
-		//BGƒ^ƒCƒ}
+		//BGã‚¿ã‚¤ãƒ
 		m_tmrBlackOut = make_shared < Timer > ();
 		AddpTask ( m_tmrBlackOut );
 
 		//------------------------------------------------
 
 		//=====================================================
-		//ƒLƒƒƒ‰‘ŠŒİˆ—
+		//ã‚­ãƒ£ãƒ©ç›¸äº’å‡¦ç†
 		//=====================================================
 		m_mutualChara = make_shared < MutualChara > ();
 		AddpTask ( m_mutualChara );
 
 		//=====================================================
-		//ƒfƒ‚
+		//ãƒ‡ãƒ¢
 		m_demoActor = make_shared < FtgDemoActor > ();
 //		m_demoActor->Load ();
 		m_demoActor->SetpMutualChara ( m_mutualChara );
 		AddpTask ( m_demoActor );
 
-		//Debug—p@ŠJnƒfƒ‚‚ğƒXƒLƒbƒvØ‘Ö
+		//Debugç”¨ã€€é–‹å§‹ãƒ‡ãƒ¢ã‚’ã‚¹ã‚­ãƒƒãƒ—åˆ‡æ›¿
 #define DEMO_ON 0
 #if DEMO_ON
 		m_demoSkip = F;
@@ -104,7 +104,7 @@ namespace GAME
 
 		//=====================================================
 
-		//ƒ|[ƒY
+		//ãƒãƒ¼ã‚º
 		m_pause = make_shared < GrpAcv > ();
 		m_pause->AddTexture ( _T ( "Pause.png" ) );
 		m_pause->SetPos ( (1280-512)*0.5, 480.f );
@@ -130,7 +130,7 @@ namespace GAME
 
 		TASK_LST::Init ();
 
-		//ƒfƒ‚ƒXƒLƒbƒv
+		//ãƒ‡ãƒ¢ã‚¹ã‚­ãƒƒãƒ—
 		if ( m_demoSkip )
 		{
 			m_demoActor->StartFighting ();
@@ -145,14 +145,14 @@ namespace GAME
 	void Fighting::Move ()
 	{
 		//--------------------------
-		//ƒ|[ƒY
+		//ãƒãƒ¼ã‚º
 		Pause ();
 
 		//--------------------------
-		//ˆÃ“]
-		if ( m_tmrBlackOut->IsActive () )	//‰Ò“­
+		//æš—è»¢
+		if ( m_tmrBlackOut->IsActive () )	//ç¨¼åƒæ™‚
 		{
-			//I—¹
+			//çµ‚äº†
 			if ( m_tmrBlackOut->IsLast () )
 			{
 				m_tmrBlackOut->Clear ();
@@ -162,20 +162,20 @@ namespace GAME
 			}
 		}
 		//--------------------------
-		//ƒfƒ‚•ªŠò
+		//ãƒ‡ãƒ¢åˆ†å²
 		m_demoActor->Do ();
 
 		//--------------------------
-		//—¼Òˆ—
+		//ä¸¡è€…å‡¦ç†
 
-		//ˆÃ“]‚Íˆ—‚µ‚È‚¢
+		//æš—è»¢æ™‚ã¯å‡¦ç†ã—ãªã„
 		if ( ! m_tmrBlackOut->IsActive () )
 		{
 			m_mutualChara->Conduct ();
 		}
 
 		//--------------------------
-		//‹¤’ÊƒOƒ‰ƒtƒBƒbƒNˆ—
+		//å…±é€šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‡¦ç†
 		Grp ();
 
 		//--------------------------
@@ -191,11 +191,11 @@ namespace GAME
 	
 
 	//=============================================================
-	//	“à•”ŠÖ”
+	//	å†…éƒ¨é–¢æ•°
 	//=============================================================
 	void Fighting::Pause ()
 	{
-		//F1‚Åƒ|[ƒYØ‘Ö
+		//F1ã§ãƒãƒ¼ã‚ºåˆ‡æ›¿
 		if ( WND_UTL::AscKey ( VK_F1 ) )
 		{
 			if ( m_pause->GetValid () )	//On->Off
@@ -211,15 +211,15 @@ namespace GAME
 		}
 	}
 
-	//‹¤’ÊƒOƒ‰ƒtƒBƒbƒNˆ—
+	//å…±é€šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‡¦ç†
 	void Fighting::Grp ()
 	{
 		//-------------------------------------------------------
-		//ˆÃ“]
+		//æš—è»¢
 		if ( ! m_tmrBlackOut->IsActive () )
 		{
 			UINT blackOut = m_mutualChara->GetBlackOut ();
-			//‰‰ñ
+			//åˆå›
 			if ( 0 < blackOut )
 			{
 				m_tmrBlackOut->SetTargetTime ( blackOut );
@@ -234,12 +234,12 @@ namespace GAME
 		}
 		//-------------------------------------------------------
 
-		//”wŒiˆÊ’u•â³
+		//èƒŒæ™¯ä½ç½®è£œæ­£
 		int nx = (int) G_BASE_POS ().x;
 		int disp_bg_x = nx % GAME_WIDTH;
 		m_bg->SetPos ( (float)disp_bg_x, (float)BG_POS_Y );
 
-		//ƒTƒu”wŒiˆÊ’u
+		//ã‚µãƒ–èƒŒæ™¯ä½ç½®
 		int lx = disp_bg_x - GAME_WIDTH;
 		int rx = disp_bg_x + GAME_WIDTH;
 		const int D = GAME_WINDOW_WIDTH - GAME_WIDTH;	//2048 - 1280 = 768
@@ -248,7 +248,7 @@ namespace GAME
 		pOb->SetPos ( (float)sub_x, (float)BG_POS_Y );
 
 
-		//ƒJƒxˆÊ’u
+		//ã‚«ãƒ™ä½ç½®
 		float wall_l = G_FTG->GetWallLeft ();
 		m_wall_L->SetPos ( wall_l + G_BASE_POS ().x, 0 );
 

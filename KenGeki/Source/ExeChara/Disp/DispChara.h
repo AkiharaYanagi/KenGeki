@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// DispChara ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// DispChara ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "Chara.h"
@@ -20,17 +20,17 @@
 
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class DispChara : public TASK_VEC
 	{
-		P_DispMainImage	m_mainImage;	//ƒƒCƒ“ƒCƒ[ƒW
-		P_DispRect		m_dispRect;		//˜g
-		P_GrpAcv		m_grpShadow;	//‰e
-		P_DispFrontEnd	m_frontEnd;		//ƒtƒƒ“ƒgƒGƒ“ƒh
-		P_DispInput		m_dispInput;	//“ü—Í•\¦
+		P_DispMainImage	m_mainImage;	//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸
+		P_DispRect		m_dispRect;		//æ 
+		P_GrpAcv		m_grpShadow;	//å½±
+		P_DispFrontEnd	m_frontEnd;		//ãƒ•ãƒ­ãƒ³ãƒˆã‚¨ãƒ³ãƒ‰
+		P_DispInput		m_dispInput;	//å…¥åŠ›è¡¨ç¤º
 
 
 	public:
@@ -41,40 +41,40 @@ namespace GAME
 		void ParamInit ( P_Param pParam );
 
 
-		//ƒLƒƒƒ‰‚ğİ’è‚·‚é
+		//ã‚­ãƒ£ãƒ©ã‚’è¨­å®šã™ã‚‹
 		void SetpChara ( const P_Chara pChara );
 
-		//•\¦˜gİ’è
+		//è¡¨ç¤ºæ è¨­å®š
 		void SetpCharaRect ( P_CharaRect pCharaRect );
 
 
-		//˜g•\¦ON
+		//æ è¡¨ç¤ºON
 		void OnRect () { m_dispRect->OnRect (); }
-		//˜g•\¦OFF
+		//æ è¡¨ç¤ºOFF
 		void OffRect () { m_dispRect->OffRect (); }
 
 		//PLAYER / CPU
 		void SetControl_PLAYER () { m_frontEnd->SetPlayer (); }
 		void SetControl_CPU () { m_frontEnd->SetCPU (); }
 
-		//ƒQ[ƒW—Ş‚Ì•\¦•”‚Ì‚İ‰Šú‰»
+		//ã‚²ãƒ¼ã‚¸é¡ã®è¡¨ç¤ºéƒ¨ã®ã¿åˆæœŸåŒ–
 		void LoadPlayer ( PLAYER_ID playerID );
 
 
-		//XV
+		//æ›´æ–°
 		void Update ( P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt );
 
 	private:
-		//ƒƒCƒ“ƒCƒ[ƒW‚ÌXV
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›´æ–°
 		void UpdateMainImage ( P_Script pScript, VEC2 ptChara, bool dirRight );
 
-		//ƒQ[ƒW—ŞXV
+		//ã‚²ãƒ¼ã‚¸é¡æ›´æ–°
 		void UpdateGauge ( BtlParam btlPrm );
 
-		//“ü—ÍXV
+		//å…¥åŠ›æ›´æ–°
 		void UpdateInput ( P_CharaInput p ) { m_dispInput->UpdateInput ( p ); }
 
-		//ƒqƒbƒg”XV
+		//ãƒ’ãƒƒãƒˆæ•°æ›´æ–°
 		void UpdateChainHitNum ( UINT n );
 	};
 

@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// DispRect ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// DispRect ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "../../FtgMain/G_Ftg.h"
@@ -14,7 +14,7 @@
 #include "../Rect/CharaRect.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -23,10 +23,10 @@ namespace GAME
 
 	class DispRect : public TASK_VEC
 	{
-		//QÆÀŒø˜g
+		//å‚ç…§å®ŸåŠ¹æ 
 		P_CharaRect		mp_CharaRect;
 
-		//•\¦˜g
+		//è¡¨ç¤ºæ 
 		PVP_PrmRect		m_pvpGrpCRect;
 		PVP_PrmRect		m_pvpGrpARect;
 		PVP_PrmRect		m_pvpGrpHRect;
@@ -37,25 +37,25 @@ namespace GAME
 		DispRect ( const DispRect & rhs ) = delete;
 		~DispRect ();
 
-		//ÀŒø˜gİ’è
+		//å®ŸåŠ¹æ è¨­å®š
 		void SetCharaRect ( P_CharaRect pCharaRect );
 	
-		//•\¦˜g‚Ì‰Šú‰»
+		//è¡¨ç¤ºæ ã®åˆæœŸåŒ–
 		void InitRect ();
 
-		//XV
+		//æ›´æ–°
 		void Update ();
 
 		//------------------
-		//•\¦ó‘Ô‚É•ÏX
+		//è¡¨ç¤ºçŠ¶æ…‹ã«å¤‰æ›´
 		void OnRect ();
 
-		//”ñ•\¦ó‘Ô‚É•ÏX
+		//éè¡¨ç¤ºçŠ¶æ…‹ã«å¤‰æ›´
 		void OffRect ();
 
 		//-------------------
 
-		//•\¦˜gİ’è
+		//è¡¨ç¤ºæ è¨­å®š
 		void SetGrpRect ( PVP_PrmRect pvpGrpRect, PV_RECT pvRect );
 		void SetCRect ( PV_RECT pvRect ) { SetGrpRect ( m_pvpGrpCRect, pvRect ); }
 		void SetARect ( PV_RECT pvRect ) { SetGrpRect ( m_pvpGrpARect, pvRect ); }
@@ -63,7 +63,7 @@ namespace GAME
 		void SetORect ( PV_RECT pvRect ) { SetGrpRect ( m_pvpGrpORect, pvRect ); }
 
 	private:
-		//‰Šú‰»—p
+		//åˆæœŸåŒ–ç”¨
 		P_PrmRect Make ( DWORD clr );
 	};
 

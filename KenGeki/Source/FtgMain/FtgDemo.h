@@ -1,19 +1,19 @@
 //=================================================================================================
 //
-//	Fighting ƒfƒ‚
+//	Fighting ãƒ‡ãƒ¢
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "FtgConst.h"	
 #include "MutualChara.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -65,7 +65,7 @@ namespace GAME
 
 	class FTG_DM_Greeting : public FtgDemoState
 	{
-		//ƒ^ƒCƒ}
+		//ã‚¿ã‚¤ãƒ
 		P_Timer		m_timer;
 
 	public:
@@ -154,7 +154,7 @@ namespace GAME
 	//Actor
 	class FtgDemoActor : public TASK_VEC, public enable_shared_from_this < FtgDemoActor >
 	{
-		//ƒXƒe[ƒg
+		//ã‚¹ãƒ†ãƒ¼ãƒˆ
 		P_FTG_DM_Greeting	m_Greeting;
 		P_FTG_DM_GetReady	m_GetReady;
 		P_FTG_DM_Attack		m_Attack;
@@ -162,16 +162,16 @@ namespace GAME
 		P_FTG_DM_Down		m_Down;
 		P_FTG_DM_Winner		m_Winner;
 
-		//ƒXƒe[ƒgŠÄ—
+		//ã‚¹ãƒ†ãƒ¼ãƒˆç›£ç†
 		VP_FtgDemo			mvp_FtgDemo;
 
-		//Œ»İƒXƒe[ƒg
+		//ç¾åœ¨ã‚¹ãƒ†ãƒ¼ãƒˆ
 		P_FtgDemo			mp_FtgDemo;
 
-		//‹¤’Êƒpƒ‰ƒ[ƒ^
+		//å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		P_PRM_FTG_DEMO		mp_Param;
 
-		//I—¹ƒtƒ‰ƒO
+		//çµ‚äº†ãƒ•ãƒ©ã‚°
 		bool				m_bEnd;
 
 	public:

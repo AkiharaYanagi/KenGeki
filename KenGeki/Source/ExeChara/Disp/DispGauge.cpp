@@ -1,16 +1,16 @@
 //=================================================================================================
 //
-// DispGauge ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispGauge ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispGauge.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -20,25 +20,25 @@ namespace GAME
 		, m_base_x ( 0 ), m_base_y ( 0 ), m_base_w ( 0 ), m_base_h ( 0 )
 		, m_d ( LIFE_MAX )
 	{
-		//˜g
+		//æ 
 		m_Frame = make_shared < PrmRect > ();
 		m_Frame->SetZ ( Z_SYS );
 		AddpTask ( m_Frame );
 		GRPLST_INSERT_MAIN ( m_Frame );
 
-		//Œ¸­•ª
+		//æ¸›å°‘åˆ†
 		m_Decrease = make_shared < PrmRect > ();
 		m_Decrease->SetZ ( Z_SYS );
 		AddpTask ( m_Decrease );
 		GRPLST_INSERT_MAIN ( m_Decrease );
 
-		//Œ»İ’l
+		//ç¾åœ¨å€¤
 		m_Value = make_shared < PrmRect > ();
 		m_Value->SetZ ( Z_SYS );
 		AddpTask ( m_Value );
 		GRPLST_INSERT_MAIN ( m_Value );
 
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		Init ();
 	}
 
@@ -81,7 +81,7 @@ namespace GAME
 		float w = m_base_w;
 		float h = m_base_h;
 
-		//‰ŠúˆÊ’u
+		//åˆæœŸä½ç½®
 		if ( PLAYER_ID_1 == m_playerID )
 		{
 			m_Frame->SetRect ( x - 2, y - 2, w + 4, h + 4 );
@@ -103,10 +103,10 @@ namespace GAME
 
 	void DispGauge::Update ( UINT value )
 	{
-		const static float cfl = 1.f * LIFE_GAUGE_W / LIFE_MAX;		//1ƒ‰ƒCƒt‚ ‚½‚è‚Ì•\¦’·‚³
+		const static float cfl = 1.f * LIFE_GAUGE_W / LIFE_MAX;		//1ãƒ©ã‚¤ãƒ•ã‚ãŸã‚Šã®è¡¨ç¤ºé•·ã•
 
-		float ln = cfl * value;	//•\¦’·‚³
-		float ln_d = cfl * m_d;	//ƒ_ƒ[ƒW•\¦’·‚³
+		float ln = cfl * value;	//è¡¨ç¤ºé•·ã•
+		float ln_d = cfl * m_d;	//ãƒ€ãƒ¡ãƒ¼ã‚¸è¡¨ç¤ºé•·ã•
 
 		float x = m_base_x;
 		float y = m_base_y;

@@ -1,28 +1,28 @@
 //=================================================================================================
 //
-// CPUInput ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// CPUInput ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "CharaInput.h"
 #include <array>
 
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//‘O•ûéŒ¾
+	//å‰æ–¹å®£è¨€
 	class ExeChara;
 	using P_ExeChara = std::shared_ptr < ExeChara >;
 	using WP_ExeChara = weak_ptr < ExeChara >;
 
-	//CPUs“®í—Ş
+	//CPUè¡Œå‹•ç¨®é¡
 	enum CPU_ACT
 	{
 		CPU_NEUTRAL = 0,
@@ -44,24 +44,24 @@ namespace GAME
 	//-------
 	class CPUInput : public CharaInput
 	{
-		const UINT		m_vGameKeyNum;		//ƒL[“ü—Í‚Ì•Û‘¶ƒtƒŒ[ƒ€”
-		V_GAME_KEY		m_vGameKey;			//ƒL[“ü—Í•Û‘¶
-		PLAYER_ID		m_playerID;			//ƒvƒŒƒCƒ„[ID
-		WP_ExeChara		m_pExeChara;		//©g‚ÌQÆ
-		WP_ExeChara		m_pExeCharaOther;	//‘Šè‚ÌQÆ
+		const UINT		m_vGameKeyNum;		//ã‚­ãƒ¼å…¥åŠ›ã®ä¿å­˜ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+		V_GAME_KEY		m_vGameKey;			//ã‚­ãƒ¼å…¥åŠ›ä¿å­˜
+		PLAYER_ID		m_playerID;			//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+		WP_ExeChara		m_pExeChara;		//è‡ªèº«ã®å‚ç…§
+		WP_ExeChara		m_pExeCharaOther;	//ç›¸æ‰‹ã®å‚ç…§
 
-		ARY_CPU_ACT		m_randomKeyNear;	//‹ß‹——£
-		ARY_CPU_ACT		m_randomKeyMiddle;	//’†‹——£
-		ARY_CPU_ACT		m_randomKeyFar;		//‰“‹——£
+		ARY_CPU_ACT		m_randomKeyNear;	//è¿‘è·é›¢
+		ARY_CPU_ACT		m_randomKeyMiddle;	//ä¸­è·é›¢
+		ARY_CPU_ACT		m_randomKeyFar;		//é è·é›¢
 
-		bool		m_bAct;		//s“®Œˆ’èÏ
+		bool		m_bAct;		//è¡Œå‹•æ±ºå®šæ¸ˆ
 		CPU_ACT		m_act;
 		UINT		m_timer;
 		UINT		m_actTime;
 
 		int m_testAct;
 
-		//ŠO•”“Ç
+		//å¤–éƒ¨èª­è¾¼
 		ARY_INT		m_actNear;
 		ARY_INT		m_actMiddle;
 		ARY_INT		m_actFar;
@@ -71,19 +71,19 @@ namespace GAME
 		CPUInput ( const CPUInput & rhs ) = delete;
 		~CPUInput ();
 
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		void Load ();
 
-		//İ’è
+		//è¨­å®š
 		void SetPlayer ( PLAYER_ID id ) { m_playerID = id; }
 //		void SetpExeChara ( WP_ExeChara p ) { m_pExeChara = p; }
 //		void SetpExeCharaOther ( WP_ExeChara p ) { m_pExeCharaOther = p; }
 
-		//ƒtƒŒ[ƒ€–ˆ‚ÌXV
+		//ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã®æ›´æ–°
 		void Update ( bool dirRight );
 
-		//ƒuƒ‰ƒ“ƒ`ƒŠƒXƒg‚ğƒ`ƒFƒbƒN‚µ‚Ä
-		//ƒRƒ}ƒ“ƒhğŒ‚ª’B¬‚³‚ê‚Ä‚¢‚½‚ç‘JˆÚæ‚ÌƒAƒNƒVƒ‡ƒ“ID‚ğ•Ô‚·
+		//ãƒ–ãƒ©ãƒ³ãƒãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦
+		//ã‚³ãƒãƒ³ãƒ‰æ¡ä»¶ãŒé”æˆã•ã‚Œã¦ã„ãŸã‚‰é·ç§»å…ˆã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’è¿”ã™
 		UINT GetTransitID ( PVP_Branch pvpBranch, bool dirRight );
 
 		void SetCPU_Act ( int index, ARY_INT act, CPU_ACT& cpu_act );

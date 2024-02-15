@@ -1,19 +1,19 @@
 //=================================================================================================
 //
-//	CharaSele ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+//	CharaSele ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "../FtgMain/FtgConst.h"	
 #include "../GameMain/Scene.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -47,11 +47,11 @@ namespace GAME
 		//BG
 		P_GrpAcv		m_bg;
 
-		//ƒƒS
+		//ãƒ­ã‚´
 		P_GrpAcv		m_logo_l;
 		P_GrpAcv		m_logo_r;
 
-		//ƒLƒƒƒ‰—§ŠG
+		//ã‚­ãƒ£ãƒ©ç«‹çµµ
 		P_GrpAcv		m_chara_1p;
 		P_GrpAcv		m_chara_2p;
 
@@ -61,31 +61,31 @@ namespace GAME
 		P_Timer			m_tmrDecide1p;
 		P_Timer			m_tmrDecide2p;
 
-		//—§ŠGƒJƒbƒgƒCƒ“
+		//ç«‹çµµã‚«ãƒƒãƒˆã‚¤ãƒ³
 		float			m_x_1p;
 		float			m_x_2p;
 
-		//ƒLƒƒƒ‰‘I‘ğ•\¦
+		//ã‚­ãƒ£ãƒ©é¸æŠè¡¨ç¤º
 		P_GrpAcv		m_select_Sonia;
 		P_GrpAcv		m_select_Orfloat;
 
-		//ƒJ[ƒ\ƒ‹
+		//ã‚«ãƒ¼ã‚½ãƒ«
 		P_GrpBlink		m_cursor1p;
 		P_GrpBlink		m_cursor2p;
 		P_GrpBlink		m_cursorCPU1p;
 		P_GrpBlink		m_cursorCPU2p;
 
-		//‘I‘ğƒLƒƒƒ‰–¼(ƒpƒ‰ƒ[ƒ^)
-		CHARA_NAME		m_charaName1p;	//‚PPƒLƒƒƒ‰–¼
-		CHARA_NAME		m_charaName2p;	//‚QPƒLƒƒƒ‰–¼
+		//é¸æŠã‚­ãƒ£ãƒ©å(ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
+		CHARA_NAME		m_charaName1p;	//ï¼‘Pã‚­ãƒ£ãƒ©å
+		CHARA_NAME		m_charaName2p;	//ï¼’Pã‚­ãƒ£ãƒ©å
 
-		bool m_bDecide1p;	//1P‘¤Œˆ’è(1PƒRƒ“ƒgƒ[ƒ‰‚Å2P‘¤‚ğ‘€ì)
-		bool m_bDecide2p;	//2P‘¤Œˆ’è
+		bool m_bDecide1p;	//1På´æ±ºå®š(1Pã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§2På´ã‚’æ“ä½œ)
+		bool m_bDecide2p;	//2På´æ±ºå®š
 
 		P_FadeRect		m_fade;
 		bool			m_endWait;
 
-		//ƒ‚[ƒh•Û‘¶
+		//ãƒ¢ãƒ¼ãƒ‰ä¿å­˜
 		MUTCH_MODE		m_mode;
 
 

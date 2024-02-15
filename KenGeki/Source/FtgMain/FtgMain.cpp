@@ -1,11 +1,11 @@
 //=================================================================================================
 //
-//	FtgMain ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	FtgMain ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "FtgMain.h"
 #include "../GameMain/SoundConst.h"
@@ -19,21 +19,21 @@
 
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	FtgMain::FtgMain ()
 	{
-		//í“¬
+		//æˆ¦é—˜
 		m_fighting = make_shared < Fighting > ();
 		AddpTask ( m_fighting );
 
-		//ƒ|[ƒYƒƒjƒ…
+		//ãƒãƒ¼ã‚ºãƒ¡ãƒ‹ãƒ¥
 		m_pauseMenu = make_shared < PauseMenu > ();
 		AddpTask ( m_pauseMenu );
 
-		//ƒ[ƒh’†
+		//ãƒ­ãƒ¼ãƒ‰ä¸­
 		m_rectLoad = make_shared < PrmRect > ();
 		m_rectLoad->SetSize ( VEC2 ( 1280, 960 ) );
 		m_rectLoad->SetPos ( VEC2 ( 0, 0 ) );
@@ -43,8 +43,8 @@ namespace GAME
 		m_rectLoad->Load ();
 		m_rectLoad->Move ();
 
-//		m_rectLoad->SetFadeOut ( 10 );	//SetFadeOut()‚Í0xffffffff->0x00ffffff‚È‚Ì‚Å”’‚­‚È‚é
-		m_rectLoad->SetFade ( 3, _CLR(0xff000000), _CLR(0x00000000UL) );	//ŠJn’lA–Ú•W’l‚ğè“®İ’è
+//		m_rectLoad->SetFadeOut ( 10 );	//SetFadeOut()ã¯0xffffffff->0x00ffffffãªã®ã§ç™½ããªã‚‹
+		m_rectLoad->SetFade ( 3, _CLR(0xff000000), _CLR(0x00000000UL) );	//é–‹å§‹å€¤ã€ç›®æ¨™å€¤ã‚’æ‰‹å‹•è¨­å®š
 
 		AddpTask ( m_rectLoad );
 		GRPLST_INSERT_MAIN ( m_rectLoad );
@@ -62,7 +62,7 @@ namespace GAME
 
 
 		//----------------------------------------------------
-		//@info ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Åshared_from_this()‚ğ—p‚¢‚È‚¢
+		//@info ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§shared_from_this()ã‚’ç”¨ã„ãªã„
 	}
 
 	FtgMain::~FtgMain ()
@@ -71,10 +71,10 @@ namespace GAME
 
 	void FtgMain::Load ()
 	{
-		//‘JˆÚæw’è‚Éthis‚ğ•Û‘¶
+		//é·ç§»å…ˆæŒ‡å®šã«thisã‚’ä¿å­˜
 		Scene::SetwpThis ( shared_from_this () );
 
-		//Menu—p‚Éthis‚ğ•Û‘¶
+		//Menuç”¨ã«thisã‚’ä¿å­˜
 		m_pauseMenu->SetwpParentScene ( shared_from_this () );
 
 		Scene::Load ();
@@ -88,28 +88,28 @@ namespace GAME
 
 	void FtgMain::Move ()
 	{
-		//NowLoadingI—¹
+		//NowLoadingçµ‚äº†
 		if ( m_rectLoad->GetFadeTimer () == 0 )
 		{
 			m_NowLoading->SetValid ( F );
 		}
 
-		//ƒƒjƒ…ƒ|[ƒY’†
+		//ãƒ¡ãƒ‹ãƒ¥ãƒãƒ¼ã‚ºä¸­
 		if ( m_pauseMenu->MenuCheck () )
 		{
 			return;
 		}
 
-		//ƒgƒŒ[ƒjƒ“ƒOƒŠƒZƒbƒg
+		//ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ãƒªã‚»ãƒƒãƒˆ
 		if ( CFG_PUSH_KEY ( _P1_BTN6 ) || CFG_PUSH_KEY ( _P2_BTN6 ) )
 		{
 			m_fighting->TrainingRestart ();
 		}
 
-		//’Êí“®ì
+		//é€šå¸¸å‹•ä½œ
 		Scene::Move ();
 
-		//I—¹ƒ`ƒFƒbƒN
+		//çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if ( m_fighting->IsEnd () )
 		{
 #if 0
@@ -123,7 +123,7 @@ namespace GAME
 		}
 	}
 
-	//ó‘Ô‘JˆÚ
+	//çŠ¶æ…‹é·ç§»
 	P_GameScene FtgMain::Transit ()
 	{
 		return Scene::Transit ();
