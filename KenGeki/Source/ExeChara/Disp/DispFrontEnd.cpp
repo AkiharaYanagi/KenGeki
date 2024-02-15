@@ -86,6 +86,31 @@ namespace GAME
 		m_gaugeLurch.SetAllColor ( _CLR ( 0xffa0ffa0 ) );
 		m_pGrpAry->InsertTask ( & m_gaugeLurch );
 #endif	//0
+
+		//ヒット数
+		m_grpHitNum = make_shared < GrpAcv > ();
+		m_grpHitNum->AddTexture ( _T("0.png") );
+		m_grpHitNum->AddTexture ( _T("1.png") );
+		m_grpHitNum->AddTexture ( _T("2.png") );
+		m_grpHitNum->AddTexture ( _T("3.png") );
+		m_grpHitNum->AddTexture ( _T("4.png") );
+		m_grpHitNum->AddTexture ( _T("5.png") );
+		m_grpHitNum->AddTexture ( _T("6.png") );
+		m_grpHitNum->AddTexture ( _T("7.png") );
+		m_grpHitNum->AddTexture ( _T("8.png") );
+		m_grpHitNum->AddTexture ( _T("9.png") );
+		m_grpHitNum->SetZ ( Z_EFB + 0.01f );
+		GRPLST_INSERT_MAIN ( m_grpHitNum );
+		AddpTask ( m_grpHitNum );
+
+		//ヒット数２桁目
+		m_grpHitNum->AddObject ();
+
+		m_grpStrHit = make_shared < GrpAcv > ();
+		m_grpStrHit->AddTexture ( _T("Hit.png") );
+		m_grpStrHit->SetZ ( Z_EFB + 0.01f );
+		GRPLST_INSERT_MAIN ( m_grpStrHit );
+		AddpTask ( m_grpStrHit );
 	}
 
 	P_GrpAcv DispFrontEnd::MakepGrpPlyr ( LPCTSTR pstr )
@@ -111,7 +136,8 @@ namespace GAME
 		m_gaugeBalance->LoadPlayer ( playerID );
 		m_gaugeMana->LoadPlayer ( playerID );
 
-		//プレイヤにより表示を指定
+
+			//プレイヤにより表示を指定
 		if ( PLAYER_ID_1 == playerID )
 		{
 			m_grp_Cst_Player1P2P->SetPos ( POS_PL_CP_1P );
@@ -135,10 +161,24 @@ namespace GAME
 
 		//のけぞり時間表示
 		m_gaugeLurch.SetRect ( 0, 0, 0, 0 );
-
-		//枠初期化
-		InitRect ();
 #endif // 0
+
+		//ヒット数
+		P_Object pOb = m_grpHitNum->GetpObject ( 1 );
+		if ( PLAYER_ID_1 == playerID )
+		{
+			m_grpHitNum->SetPos ( VEC2 ( 100, 200 ) );
+			m_grpStrHit->SetPos ( VEC2 ( 100 + 128, 200 ) );
+			
+			pOb->SetPos ( VEC2 ( 0, 200 ) );
+		}
+		else if ( PLAYER_ID_2 == playerID )
+		{
+			m_grpHitNum->SetPos ( VEC2 ( 1280 - 384 -100, 200 ) );
+			m_grpStrHit->SetPos ( VEC2 ( 1280 - 256 -100, 200 ) );
+
+			pOb->SetPos ( VEC2 (  1280 - 384 - 0, 200 ) );
+		}
 	}
 
 	//------------------------
@@ -207,6 +247,38 @@ namespace GAME
 		}
 #endif // 0
 
+	}
+
+	void DispFrontEnd::UpdateHitNum ( UINT n )
+	{
+		if ( n < 0 || 100 <= n ) { return; }
+
+
+		int n1 = n % 10;	//1桁目
+		int n2 = (n / 10) % 10;	//2桁目
+		P_Object pOb = m_grpHitNum->GetpObject ( 1 );
+
+		m_grpHitNum->SetIndexTexture ( n1 );
+
+		if ( n == 0 )
+		{
+			m_grpHitNum->SetValid ( F );
+			m_grpStrHit->SetValid ( F );
+		}
+		else
+		{
+			m_grpHitNum->SetValid ( T );
+			m_grpStrHit->SetValid ( T );
+			if ( n < 10 )
+			{
+				pOb->SetValid ( F );
+			}
+			else
+			{
+				pOb->SetIndexTexture ( n2 );
+				pOb->SetValid ( T );
+			}
+		}
 	}
 
 #if 0

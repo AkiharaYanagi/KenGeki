@@ -60,6 +60,8 @@ namespace GAME
 		ExeEffect ( const ExeEffect & rhs ) = delete;
 		~ExeEffect ();
 
+		void Init ();
+
 		//---------------------------------------------
 		//˜gŽæ“¾
 		P_CharaRect GetpCharaRect () { return m_charaRect; }

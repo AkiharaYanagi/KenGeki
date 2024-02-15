@@ -52,7 +52,10 @@ namespace GAME
 			_GameKey gameKey;
 			m_vGameKey.push_back ( gameKey );
 		}
+	}
 
+	void CPUInput::Load ()
+	{
 		//---------------------------------------------------------------------
 		//	※ 乱数配分
 		//
@@ -93,12 +96,13 @@ namespace GAME
 		//---------------------------------------------------------------------
 
 		//外部ファイル読込
+		tifstream tifStrm;
 		//エラー時はデフォルト値を使用して続行
 		try
 		{
-			tifstream tifStrm ( _T("CPU_ACT.txt") );
-			if ( ! tifStrm ) { throw; }
-			if ( tifStrm.fail () ) { throw; }
+			tifStrm.open ( _T("CPU_ACT.txt") );
+			if ( ! tifStrm ) { throw std::runtime_error("tifStrm"); }
+			if ( ! tifStrm.fail () ) { throw std::runtime_error("tifStrm.open");  }
 
 			std::array < int, CPU_ACT_NUM * 3 > iBuf = { 0 };
 			UINT index = 0;

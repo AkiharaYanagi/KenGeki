@@ -17,7 +17,8 @@
 #include "../FtgMain/G_Ftg.h"
 #include "../FtgMain/FtgConst.h"
 #include "Disp/DispChara.h"
-#include "Input/CharaInput.h"
+#include "Input/PlayerInput.h"
+#include "Input/CPUInput.h"
 #include "Effect/OperateEffect.h"
 #include "Rect/CharaRect.h"
 #include "BtlParam.h"
@@ -53,6 +54,8 @@ namespace GAME
 		//------------------------------------------------
 		//入力
 		P_CharaInput	m_pCharaInput;	//入力
+		P_PlayerInput	m_pPlayerInput;		//プレイヤ
+		P_CPUInput		m_pCPUInput;		//CPU
 
 		//------------------------------------------------
 		//スクリプト実行
@@ -74,7 +77,7 @@ namespace GAME
 		P_OprEf			m_oprtEf;
 
 		//------------------------------------------------
-		//ゲーム進行状態ステート
+		//ゲーム進行状態(アクタ, ステートを保持する)
 		ExeChara_Actor	m_actor;
 
 		//------------------------------------------------
@@ -83,34 +86,50 @@ namespace GAME
 
 	public:
 		ExeChara () = delete;
-		ExeChara ( PLAYER_ID m_playerID );
+		ExeChara ( PLAYER_ID m_playerID );	//プレイヤID指定コンストラクタのみ
 		ExeChara ( const ExeChara & rhs ) = delete;
 		~ExeChara ();
 
+		//基本タスク関数
 		void ParamInit ( P_Param pParam );
 		void Load ();
-		void _Load ();
 		void Init ();
-		void Reset ();
-		void _Reset ();	//復旧時
+		void Reset ();	//復旧時
+		void _Reset ();
+
 
 		//===========================================================
-		//******************************
-		// 毎フレーム スクリプト処理一連
-		//******************************
+		//***********************************************************
+		//	毎フレームMutualCharaから呼ばれる主なスクリプト処理関数の一連
+		//***********************************************************
+		//	↓ 処理順番
 		void PreScriptMove ();			//	スクリプト前処理
 		//MutualChara::Collision ();	//	相互判定 (接触枠)
-		void RectMove ();			//	ぶつかり後、判定枠を設定
+		void RectMove ();				//	ぶつかり後、判定枠を設定
 		//MutualChara::Decision ();		//	相互判定 (攻撃枠、ヒット枠)
 		void PostScriptMove ();			//	スクリプト後処理
 		//===========================================================
 
+
+		//===========================================================
+		//***********************************************************
+		//Stateから呼ばれる状態別処理
+		//***********************************************************
+		void Input ();			//入力処理
+		void TransitAction ();	//アクション移項
+		void CalcPos ();		// 位置計算		//ぶつかり後、位置の修正
+		void CheckLife ();		//ライフ判定
+		void UpdateGraphic ();	//グラフィック更新
+		void EffectMove ();		//エフェクト動作
+		void MoveTimer () { m_btlPrm.TimerMove (); }		//タイマ稼働
+		//===========================================================
+
+
 		//------------------------------------------------------------
 		//相手を設定
-		void SetpOther ( WP_ExeChara p ) { m_pOther = p; /*m_cpuInput.SetpExeCharaOther ( p );*/ }
+		void SetpOther ( WP_ExeChara p ) { m_pOther = p; }
 
 		//------------------------------------------------------------
-
 		//パラメータ
 		//@todo スクリプトの持つ　ScriptParam_Battle と ExeCharaの持つ実効値 BtlPrm の整理
 
@@ -131,9 +150,6 @@ namespace GAME
 		void SetpParticle ( P_EfPart p ) { m_efPart = p; }
 
 		//---------------------------------------------
-		//入力処理
-		void Input ();
-
 		//ライフ０チェック
 		bool IsZeroLife () const { return ( 0 >= m_btlPrm.GetLife () ); }
 
@@ -154,8 +170,8 @@ namespace GAME
 		void SetOffsetRect ();	//相殺枠設定
 		void SetAttackRect ();	//攻撃枠設定
 		void SetHitRect ();		//当り枠設定
-	public:
 
+	public:
 		//---------------------------------------------
 		//各値取得
 		P_Script GetpScript () { return m_pScript; }
@@ -165,13 +181,15 @@ namespace GAME
 		int GetLife () const { return m_btlPrm.GetLife (); }		//ライフ取得
 		ACTION_POSTURE GetPosture () const { return m_pAction->GetPosture (); }
 
-		//---------------------------------------------
-		//外部からの状態変更
 
-		//Demo用
-		void StartGreeting ();
-		void StartGetReady ();
-		void StartFighting ();
+		//================================================
+		//	外部からの状態変更
+		//================================================
+
+		//デモ用ステート指定
+		void StartGreeting () { m_actor.StartGreeting (); }
+		void StartGetReady () { m_actor.StartGetReady (); }
+		void StartFighting () { m_actor.StartFighting (); }
 
 		//一時停止
 		void SetWait ( bool b ) { m_btlPrm.SetWait ( b ); }	//入力を停止
@@ -182,14 +200,7 @@ namespace GAME
 		}
 
 		//ヒットストップ
-		bool IsHitStop ()
-		{ 
-			if ( ! m_btlPrm.GetTmr_HitStop ()->IsLast () )
-			{
-				return m_btlPrm.GetTmr_HitStop ()->IsActive ();
-			}
-			return false;
-		}
+		bool IsHitStop () { return m_btlPrm.IsHitStop (); }
 
 		//打合
 		bool GetClang () const { return m_btlPrm.GetClang (); }
@@ -248,39 +259,32 @@ namespace GAME
 	//================================================
 	//	内部関数
 	//================================================
+	
 	private:
-		void MakeEfOprt ();		//エフェクト処理の生成
+		//初期化
+		void LoadCharaData ();
+		void LoadInput ();
 
 	public:
-		//アクション指定
+		//アクション指定(Stateから指定)
 		void SetAction ( tstring action_name );
 		void SetAction ( UINT action_id );
 
-		void TransitAction ();	// アクション移項
-		bool TranditAction_Command ();	//アクション移項（コマンドに関する処理）
-		void TransitScript ();	//スクリプトを遷移させる
-
-		void SetParamFromScript ();	//スクリプトからパラメータを反映する
-
-		void EndAction ();	//アクション移項時、前アクションの最後の処理
-		void CalcPos ();	// 位置計算		//ぶつかり後、位置の修正
-		void Landing ();	//落下・着地
-
 	private:
-
-//		void TransitAction ( UINT actionID );		//アクションの移項
+		//アクションの移項
 		void TransitAction_Condition_I ( BRANCH_CONDITION CONDITION, bool forced );	//条件をチェックして移行
 		void TransitAction_Condition_E ( BRANCH_CONDITION CONDITION, bool forced );	//条件をチェックして移行
 		UINT Check_TransitAction_Condition ( BRANCH_CONDITION CONDITION );	//アクション移行(条件チェック)
+		bool TranditAction_Command ();	//アクション移項（コマンドに関する処理）
+		void EndAction ();	//アクション移項時、前アクションの最後の処理
+
+		//スクリプト処理
+		void ExeScript ();	//スクリプト通常処理
+		void SetParamFromScript ();	//スクリプトからパラメータを反映する
+		void Landing ();	//落下・着地
+		void SpecialAction ();		//特殊アクション指定
 
 	public:
-		//Stateから呼ばれる状態別処理
-		void CheckLife ();			//ライフ判定
-		void UpdateGraphic ();		//グラフィック更新
-		void EffectGenerate ();		//エフェクト生成
-		void EffectMove ();
-		void MoveTimer () { m_btlPrm.TimerMove (); }
-
 		void OverEfPart ();	//EfPart重なり
 
 	private:

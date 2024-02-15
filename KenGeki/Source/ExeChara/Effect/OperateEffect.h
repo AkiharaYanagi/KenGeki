@@ -11,6 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "ExeEffect.h"
+#include "../BtlParam.h"
 
 //-------------------------------------------------------------------------------------------------
 // 宣言
@@ -31,15 +32,22 @@ namespace GAME
 		OperateEffect ( const OperateEffect & rhs ) = delete;
 		~OperateEffect ();
 
+		void Init ();
 		void Rele ();
 
-		//キャラポインタの設定
-		void SetpChara ( P_Chara p );
+		//エフェクト事前生成
+		void MakeEfList ( P_Chara p );
 
 		//エフェクトリスト取得
 		PLP_ExEf GetplpExEf () { return m_plpExeEffect; }
 
+		//エフェクト動作
+		void MoveEffect ( P_Script pScp, BtlParam & btlprm );
+
 		//-----------------------------
+		// エフェクト生成
+		void GenerateEffect ( P_Script pScp, const BtlParam & btlprm );
+		
 		//エフェクトリストに追加
 		void AddListEffect ( P_Effect pEffect, P_EfGnrt pEfGnrt, VEC2 ptChara, bool dirRight );
 

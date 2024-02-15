@@ -290,8 +290,13 @@ namespace GAME
 	void LoadCharaBinFunc::LoadScpPrm_Btl ( P_CH buf, UINT & pos, Script & scp )
 	{
 		scp.m_prmBattle.CalcState = (CLC_ST)m_utl.LoadInt ( buf, pos );
-		scp.m_prmBattle.Vel = m_utl.LoadVec2 ( buf, pos );
-		scp.m_prmBattle.Acc = m_utl.LoadVec2 ( buf, pos );
+
+		//@info ˆÚ“®—Ê‚ð0.1f”{‚·‚é
+//		scp.m_prmBattle.Vel = m_utl.LoadVec2 ( buf, pos );
+//		scp.m_prmBattle.Acc = m_utl.LoadVec2 ( buf, pos );
+		scp.m_prmBattle.Vel = m_utl.LoadVec2_Dev10F ( buf, pos );
+		scp.m_prmBattle.Acc = m_utl.LoadVec2_Dev10F ( buf, pos );
+
 		scp.m_prmBattle.Power = m_utl.LoadInt ( buf, pos );
 
 		scp.m_prmBattle.Warp = m_utl.LoadInt ( buf, pos );

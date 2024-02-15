@@ -71,6 +71,9 @@ namespace GAME
 		CPUInput ( const CPUInput & rhs ) = delete;
 		~CPUInput ();
 
+		//èâä˙âª
+		void Load ();
+
 		//ê›íË
 		void SetPlayer ( PLAYER_ID id ) { m_playerID = id; }
 //		void SetpExeChara ( WP_ExeChara p ) { m_pExeChara = p; }
@@ -85,6 +88,9 @@ namespace GAME
 
 		void SetCPU_Act ( int index, ARY_INT act, CPU_ACT& cpu_act );
 	};
+
+	using P_CPUInput = shared_ptr < CPUInput >;
+
 
 
 }	//namespace GAME

@@ -36,6 +36,9 @@ namespace GAME
 		//プレイヤーID
 		void SetPlayer ( PLAYER_ID id ) { m_playerID = id; }
 
+		//読込
+		virtual void Load () {}
+
 		//フレーム毎における入力の保存
 		virtual void Update ( bool dirRight );
 

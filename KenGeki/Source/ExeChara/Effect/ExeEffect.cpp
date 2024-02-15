@@ -18,6 +18,9 @@ namespace GAME
 	//@Later	いずれEffectにEfGnrtを統合
 	//------------------------------------------
 
+	//@todo 最低空ダッシュ時にエフェクトが残る問題
+
+
 	ExeEffect::ExeEffect ( P_Effect pEffect, P_Chara pChara, P_EfGnrt pEfGnrt, VEC2 ptChara, bool dirRight )
 	 :	  m_active ( true ), m_end ( false ), m_frame ( 0 )
 		, m_ptEffect ( VEC2 ( 0, 0 ) ), m_dirRight ( dirRight )
@@ -46,6 +49,20 @@ namespace GAME
 
 	ExeEffect::~ExeEffect ()
 	{
+	}
+
+	void ExeEffect::Init ()
+	{
+		m_active = F;
+		m_end = F;
+		m_frame = 0;
+		m_ptEffect = VEC2 ( 0, 0 );
+		m_vel = VEC2 ( 0, 0 );
+		m_acc = VEC2 ( 0, 0 );
+		m_dispEffect->SetValid ( F );
+		m_offset = F;
+		m_hit = F;
+		TASK_VEC::Init ();
 	}
 
 	void ExeEffect::SetpEfGnrt ( P_EfGnrt p )
