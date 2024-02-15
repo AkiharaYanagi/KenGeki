@@ -111,6 +111,16 @@ namespace GAME
 		m_grpStrHit->SetZ ( Z_EFB + 0.01f );
 		GRPLST_INSERT_MAIN ( m_grpStrHit );
 		AddpTask ( m_grpStrHit );
+
+
+		//アクション名
+		m_strAction = make_shared < GrpStr > ();
+		m_strAction->SetStr ( _T("Action") );
+		m_strAction->SetPos ( VEC2 () );
+		m_strAction->SetZ ( Z_MENU );
+		m_strAction->SetFontColor ( 0xff0000ff, 0xffffffff );
+		GRPLST_INSERT_MAIN ( m_strAction );
+		AddpTask ( m_strAction );
 	}
 
 	P_GrpAcv DispFrontEnd::MakepGrpPlyr ( LPCTSTR pstr )
@@ -179,6 +189,18 @@ namespace GAME
 
 			pOb->SetPos ( VEC2 (  1280 - 384 - 0, 200 ) );
 		}
+
+
+		//アクション名
+		if ( PLAYER_ID_1 == playerID )
+		{
+			m_strAction->SetPos ( VEC2 ( 400, 150 ) );
+		}
+		else if ( PLAYER_ID_2 == playerID )
+		{
+			m_strAction->SetPos ( VEC2 ( 640 + 150, 150 ) );
+		}
+
 	}
 
 	//------------------------
@@ -280,6 +302,13 @@ namespace GAME
 			}
 		}
 	}
+
+
+	void DispFrontEnd::UpdateActionName ( LPCTSTR actionName )
+	{
+		m_strAction->SetStr ( actionName );
+	}
+
 
 #if 0
 	void DispChara::UpdateHitStop ( VEC2 ptChara, bool dirRight, UINT hitstop, UINT hitstopTimer )

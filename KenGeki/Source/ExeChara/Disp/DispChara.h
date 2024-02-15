@@ -62,7 +62,7 @@ namespace GAME
 
 
 		//更新
-		void Update ( P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt );
+		void Update ( P_Action pAct, P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt );
 
 	private:
 		//メインイメージの更新

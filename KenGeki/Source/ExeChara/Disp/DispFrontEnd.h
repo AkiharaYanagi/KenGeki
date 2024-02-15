@@ -23,8 +23,10 @@ namespace GAME
 
 	class DispFrontEnd : public TASK_VEC
 	{
-		PLAYER_ID	m_playerID;			//プレイヤ側
+		//-----------------------------------------------------
+		PLAYER_ID	m_playerID;			//プレイヤによる表示側
 
+		//-----------------------------------------------------
 		P_DispGauge	m_gaugeLife;		//ライフゲージ
 		P_DispGauge	m_gaugeBalance;		//バランスゲージ
 		P_DispGauge	m_gaugeMana;		//マナゲージ
@@ -32,16 +34,17 @@ namespace GAME
 #if	0
 		PrmRect		m_gaugeHitStop;			//ヒットストップ時間表示
 		PrmRect		m_gaugeLurch;			//のけぞり時間表示
-
-											//エフェクト
-		GrpEf		m_grpHitEf;			//ヒットエフェクト
-		GrpEf		m_grpAvoidEf;		//アヴォイドエフェクト
-		GrpEf		m_grpPoisedEf;		//構えエフェクト
-
-		P_GrpApTx		m_efGraphic;		//エフェクトグラフィック表示
-		OperateEffect*		m_pOprtEf;
 #endif	//0
 		//-----------------------------------------------------
+
+		enum DISP_FE_CONST
+		{
+			SIDE_1P = 0,
+			SIDE_2P = 1,
+
+			INPUT_PLAYER = 0,
+			INPUT_CPU = 1,
+		};
 
 		P_GrpAcv	m_grp_Cst_Player1P2P;	//プレイヤ側 固定表示"1P""2P"
 		P_GrpAcv	m_grp_Cst_InputPlayerCOM;	//入力者 固定表示"CPU""Player"
@@ -51,21 +54,15 @@ namespace GAME
 
 		static VEC2 POS_PL_CP_1P;
 		static VEC2 POS_PL_CP_2P;
-		//-----------------------------------------------------
 
+		//-----------------------------------------------------
 		//ヒット数
 		P_GrpAcv	m_grpHitNum;		//"0"~"9"
 		P_GrpAcv	m_grpStrHit;		//"Hit"
 
 		//-----------------------------------------------------
-		enum DISP_FE_CONST
-		{
-			SIDE_1P = 0,
-			SIDE_2P = 1,
-
-			INPUT_PLAYER = 0,
-			INPUT_CPU = 1,
-		};
+		//アクション名
+		P_GrpStr	m_strAction;	
 
 	public:
 		DispFrontEnd ();
@@ -90,21 +87,14 @@ namespace GAME
 
 		//のけぞり時間表示の更新
 		void UpdateLurch ( VEC2 ptChara, bool dirRight, UINT lurch, UINT lurchTimer );
-
-		//ヒット
-		void OnHit ( VEC2 ptChara, bool dirRight );
-
-		//アヴォイド
-		void OnAvoid ( VEC2 ptChara, bool dirRight );
-
-		//ポイズド
-		void OnPoised ( VEC2 ptChara, bool dirRight );
 #endif // 0
 
 		void SetPlayer ();
 		void SetCPU ();
 
 		void UpdateHitNum ( UINT n );
+
+		void UpdateActionName ( LPCTSTR actionName );
 
 	private:
 		P_GrpAcv MakepGrpPlyr ( LPCTSTR pstr );

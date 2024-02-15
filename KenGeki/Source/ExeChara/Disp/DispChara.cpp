@@ -80,7 +80,7 @@ namespace GAME
 	}
 
 	//全体更新
-	void DispChara::Update ( P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt )
+	void DispChara::Update ( P_Action pAct, P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt )
 	{
 		//メインイメージの更新
 		UpdateMainImage ( pScp, btlprm.GetPos (), btlprm.GetDirRight () );
@@ -93,6 +93,10 @@ namespace GAME
 
 		//ヒット数更新
 		UpdateChainHitNum ( btlprm.GetChainHitNum () );
+
+		//アクション名更新
+		m_frontEnd->UpdateActionName ( pAct->GetName ().c_str () );
+//		m_frontEnd->UpdateActionName ( Format::GetFormatStr ( _T("Frame = %d"), pScp->GetFrame () ).get() );
 	}
 
 

@@ -62,6 +62,9 @@ namespace GAME
 		//優先リストの参照を得る
 		const std::vector < UINT > & GetvCompID () const { return m_vCompID; }
 
+
+		//直接キー取得
+		bool IsLvr4 () const { return m_vGameKey[0].GetLvr ( _GameKey::LVR_4 ); }
 	};
 
 	using P_CharaInput = std::shared_ptr < CharaInput >;

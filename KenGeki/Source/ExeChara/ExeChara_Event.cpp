@@ -17,12 +17,13 @@
 namespace GAME
 {
 	//================================================
-	//	判定枠関連 内部関数
+	//	外部からの状況起因関数
 	//================================================
 
 	//---------------------------------------------
 	//イベント
 
+	//ダッシュ相殺
 	void ExeChara::OnDashBranch ()
 	{
 		m_btlPrm.AddBalance ( -1000 );
@@ -60,6 +61,33 @@ namespace GAME
 	}
 
 
+	//自分・攻撃 -> 相手・くらい
+	//ヒット発生(攻撃成立側)
+	void ExeChara::OnHit ()
+	{
+		//-----------------------------------------------------
+		//条件分岐 (相手→自分でないとスクリプトが変わってしまう)
+		TransitAction_Condition_E ( BRC_THR_E, T );	//投げ・相手
+		TransitAction_Condition_I ( BRC_THR_I, F );	//投げ・自分
+		TransitAction_Condition_E ( BRC_HIT_E, T );	//ヒット・相手
+		TransitAction_Condition_I ( BRC_HIT_I, F );	//ヒット・自分
+
+		//-----------------------------------------------------
+
+		//m_btlPrm.SetHitEst ( true );		//攻撃成立フラグ
+		//m_btlPrm.GetTmr_HitStop ()->Start ();		//ヒットストップの設定
+		m_btlPrm.OnHit ();
+	}
+
+	//エフェクトヒット発生(攻撃成立側)
+	void ExeChara::OnEfHit ()
+	{
+		m_btlPrm.SetHitEst ( true );		//攻撃成立フラグ
+		//		m_tmrHitstop->Start ();		//エフェクトはヒットストップしない
+
+		m_btlPrm.GetTmr_HitPitch ()->Start ();
+	}
+
 	//相手・攻撃 → 自分・くらい
 	//くらい状態・ダメージ処理
 #if 0
@@ -67,7 +95,7 @@ namespace GAME
 	{
 		bool hit = true;
 		bool guard = false;
-
+#endif
 		//回避判定
 #if 0
 		//攻撃中でなく、下要素が入力されているとき
@@ -101,11 +129,10 @@ namespace GAME
 				m_pOther->AddbBalance ( -1 * balanceDamage );
 
 				return;
-			}
+}
 		}
 #endif // 0
 
-		//ガード発生
 #if 0
 		//攻撃中でないとき
 		//ダッシュ中、よろけ中なども除外する (歩きは可能)
@@ -163,6 +190,7 @@ namespace GAME
 #endif // 0
 
 		//くらい時 ( ガードをしていない ) && ( 強制変更されていない )
+#if 0
 		if ( hit && ! m_btlPrm.GetForcedChange () )
 		{
 			int lf = m_btlPrm.GetLife ();
@@ -208,6 +236,21 @@ namespace GAME
 		P_Script pScp = m_pOther.lock ()->m_pScript;
 
 		//-------------------------------------------------
+		//ガード判定
+
+		//後方向が入力されているとき
+		if ( m_pCharaInput->IsLvr4 () )
+		{
+			//OnHit()
+			//OnDamaaged()の順番なので
+			//アクション変更
+			SetAction ( _T("ガード") );
+			return;
+		}
+
+
+
+		//-------------------------------------------------
 		//ダメージ処理
 		int damage = pScp->m_prmBattle.Power;
 
@@ -220,11 +263,6 @@ namespace GAME
 		}
 #endif // 0
 
-#if 0
-		if ( lf < damage ) { m_btlPrm.SetDamage ( lf ); }	//ライフ以上は表示制限
-		else { m_btlPrm.SetDamage ( damage ); }		//表示用
-		m_btlPrm.SetLife ( lf - damage );
-#endif // 0
 		m_btlPrm.AddLife ( - damage );
 
 		//-------------------------------------------------
@@ -240,33 +278,6 @@ namespace GAME
 		m_btlPrm.SetFirstSE ( true );			//初回のみSE発生
 	}
 
-
-	//自分・攻撃 -> 相手・くらい
-	//ヒット発生(攻撃成立側)
-	void ExeChara::OnHit ()
-	{
-		//-----------------------------------------------------
-		//条件分岐 (相手→自分でないとスクリプトが変わってしまう)
-		TransitAction_Condition_E ( BRC_THR_E, T );	//投げ・相手
-		TransitAction_Condition_I ( BRC_THR_I, F );	//投げ・自分
-		TransitAction_Condition_E ( BRC_HIT_E, T );	//ヒット・相手
-		TransitAction_Condition_I ( BRC_HIT_I, F );	//ヒット・自分
-
-		//-----------------------------------------------------
-
-		//m_btlPrm.SetHitEst ( true );		//攻撃成立フラグ
-		//m_btlPrm.GetTmr_HitStop ()->Start ();		//ヒットストップの設定
-		m_btlPrm.OnHit ();
-	}
-
-	//エフェクトヒット発生(攻撃成立側)
-	void ExeChara::OnEfHit ()
-	{
-		m_btlPrm.SetHitEst ( true );		//攻撃成立フラグ
-		//		m_tmrHitstop->Start ();		//エフェクトはヒットストップしない
-
-		m_btlPrm.GetTmr_HitPitch ()->Start ();
-	}
 
 #if 0
 	//終了演出

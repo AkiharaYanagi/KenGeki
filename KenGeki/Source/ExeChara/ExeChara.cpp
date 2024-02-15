@@ -131,7 +131,7 @@ namespace GAME
 		//入力表示更新
 		m_dispChara->UpdateInput ( m_pCharaInput );
 #endif // 0
-		m_dispChara->Update ( m_pScript, m_btlPrm, m_pCharaInput );
+		m_dispChara->Update ( m_pAction, m_pScript, m_btlPrm, m_pCharaInput );
 
 		TASK_VEC::Init ();
 	}
@@ -164,7 +164,7 @@ namespace GAME
 		//メイン イメージ
 		m_dispChara->UpdateMainImage ( m_pScript, GetPos (), GetDirRight () );
 #endif // 0
-		m_dispChara->Update ( m_pScript, m_btlPrm, m_pCharaInput );
+		m_dispChara->Update ( m_pAction, m_pScript, m_btlPrm, m_pCharaInput );
 
 		//エフェクト イメージ
 		m_oprtEf->PostScriptMove ( GetPos (), GetDirRight () );
@@ -293,20 +293,7 @@ namespace GAME
 	//グラフィック更新
 	void ExeChara::UpdateGraphic ()
 	{
-		m_dispChara->Update ( m_pScript, m_btlPrm, m_pCharaInput );
-#if 0
-		//メインイメージ
-		m_dispChara->UpdateMainImage ( m_pScript, m_btlPrm.GetPos (), m_btlPrm.GetDirRight () );
-
-		//入力表示更新
-		m_dispChara->UpdateInput ( m_pCharaInput );
-
-		//ゲージ更新
-		m_dispChara->UpdateGauge ( m_btlPrm );
-
-		//ヒット数更新
-		m_dispChara->UpdateChainHitNum ( m_btlPrm.GetChainHitNum () );
-#endif // 0
+		m_dispChara->Update ( m_pAction, m_pScript, m_btlPrm, m_pCharaInput );
 	}
 
 
@@ -378,9 +365,11 @@ namespace GAME
 
 			//アクション遷移
 			m_actionID = transitID;
+
+			//スクリプト処理
 			ExeScript ();
 
-			//計測
+			//アクション移項を計測
 			m_btlPrm.AddNActTrs ( 1 );
 
 			//次フレームのスクリプトを１つ進める
@@ -628,10 +617,25 @@ namespace GAME
 		//位置が基準より上で立ち状態だったら
 		if (PLAYER_BASE_Y > pos.y)
 		{
-			if ( IsNameAction ( _T ( "立ち" ) ) )
+			if ( IsNameAction ( _T ( "Drop" ) ) )
 			{
 				//落下
 				m_btlPrm.SetG ( 5 );
+			}
+		}
+
+		//位置が基準より下で立ち状態だったら
+		if ( pos.y < PLAYER_BASE_Y )
+		{
+			if ( IsNameAction ( _T ( "立ち" ) ) )
+			{
+				//y位置リセット
+				float x = pos.x;
+				float y = PLAYER_BASE_Y;
+				m_btlPrm.SetPos ( VEC2 ( x, y ) );
+				m_btlPrm.SetVg ( 0 );
+				m_btlPrm.SetG ( 0 );
+
 			}
 		}
 
