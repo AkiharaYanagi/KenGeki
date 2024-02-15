@@ -1,22 +1,22 @@
 //=================================================================================================
 //
-//	DemoMenu ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	DemoMenu ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DemoMenu.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	DemoMenu::DemoMenu ()
 	{
-		//”wŒi
+		//èƒŒæ™¯
 		m_BG = make_shared < PrmRect > ();
 		m_BG->SetAllColor ( 0xa0000000 );
 		m_BG->SetSize ( 1000, 600 );
@@ -24,9 +24,9 @@ namespace GAME
 		m_BG->SetZ ( 0.2f );
 		AddpTask ( m_BG );
 
-		//ƒfƒ‚•\¦
+		//ãƒ‡ãƒ¢è¡¨ç¤º
 		OutlineFont::Inst ()->SetParam ( 80, 1, 3 );
-		OutlineFont::Inst ()->SetFontFace ( _T ( "ƒƒCƒŠƒI" ) );
+		OutlineFont::Inst ()->SetFontFace ( _T ( "ãƒ¡ã‚¤ãƒªã‚ª" ) );
 		m_strDemo = make_shared < Str > ();
 		m_strDemo->SetStr ( _T ( "Demo" ) );
 		m_strDemo->GetSize ();
@@ -34,7 +34,7 @@ namespace GAME
 		AddpTask ( m_strDemo );
 
 
-		//‘I‘ğ
+		//é¸æŠ
 		float x = 500;
 		float z = 0.1f;
 
@@ -82,12 +82,12 @@ namespace GAME
 			AddpTask ( p );
 		}
 
-		//Å‰‚Ì‘I‘ğ
+		//æœ€åˆã®é¸æŠ
 		m_itMenu = mv_menu.begin ();
 
 
 
-		//–îˆó
+		//çŸ¢å°
 		m_arrow = make_shared < GrpAcv > ();
 		m_arrow->AddTexture ( _T ( "menu\\arrow.png" ) );
 		m_arrow->SetPos ( VEC2 ( x - 100, 300 ) );
@@ -114,13 +114,13 @@ namespace GAME
 
 	void DemoMenu::Move ()
 	{
-		//€–Ú‚ÌŒˆ’è
+		//é …ç›®ã®æ±ºå®š
 		if ( CFG_PUSH_KEY ( _P1_BTN0 ) )
 		{
 			( *m_itMenu )->Do ();
 		}
 
-		//€–Ú‚Ì‘I‘ğ
+		//é …ç›®ã®é¸æŠ
 		if ( CFG_PUSH_KEY ( _P1_DOWN ) )
 		{
 			if ( m_itMenu == mv_menu.end () - 1 ) { m_itMenu = mv_menu.begin (); }
@@ -132,7 +132,7 @@ namespace GAME
 			else { -- m_itMenu; }
 		}
 
-		//–îˆó‚ÌˆÊ’u
+		//çŸ¢å°ã®ä½ç½®
 		UINT index = m_itMenu - mv_menu.begin ();
 		float x = m_arrow->GetPos ().x;
 		m_arrow->SetPos ( x, 300.f + index * 100.f );

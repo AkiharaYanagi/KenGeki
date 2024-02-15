@@ -1,26 +1,26 @@
 //=================================================================================================
 //
-// OperateEffect ƒ\[ƒXƒtƒ@ƒCƒ‹
+// OperateEffect ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "OperateEffect.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	OperateEffect::OperateEffect ()
 	{
 		m_plpExeEffect = make_shared < LP_ExEf > ();
 	}
 
-	//ƒfƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	OperateEffect::~OperateEffect ()
 	{
 		Rele ();
@@ -36,23 +36,23 @@ namespace GAME
 		TASK_VEC::Init ();
 	}
 
-	//‰ğ•ú
+	//è§£æ”¾
 	void OperateEffect::Rele ()
 	{
 		m_plpExeEffect->clear();
 		TASK_VEC::Rele ();
 	}
 
-	//ƒGƒtƒFƒNƒg–‘O¶¬
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆäº‹å‰ç”Ÿæˆ
 	void OperateEffect::MakeEfList ( P_Chara p )
 	{
-		//ƒLƒƒƒ‰ƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
+		//ã‚­ãƒ£ãƒ©ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
 		m_pChara = p;
 		m_pvpEfTexture = p->GetpvpEfTexture ();
 		m_vpBranch = p->GetvpBranch ();
 		m_vpRoute = p->GetvpRoute ();
 
-		//‚·‚×‚Ä‚ÌƒAƒNƒVƒ‡ƒ“‚ÆƒXƒNƒŠƒvƒg‚ğ„‰ñ
+		//ã™ã¹ã¦ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å·¡å›
 		PVP_Action pvpAction = m_pChara->GetpvpAction ();
 		for ( P_Action pAction : ( * pvpAction ) )
 		{
@@ -62,19 +62,19 @@ namespace GAME
 				PVP_EfGnrt pvpEfGnrt = pScript->GetpvpEfGnrt ();
 				for ( P_EfGnrt pEfGnrt : ( * pvpEfGnrt ) )
 				{
-					//”ñ¶¬‚È‚ç‰‰ñ‚É“o˜^‚µ‚Ä‚¨‚«AID‚Å‰Ò“­ó‘Ô‚É‚·‚é
+					//éç”Ÿæˆãªã‚‰åˆå›ã«ç™»éŒ²ã—ã¦ãŠãã€IDã§ç¨¼åƒçŠ¶æ…‹ã«ã™ã‚‹
 					if ( ! pEfGnrt->GetGnrt () )
 					{
-						//ƒGƒtƒFƒNƒgƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
+						//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
 						UINT index = pEfGnrt->GetIndex ();
 
-						//ƒGƒtƒFƒNƒg‚Ìæ“¾
+						//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å–å¾—
 						P_Effect pEf = m_pChara->GetpEffect ( index );
 
-						//ƒGƒtƒFƒNƒgŠÇ—‚É“n‚µ‚ÄID‚ğ“¾‚é
+						//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†ã«æ¸¡ã—ã¦IDã‚’å¾—ã‚‹
 //						UINT id = m_oprtEf.Addstd::vectorEffect ( pEf, pEfGnrt->GetZ () );
 
-						//ID‚ğ‹L˜^
+						//IDã‚’è¨˜éŒ²
 //						pEfGnrt->SetID ( id );
 					}
 				}
@@ -84,52 +84,52 @@ namespace GAME
 
 	void OperateEffect::MoveEffect ( P_Script pScp, BtlParam & btlprm )
 	{
-		//ƒGƒtƒFƒNƒg¶¬
-		if ( btlprm.GetFirstEf () )	//ƒqƒbƒgŒã‚Ì‰‰ñ‚Ì‚İ‚Í“®ì
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
+		if ( btlprm.GetFirstEf () )	//ãƒ’ãƒƒãƒˆå¾Œã®åˆå›ã®ã¿ã¯å‹•ä½œ
 		{
 			GenerateEffect ( pScp, btlprm );
 			btlprm.SetFirstEf ( F );
 		}
 		else
 		{
-			if ( ! btlprm.GetTmr_HitStop ()->IsActive () )	//ƒqƒbƒgƒXƒgƒbƒv‚Í¶¬‚µ‚È‚¢
+			if ( ! btlprm.GetTmr_HitStop ()->IsActive () )	//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—æ™‚ã¯ç”Ÿæˆã—ãªã„
 			{
 				GenerateEffect ( pScp, btlprm );
 			}
 		}
 
-		//ƒGƒtƒFƒNƒg“®ì
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œ
 		PreScriptMove ();
 
-		//ƒGƒtƒFƒNƒg“¯Šú
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåŒæœŸ
 		PostScriptMove ( btlprm.GetPos (), btlprm.GetDirRight () );
 	}
 
 	void OperateEffect::GenerateEffect ( P_Script pScp, const BtlParam & btlprm )
 	{
-		//”­¶
+		//ç™ºç”Ÿ
 		PVP_EfGnrt  pvpEfGnrt = pScp->GetpvpEfGnrt ();
 		for ( P_EfGnrt pEfGnrt : ( *pvpEfGnrt ) )
 		{
-			//¶¬—p‚È‚ç
+			//ç”Ÿæˆç”¨ãªã‚‰
 			if ( pEfGnrt->GetGnrt () )
 			{
-				//ƒGƒtƒFƒNƒgƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
+				//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
 				UINT index = pEfGnrt->GetIndex ();
-				//ƒGƒtƒFƒNƒg‚Ìæ“¾
+				//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å–å¾—
 				P_Effect pEf = m_pChara->GetpEffect ( index );
-				//ƒŠƒXƒg‚É’Ç‰Á
+				//ãƒªã‚¹ãƒˆã«è¿½åŠ 
 				AddListEffect ( pEf, pEfGnrt, btlprm.GetPos (), btlprm.GetDirRight () );
 			}
-			else //Ä—˜—p‚È‚ç
+			else //å†åˆ©ç”¨ãªã‚‰
 			{
 				int i = 0;
 #if false
-				//ƒGƒtƒFƒNƒgƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
+				//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
 				UINT index = pEfGnrt->GetIndex ();
-				//ƒGƒtƒFƒNƒg‚Ìæ“¾
+				//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å–å¾—
 				P_Effect pEf = m_pChara->GetpEffect ( index );
-				//‰Ò“­’†‚©‚Ç‚¤‚©
+				//ç¨¼åƒä¸­ã‹ã©ã†ã‹
 				if ( !m_oprtEf.IsActive ( pEf ) )
 				{
 					m_oprtEf.DriveEffect ( pEf );
@@ -139,18 +139,18 @@ namespace GAME
 		}
 	}
 
-	//ƒGƒtƒFƒNƒgƒŠƒXƒg‚ÉV‹K’Ç‰Á
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã«æ–°è¦è¿½åŠ 
 	void OperateEffect::AddListEffect ( P_Effect pEffect, P_EfGnrt pEfGnrt, VEC2 ptChara, bool dirRight )
 	{
 		P_ExEf pExeEffect = make_shared < ExeEffect > ( pEffect, m_pChara, pEfGnrt, ptChara, dirRight );
 		m_plpExeEffect->push_back ( pExeEffect );
-		AddpTask ( pExeEffect );	//ƒ^ƒXƒNƒŠƒXƒg
+		AddpTask ( pExeEffect );	//ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆ
 	}
 
-	//ƒIƒuƒWƒFƒNƒg‚©‚çExeEf‚ğæ“¾
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ExeEfã‚’å–å¾—
 	P_ExEf OperateEffect::GetpExEf ( P_Effect p ) const
 	{
-		//ƒGƒtƒFƒNƒgÀsƒŠƒXƒg‚©‚çŒŸõ
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œãƒªã‚¹ãƒˆã‹ã‚‰æ¤œç´¢
 		for ( P_ExEf pExEf : (* m_plpExeEffect) )
 		{
 			if ( pExEf->Compare ( p ) ) { return pExEf; }
@@ -158,15 +158,15 @@ namespace GAME
 		return nullptr;
 	}
 
-	//ƒXƒNƒŠƒvƒg‘Oˆ—
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‰å‡¦ç†
 	void OperateEffect::PreScriptMove ()
 	{
-		//“®ì
+		//å‹•ä½œ
 		for ( auto p : (*m_plpExeEffect) ) { p->PreScriptMove (); }
 	}
 
 
-	//ƒXƒNƒŠƒvƒgŒãˆ—
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¾Œå‡¦ç†
 	void OperateEffect::PostScriptMove ( VEC2 ptChara, bool dirRight )
 	{
 		//list
@@ -175,14 +175,14 @@ namespace GAME
 			p->PostScriptMove ( ptChara, dirRight );
 		}
 
-		//I—¹ˆ—
+		//çµ‚äº†å‡¦ç†
 		LP_ExEf::iterator it = begin ( * m_plpExeEffect );
 		while ( it != end ( * m_plpExeEffect ) )
 		{
-			//Á‹AŒã’uƒCƒ“ƒNƒŠƒƒ“ƒg‚ÍƒRƒs[‚ğ“n‚µƒCƒeƒŒ[ƒ^‚ğ‰ó‚³‚È‚¢
+			//æ¶ˆå»æ™‚ã€å¾Œç½®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã¯ã‚³ãƒ”ãƒ¼ã‚’æ¸¡ã—ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’å£Šã•ãªã„
 			if ( (*it)->IsEnd () ) 
 			{ 
-				EraseTask ( *it );	//ƒ^ƒXƒNƒŠƒXƒg
+				EraseTask ( *it );	//ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆ
 				(*it).reset (); 
 				m_plpExeEffect->erase ( it ++ ); 
 			}
@@ -190,7 +190,7 @@ namespace GAME
 		}
 	}
 
-	//ƒXƒNƒŠƒvƒg“¯Šú
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆåŒæœŸ
 	void OperateEffect::SynchroScript ( VEC2 ptChara )
 	{
 		//list
@@ -200,7 +200,7 @@ namespace GAME
 		}
 	}
 
-	//˜g•\¦Ø‘Ö
+	//æ è¡¨ç¤ºåˆ‡æ›¿
 	void OperateEffect::OnDispRect ()
 	{
 		for ( auto p : (*m_plpExeEffect) ) { p->OnDispRect (); }

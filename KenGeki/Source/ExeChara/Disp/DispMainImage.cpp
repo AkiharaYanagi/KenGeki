@@ -1,23 +1,23 @@
 //=================================================================================================
 //
-// DispMainImage ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispMainImage ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispMainImage.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	DispMainImage::DispMainImage ()
 	{
-		//ƒƒCƒ“ƒOƒ‰ƒtƒBƒbƒN
+		//ãƒ¡ã‚¤ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		m_mainGraphic = make_shared < GrpApTx > ();
 		AddpTask ( m_mainGraphic );
 		GRPLST_INSERT_MAIN ( m_mainGraphic );
@@ -34,21 +34,21 @@ namespace GAME
 
 	void DispMainImage::UpdateMainImage ( P_Script pScript, VEC2 ptChara, bool dirRight )
 	{
-		//ˆÊ’u
+		//ä½ç½®
 		VEC2 posScript = pScript->GetPos ();
-		float fDir = dirRight ? ( 1.f ) : ( -1.f );		//Œü‚«
-		float bx = G_Ftg::inst ()->GetPosMutualBase ().x;	//Šî€ˆÊ’u
+		float fDir = dirRight ? ( 1.f ) : ( -1.f );		//å‘ã
+		float bx = G_Ftg::inst ()->GetPosMutualBase ().x;	//åŸºæº–ä½ç½®
 		float x = bx + ptChara.x + fDir * posScript.x;
 		float y = 0 + ptChara.y + 1.f * posScript.y;
 		VEC2 vecImg = VEC2 ( x, y );
 
-		//•\¦‚É”½‰f
+		//è¡¨ç¤ºã«åæ˜ 
 		m_mainGraphic->SetPos ( vecImg );
 		m_mainGraphic->SetScaling ( 1.f * fDir, 1.f );
 
 		UINT index = pScript->GetImageIndex ();
 
-		//@todo ƒCƒ[ƒW–¢’è‹`‚â‰æ‘œíœŒã‚ÌID‚È‚ÇƒCƒ“ƒfƒbƒNƒX‚ª–³‚¢ê‡‚ª‚ ‚é
+		//@todo ã‚¤ãƒ¡ãƒ¼ã‚¸æœªå®šç¾©ã‚„ç”»åƒå‰Šé™¤å¾Œã®IDãªã©ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒç„¡ã„å ´åˆãŒã‚ã‚‹
 		if ( m_pvpMainTexture->size () < index ) { return; }
 
 		P_TxBs pTexture = m_pvpMainTexture->at ( index );

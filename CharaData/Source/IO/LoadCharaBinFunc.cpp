@@ -1,6 +1,6 @@
 //=================================================================================================
 //
-// LoadCharaFunc ƒ\[ƒXƒtƒ@ƒCƒ‹
+// LoadCharaFunc ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #include "LoadCharaBinFunc.h"
@@ -8,7 +8,7 @@
 //#include <codecvt>
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -41,10 +41,10 @@ namespace GAME
 
 	void LoadCharaBinFunc::LoadBehavior ( P_CH buf, UINT & pos, Chara & ch )
 	{
-		//@afford ƒƒ‚ƒŠƒRƒ“ƒgƒ[ƒ‰
-		//æ“ª‚É ‘ƒAƒNƒVƒ‡ƒ“”, ‘ƒXƒNƒŠƒvƒg” ‚ğ‹LqA•K—v‚ÉŠY“–•ª‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+		//@afford ãƒ¡ãƒ¢ãƒªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+		//å…ˆé ­ã« ç·ã‚¢ã‚¯ã‚·ãƒ§ãƒ³æ•°, ç·ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ•° ã‚’è¨˜è¿°ã€å¿…è¦æ™‚ã«è©²å½“åˆ†ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 
-		//ƒAƒNƒVƒ‡ƒ“ŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		UINT nAct = m_utl.LoadUInt ( buf, pos );
 
 #if 0
@@ -67,12 +67,12 @@ namespace GAME
 		for ( UINT i = 0; i < nAct; ++ i ) { aryAct [ i ] = make_shared < Action > (); }
 
 
-		//Àƒf[ƒ^
+		//å®Ÿãƒ‡ãƒ¼ã‚¿
 		for ( UINT iAct = 0; iAct < nAct; ++ iAct )
 		{
 			P_Action pAct = aryAct [ iAct ];
 
-			//ƒAƒNƒVƒ‡ƒ“
+			//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 			aryAct [ iAct ]->SetName ( m_utl.LoadText ( buf, pos ) );
 
 
@@ -87,7 +87,7 @@ namespace GAME
 			aryAct [ iAct ]->SetHitPitch ( (UINT)buf [ pos ++ ] );
 			aryAct [ iAct ]->SetBalance ( m_utl.LoadInt ( buf, pos ) );
 
-			//ƒXƒNƒŠƒvƒgŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 			UINT nScp = m_utl.LoadUInt ( buf, pos );
 
 			unique_ptr < P_Script [] > aryScp = make_unique < P_Script [] > ( nScp );
@@ -108,19 +108,19 @@ namespace GAME
 	
 	void LoadCharaBinFunc::LoadGarnish ( P_CH buf, UINT & pos, Chara & ch )
 	{
-		//ƒGƒtƒFƒNƒgŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		UINT nEfc = m_utl.LoadUInt ( buf, pos );
 
 		std::vector < P_Effect > aryEfc( nEfc );
 		for ( UINT i = 0; i < nEfc; ++ i ) { aryEfc [ i ] = make_shared < Effect > (); }
 
-		//Àƒf[ƒ^
+		//å®Ÿãƒ‡ãƒ¼ã‚¿
 		for ( UINT iEfc = 0; iEfc < nEfc; ++ iEfc )
 		{
-			//ƒGƒtƒFƒNƒg
+			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			aryEfc [ iEfc ]->SetName ( m_utl.LoadText ( buf, pos ) );
 
-			//ƒXƒNƒŠƒvƒgŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 			UINT nScp = m_utl.LoadUInt ( buf, pos );
 			unique_ptr < P_Script [] > aryScp = make_unique < P_Script [] > ( nScp );
 			for ( UINT i = 0; i < nScp; ++ i ) { aryScp [ i ] = make_shared < Script > (); }
@@ -139,37 +139,37 @@ namespace GAME
 
 	void LoadCharaBinFunc::LoadCommand ( P_CH buf, UINT & pos, Chara & ch )
 	{
-		//ƒRƒ}ƒ“ƒhŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+		//ã‚³ãƒãƒ³ãƒ‰å€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		UINT nCmd = m_utl.LoadUInt ( buf, pos );
 		unique_ptr < P_Command[] > aryCmd = make_unique < P_Command[] > ( nCmd );
 		for ( UINT i = 0; i < nCmd; ++ i ) { aryCmd [ i ] = make_shared < Command > (); }
 
-		//Àƒf[ƒ^
+		//å®Ÿãƒ‡ãƒ¼ã‚¿
 		for ( UINT i = 0; i < nCmd; ++ i )
 		{
-			//ƒRƒ}ƒ“ƒh–¼
+			//ã‚³ãƒãƒ³ãƒ‰å
 			aryCmd [ i ]->SetName ( m_utl.LoadText ( buf, pos ) );
 
-			//ó•tŠÔ[byte]
+			//å—ä»˜æ™‚é–“[byte]
 			byte lmtTime = buf [ pos ++ ];
 			aryCmd [ i ]->SetLimitTime ( (UINT)lmtTime );
 
-			//ƒQ[ƒ€ƒL[
+			//ã‚²ãƒ¼ãƒ ã‚­ãƒ¼
 			byte nGameKey = buf [ pos ++ ];
 			unique_ptr < _GameKeyCommand [] > gkc = make_unique < _GameKeyCommand [] > ( nGameKey );
 			for ( UINT iKey = 0; iKey < nGameKey; ++ iKey )
 			{
-				//”Û’è
+				//å¦å®š
 				bool bNot = (bool)buf [ pos ++ ];
 
-				//ƒŒƒo[ [ _GameKey::LVR_NUM = 8 ]
+				//ãƒ¬ãƒãƒ¼ [ _GameKey::LVR_NUM = 8 ]
 				KEY_ST lvr [ _GameKey::LVR_NUM ] = { _GameKeyCommand::GAME_KEY_WILD };
 				for ( UINT iLvr = 0; iLvr < _GameKey::LVR_NUM; ++ iLvr )
 				{
 					lvr [ iLvr ] = (KEY_ST)buf [ pos ++ ];
 				}
 
-				//ƒ{ƒ^ƒ“ [ _GameKey::BTN_NUM = 8 ]
+				//ãƒœã‚¿ãƒ³ [ _GameKey::BTN_NUM = 8 ]
 				KEY_ST btn [ _GameKey::BTN_NUM ] = { _GameKeyCommand::GAME_KEY_WILD };
 				for ( UINT iBtn = 0; iBtn < _GameKey::BTN_NUM; ++ iBtn )
 				{
@@ -190,18 +190,18 @@ namespace GAME
 
 	void LoadCharaBinFunc::LoadBranch ( P_CH buf, UINT & pos, Chara & ch )
 	{
-		//ƒuƒ‰ƒ“ƒ`ŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+		//ãƒ–ãƒ©ãƒ³ãƒå€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		UINT nBrc = m_utl.LoadUInt ( buf, pos );
 		unique_ptr < P_Branch [] > aryBrc = make_unique < P_Branch [] > ( nBrc );
 		for ( UINT i = 0; i < nBrc; ++ i ) { aryBrc [ i ] = make_shared < Branch > (); }
 
-		//Àƒf[ƒ^
+		//å®Ÿãƒ‡ãƒ¼ã‚¿
 		for ( UINT i = 0; i < nBrc; ++ i )
 		{
-			//ƒuƒ‰ƒ“ƒ`–¼
+			//ãƒ–ãƒ©ãƒ³ãƒå
 			aryBrc [ i ]->SetName ( m_utl.LoadText ( buf, pos ) );
 
-			//ğŒ
+			//æ¡ä»¶
 			aryBrc [ i ]->SetCondition ( (BRANCH_CONDITION)buf [ pos ++ ] );
 			aryBrc [ i ]->SetIndexCommand ( m_utl.LoadUInt ( buf, pos ) );
 			aryBrc [ i ]->SetIndexSequence ( m_utl.LoadUInt ( buf, pos ) );
@@ -213,20 +213,20 @@ namespace GAME
 
 	void LoadCharaBinFunc::LoadRoute ( P_CH buf, UINT & pos, Chara & ch )
 	{
-		//ƒ‹[ƒgŒÂ” ‚Æ ƒƒ‚ƒŠ‚ÌŠm•Û
+		//ãƒ«ãƒ¼ãƒˆå€‹æ•° ã¨ ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		UINT nRut = m_utl.LoadUInt ( buf, pos );
 		unique_ptr < P_Route [] > aryRut = make_unique < P_Route [] > ( nRut );
 		for ( UINT i = 0; i < nRut; ++ i ) { aryRut [ i ] = make_shared < Route > (); }
 
-		//Àƒf[ƒ^
+		//å®Ÿãƒ‡ãƒ¼ã‚¿
 		for ( UINT i = 0; i < nRut; ++ i )
 		{
 			P_Route pr = aryRut [ i ];
 
-			//ƒ‹[ƒg–¼
+			//ãƒ«ãƒ¼ãƒˆå
 			aryRut [ i ]->SetName ( m_utl.LoadText ( buf, pos ) );
 
-			//ƒuƒ‰ƒ“ƒ`IDƒŠƒXƒg
+			//ãƒ–ãƒ©ãƒ³ãƒIDãƒªã‚¹ãƒˆ
 			m_utl.LoadAryUint ( buf, pos, aryRut [ i ]->GetvIDBranch () );
 		}
 
@@ -235,58 +235,58 @@ namespace GAME
 
 	void LoadCharaBinFunc::LoadScript ( P_CH buf, UINT & pos, Script & scp )
 	{
-		//ƒCƒ[ƒWƒCƒ“ƒfƒbƒNƒX
+		//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		UINT imdIndex = m_utl.LoadUInt ( buf, pos );
 		scp.SetImageIndex ( (UINT)imdIndex );
 
-		//ˆÊ’u
+		//ä½ç½®
 		scp.SetPos ( m_utl.LoadVec2 ( buf, pos ) );
 
-		// [] ƒ‹[ƒgID
+		// [] ãƒ«ãƒ¼ãƒˆID
 		m_utl.LoadAryUint ( buf, pos, scp.GetvRouteID () );
 
-		//˜g
+		//æ 
 		m_utl.LoadListRect ( buf, pos, scp.GetpvCRect () );
 		m_utl.LoadListRect ( buf, pos, scp.GetpvHRect () );
 		m_utl.LoadListRect ( buf, pos, scp.GetpvARect () );
 		m_utl.LoadListRect ( buf, pos, scp.GetpvORect () );
 
-		// [] ƒGƒtƒFƒNƒg¶¬
+		// [] ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
 		UINT nIdEfGnrt = m_utl.LoadUInt ( buf, pos );
 		for ( UINT i = 0; i < nIdEfGnrt; ++ i )
 		{
-			//İ’è—p
+			//è¨­å®šç”¨
 			P_EfGnrt pEfGnrt = make_shared < EffectGenerate > ();
 
-			//ƒGƒtƒFƒNƒgID
+			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID
 			pEfGnrt->SetIndex ( m_utl.LoadUInt ( buf, pos ) );
-			//ˆÊ’u
+			//ä½ç½®
 			int pos_x = m_utl.LoadInt ( buf, pos );
 			int pos_y = m_utl.LoadInt ( buf, pos );
 			pEfGnrt->SetPos ( VEC2 ( (float)pos_x, (float)pos_y ) );
-			//Z’l
+			//Zå€¤
 			int z_per100F = (int)m_utl.LoadInt ( buf, pos );
 			pEfGnrt->SetZ ( z_per100F * 0.01f );
-			//¶¬
+			//ç”Ÿæˆ
 			pEfGnrt->SetGnrt ( (bool)buf [ pos ++ ] );
-			//ƒ‹[ƒv
+			//ãƒ«ãƒ¼ãƒ—
 			pEfGnrt->SetLoop ( (bool)buf [ pos ++ ] );
-			//ˆÊ’u“¯Šú
+			//ä½ç½®åŒæœŸ
 			pEfGnrt->SetSync ( (bool)buf [ pos ++ ] );
 
-			//ƒXƒNƒŠƒvƒg‚Éİ’è
+			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«è¨­å®š
 			scp.GetpvpEfGnrt ()->push_back ( pEfGnrt );
 		}
 
-		//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
+		//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		LoadScpPrm_Btl ( buf, pos, scp );
 
-		//ƒXƒe[ƒWƒ“ƒO(‰‰o)ƒpƒ‰ƒ[ƒ^
+		//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ³ã‚°(æ¼”å‡º)ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		LoadScpPrm_Stg ( buf, pos, scp );
 	}
 
 
-	//ƒXƒNƒŠƒvƒgEí“¬ƒpƒ‰ƒ[ƒ^
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ»æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	void LoadCharaBinFunc::LoadScpPrm_Btl ( P_CH buf, UINT & pos, Script & scp )
 	{
 		scp.m_prmBattle.CalcState = (CLC_ST)m_utl.LoadInt ( buf, pos );
@@ -313,7 +313,7 @@ namespace GAME
 	}
 
 
-	//ƒXƒNƒŠƒvƒgE‰‰oƒpƒ‰ƒ[ƒ^
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ»æ¼”å‡ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	void LoadCharaBinFunc::LoadScpPrm_Stg ( P_CH buf, UINT & pos, Script & scp )
 	{
 		scp.m_prmStaging.BlackOut		 = m_utl.LoadByte ( buf, pos );
@@ -333,21 +333,21 @@ namespace GAME
 
 	void LoadCharaBinFunc::LoadImg ( P_CH buf, UINT & pos, PVP_TxBs pvpTxBs )
 	{
-		//ŒÂ”‚ğæ“¾
+		//å€‹æ•°ã‚’å–å¾—
 		UINT nImg = m_utl.LoadUInt ( buf, pos );
 		pvpTxBs->clear ();
 		pvpTxBs->resize ( nImg );
 
 		for ( UINT i = 0; i < nImg; ++ i )
 		{
-			//ƒTƒCƒY‚ğæ“¾
+			//ã‚µã‚¤ã‚ºã‚’å–å¾—
 			UINT size = m_utl.LoadUInt ( buf, pos );
 
-			//ƒƒ‚ƒŠã‚Ìƒf[ƒ^‚©‚çƒQ[ƒ€ƒeƒNƒXƒ`ƒƒ‚É•ÏŠ·
+			//ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚²ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«å¤‰æ›
 			P_TxMem pTx = make_shared < TxMem > ( (LPCVOID)(buf.get() + pos), size );
 			pos += size;
 
-			//ƒLƒƒƒ‰“à•”‚ÌƒeƒNƒXƒ`ƒƒƒŠƒXƒg‚É‰Á‚¦‚é
+			//ã‚­ãƒ£ãƒ©å†…éƒ¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚¹ãƒˆã«åŠ ãˆã‚‹
 			( *pvpTxBs ) [ i ] = pTx;
 		}
 

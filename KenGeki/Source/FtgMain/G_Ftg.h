@@ -1,65 +1,65 @@
 //=================================================================================================
 //
-//	G_Ftg ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		Fighting‹¤’ÊƒOƒ[ƒoƒ‹•Ï”ŒQ
+//	G_Ftg ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		Fightingå…±é€šã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ç¾¤
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "../GameMain/GameConst.h"
 #include "../FtgMain/FtgConst.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class G_Ftg
 	{
 	//---------------------------------------------------------------------
-	//ƒVƒ“ƒOƒ‹ƒgƒ“ƒpƒ^[ƒ“
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ãƒ‘ã‚¿ãƒ¼ãƒ³
 	private:
 		using  _P_G_Ftg = unique_ptr < G_Ftg >;
-		static _P_G_Ftg m_inst;		//ƒVƒ“ƒOƒ‹ƒgƒ“ƒCƒ“ƒXƒ^ƒ“ƒX
-		G_Ftg ();		//private ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Å’Êí‚ÌÀ‘Ì‰»‚Í‹Ö~
+		static _P_G_Ftg m_inst;		//ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+		G_Ftg ();		//private ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§é€šå¸¸ã®å®Ÿä½“åŒ–ã¯ç¦æ­¢
 	public:
-		~G_Ftg ();		//ƒfƒXƒgƒ‰ƒNƒ^‚Íunique_ptr‚Ì‚½‚ßpublic
+		~G_Ftg ();		//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯unique_ptrã®ãŸã‚public
 		static void Create() { if ( ! m_inst ) { m_inst = _P_G_Ftg ( new G_Ftg () ); } }
-		static _P_G_Ftg & inst () { return m_inst; }	//ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾
+		static _P_G_Ftg & inst () { return m_inst; }	//ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—
 	//---------------------------------------------------------------------
 
 	private:
-		//ƒLƒƒƒ‰ˆÊ’u‚É‚æ‚é‰æ–Ê•â³—Ê
+		//ã‚­ãƒ£ãƒ©ä½ç½®ã«ã‚ˆã‚‹ç”»é¢è£œæ­£é‡
 		VEC2	m_posMutualBase;
 
 		float	m_chara_center_x { 0 };
 
-		//—§‚¿ˆÊ’uƒŠƒZƒbƒgƒtƒ‰ƒO
-		//ğŒF‰æ–Ê’[‚Å "‘«•¥‚¢" ‚ªƒqƒbƒg
-		//Œø‰ÊF”wŒi‚ğ’†‰›‚ÉˆÚ“®‚·‚é
+		//ç«‹ã¡ä½ç½®ãƒªã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°
+		//æ¡ä»¶ï¼šç”»é¢ç«¯ã§ "è¶³æ‰•ã„" ãŒãƒ’ãƒƒãƒˆæ™‚
+		//åŠ¹æœï¼šèƒŒæ™¯ã‚’ä¸­å¤®ã«ç§»å‹•ã™ã‚‹
 		bool	m_bResetPos { F };
 
-		//•ÇˆÊ’u
-		float	m_wall_L { 0 };	//¶
-		float	m_wall_R { 0 };	//‰E
+		//å£ä½ç½®
+		float	m_wall_L { 0 };	//å·¦
+		float	m_wall_R { 0 };	//å³
 
 	public:
-		//‰æ–Ê’[‚Å‚Ì•\¦Šî€ˆÊ’u
+		//ç”»é¢ç«¯ã§ã®è¡¨ç¤ºåŸºæº–ä½ç½®
 		void CulcPosMutualBase ( VEC2 pos1p, VEC2 pos2p );
 //		void SetPosMutualBase ( VEC2 v ) { m_posMutualBase = v; }
 		VEC2 GetPosMutualBase () const { return m_posMutualBase; }
 
 		float GetCharaCenterX () const { return m_chara_center_x; }
 
-		//—§‚¿ˆÊ’uƒŠƒZƒbƒgƒtƒ‰ƒO
+		//ç«‹ã¡ä½ç½®ãƒªã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°
 		bool GetResetPos () const { return m_bResetPos; }
 		void SetResetPos ( bool b ) { m_bResetPos = b; }
 
-		//•ÇˆÊ’u
+		//å£ä½ç½®
 		float GetWallLeft () const { return m_wall_L; }
 		float GetWallRight () const { return m_wall_R; }
 	};

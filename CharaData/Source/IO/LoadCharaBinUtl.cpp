@@ -1,13 +1,13 @@
 //=================================================================================================
 //
-// LoadCharaBinUtl ƒ\[ƒXƒtƒ@ƒCƒ‹
+// LoadCharaBinUtl ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #include "LoadCharaBinUtl.h"
 #include <codecvt>
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -20,7 +20,7 @@ namespace GAME
 	//-----------------------------------------------------------------------
 	tstring LoadCharaBinUtl::LoadText ( P_CH buf, UINT & pos )
 	{
-		//–¼‘O‚ÌƒTƒCƒY
+		//åå‰ã®ã‚µã‚¤ã‚º
 		byte length = buf [ pos ++ ];	//Encoding.UTF8
 
 //		unique_ptr < char [] > arypChar = make_unique < char [] > ( length + 1 );
@@ -35,24 +35,24 @@ namespace GAME
 		std::wstring_convert < std::codecvt_utf8_utf16 < wchar_t > > converter;
 		tstring tstr = converter.from_bytes ( str );
 
-		//ˆÊ’u‚ðXV
+		//ä½ç½®ã‚’æ›´æ–°
 		pos += length;
 
-		//Žæ“¾‚µ‚½–¼‘O‚ð•Ô‚·
+		//å–å¾—ã—ãŸåå‰ã‚’è¿”ã™
 		return tstr ;
 	}
 
 
 	byte LoadCharaBinUtl::LoadByte ( P_CH buf, UINT & pos )
 	{
-		//1ƒoƒCƒg“Ç‚Ýž‚ñ‚Åƒ|ƒCƒ“ƒ^‚ði‚ßA’l‚ð•Ô‚·
+		//1ãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã‚’é€²ã‚ã€å€¤ã‚’è¿”ã™
 		byte b = buf [ pos ++ ];
 		return b;
 	}
 
 	int LoadCharaBinUtl::LoadInt ( P_CH buf, UINT & pos )
 	{
-		//ƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ““Çž (byte[])0x67 0x45 0x23 0x01 -> (int)0x01234567
+		//ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³èª­è¾¼ (byte[])0x67 0x45 0x23 0x01 -> (int)0x01234567
 		int i = 0;
 		rsize_t size = sizeof ( int );
 		::memcpy_s ( &i, size, buf.get () + pos, size );
@@ -62,7 +62,7 @@ namespace GAME
 
 	UINT LoadCharaBinUtl::LoadUInt ( P_CH buf, UINT & pos )
 	{
-		//ƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ““Çž (byte[])0x67 0x45 0x23 0x01 -> (UINT)0x01234567
+		//ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³èª­è¾¼ (byte[])0x67 0x45 0x23 0x01 -> (UINT)0x01234567
 		UINT i = 0;
 		rsize_t size = sizeof ( UINT );
 		::memcpy_s ( &i, size, buf.get () + pos, size );
@@ -89,7 +89,7 @@ namespace GAME
 
 	RECT LoadCharaBinUtl::LoadRect ( P_CH buf, UINT & pos )
 	{
-		//ƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ““Çž (byte[])0x67 0x45 0x23 0x01 -> (int)0x01234567
+		//ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³èª­è¾¼ (byte[])0x67 0x45 0x23 0x01 -> (int)0x01234567
 		RECT rect = { 0 };
 		rsize_t size = sizeof ( RECT );
 		::memcpy_s ( &rect, size, buf.get () + pos, size );

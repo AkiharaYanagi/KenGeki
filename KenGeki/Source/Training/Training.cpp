@@ -1,11 +1,11 @@
 //=================================================================================================
 //
-//	Training ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	Training ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Training.h"
 #include "../Title/Title.h"
@@ -13,11 +13,11 @@
 
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//’è”
+	//å®šæ•°
 	const float Training::BX = ( 1280 - 256 ) * 0.5f;
 	const float Training::BY = 170.f;
 	const float Training::BX_KI = ( 1280 - 512 ) * 0.5f;
@@ -26,11 +26,11 @@ namespace GAME
 
 	Training::Training ()
 	{
-		//í“¬
+		//æˆ¦é—˜
 		m_fighting = make_shared < Fighting > ();
 		AddpTask ( m_fighting );
 	
-		//ƒgƒŒ[ƒjƒ“ƒO•\¦
+		//ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°è¡¨ç¤º
 		m_training = make_shared < GrpAcv > ();
 		m_training->AddTexture ( _T ( "training.png" ) );
 		m_training->SetPos ( BX, BY );
@@ -45,11 +45,11 @@ namespace GAME
 		AddpTask ( m_keyIntro );
 		GRPLST_INSERT_MAIN ( m_keyIntro );
 
-		//ƒ|[ƒYƒƒjƒ…
+		//ãƒãƒ¼ã‚ºãƒ¡ãƒ‹ãƒ¥
 		m_pauseMenu = make_shared < Training_Menu > ();
 		AddpTask ( m_pauseMenu );
 
-		//ƒ[ƒh’†
+		//ãƒ­ãƒ¼ãƒ‰ä¸­
 		m_rectLoad = make_shared < PrmRect > ();
 		m_rectLoad->SetSize ( VEC2 ( 1280, 960 ) );
 		m_rectLoad->SetPos ( VEC2 ( 0, 0 ) );
@@ -57,7 +57,7 @@ namespace GAME
 		m_rectLoad->SetZ ( Z_FADE );
 		m_rectLoad->Load ();
 		m_rectLoad->Move ();
-		//ŠJn’lA–Ú•W’l‚ğè“®İ’è
+		//é–‹å§‹å€¤ã€ç›®æ¨™å€¤ã‚’æ‰‹å‹•è¨­å®š
 		m_rectLoad->SetFade ( 3, _CLR ( 0xff000000 ), _CLR ( 0x00000000UL ) );
 		AddpTask ( m_rectLoad );
 		GRPLST_INSERT_MAIN ( m_rectLoad );
@@ -84,10 +84,10 @@ namespace GAME
 
 	void Training::Load ()
 	{
-		//‘JˆÚæw’è‚Éthis‚ğ•Û‘¶
+		//é·ç§»å…ˆæŒ‡å®šã«thisã‚’ä¿å­˜
 		Scene::SetwpThis ( shared_from_this () );
 
-		//Menu—p‚Éthis‚ğ•Û‘¶
+		//Menuç”¨ã«thisã‚’ä¿å­˜
 		m_pauseMenu->SetwpParentScene ( shared_from_this () );
 
 		//CPU / PLAYER
@@ -101,30 +101,30 @@ namespace GAME
 
 	void Training::Init ()
 	{
-		//ƒfƒ‚‚ğƒXƒLƒbƒv
+		//ãƒ‡ãƒ¢ã‚’ã‚¹ã‚­ãƒƒãƒ—
 		m_fighting->SetDemoSkip ();
 
 		Scene::Init ();
 
-		//’ÊíInit‚ÌŒã‚És‚¤
+		//é€šå¸¸Initã®å¾Œã«è¡Œã†
 		m_fighting->TrainingRestart ();
 	}
 
 	void Training::Move ()
 	{
-		//NowLoadingI—¹
+		//NowLoadingçµ‚äº†
 		if ( m_rectLoad->GetFadeTimer () == 0 )
 		{
 			m_NowLoading->SetValid ( F );
 		}
 
-		//ƒƒjƒ…ƒ|[ƒY’†
+		//ãƒ¡ãƒ‹ãƒ¥ãƒãƒ¼ã‚ºä¸­
 		if ( m_pauseMenu->MenuCheck () )
 		{
 			return;
 		}
 
-		//ƒgƒŒ[ƒjƒ“ƒOƒŠƒZƒbƒg
+		//ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ãƒªã‚»ãƒƒãƒˆ
 		if ( CFG_PUSH_KEY ( _P1_BTN6 ) || CFG_PUSH_KEY ( _P2_BTN6 ) )
 		{
 			m_fighting->TrainingRestart ();
@@ -135,7 +135,7 @@ namespace GAME
 
 	P_GameScene Training::Transit ()
 	{
-		//ESC‚Å–ß‚é
+		//ESCã§æˆ»ã‚‹
 		if ( WND_UTL::AscKey ( VK_ESCAPE ) )
 		{
 			SOUND->Stop_BGM ( BGM_Main );

@@ -1,27 +1,27 @@
 //=================================================================================================
 //
-//	Demo ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	Demo ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DemoMain.h"
 #include "../FtgMain/FtgMain.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	DemoMain::DemoMain ()
 	{
-		//ƒƒjƒ…
+		//ãƒ¡ãƒ‹ãƒ¥
 		m_menu = make_shared < DemoMenu > ();
 		AddpTask ( m_menu );
 
-		//í“¬
+		//æˆ¦é—˜
 		m_fighting = make_shared < Fighting > ();
 		AddpTask ( m_fighting );
 	}
@@ -32,7 +32,7 @@ namespace GAME
 
 	void DemoMain::ParamInit ()
 	{
-		//ƒpƒ‰ƒ[ƒ^è“®w’è
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ‰‹å‹•æŒ‡å®š
 		P_Param pParam = GetpParam ();
 		GameSettingFile stg = pParam->GetGameSetting ();
 		stg.SetPlayerMode1p ( MODE_CPU );
@@ -42,16 +42,16 @@ namespace GAME
 		m_fighting->ParamInit ( pParam );
 
 
-		//ƒRƒ“ƒXƒgƒ‰ƒNƒ^Œã shared_from_this ()
+		//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å¾Œ shared_from_this ()
 		m_scene = shared_from_this ();
 		m_menu->ParamInit ( shared_from_this () );
 	}
 
 	P_GameScene DemoMain::Transit ()
 	{
-		//@info MenuItem‚Éthis‚ğ“n‚µ‚Ä‚¨‚­
+		//@info MenuItemã«thisã‚’æ¸¡ã—ã¦ãŠã
 #if 0
-		//ESC‚Å–ß‚é
+		//ESCã§æˆ»ã‚‹
 		if ( ::GetAsyncKeyState ( VK_ESCAPE ) & 0x0001 )
 		{
 			SOUND->Stop ( BGM_Main );
@@ -59,7 +59,7 @@ namespace GAME
 		}
 #endif // 0
 
-		//‘JˆÚæ‚ğ•Ô‚·i’Êí‚Í©gj
+		//é·ç§»å…ˆã‚’è¿”ã™ï¼ˆé€šå¸¸æ™‚ã¯è‡ªèº«ï¼‰
 //		return shared_from_this ();
 		return m_scene;
 	}
@@ -67,7 +67,7 @@ namespace GAME
 
 	void DemoMain::Pause ()
 	{
-		//F1‚Åƒ|[ƒYØ‘Ö
+		//F1ã§ãƒãƒ¼ã‚ºåˆ‡æ›¿
 		if ( ::GetAsyncKeyState ( VK_F1 ) & 0x0001 )
 		{
 			if ( m_pause->GetValid () )	//On->Off

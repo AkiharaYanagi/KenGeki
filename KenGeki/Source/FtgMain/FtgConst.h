@@ -1,33 +1,33 @@
 //=================================================================================================
 //
-// FtgConst ƒtƒ@ƒCƒ‹
-//		FtgƒƒCƒ“‹¤’Ê’è‹`
+// FtgConst ãƒ•ã‚¡ã‚¤ãƒ«
+//		Ftgãƒ¡ã‚¤ãƒ³å…±é€šå®šç¾©
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-//	ƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹
+//	ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 
 //-------------------------------------------------------------------------------------------------
-//	’è‹`
+//	å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//------------------------------------------
-	// ’è”éŒ¾
+	// å®šæ•°å®£è¨€
 	//------------------------------------------
 
-	//‰‰oŽžŠÔ
+	//æ¼”å‡ºæ™‚é–“
 	enum DEMO_TIME
 	{
 		WIN_WAIT = 360,
 		WIN_POSE_WAIT = 180,
 	};
 
-	//ŸŽÒ
+	//å‹è€…
 	enum WINNER
 	{
 		WINNER_DRAW,
@@ -36,22 +36,22 @@ namespace GAME
 		WINNER_DP,
 	};
 
-	//•¶Žš’è”
+	//æ–‡å­—å®šæ•°
 	const LPCTSTR ACT_DOWN = _T ( "Down" );
-	//“ü—Í
+	//å…¥åŠ›
 	enum COMMAND
 	{
 		NO_COMPLETE = 0xFFFFFFFF
 	};
 
-	//ƒLƒƒƒ‰’è”
+	//ã‚­ãƒ£ãƒ©å®šæ•°
 	enum CONST_CHARA
 	{
-		NUM_RECT = 8,	//”»’è˜g”z—ñ‚Ì•ÛŽƒTƒCƒY
-//		NUM_RECT = 2,	//”»’è˜g”z—ñ‚Ì•ÛŽƒTƒCƒY
+		NUM_RECT = 8,	//åˆ¤å®šæž é…åˆ—ã®ä¿æŒã‚µã‚¤ã‚º
+//		NUM_RECT = 2,	//åˆ¤å®šæž é…åˆ—ã®ä¿æŒã‚µã‚¤ã‚º
 	};
 
-	//˜g•\Ž¦(F)
+	//æž è¡¨ç¤º(è‰²)
 	enum RECT_COLOR
 	{
 		RECT_COLOR_C = 0x400000ff,
@@ -60,7 +60,7 @@ namespace GAME
 		RECT_COLOR_O = 0x40ffff00,
 	};
 
-	//Š„‡
+	//å‰²åˆ
 	enum PERCENTAGE
 	{
 		CENT = 100,
@@ -72,7 +72,7 @@ namespace GAME
 		CPU_INPUT_GAMEKEY_NUM = 60,
 	};
 
-	//‘Å‡Œ‹‰Ê (¶‰E)
+	//æ‰“åˆçµæžœ (å·¦å³)
 	enum CLANG_DECISION_LR
 	{
 		CD_EQUAL,
@@ -81,7 +81,7 @@ namespace GAME
 		CD_OFF,
 	};
 
-	//‘Å‡Œ‹‰Ê (Ÿ•‰)
+	//æ‰“åˆçµæžœ (å‹è² )
 	enum CLANG_DECISION_WL
 	{
 		CD_DRAW,
@@ -89,21 +89,21 @@ namespace GAME
 		CD_LOSE,
 	};
 
-	//‰æ–Ê•`‰æ—p ‰ŠúˆÊ’u
+	//ç”»é¢æç”»ç”¨ åˆæœŸä½ç½®
 	enum PLAYER_BASE_PT
 	{
-		GAME_WIDTH = 2048,		//ƒQ[ƒ€ã‚Åˆµ‚¤•
+		GAME_WIDTH = 2048,		//ã‚²ãƒ¼ãƒ ä¸Šã§æ‰±ã†å¹…
 		GAME_HEIGHT = 1024,
 
-		BG_SIZE_X = 2048,		//”wŒi
+		BG_SIZE_X = 2048,		//èƒŒæ™¯
 		BG_SIZE_Y = 1024,
 		BG_POS_X = 0 - ( 2048 - 1280 ) / 2,
 		BG_POS_Y = 0 - ( 1024 - 960 ) / 2,
 
-		GROUND_Y = 750,			//’n–Ê‚‚³
+		GROUND_Y = 750,			//åœ°é¢é«˜ã•
 		PLAYER_BASE_Y = GROUND_Y,
 
-		//ŠJŽn—§‚¿ˆÊ’u(’†S‚©‚çŠ·ŽZ)
+		//é–‹å§‹ç«‹ã¡ä½ç½®(ä¸­å¿ƒã‹ã‚‰æ›ç®—)
 		PLAYER_1_BASE_X = GAME_WIDTH / 2 - GAME_WINDOW_WIDTH / 2 + 200,
 		PLAYER_1_BASE_Y = PLAYER_BASE_Y,
 		PLAYER_2_BASE_X = GAME_WIDTH / 2 + GAME_WINDOW_WIDTH / 2 - 200,
@@ -115,7 +115,7 @@ namespace GAME
 		GRP_PLAYER2_Y = 14,
 	};
 
-	//ƒQ[ƒW—Þ
+	//ã‚²ãƒ¼ã‚¸é¡ž
 	enum GAUGE
 	{
 		LIFE_GAUGE_X = 80,
@@ -158,15 +158,15 @@ namespace GAME
 
 	};
 
-	//ƒoƒgƒ‹ŠÖ˜A’è”
+	//ãƒãƒˆãƒ«é–¢é€£å®šæ•°
 	enum BATTLE_CONST
 	{
-		//ƒtƒB[ƒ‹ƒhƒTƒCƒY
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µã‚¤ã‚º
 		FIELD_BASE_X = 0,
 		FIELD_WIDTH = 2048,
-		FIELD_EDGE = 64,		//‰æ–Ê’[‚Ì•â³
+		FIELD_EDGE = 64,		//ç”»é¢ç«¯ã®è£œæ­£
 
-		//ƒQ[ƒW—Þ
+		//ã‚²ãƒ¼ã‚¸é¡ž
 		LIFE_MAX = 10000,
 		LIFE_START = 10000,
 
@@ -177,7 +177,7 @@ namespace GAME
 		MANA_START = 1000,
 		MANA_HALF = MANA_MAX / 2,
 
-		//’âŽ~
+		//åœæ­¢
 		HITSTOP_TIME = 15,
 		DOWN_TIME = 120 + 60,
 		END_TIME = 60,

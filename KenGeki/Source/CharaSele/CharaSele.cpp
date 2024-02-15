@@ -1,11 +1,11 @@
 //=================================================================================================
 //
-//	CharaSele ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	CharaSele ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "CharaSele.h"
 //#include "../Title/Title.h"
@@ -13,7 +13,7 @@
 #include "../Training/Training.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -49,7 +49,7 @@ namespace GAME
 		SOUND->PlayLoop ( 0 );
 
 		//---------------------------------------------
-		//Scene‚ÌÅ‰ˆê‰ñ‚Ì‚İAGrpLst‚ğƒQ[ƒ€ƒ^ƒXƒN‚Éİ’è
+		//Sceneã®æœ€åˆä¸€å›ã®ã¿ã€GrpLstã‚’ã‚²ãƒ¼ãƒ ã‚¿ã‚¹ã‚¯ã«è¨­å®š
 		AddpTask ( GRPLST_NEW () );
 		//---------------------------------------------
 
@@ -58,7 +58,7 @@ namespace GAME
 		m_bg->AddTexture ( _T ( "BG_CharaSelect.png" ) );
 		GRPLST_INSERT_MAIN ( m_bg );
 
-		//ƒƒS
+		//ãƒ­ã‚´
 		m_logo_l = make_shared < GrpAcv > ();
 		m_logo_l->AddTexture ( _T ( "CharaSelectLogo.png" ) );
 		m_logo_l->ResetObjectNum ( LOGO_NUM );
@@ -83,7 +83,7 @@ namespace GAME
 		}
 		GRPLST_INSERT_MAIN ( m_logo_r );
 
-		//ƒLƒƒƒ‰—§ŠGƒJƒbƒgƒCƒ“
+		//ã‚­ãƒ£ãƒ©ç«‹çµµã‚«ãƒƒãƒˆã‚¤ãƒ³
 		m_chara_1p = make_shared < GrpAcv > ();
 		m_chara_1p->AddTexture ( _T ( "Chara_Sonia.png" ) );
 		m_chara_1p->AddTexture ( _T ( "Chara_Orfloat.png" ) );
@@ -116,7 +116,7 @@ namespace GAME
 		m_x_2p = CHARA_2P_POS_X0;
 
 
-		//ƒLƒƒƒ‰‘I‘ğ•\¦
+		//ã‚­ãƒ£ãƒ©é¸æŠè¡¨ç¤º
 		m_select_Sonia = make_shared < GrpAcv > ();
 		m_select_Sonia->AddTexture ( _T ( "CharaSelect_Sonia.png" ) );
 		m_select_Sonia->SetPos ( SELECT_1P_POS_X, SELECT_1P_POS_Y );
@@ -127,7 +127,7 @@ namespace GAME
 		m_select_Orfloat->SetPos ( SELECT_2P_POS_X, SELECT_2P_POS_Y );
 		GRPLST_INSERT_MAIN ( m_select_Orfloat );
 
-		//ƒJ[ƒ\ƒ‹
+		//ã‚«ãƒ¼ã‚½ãƒ«
 		m_cursor1p = make_shared < GrpBlink > ();
 		m_cursor1p->AddTexture ( _T ( "CharaSelect_Cursor1p.png" ) );
 		m_cursor1p->SetPos ( SELECT_1P_POS_X, SELECT_1P_POS_Y );
@@ -149,7 +149,7 @@ namespace GAME
 		m_cursorCPU2p->SetPos ( SELECT_2P_POS_X, SELECT_2P_POS_Y );
 		GRPLST_INSERT_MAIN ( m_cursorCPU2p );
 
-		//‘I‘ğƒLƒƒƒ‰
+		//é¸æŠã‚­ãƒ£ãƒ©
 #if 0
 		m_charaName1p = CHARA_SONIA;
 		m_chara_1p->SetIndexTexture ( CHARA_SONIA );
@@ -159,15 +159,15 @@ namespace GAME
 		m_chara_light_2p->SetIndexTexture ( CHARA_ORFLOAT );
 #endif // 0
 
-		m_bDecide1p = false;	//1P‘¤Œˆ’è(1PƒRƒ“ƒgƒ[ƒ‰‚Å2P‘¤‚ğ‘€ì)
-		m_bDecide2p = false;	//2P‘¤Œˆ’è
+		m_bDecide1p = false;	//1På´æ±ºå®š(1Pã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§2På´ã‚’æ“ä½œ)
+		m_bDecide2p = false;	//2På´æ±ºå®š
 
 		m_fade = make_shared < Fade > ();
 		GRPLST_INSERT_MAIN ( m_fade );
 
 		m_endWait = false;
 
-		//ƒ^ƒCƒ}[
+		//ã‚¿ã‚¤ãƒãƒ¼
 		m_tmrDecide1p = make_shared < Timer > ();
 		m_tmrDecide1p->SetTargetTime ( 5 );
 		AddpTask ( m_tmrDecide1p );
@@ -182,7 +182,7 @@ namespace GAME
 
 	void CharaSele::ParamInit ()
 	{
-		//ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 		P_Param pParam = GetpParam ();
 		pParam->SetCharaName1p ( m_charaName1p );
 		pParam->SetCharaName2p ( m_charaName2p );
@@ -217,7 +217,7 @@ namespace GAME
 	void CharaSele::Move ()
 	{
 		//---------------------------------------------------------------------------
-		//ƒƒS“®ì
+		//ãƒ­ã‚´å‹•ä½œ
 		PVP_Object pvpObject_l = m_logo_l->GetpvpObject ();
 		for ( P_Object p : *pvpObject_l )
 		{
@@ -231,7 +231,7 @@ namespace GAME
 			if ( p->GetPos ().x > 0.f + WINDOW_WIDTH ) { p->SetPosX ( 1.f * WINDOW_WIDTH - LOGO_W * (LOGO_NUM - 1) ); }
 		}
 		//---------------------------------------------------------------------------
-		//ƒJƒbƒgƒCƒ“
+		//ã‚«ãƒƒãƒˆã‚¤ãƒ³
 		m_x_1p += CUTIN_VX;
 		if ( m_x_1p > CHARA_1P_POS_X ) { m_x_1p = CHARA_1P_POS_X; }
 		m_chara_1p->SetPos ( m_x_1p, CHARA_1P_POS_Y );
@@ -246,14 +246,14 @@ namespace GAME
 
 		//---------------------------------------------------------------------------
 
-		//I—¹‘Ò‹@ó‘Ô‚Íƒ^ƒXƒN“®ì‚Ì‚İ
+		//çµ‚äº†å¾…æ©ŸçŠ¶æ…‹ã¯ã‚¿ã‚¹ã‚¯å‹•ä½œã®ã¿
 		if ( m_endWait ) 
 		{
 			Scene::Move ();
 			return; 
 		}
 
-		//ƒ‚[ƒh‚Å•ªŠò
+		//ãƒ¢ãƒ¼ãƒ‰ã§åˆ†å²
 		switch ( m_mode )
 		{
 		case MODE_PLAYER_PLAYER:
@@ -278,15 +278,15 @@ namespace GAME
 
 	void CharaSele::Move1p ()
 	{
-		//1pˆÚ“®
+		//1pç§»å‹•
 		if ( KeyLR1p () )
 		{
-			//1p–¢‘I‘ğ
+			//1pæœªé¸æŠ
 			if ( ! m_bDecide1p ) { Select1p (); }
-			//1pŒˆ’èÏ‚İ
+			//1pæ±ºå®šæ¸ˆã¿
 			else
 			{
-				switch ( m_mode )	//CPU2P‚Ì‘I‘ğ
+				switch ( m_mode )	//CPU2Pã®é¸æŠ
 				{
 				case MODE_PLAYER_PLAYER:				break;
 				case MODE_PLAYER_CPU:	SelectCPU2p (); break;
@@ -296,18 +296,18 @@ namespace GAME
 			}
 		}
 
-		//1pŒˆ’è
+		//1pæ±ºå®š
 		if ( PUSH_KEY ( P1_BUTTON1 ) )
 		{
-			//1p–¢Œˆ’è
+			//1pæœªæ±ºå®š
 			if ( !m_bDecide1p )
 			{
 				Decision1p ();
 			}
-			//1pŒˆ’èÏ‚İ
+			//1pæ±ºå®šæ¸ˆã¿
 			else
 			{
-				switch ( m_mode )			//CPU2P‚ÌŒˆ’è
+				switch ( m_mode )			//CPU2Pã®æ±ºå®š
 				{
 				case MODE_PLAYER_PLAYER:					break;
 				case MODE_PLAYER_CPU:	DecisionCPU2p ();	break;
@@ -317,10 +317,10 @@ namespace GAME
 			}
 		}
 
-		//1p‰ğœ
+		//1pè§£é™¤
 		if ( PUSH_KEY ( P1_BUTTON2 ) )
 		{
-			//1pŒˆ’èÏ‚İ
+			//1pæ±ºå®šæ¸ˆã¿
 			if ( m_bDecide1p )
 			{
 				SOUND->Play ( SE_Cancel );
@@ -332,15 +332,15 @@ namespace GAME
 
 	void CharaSele::Move2p ()
 	{
-		//2pˆÚ“®
+		//2pç§»å‹•
 		if ( KeyLR2p () )
 		{
-			//2p–¢‘I‘ğ
+			//2pæœªé¸æŠ
 			if ( ! m_bDecide2p ) { Select2p (); }
-			//2pŒˆ’èÏ‚İ
+			//2pæ±ºå®šæ¸ˆã¿
 			else
 			{
-				switch ( m_mode )	//CPU1P‚Ì‘I‘ğ
+				switch ( m_mode )	//CPU1Pã®é¸æŠ
 				{
 				case MODE_PLAYER_PLAYER:				break;
 				case MODE_PLAYER_CPU:					break;
@@ -350,18 +350,18 @@ namespace GAME
 			}
 		}
 
-		//2pŒˆ’è
+		//2pæ±ºå®š
 		if ( PUSH_KEY ( P2_BUTTON1 ) )
 		{
-			//2p–¢Œˆ’è
+			//2pæœªæ±ºå®š
 			if ( ! m_bDecide2p )
 			{
 				Decision2p ();
 			}
-			//2pŒˆ’èÏ‚İ
+			//2pæ±ºå®šæ¸ˆã¿
 			else
 			{
-				switch ( m_mode )			//CPU1P‚ÌŒˆ’è
+				switch ( m_mode )			//CPU1Pã®æ±ºå®š
 				{
 				case MODE_PLAYER_PLAYER:					break;
 				case MODE_PLAYER_CPU:						break;
@@ -371,10 +371,10 @@ namespace GAME
 			}
 		}
 
-		//2p‰ğœ
+		//2pè§£é™¤
 		if ( PUSH_KEY ( P2_BUTTON2 ) )
 		{
-			//2pŒˆ’èÏ‚İ
+			//2pæ±ºå®šæ¸ˆã¿
 			if ( m_bDecide2p )
 			{
 				SOUND->Play ( SE_Cancel );
@@ -496,26 +496,26 @@ namespace GAME
 	}
 
 
-	//¡================================================================
+	//â– ================================================================
 	P_GameScene CharaSele::Transit ()
 	{
-		//ESC‚Å–ß‚é
+		//ESCã§æˆ»ã‚‹
 		if ( ::GetAsyncKeyState ( VK_ESCAPE ) & 0x0001 )
 		{
 			SOUND->Stop ( 0 );
 			return make_shared < Title > ();
 		}
 
-		//ƒpƒ‰ƒ[ƒ^
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		P_Param pParam = GetpParam ();
 
-		//—¼ÒŒˆ’è‚ÅƒV[ƒ“‚ği‚ß‚é
+		//ä¸¡è€…æ±ºå®šã§ã‚·ãƒ¼ãƒ³ã‚’é€²ã‚ã‚‹
 		if ( m_endWait )
 		{
 			if ( ! m_fade->IsActive () )
 			{
 				SOUND->Stop ( 0 );
-				//ƒpƒ‰ƒ[ƒ^‚Å•ªŠò
+				//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§åˆ†å²
 				if ( pParam->GetTraining () )
 				{
 					return make_shared < Training > ();
@@ -530,7 +530,7 @@ namespace GAME
 		{
 			if ( m_bDecide1p && m_bDecide2p )
 			{
-				//ƒpƒ‰ƒ[ƒ^‚É‹L˜^
+				//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«è¨˜éŒ²
 				pParam->SetCharaName1p ( m_charaName1p );
 				pParam->SetCharaName2p ( m_charaName2p );
 				m_fade->SetDarkOut ( 15 );
@@ -539,7 +539,7 @@ namespace GAME
 		}
 
 
-		//’Êí
+		//é€šå¸¸æ™‚
 		return shared_from_this ();
 	}
 

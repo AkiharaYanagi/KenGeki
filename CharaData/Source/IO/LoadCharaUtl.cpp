@@ -1,19 +1,19 @@
 //=================================================================================================
 //
-// LoadCharaUtl ƒ\[ƒXƒtƒ@ƒCƒ‹
+// LoadCharaUtl ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #include "LoadCharaUtl.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//-------------------------------------------------------------------
-	//	“à•”g—pŠÖ”
+	//	å†…éƒ¨ä½¿ç”¨é–¢æ•°
 	//-------------------------------------------------------------------
-	//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çindex”Ô–Ú‚ÌƒAƒgƒŠƒrƒ…[ƒg‚ÌValue‚ğUINT‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰indexç•ªç›®ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®Valueã‚’UINTã«ç›´ã—ã¦è¿”ã™
 	UINT LoadCharaUtl::_ElemToUINT ( const P_Element pElem, UINT indexAttr )
 	{
 		UINT ui = 0;
@@ -28,7 +28,7 @@ namespace GAME
 	}
 	
 	//------------------------------------------------------------
-	//–¼‘O‚Ì•Û‘¶
+	//åå‰ã®ä¿å­˜
 	void LoadCharaUtl::ElemToNameArray ( const P_Element pElem, V_STR & vec )
 	{
 		PVP_Element pvp_elem = pElem->GetpvpElement ();
@@ -37,19 +37,19 @@ namespace GAME
 		for ( P_Element pe : * pvp_elem )
 		{
 			PVP_Attribute pvp_attr = pe->GetpvpAttribute ();
-			vec.push_back ( (*pvp_attr)[0]->GetValue () );		//–¼‘O‚ÌƒAƒgƒŠƒrƒ…[ƒg‚Í‚O‚ÌˆÊ’u
+			vec.push_back ( (*pvp_attr)[0]->GetValue () );		//åå‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯ï¼ã®ä½ç½®
 		}
 #endif // 0
 
-		//—v‘f”‚ğ”‚¦ã‚°æ‚ÉƒŠƒTƒCƒY‚ÅŠm•Û‚·‚é
+		//è¦ç´ æ•°ã‚’æ•°ãˆä¸Šã’å…ˆã«ãƒªã‚µã‚¤ã‚ºã§ç¢ºä¿ã™ã‚‹
 		vec.resize ( pvp_elem->size () );
 
-		//’l‚Ì‘ã“ü
+		//å€¤ã®ä»£å…¥
 		UINT i = 0;
 		for ( P_Element pe : * pvp_elem )
 		{
 			PVP_Attribute pvp_attr = pe->GetpvpAttribute ();
-			vec[i] = ( *pvp_attr ) [ 0 ]->GetValue ();		//–¼‘O‚ÌƒAƒgƒŠƒrƒ…[ƒg‚Í‚O‚ÌˆÊ’u
+			vec[i] = ( *pvp_attr ) [ 0 ]->GetValue ();		//åå‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯ï¼ã®ä½ç½®
 			++ i;
 		}
 	}
@@ -66,7 +66,7 @@ namespace GAME
 	}
 
 	//------------------------------------------------------------
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚©‚çValue‚ğbool‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰Valueã‚’boolã«ç›´ã—ã¦è¿”ã™
 	bool LoadCharaUtl::_AttrToBool ( const P_Attribute pAttr )
 	{
 		bool b = false;
@@ -78,7 +78,7 @@ namespace GAME
 		return b;
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚©‚çValue‚ğUINT‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰Valueã‚’UINTã«ç›´ã—ã¦è¿”ã™
 	UINT LoadCharaUtl::_AttrToUINT ( const P_Attribute pAttr )
 	{
 		UINT ui = 0;
@@ -91,7 +91,7 @@ namespace GAME
 		return ui;
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚©‚çValue‚ğint‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰Valueã‚’intã«ç›´ã—ã¦è¿”ã™
 	int LoadCharaUtl::_AttrToInt ( const P_Attribute pAttr )
 	{
 		int i = 0;
@@ -104,7 +104,7 @@ namespace GAME
 		return i;
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚©‚çValue‚ğfloat‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰Valueã‚’floatã«ç›´ã—ã¦è¿”ã™
 	float LoadCharaUtl::_AttrToFloat ( const P_Attribute pAttr )
 	{
 		float f = 0;
@@ -117,17 +117,17 @@ namespace GAME
 		return f;
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚Q‚Â‚©‚çValue‚ğVEC2‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ï¼’ã¤ã‹ã‚‰Valueã‚’VEC2ã«ç›´ã—ã¦è¿”ã™
 	VEC2 LoadCharaUtl::_AttrToVec2 ( const P_Attribute pa0, const P_Attribute pa1 )
 	{
 		return VEC2 ( _AttrToFloat ( pa0 ), _AttrToFloat ( pa1 ) );
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚S‚Â‚©‚çValue‚ğRECT‚É’¼‚µ‚Ä•Ô‚·
-	//ˆø”Fx, y, w, h
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ï¼”ã¤ã‹ã‚‰Valueã‚’RECTã«ç›´ã—ã¦è¿”ã™
+	//å¼•æ•°ï¼šx, y, w, h
 	RECT LoadCharaUtl::_AttrToRect ( const P_Attribute pa0, const P_Attribute pa1, const P_Attribute pa2, const P_Attribute pa3 )
 	{
-		//x0, y0, x1, y1‚É’¼‚·
+		//x0, y0, x1, y1ã«ç›´ã™
 		int x = _AttrToInt ( pa0 );
 		int y = _AttrToInt ( pa1 );
 		int w = _AttrToInt ( pa2 );
@@ -137,7 +137,7 @@ namespace GAME
 		return rect;
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚©‚çValue‚ğCLC_ST‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰Valueã‚’CLC_STã«ç›´ã—ã¦è¿”ã™
 	CLC_ST LoadCharaUtl::_AttrToCLC_ST ( const P_Attribute pAttr )
 	{
 		CLC_ST clcSt = (CLC_ST)_AttrToInt ( pAttr );
@@ -150,7 +150,7 @@ namespace GAME
 		return clcSt;
 	}
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^‚©‚çValue‚ğACTION_POSTURE‚É’¼‚µ‚Ä•Ô‚·
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰Valueã‚’ACTION_POSTUREã«ç›´ã—ã¦è¿”ã™
 	ACTION_POSTURE LoadCharaUtl::_AttrToACTION_POSTURE ( const P_Attribute pAttr )
 	{
 		ACTION_POSTURE ap = (ACTION_POSTURE)_AttrToInt ( pAttr );

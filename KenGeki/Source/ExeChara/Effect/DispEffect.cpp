@@ -1,36 +1,36 @@
 //=================================================================================================
 //
-// DispEffect ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispEffect ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispEffect.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	DispEffect::DispEffect ( PVP_TxBs pvpEfTx , float z ) 
 		: m_pvpEfTx ( pvpEfTx )
 	{
-		//ƒƒCƒ“ƒOƒ‰ƒtƒBƒbƒN
+		//ãƒ¡ã‚¤ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		m_grp = make_shared < GrpApTx > ();
-		m_grp->SetZ ( z );	//‰ŠúˆÊ’u
+		m_grp->SetZ ( z );	//åˆæœŸä½ç½®
 		AddpTask ( m_grp );
 		GRPLST_INSERT_MAIN ( m_grp );
 
-		//˜g•\¦
+		//æ è¡¨ç¤º
 		m_dispRect = make_shared < DispRect > ();
 		AddpTask ( m_dispRect );
 	}
 
 	DispEffect::~DispEffect ()
 	{
-		//I—¹‚ÉƒOƒ‰ƒtƒBƒbƒNƒ^ƒXƒN‚ğŠO‚·
+		//çµ‚äº†æ™‚ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¹ã‚¯ã‚’å¤–ã™
 		EraseTask ( m_dispRect );
 		EraseTask ( m_grp );
 		GRPLST_REMOVE_MAIN ( m_grp );
@@ -39,12 +39,12 @@ namespace GAME
 
 	void DispEffect::Update ( P_Script pScript, VEC2 ptEf, bool dirRight )
 	{
-		//DispFƒXƒNƒŠƒvƒg‚ÌƒCƒ[ƒW•\¦ˆÊ’u
+		//Dispï¼šã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸è¡¨ç¤ºä½ç½®
 
-		//ƒeƒNƒXƒ`ƒƒ‚Ìæ“¾
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å–å¾—
 		P_TxBs pEfTx = m_pvpEfTx->at ( pScript->GetImageIndex() );
 
-		//ˆÊ’u (ƒGƒtƒFƒNƒg‚ÌƒQ[ƒ€ˆÊ’u{ƒXƒNƒŠƒvƒg‚Ì•\¦ˆÊ’u(*Œü‚«){ƒLƒƒƒ‰‚É‚æ‚é‰æ–Ê•â³ˆÊ’u)
+		//ä½ç½® (ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚²ãƒ¼ãƒ ä½ç½®ï¼‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®è¡¨ç¤ºä½ç½®(*å‘ã)ï¼‹ã‚­ãƒ£ãƒ©ã«ã‚ˆã‚‹ç”»é¢è£œæ­£ä½ç½®)
 		float fDir = dirRight ? (1.f) : (-1.f);
 		VEC2 tempImgPos = pScript->GetPos ();
 		VEC2 imgPos = VEC2( fDir * tempImgPos.x, tempImgPos.y );
@@ -52,7 +52,7 @@ namespace GAME
 
 //		DBGOUT_WND_F ( 2, _T ( "DispEfPos = (%d,%d)" ), vecEfImg.x, vecEfImg.y );
 
-		//•\¦‚É”½‰f
+		//è¡¨ç¤ºã«åæ˜ 
 		m_grp->SetPos ( vecEfImg );
 		m_grp->SetScaling ( 1.f * fDir, 1.f );
 		m_grp->SetpTexture ( pEfTx );

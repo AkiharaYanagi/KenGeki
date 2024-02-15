@@ -1,20 +1,20 @@
 //=================================================================================================
 //
-// İ’èƒtƒ@ƒCƒ‹
+// è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "GameSettingFile.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	GameSettingFile::GameSettingFile ()
 		: m_startMode ( START_BATTLE )
 		, m_playerMode1p ( MODE_PLAYER ), m_playerMode2p ( MODE_PLAYER )
@@ -23,7 +23,7 @@ namespace GAME
 	{
 	}
 
-	//ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	GameSettingFile::GameSettingFile ( const GameSettingFile & rhs )
 	{
 		m_startMode		= rhs.m_startMode;
@@ -38,10 +38,10 @@ namespace GAME
 	{
 		try
 		{
-			//“ü—ÍƒXƒgƒŠ[ƒ€‚ğ¶¬
+			//å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ç”Ÿæˆ
 			ifstream ifstrm( _T( "GameSettings.dat" ), ios::in | ios::binary );
 
-			//Œ©‚Â‚©‚ç‚È‚¢‚Æ‚«ƒfƒtƒHƒ‹ƒg‚Ì’l‚ğİ’è‚µ‚ÄI—¹
+			//è¦‹ã¤ã‹ã‚‰ãªã„ã¨ããƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å€¤ã‚’è¨­å®šã—ã¦çµ‚äº†
 			if (!ifstrm) { SetDefault(); return; }
 
 			byte tempMode = 0;
@@ -66,7 +66,7 @@ namespace GAME
 			m_name1p = (CHARA_NAME)tempName1p;
 			m_name2p = (CHARA_NAME)tempName2p;
 
-			//I—¹
+			//çµ‚äº†
 			ifstrm.close();
 
 		}
@@ -84,7 +84,7 @@ namespace GAME
 	{
 		try
 		{
-			//“ü—ÍƒXƒgƒŠ[ƒ€‚ğ¶¬
+			//å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ç”Ÿæˆ
 			ofstream ofstrm ( _T("GameSettings.dat"), ios::out | ios::binary );
 			
 			ofstrm.write ( (char*)&m_startMode, sizeof(byte));
@@ -94,12 +94,12 @@ namespace GAME
 			ofstrm.write ( (char*)&m_name1p, sizeof ( byte ) );
 			ofstrm.write ( (char*)&m_name2p, sizeof ( byte ) );
 
-			//I—¹
+			//çµ‚äº†
 			ofstrm.close ();
 		}
 		catch (...)
 		{
-			//ƒGƒ‰[‰½‚à‚µ‚È‚¢
+			//ã‚¨ãƒ©ãƒ¼æ™‚ä½•ã‚‚ã—ãªã„
 		}
 	}
 	

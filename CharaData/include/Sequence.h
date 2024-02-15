@@ -1,30 +1,30 @@
 //=================================================================================================
 //
-//	Sequence ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+//	Sequence ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Script.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//-----------------------------------------------------------------
-	//		ƒXƒNƒŠƒvƒg‚Ìˆê˜AAƒAƒNƒVƒ‡ƒ“‚ÆƒGƒtƒFƒNƒg‚É”h¶
+	//		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ä¸€é€£ã€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«æ´¾ç”Ÿ
 	//-----------------------------------------------------------------
 	class Sequence
 	{
-		tstring			m_name;			//–¼‘O
-		PVP_Script		m_pvpScript;	//ƒXƒNƒŠƒvƒg”z—ñ
-		UINT			m_next;			//ŸƒV[ƒNƒGƒ“ƒXID
-		tstring			m_nextName;		//ŸƒV[ƒNƒGƒ“ƒX–¼
+		tstring			m_name;			//åå‰
+		PVP_Script		m_pvpScript;	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆé…åˆ—
+		UINT			m_next;			//æ¬¡ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ID
+		tstring			m_nextName;		//æ¬¡ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹å
 
 	public:
 		Sequence ();
@@ -34,41 +34,41 @@ namespace GAME
 		void Rele ();
 
 		//-----------------------------------------------------------------
-		//–¼‘O
+		//åå‰
 		void SetName ( tstring name ) { m_name.assign ( name ); }
 		tstring GetName () const { return m_name; }
 		bool IsName ( tstring name ) const { return m_name == name; }
 
 		//-----------------------------------------------------------------
-		//ƒXƒNƒŠƒvƒg‚Ì’Ç‰Á
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®è¿½åŠ 
 		void AddpScript ( P_Script pScript ) { m_pvpScript->push_back ( pScript ); }
 
-		//ƒXƒNƒŠƒvƒg”z—ñ‚É‚Ü‚Æ‚ß‚Ä’Ç‰Á
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆé…åˆ—ã«ã¾ã¨ã‚ã¦è¿½åŠ 
 		void AddaScript ( unique_ptr < P_Script[] > arypScript, rsize_t size );
 
-		//ƒXƒNƒŠƒvƒg”z—ñƒTƒCƒY‚Ìæ“¾
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆé…åˆ—ã‚µã‚¤ã‚ºã®å–å¾—
 		UINT SizeScript () const { return m_pvpScript->size(); }
 
-		//ƒXƒNƒŠƒvƒg”z—ñƒ|ƒCƒ“ƒ^‚ğæ“¾
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆé…åˆ—ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 		PVP_Script GetpvpScript () { return m_pvpScript; }
 
-		//ƒXƒNƒŠƒvƒg‚Ìæ“¾
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å–å¾—
 		P_Script GetpScript ( UINT index ) { return m_pvpScript->at ( index ); }
 
-		//ŸƒXƒNƒŠƒvƒg‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
+		//æ¬¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹
 		bool IsNextScript ( UINT index ) const { return ( index < m_pvpScript->size() - 1 ); }
 
-		//ÅIƒXƒNƒŠƒvƒg‚©‚Ç‚¤‚©
+		//æœ€çµ‚ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã©ã†ã‹
 		bool IsEndScript ( UINT index ) const { return ( index == m_pvpScript->size () - 1 ); }
 
-		//ƒI[ƒo[ƒXƒNƒŠƒvƒg‚©‚Ç‚¤‚©
+		//ã‚ªãƒ¼ãƒãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã©ã†ã‹
 		bool IsOverScript ( UINT index ) const { return ( index > m_pvpScript->size () - 1 ); }
 
-		//ŸƒV[ƒNƒGƒ“ƒXID
+		//æ¬¡ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ID
 		UINT GetNextID () const { return m_next; }
 		void SetNextID (UINT id) { m_next = id; }
 
-		//ŸƒV[ƒNƒGƒ“ƒX–¼
+		//æ¬¡ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹å
 		tstring GetNextName () const { return m_nextName; }
 		void SetNextName ( tstring tstr ) { m_nextName = tstr; }
 	};

@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// DispGauge ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// DispGauge ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "Chara.h"
@@ -14,24 +14,24 @@
 #include "../BtlParam.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	class DispGauge : public TASK_VEC
 	{
-		PLAYER_ID	m_playerID;		//ƒvƒŒƒCƒ„•\¦‘¤
+		PLAYER_ID	m_playerID;		//ãƒ—ãƒ¬ã‚¤ãƒ¤è¡¨ç¤ºå´
 
-		float		m_base_x;		//Šî€ˆÊ’ux
-		float		m_base_y;		//Šî€ˆÊ’uy
-		float		m_base_w;		//Šî€ˆÊ’uw
-		float		m_base_h;		//Šî€ˆÊ’uh
+		float		m_base_x;		//åŸºæº–ä½ç½®x
+		float		m_base_y;		//åŸºæº–ä½ç½®y
+		float		m_base_w;		//åŸºæº–ä½ç½®w
+		float		m_base_h;		//åŸºæº–ä½ç½®h
 
-		P_PrmRect	m_Value;		//•\¦
-		P_PrmRect	m_Frame;		//˜g
-		P_PrmRect	m_Decrease;		//Œ¸­•ª•\¦
-		float		m_d;		//Œ¸­•ª’l
+		P_PrmRect	m_Value;		//è¡¨ç¤º
+		P_PrmRect	m_Frame;		//æ 
+		P_PrmRect	m_Decrease;		//æ¸›å°‘åˆ†è¡¨ç¤º
+		float		m_d;		//æ¸›å°‘åˆ†å€¤
 
 
 	public:
@@ -39,25 +39,25 @@ namespace GAME
 		DispGauge ( const DispGauge & rhs ) = delete;
 		~DispGauge ();
 
-		//Šî€ˆÊ’uİ’è
+		//åŸºæº–ä½ç½®è¨­å®š
 		void SetPosition ( VEC2 xy, VEC2 wh ) { SetPosition ( xy.x, xy.y, wh.x, wh.y ); }
 		void SetPosition ( float x, float y, float w, float h );
 
-		//ƒJƒ‰[‚Ìİ’è
+		//ã‚«ãƒ©ãƒ¼ã®è¨­å®š
 		void SetColor_Frame ( _CLR c );
 		void SetColor_Decrease ( _CLR c );
 		void SetColor_Value ( _CLR c0, _CLR c1, _CLR c2, _CLR c3 );
 
-		//ƒQ[ƒW—Ş‚Ì•\¦•”‚Ì‚İ‰Šú‰»
+		//ã‚²ãƒ¼ã‚¸é¡ã®è¡¨ç¤ºéƒ¨ã®ã¿åˆæœŸåŒ–
 		void LoadPlayer ( PLAYER_ID id );
 
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		void Init ();
 
-		//Œ¸­•ª•\¦
+		//æ¸›å°‘åˆ†è¡¨ç¤º
 		void OffDecrease () { m_Decrease->SetValid ( F ); }
 
-		//’l‚ÌXV
+		//å€¤ã®æ›´æ–°
 		void Update ( UINT value );
 	};
 

@@ -1,27 +1,27 @@
 //=================================================================================================
 //
-//	MutualChara ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	MutualChara ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "MutualChara.h"
 #include "../GameMain/SoundConst.h"
 
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	MutualChara::MutualChara ()
-		: m_scpStop ( 0 ), m_blackOut ( 0 )
+		: m_winner ( WINNER::WINNER_DRAW )
 	{
 		m_decision = make_shared < Decision > ();
 
-		//ƒLƒƒƒ‰
+		//ã‚­ãƒ£ãƒ©
 		m_exeChara1 = make_shared < ExeChara > ( PLAYER_ID_1 );
 		m_exeChara2 = make_shared < ExeChara > ( PLAYER_ID_2 );
 
@@ -34,17 +34,17 @@ namespace GAME
 		AddpTask ( m_exeChara1 );
 		AddpTask ( m_exeChara2 );
 
-		//”»’è
+		//åˆ¤å®š
 		m_decision->SetpChara (m_exeChara1, m_exeChara2);
 		AddpTask ( m_decision );
 
-		//ƒqƒbƒgƒXƒgƒbƒvƒ^ƒCƒ}[
+		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—ã‚¿ã‚¤ãƒãƒ¼
 		m_tmrHitstop = make_shared < Timer > ();
 		m_tmrHitstop->SetTargetTime ( HITSTOP_TIME );
 		AddpTask ( m_tmrHitstop );
 		m_decision->SetpHitStop ( m_tmrHitstop );
 
-		//ƒfƒoƒbƒO—p˜g•\¦
+		//ãƒ‡ãƒãƒƒã‚°ç”¨æ è¡¨ç¤º
 #define DISP_RECT	1
 #if DISP_RECT
 		m_exeChara1->OnDispRect ();
@@ -78,64 +78,64 @@ namespace GAME
 
 
 
-	//¡#########################################################
-	//¡
-	//¡	ƒXƒNƒŠƒvƒg‚Ì–ˆƒtƒŒ[ƒ€ˆ—
-	//¡
-	//¡#########################################################
+	//â– #########################################################
+	//â– 
+	//â– 	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
+	//â– 
+	//â– #########################################################
 	void MutualChara::Conduct ()
 	{
 		//---------------------------------------------------
-		//ƒVƒXƒeƒ€•ÏX
-		SwitchRect ();	//˜g•\¦Ø‘Ö
-		SwithcCPU ();	//CPU‘€ìØ‘Ö
-		ResetMatch ();	//‡‰Šú‰»
+		//ã‚·ã‚¹ãƒ†ãƒ å¤‰æ›´
+		SwitchRect ();	//æ è¡¨ç¤ºåˆ‡æ›¿
+		SwithcCPU ();	//CPUæ“ä½œåˆ‡æ›¿
+		ResetMatch ();	//è©¦åˆåˆæœŸåŒ–
 		//---------------------------------------------------
 
-		//ŸƒXƒNƒŠƒvƒg‘Oˆ—(“ü—ÍAˆÚ“®‚È‚Ç)
+		//â—†ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‰å‡¦ç†(å…¥åŠ›ã€ç§»å‹•ãªã©)
 		m_exeChara1->PreScriptMove ();
 		m_exeChara2->PreScriptMove ();
 
-		//Ÿ‘ŠŒİ”»’è(‚Ô‚Â‚©‚è˜g)
+		//â—†ç›¸äº’åˆ¤å®š(ã¶ã¤ã‹ã‚Šæ )
 		Collision ();
 
-		//Ÿ‚Ô‚Â‚©‚èŒãAUŒ‚Eƒqƒbƒg”»’è˜g‚ğİ’è
+		//â—†ã¶ã¤ã‹ã‚Šå¾Œã€æ”»æ’ƒãƒ»ãƒ’ãƒƒãƒˆåˆ¤å®šæ ã‚’è¨­å®š
 		m_exeChara1->RectMove ();
 		m_exeChara2->RectMove ();
 
-		//Ÿ‘ŠŒİ”»’è(UŒ‚Eƒqƒbƒg˜g)
+		//â—†ç›¸äº’åˆ¤å®š(æ”»æ’ƒãƒ»ãƒ’ãƒƒãƒˆæ )
 		_Decision ();
 
-		//ŸƒXƒNƒŠƒvƒgŒãˆ—(ƒOƒ‰ƒtƒBƒbƒNˆÊ’u‚È‚Ç)
+		//â—†ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¾Œå‡¦ç†(ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä½ç½®ãªã©)
 		m_exeChara1->PostScriptMove ();
 		m_exeChara2->PostScriptMove ();
 
-		//ƒOƒ‰ƒtƒBƒbƒN‹¤’Ê
+		//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å…±é€š
 		Grp ();
 
-		//ƒV[ƒ“‹¤’Êƒpƒ‰ƒ[ƒ^‹L˜^
+		//ã‚·ãƒ¼ãƒ³å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨˜éŒ²
 		m_pParam->SetN_Life1p ( m_exeChara1->GetLife () );
 		m_pParam->SetN_Life2p ( m_exeChara2->GetLife () );
 		m_pParam->SetN_Act1p ( m_exeChara1->GetBtlParam ().GetNActTrs () );
 		m_pParam->SetN_Act2p ( m_exeChara2->GetBtlParam ().GetNActTrs () );
 	}
-	//¡#########################################################
+	//â– #########################################################
 
 
 
-	//Ÿ================================
-	//Ÿ		‘ŠŒİ”»’è(‚Ô‚Â‚©‚è˜g)
-	//Ÿ================================
+	//â—†================================
+	//â—†		ç›¸äº’åˆ¤å®š(ã¶ã¤ã‹ã‚Šæ )
+	//â—†================================
 	void MutualChara::Collision ()
 	{
-		//—¼Ò‚ÌÚG˜g‚ğæ“¾
+		//ä¸¡è€…ã®æ¥è§¦æ ã‚’å–å¾—
 		P_CharaRect pCharaRect1p = m_exeChara1->GetpCharaRect ();
 		P_CharaRect pCharaRect2p = m_exeChara2->GetpCharaRect ();
 		PV_RECT pvRect1p = pCharaRect1p->GetpvCRect ();
 		PV_RECT pvRect2p = pCharaRect2p->GetpvCRect ();
 
-		//ÚG”»’è
-		//d‚È‚Á‚Ä‚¢‚é‚Æ‚«
+		//æ¥è§¦åˆ¤å®š
+		//é‡ãªã£ã¦ã„ã‚‹ã¨ã
 		if ( OverlapAryRect ( pvRect1p, pvRect2p ) )
 		{
 			bool dir1 = m_exeChara1->GetDirRight ();
@@ -143,16 +143,16 @@ namespace GAME
 			VEC2 pos1_0 = m_exeChara1->GetPos ();
 			VEC2 pos2_0 = m_exeChara2->GetPos ();
 
-			m_exeChara1->BackPtX ();	//Œİ‚¢‚Éx•ûŒü‚Ì‚İˆÊ’u‚ğ–ß‚·
+			m_exeChara1->BackPtX ();	//äº’ã„ã«xæ–¹å‘ã®ã¿ä½ç½®ã‚’æˆ»ã™
 			m_exeChara2->BackPtX ();
 
 			VEC2 pos1_1 = m_exeChara1->GetPos ();
 			VEC2 pos2_1 = m_exeChara2->GetPos ();
 
-			//‚³‚ç‚Éd‚È‚Á‚Ä‚¢‚é‚Æ‚«
+			//ã•ã‚‰ã«é‡ãªã£ã¦ã„ã‚‹ã¨ã
 			if ( OverlapAryRect ( pvRect1p, pvRect2p ) )
 			{
-				//ˆÊ’u‚ğ‚³‚ç‚É–ß‚µ‚Ä(“®ì‚µ‚½Œã‚ÌˆÊ’u)‚©‚ç•â³‚·‚é
+				//ä½ç½®ã‚’ã•ã‚‰ã«æˆ»ã—ã¦(å‹•ä½œã—ãŸå¾Œã®ä½ç½®)ã‹ã‚‰è£œæ­£ã™ã‚‹
 				if ( LeaveDir ( dir1, pos1_0.x, pos1_1.x ) )
 				{
 					m_exeChara1->SetPos ( pos1_0 );
@@ -169,10 +169,10 @@ namespace GAME
 			{
 #if 0
 #endif // 0
-				m_exeChara1->BackMoveX ();	//d‚È‚è”÷’²®
+				m_exeChara1->BackMoveX ();	//é‡ãªã‚Šå¾®èª¿æ•´
 				m_exeChara2->BackMoveX ();
 
-				m_exeChara1->SetCollisionRect ();	//“–‚è˜gÄİ’è
+				m_exeChara1->SetCollisionRect ();	//å½“ã‚Šæ å†è¨­å®š
 				m_exeChara2->SetCollisionRect ();
 
 				pvRect1p = pCharaRect1p->GetpvCRect ();
@@ -182,74 +182,74 @@ namespace GAME
 			}
 		}
 
-		//UŒü
+		//æŒ¯å‘
 		m_exeChara1->LookOther ();
 		m_exeChara2->LookOther ();
 
-		//‹——£§ŒÀ(‰æ–Ê’[“¯m)
+		//è·é›¢åˆ¶é™(ç”»é¢ç«¯åŒå£«)
 		float p1x = m_exeChara1->GetPos ().x;
 		float p2x = m_exeChara2->GetPos ().x;
 		
 		// P1 << P2
 		if ( p2x - p1x > GAME_WINDOW_WIDTH - FIELD_EDGE * 2 )
 		{
-			m_exeChara1->BackPtX ();	//Œİ‚¢‚ÉˆÊ’u‚ğ–ß‚·
+			m_exeChara1->BackPtX ();	//äº’ã„ã«ä½ç½®ã‚’æˆ»ã™
 			m_exeChara2->BackPtX ();
 		}
 		// P2 << P1
 		else if ( p1x - p2x > GAME_WINDOW_WIDTH - FIELD_EDGE * 2 )
 		{
-			m_exeChara1->BackPtX ();	//Œİ‚¢‚ÉˆÊ’u‚ğ–ß‚·
+			m_exeChara1->BackPtX ();	//äº’ã„ã«ä½ç½®ã‚’æˆ»ã™
 			m_exeChara2->BackPtX ();
 		}
 	}
 
 	bool MutualChara::LeaveDir ( bool dirRight, float pos0, float pos1 )
 	{
-		//—£‚ê‚é•ûŒü‚Ì‚Æ‚«
+		//é›¢ã‚Œã‚‹æ–¹å‘ã®ã¨ã
 		bool leave = F;
-		if ( dirRight )	//‰EŒü‚«¶ˆÚ“®
+		if ( dirRight )	//å³å‘ãå·¦ç§»å‹•
 		{
 			if ( pos1 < pos0 ) leave = T;
 		}
-		else//¶Œü‚«‰EˆÚ“®
+		else//å·¦å‘ãå³ç§»å‹•
 		{
 			if ( pos0 < pos1 ) leave = T;
 		}
 		return leave;
 	}
 
-	//Ÿ================================
-	//Ÿ		‘ŠŒİ”»’è (UŒ‚Eƒqƒbƒg˜g)
-	//Ÿ================================
+	//â—†================================
+	//â—†		ç›¸äº’åˆ¤å®š (æ”»æ’ƒãƒ»ãƒ’ãƒƒãƒˆæ )
+	//â—†================================
 	void MutualChara::_Decision ()
 	{
 		m_decision->Do ();
 	}
 
-	//Ÿ================================
-	//Ÿ		‹¤’ÊƒOƒ‰ƒtƒBƒbƒN
-	//Ÿ================================
+	//â—†================================
+	//â—†		å…±é€šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	//â—†================================
 	void MutualChara::Grp ()
 	{
 		//---------------------------------------------------
-		//ˆÃ“]
+		//æš—è»¢
 		UINT bo1 = m_exeChara1->GetBlackOut ();
 		UINT bo2 = m_exeChara2->GetBlackOut ();
 
-		//‚Ç‚¿‚ç‚©‚ª”­¶‚µ‚½‚Æ‚«
+		//ã©ã¡ã‚‰ã‹ãŒç™ºç”Ÿã—ãŸã¨ã
 		if ( 0 < bo1 || 0 < bo2 )
 		{
 			SOUND->Play_SE ( SE_Sys_EnterFighting );
 
-			//‘å‚«‚¢•û‚Åã‘
+			//å¤§ãã„æ–¹ã§ä¸Šæ›¸
 			m_blackOut = ( bo2 < bo1 ) ? bo1 : bo2;
 			m_exeChara1->SetBlackOut ( 0 );
 			m_exeChara2->SetBlackOut ( 0 );
 		}
 
 		//---------------------------------------------------
-		//ƒXƒNƒŠƒvƒg‚©‚ç‚Ì’â~
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã®åœæ­¢
 		UINT scpStop1P = m_exeChara1->GetScpStop ();
 		UINT scpStop2P = m_exeChara2->GetScpStop ();
 		if ( 0 < scpStop1P )
@@ -262,7 +262,7 @@ namespace GAME
 		}
 
 		//---------------------------------------------------
-		//‰æ–Ê•\¦‚ÌŠî€ˆÊ’u‚ğŒˆ’è
+		//ç”»é¢è¡¨ç¤ºã®åŸºæº–ä½ç½®ã‚’æ±ºå®š
 		VEC2 pos1p = m_exeChara1->GetPos ();
 		VEC2 pos2p = m_exeChara2->GetPos ();
 		G_Ftg::inst ()->CulcPosMutualBase ( pos1p, pos2p );
@@ -271,15 +271,15 @@ namespace GAME
 
 
 	//------------------------------------------------------
-	//	I—¹”»’è
+	//	çµ‚äº†åˆ¤å®š
 	//------------------------------------------------------
 	bool MutualChara::CheckZeroLife ()
 	{
-		//I—¹”»’è
+		//çµ‚äº†åˆ¤å®š
 		bool finish1p = m_exeChara1->IsZeroLife ();
 		bool finish2p = m_exeChara2->IsZeroLife ();
 
-		//‚Ç‚¿‚ç‚©A‚Ü‚½‚Í—¼•ûƒ‰ƒCƒt‚O‚È‚çI—¹
+		//ã©ã¡ã‚‰ã‹ã€ã¾ãŸã¯ä¸¡æ–¹ãƒ©ã‚¤ãƒ•ï¼ãªã‚‰çµ‚äº†
 		if ( finish1p || finish2p )
 		{
 			PLAYER_ID plr = _PLAYER_NUM;
@@ -295,7 +295,7 @@ namespace GAME
 			{
 				plr = PLAYER_ID_2;
 			}
-			//ƒV[ƒ“‹¤’Êƒpƒ‰ƒ[ƒ^‹L˜^
+			//ã‚·ãƒ¼ãƒ³å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨˜éŒ²
 			m_pParam->SetWinner ( plr );
 			return T;
 		}
@@ -306,7 +306,7 @@ namespace GAME
 #if 0
 	bool MutualChara::CheckDown ()
 	{
-		//ƒ_ƒEƒ“”»’è
+		//ãƒ€ã‚¦ãƒ³åˆ¤å®š
 		bool down1p = m_exeChara1->IsDown ();
 		bool down2p = m_exeChara2->IsDown ();
 		return (down1p || down2p);
@@ -314,7 +314,7 @@ namespace GAME
 
 	bool MutualChara::CheckDownEnd ()
 	{
-		//ƒ_ƒEƒ“”»’è
+		//ãƒ€ã‚¦ãƒ³åˆ¤å®š
 		bool downEnd1p = m_exeChara1->IsDownEnd ();
 		bool downEnd2p = m_exeChara2->IsDownEnd ();
 		return (downEnd1p || downEnd2p);
@@ -322,7 +322,7 @@ namespace GAME
 
 	bool MutualChara::CheckWin ()
 	{
-		//Ÿ—˜ó‘Ô”»’è
+		//å‹åˆ©çŠ¶æ…‹åˆ¤å®š
 		bool win1p = m_exeChara1->IsWin ();
 		bool win2p = m_exeChara2->IsWin ();
 		return (win1p || win2p);
@@ -330,7 +330,7 @@ namespace GAME
 
 	bool MutualChara::CheckWinEnd ()
 	{
-		//Ÿ—˜ó‘Ô”»’è
+		//å‹åˆ©çŠ¶æ…‹åˆ¤å®š
 		bool winEnd1p = m_exeChara1->IsWinEnd ();
 		bool winEnd2p = m_exeChara2->IsWinEnd ();
 		return (winEnd1p || winEnd2p);
@@ -340,7 +340,7 @@ namespace GAME
 	{
 		bool bRet = false;
 
-		//ƒ‰ƒCƒt‚ÅŸ—˜Ò‚ğŒˆ’è‚·‚é
+		//ãƒ©ã‚¤ãƒ•ã§å‹åˆ©è€…ã‚’æ±ºå®šã™ã‚‹
 		int life1p = m_exeChara1->GetLife ();
 		int life2p = m_exeChara2->GetLife ();
 
@@ -392,26 +392,26 @@ namespace GAME
 
 
 	//------------------------------------------------------
-	//	“à•”ŠÖ”
+	//	å†…éƒ¨é–¢æ•°
 	//------------------------------------------------------
 
 	//------------------------------------------------------
-	//˜g•\¦Ø‘Ö 
-	//@info ExeChara‚ÅŒÄ‚Ô‚Æ1P2P‚Å‚Q‰ñŒÄ‚Î‚ê‚Ä‚µ‚Ü‚¤
+	//æ è¡¨ç¤ºåˆ‡æ›¿ 
+	//@info ExeCharaã§å‘¼ã¶ã¨1P2Pã§ï¼’å›å‘¼ã°ã‚Œã¦ã—ã¾ã†
 	void MutualChara::SwitchRect ()
 	{
-		static bool bDispRect = false;		//ó‘Ô
-		static bool pre_bDispRect = false;	//‘O‰ñ‰Ÿ‚µ‚Ä‚¢‚é‚©
-		static bool is_bDispRect = false;	//¡‰ñ‰Ÿ‚µ‚Ä‚¢‚é‚©
+		static bool bDispRect = false;		//çŠ¶æ…‹
+		static bool pre_bDispRect = false;	//å‰å›æŠ¼ã—ã¦ã„ã‚‹ã‹
+		static bool is_bDispRect = false;	//ä»Šå›æŠ¼ã—ã¦ã„ã‚‹ã‹
 		
 		
 //		is_bDispRect = ( ::GetAsyncKeyState ( '1' ) & 0x0001 );
 		is_bDispRect = ( WND_UTL::AscKey ( '1' ) );
 
-		//@info ƒL[ƒ{[ƒh“ü—Í‚Í‰Ÿ‚µ‚Á‚Ï‚È‚µ‚Åˆê’èŠÔŒã˜A‘Åó‘Ô‚É‚È‚é
+		//@info ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›ã¯æŠ¼ã—ã£ã±ãªã—ã§ä¸€å®šæ™‚é–“å¾Œé€£æ‰“çŠ¶æ…‹ã«ãªã‚‹
 		//TRACE_F ( _T ( "b = %d, pre = %d, is = %d\n" ), bDispRect ? 1 : 0, pre_bDispRect ? 1 : 0, is_bDispRect ? 1 : 0  );
 		
-		//¡‰ñ‰Ÿ‚µ‚½uŠÔ‚È‚ç‚ÎA1‰ñ‚Ì‚İØ‘Ö
+		//ä»Šå›æŠ¼ã—ãŸç¬é–“ãªã‚‰ã°ã€1å›ã®ã¿åˆ‡æ›¿
 		if ( ! pre_bDispRect && is_bDispRect )	// false -> true
 		{
 			if ( ! bDispRect )
@@ -432,7 +432,7 @@ namespace GAME
 	}
 
 	//------------------------------------------------------
-	//CPU‘€ìØ‘Ö
+	//CPUæ“ä½œåˆ‡æ›¿
 	void MutualChara::SwithcCPU ()
 	{
 		static bool cpu1 = F;
@@ -485,7 +485,7 @@ namespace GAME
 
 	//------------------------------------------------------
 
-	//‡‰Šú‰»
+	//è©¦åˆåˆæœŸåŒ–
 	void MutualChara::ResetMatch ()
 	{
 		if ( ::GetAsyncKeyState ( '0' ) & 0x0001 )
@@ -502,23 +502,23 @@ namespace GAME
 	}
 
 	//------------------------------------------------------
-	//	ExeChara—¼Ò‘€ì
+	//	ExeCharaä¸¡è€…æ“ä½œ
 	//------------------------------------------------------
-	//ŠJnƒfƒ‚
+	//é–‹å§‹ãƒ‡ãƒ¢
 	void MutualChara::StartGreeting ()
 	{
 		m_exeChara1->StartGreeting ();
 		m_exeChara2->StartGreeting ();
 	}
 
-	//ŠJn€”õ
+	//é–‹å§‹æº–å‚™
 	void MutualChara::StartGetReady ()
 	{
 		m_exeChara1->StartGetReady ();
 		m_exeChara2->StartGetReady ();
 	}
 
-	//í“¬ŠJn
+	//æˆ¦é—˜é–‹å§‹
 	void MutualChara::StartFighting ()
 	{
 		m_exeChara1->StartFighting ();
@@ -529,43 +529,43 @@ namespace GAME
 #if 0
 	void MutualChara::SetReady ()
 	{
-		//€”õ
+		//æº–å‚™
 		m_exeChara1->SetCharaState ( CHST_START );
 		m_exeChara2->SetCharaState ( CHST_START );
 	}
 	void MutualChara::SetMain ()
 	{
-		//ŠJn
+		//é–‹å§‹
 		m_exeChara1->SetMain ();
 		m_exeChara2->SetMain ();
 	}
 	void MutualChara::Wait ( bool b )
 	{
-		//“ü—Í’â~
+		//å…¥åŠ›åœæ­¢
 		m_exeChara1->SetWait ( b );
 		m_exeChara2->SetWait ( b );
 	}
 	void MutualChara::Stop ( bool b )
 	{
-		//ˆê’â~
+		//ä¸€æ™‚åœæ­¢
 		m_exeChara1->SetStop ( b );
 		m_exeChara2->SetStop ( b );
 	}
 	void MutualChara::SetEndWait ()
 	{
-		//I—¹‘Ò‹@
+		//çµ‚äº†å¾…æ©Ÿ
 		m_exeChara1->SetEndWait ();
 		m_exeChara2->SetEndWait ();
 	}
 	void MutualChara::EndAct ()
 	{
-		//I—¹
+		//çµ‚äº†
 		m_exeChara1->OnEndAct ();
 		m_exeChara2->OnEndAct ();
 	}
 	void MutualChara::SetCharaState ( CHARA_STATE chst )
 	{
-		//ó‘Ô‚Ìİ’è
+		//çŠ¶æ…‹ã®è¨­å®š
 		m_exeChara1->SetCharaState ( chst );
 		m_exeChara2->SetCharaState ( chst );
 	}

@@ -1,14 +1,14 @@
 //=================================================================================================
 //
-//	Chara ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		ƒLƒƒƒ‰ƒNƒ^‚Ìƒf[ƒ^‚ğŠÇ—‚·‚é
-//		ƒCƒ[ƒWAƒXƒNƒŠƒvƒgAƒRƒ}ƒ“ƒh
+//	Chara ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç®¡ç†ã™ã‚‹
+//		ã‚¤ãƒ¡ãƒ¼ã‚¸ã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€ã‚³ãƒãƒ³ãƒ‰
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "GameTexture.h"
@@ -20,43 +20,43 @@
 #include "Command.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//==================================================================================
-	//	ƒLƒƒƒ‰ Àsãƒf[ƒ^ ver110
+	//	ã‚­ãƒ£ãƒ© å®Ÿè¡Œä¸Šãƒ‡ãƒ¼ã‚¿ ver110
 	//	
-	//	ƒLƒƒƒ‰	
-	//		„°ƒrƒwƒCƒrƒA
-	//		„«	„°[]ƒXƒNƒŠƒvƒg
-	//		„«		„°[]ƒ‹[ƒg
-	//		„«		„°[]EfƒWƒFƒlƒŒ[ƒg
-	//		„«
-	//		„°ƒK[ƒjƒbƒVƒ…
-	//		„«	„°[]ƒXƒNƒŠƒvƒg
-	//		„«		„°[]EfƒWƒFƒlƒŒ[ƒg
-	//		„«
-	//		„°[]ƒRƒ}ƒ“ƒh
-	//		„°[]ƒuƒ‰ƒ“ƒ`
-	//		„°[]ƒ‹[ƒg
+	//	ã‚­ãƒ£ãƒ©	
+	//		â”£ãƒ“ãƒ˜ã‚¤ãƒ“ã‚¢
+	//		â”ƒ	â”£[]ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	//		â”ƒ		â”£[]ãƒ«ãƒ¼ãƒˆ
+	//		â”ƒ		â”£[]Efã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆ
+	//		â”ƒ
+	//		â”£ã‚¬ãƒ¼ãƒ‹ãƒƒã‚·ãƒ¥
+	//		â”ƒ	â”£[]ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	//		â”ƒ		â”£[]Efã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆ
+	//		â”ƒ
+	//		â”£[]ã‚³ãƒãƒ³ãƒ‰
+	//		â”£[]ãƒ–ãƒ©ãƒ³ãƒ
+	//		â”£[]ãƒ«ãƒ¼ãƒˆ
 	//
 	//==================================================================================
 
 
 	class Chara
 	{
-//		Behavior		m_bhvMain;		//ƒƒCƒ“ ƒXƒNƒŠƒvƒg
-		PVP_TxBs		m_pvpTxMain;	//ƒƒCƒ“ƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒ”z—ñ
-		PVP_Action		m_pvpAction;	//ƒAƒNƒVƒ‡ƒ“”z—ñ
+//		Behavior		m_bhvMain;		//ãƒ¡ã‚¤ãƒ³ ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+		PVP_TxBs		m_pvpTxMain;	//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—
+		PVP_Action		m_pvpAction;	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é…åˆ—
 
-//		Garnish			m_bhvEf;		//EF ƒXƒNƒŠƒvƒg
-		PVP_TxBs		m_pvpTxEf;		//EFƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒ”z—ñ
-		PVP_Effect		m_pvpEf;		//ƒGƒtƒFƒNƒg”z—ñ
+//		Garnish			m_bhvEf;		//EF ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+		PVP_TxBs		m_pvpTxEf;		//EFã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—
+		PVP_Effect		m_pvpEf;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé…åˆ—
 
-		VP_Command		m_vpCommand;	//ƒRƒ}ƒ“ƒh”z—ñ
-		VP_Branch		m_vpBranch;		//ƒuƒ‰ƒ“ƒ`”z—ñ
-		VP_Route		m_vpRoute;		//ƒ‹[ƒg”z—ñ
+		VP_Command		m_vpCommand;	//ã‚³ãƒãƒ³ãƒ‰é…åˆ—
+		VP_Branch		m_vpBranch;		//ãƒ–ãƒ©ãƒ³ãƒé…åˆ—
+		VP_Route		m_vpRoute;		//ãƒ«ãƒ¼ãƒˆé…åˆ—
 
 	public:
 		Chara ();
@@ -70,93 +70,93 @@ namespace GAME
 		void Clear ();
 
 		//-----------------------------------------------------------------
-		//ƒƒCƒ“ƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒ”z—ñƒ|ƒCƒ“ƒ^
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—ãƒã‚¤ãƒ³ã‚¿
 		PVP_TxBs GetpvpMainTexture () const { return m_pvpTxMain; }
 
-		//ƒƒCƒ“ƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒ”z—ñ‚É’Ç‰Á
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—ã«è¿½åŠ 
 		void AddpMainTexture ( P_TxBs pTexture ) { m_pvpTxMain->push_back ( pTexture ); }
 
-		//ƒƒCƒ“ƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒƒ|ƒCƒ“ƒ^‚Ìæ“¾
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
 		P_TxBs GetpMainTexture ( UINT index ) { return m_pvpTxMain->at ( index ); }
 
 		//-----------------------------------------------------------------
-		//ƒAƒNƒVƒ‡ƒ“”z—ñƒ|ƒCƒ“ƒ^‚ğæ“¾
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é…åˆ—ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 		PVP_Action GetpvpAction () { return m_pvpAction; }
 
-		//ƒAƒNƒVƒ‡ƒ“”z—ñ‚É’Ç‰Á
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é…åˆ—ã«è¿½åŠ 
 		void AddpAction ( P_Action pAction ) { m_pvpAction->push_back ( pAction ); }
 
-		//ƒAƒNƒVƒ‡ƒ“”z—ñ‚É‚Ü‚Æ‚ß‚Ä’Ç‰Á
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é…åˆ—ã«ã¾ã¨ã‚ã¦è¿½åŠ 
 		void AddpAction ( unique_ptr < P_Action [] > arypAction, rsize_t size );
 		void AddpAction ( std::shared_ptr < P_Action [] > arypAction, rsize_t size );
 		void AddpAction ( const std::vector < P_Action > & arypAction, rsize_t size );
 
 		//---------------------------------------------------------------------
-		//–¼‘O‚©‚çƒAƒNƒVƒ‡ƒ“ID‚ğæ“¾‚·‚é(–³‚¢‚Æ‚«‚Í‚O‚ğ•Ô‚·)
+		//åå‰ã‹ã‚‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³IDã‚’å–å¾—ã™ã‚‹(ç„¡ã„ã¨ãã¯ï¼ã‚’è¿”ã™)
 		UINT GetActionID ( tstring name ) const;
 
-		//ƒAƒNƒVƒ‡ƒ“ƒ|ƒCƒ“ƒ^‚ğæ“¾
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 		P_Action GetpAction ( UINT index ) { return m_pvpAction->at ( index ); }
 		P_Action GetpAction ( tstring name ) { return GetpAction ( GetActionID ( name ) ); }
 
 		//---------------------------------------------------------------------
-		//ƒXƒNƒŠƒvƒgƒ|ƒCƒ“ƒ^‚ğæ“¾
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 		P_Script GetpScript ( UINT indexAction, UINT indexScript ) { return m_pvpAction->at ( indexAction )->GetpScript( indexScript ); }
 
-		//ŸƒXƒNƒŠƒvƒg‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
+		//æ¬¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹
 		bool IsNextScript ( UINT indexAction, UINT indexScript )
 		{
 			return m_pvpAction->at ( indexAction )->IsNextScript( indexScript );
 		}
 
 		//-----------------------------------------------------------------
-		//EfƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒ”z—ñƒ|ƒCƒ“ƒ^
+		//Efã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—ãƒã‚¤ãƒ³ã‚¿
 		PVP_TxBs GetpvpEfTexture () const { return m_pvpTxEf; }
 
-		//EfƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒ”z—ñ‚É’Ç‰Á
+		//Efã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—ã«è¿½åŠ 
 		void AddpEfTexture ( P_TxBs pTexture ) { m_pvpTxEf->push_back ( pTexture ); }
 
-		//ƒGƒtƒFƒNƒg”z—ñ‚É‚Ü‚Æ‚ß‚Ä’Ç‰Á
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé…åˆ—ã«ã¾ã¨ã‚ã¦è¿½åŠ 
 		void AddpEffect ( unique_ptr < P_Effect [] > arypEffect, rsize_t size );
 		void AddpEffect ( const std::vector < P_Effect > & arypEffect, rsize_t size );
 
-		//EfƒCƒ[ƒW ƒeƒNƒXƒ`ƒƒƒ|ƒCƒ“ƒ^‚Ìæ“¾
+		//Efã‚¤ãƒ¡ãƒ¼ã‚¸ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
 		P_TxBs GetpEfTexture ( UINT index ) { return m_pvpTxEf->at ( index ); }
 
 		//-----------------------------------------------------------------
-		//ƒGƒtƒFƒNƒg”z—ñ‚É’Ç‰Á
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé…åˆ—ã«è¿½åŠ 
 		void AddpEffect ( P_Effect pEffect ) { m_pvpEf->push_back ( pEffect ); }
 
-		//ƒGƒtƒFƒNƒg”z—ñƒ|ƒCƒ“ƒ^‚ğæ“¾
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé…åˆ—ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 		PVP_Effect GetpvpEffect () { return m_pvpEf; }
 
-		//ƒGƒtƒFƒNƒgƒ|ƒCƒ“ƒ^‚ğæ“¾
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 		P_Effect GetpEffect ( UINT index ) { return m_pvpEf->at ( index ); }
 
 		//---------------------------------------------------------------------
-		//ƒRƒ}ƒ“ƒh”z—ñ‚É’Ç‰Á
+		//ã‚³ãƒãƒ³ãƒ‰é…åˆ—ã«è¿½åŠ 
 		void AddpCommand ( P_Command pCommand ) { m_vpCommand.push_back ( pCommand ); }
 		void AddaCommand ( unique_ptr < P_Command [] > aryCmd, UINT size );
 
-		//ƒRƒ}ƒ“ƒh‚ğæ“¾
+		//ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—
 		P_Command GetpCommand ( UINT indexCommand ) const { return m_vpCommand[indexCommand]; }
 		const VP_Command & GetvpCommand () const { return m_vpCommand; }
 
 
-		//ƒuƒ‰ƒ“ƒ`”z—ñ‚É’Ç‰Á
+		//ãƒ–ãƒ©ãƒ³ãƒé…åˆ—ã«è¿½åŠ 
 		void AddpBranch ( P_Branch pBranch ) { m_vpBranch.push_back ( pBranch ); }
 		void AddaBranch ( unique_ptr < P_Branch [] > aryBrc, UINT size );
 
-		//ƒuƒ‰ƒ“ƒ`‚ğæ“¾
+		//ãƒ–ãƒ©ãƒ³ãƒã‚’å–å¾—
 		P_Branch GetpBranch ( UINT indexBranch ) const { return m_vpBranch[indexBranch]; }
 		const VP_Branch & GetvpBranch () const { return m_vpBranch; }
 
 
-		//ƒ‹[ƒg”z—ñ‚É’Ç‰Á
+		//ãƒ«ãƒ¼ãƒˆé…åˆ—ã«è¿½åŠ 
 		void AddpRoute ( P_Route pRoute ) { m_vpRoute.push_back ( pRoute ); }
 		void AddaRoute ( unique_ptr < P_Route [] > aryRut, UINT size );
 
-		//ƒ‹[ƒg‚ğæ“¾
+		//ãƒ«ãƒ¼ãƒˆã‚’å–å¾—
 		P_Route GetpRoute ( UINT indexRoute ) const { return m_vpRoute[indexRoute]; }
 		const VP_Route & GetvpRoute () const { return m_vpRoute; }
 	};

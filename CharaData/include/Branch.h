@@ -1,13 +1,13 @@
 //=================================================================================================
 //
-//	Branch ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		ƒXƒNƒŠƒvƒg‘JˆÚğŒ‚Ì“ü—ÍƒRƒ}ƒ“ƒh‚Æ‘JˆÚæƒV[ƒNƒGƒ“ƒX
+//	Branch ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		ã‚¹ã‚¯ãƒªãƒ—ãƒˆé·ç§»æ¡ä»¶ã®å…¥åŠ›ã‚³ãƒãƒ³ãƒ‰ã¨é·ç§»å…ˆã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Define.h"
@@ -15,59 +15,59 @@
 #include "Command.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//‘O•ûéŒ¾
+	//å‰æ–¹å®£è¨€
 	class Sequence;
 	using P_Sqc = std::shared_ptr < Sequence >;
-	using WP_Sqc = std::weak_ptr < Sequence >;		//zŠÂQÆ
+	using WP_Sqc = std::weak_ptr < Sequence >;		//å¾ªç’°å‚ç…§
 
 	using VP_Sqc = std::vector < P_Sqc >;
 	using PVP_Sqc = std::shared_ptr < VP_Sqc >;
-	using WP_Command = std::weak_ptr < Command >;		//zŠÂQÆ
+	using WP_Command = std::weak_ptr < Command >;		//å¾ªç’°å‚ç…§
 
 	class Branch
 	{
-		tstring		m_name;				//–¼‘O
-		BRANCH_CONDITION		m_condition;	//•ªŠòğŒ
-		UINT		m_indexCommand;		//ğŒƒRƒ}ƒ“ƒh”z—ñ“Yš
-		WP_Command	m_pCommand;			//ğŒƒRƒ}ƒ“ƒhƒ|ƒCƒ“ƒ^
-		UINT		m_indexSequence;	//‘JˆÚæƒV[ƒNƒGƒ“ƒX“Yš
-		WP_Sqc		m_pSequence;		//‘JˆÚæƒV[ƒNƒGƒ“ƒXƒ|ƒCƒ“ƒ^
-		UINT		m_indexFrame;		//‘JˆÚæƒXƒNƒŠƒvƒgˆÊ’u
+		tstring		m_name;				//åå‰
+		BRANCH_CONDITION		m_condition;	//åˆ†å²æ¡ä»¶
+		UINT		m_indexCommand;		//æ¡ä»¶ã‚³ãƒãƒ³ãƒ‰é…åˆ—æ·»å­—
+		WP_Command	m_pCommand;			//æ¡ä»¶ã‚³ãƒãƒ³ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+		UINT		m_indexSequence;	//é·ç§»å…ˆã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹æ·»å­—
+		WP_Sqc		m_pSequence;		//é·ç§»å…ˆã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿
+		UINT		m_indexFrame;		//é·ç§»å…ˆã‚¹ã‚¯ãƒªãƒ—ãƒˆä½ç½®
 
 	public:
 		Branch ();
 		Branch ( const Branch & rhs ) = delete;
 		~Branch ();
 
-		//–¼‘O
+		//åå‰
 		tstring GetName () const { return m_name; }
 		void SetName ( tstring name ) { m_name.assign ( name ); }
 
-		//•ªŠòğŒ
+		//åˆ†å²æ¡ä»¶
 		void SetCondition ( BRANCH_CONDITION bc ) { m_condition = bc; }
 		BRANCH_CONDITION GetCondition () const { return m_condition; }
 
-		//ğŒƒRƒ}ƒ“ƒh”z—ñ“Yš
+		//æ¡ä»¶ã‚³ãƒãƒ³ãƒ‰é…åˆ—æ·»å­—
 		void SetIndexCommand ( UINT index ) { m_indexCommand = index; }
 		UINT GetIndexCommand () const { return m_indexCommand; }
 
-		//ğŒƒRƒ}ƒ“ƒhƒ|ƒCƒ“ƒ^
+		//æ¡ä»¶ã‚³ãƒãƒ³ãƒ‰ãƒã‚¤ãƒ³ã‚¿
 		void SetpCommand ( P_Command pCommand ) { m_pCommand = pCommand; }
 		WP_Command GetpCommand () const { return m_pCommand; }
 
-		//‘JˆÚæƒV[ƒNƒGƒ“ƒX”z—ñ“Yš
+		//é·ç§»å…ˆã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹é…åˆ—æ·»å­—
 		void SetIndexSequence ( UINT index ) { m_indexSequence = index; }
 		UINT GetIndexSequence () const { return m_indexSequence; }
 
-		//‘JˆÚæƒV[ƒNƒGƒ“ƒXƒ|ƒCƒ“ƒ^
+		//é·ç§»å…ˆã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿
 		void SetpSequence ( P_Sqc pAction ) { m_pSequence = pAction; }
 		WP_Sqc GetpSequence () const { return m_pSequence; }
 
-		//‘JˆÚæƒXƒNƒŠƒvƒgˆÊ’u
+		//é·ç§»å…ˆã‚¹ã‚¯ãƒªãƒ—ãƒˆä½ç½®
 		void SetIndexFrame ( UINT index ) { m_indexFrame = index; }
 		UINT GetIndexFrame () const { return m_indexFrame; }
 	};

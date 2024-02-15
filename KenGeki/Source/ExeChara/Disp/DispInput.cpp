@@ -1,33 +1,33 @@
 //=================================================================================================
 //
-// DispInput ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispInput ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispInput.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//ƒL[“ü—Í•\¦ŒÂ”
-	//@todo CharaInput‚Ì“ü—Í•Û‘¶”‚Æ“¯ˆê‚È‚Ì‚Å“‡‚·‚é
+	//ã‚­ãƒ¼å…¥åŠ›è¡¨ç¤ºå€‹æ•°
+	//@todo CharaInputã®å…¥åŠ›ä¿å­˜æ•°ã¨åŒä¸€ãªã®ã§çµ±åˆã™ã‚‹
 	const UINT DispInput::NUM_DISP_INPUT = 20;
 	const UINT DispInput::BASE_Y = 150;
 	const UINT DispInput::CHIP_W = 10;
 	const UINT DispInput::CHIP_H = 10;
 
 
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	DispInput::DispInput ()
 		: m_timer ( 0 ), m_vel ( 1.f ), m_base_x ( 10 )
 	{
 		//---------------------------------------------------------------
-		//”wŒi
+		//èƒŒæ™¯
 		m_bg = make_shared < PrmRect > ();
 		m_bg->SetRect ( m_base_x, BASE_Y, CHIP_W * INPUT_NUM, CHIP_H * NUM_DISP_INPUT );
 		m_bg->SetZ ( Z_SYS );
@@ -36,7 +36,7 @@ namespace GAME
 		GRPLST_INSERT_MAIN ( m_bg );
 
 		//---------------------------------------------------------------
-		//Œ©o
+		//è¦‹å‡º
 		m_index = make_shared < GrpAcv > ();
 		m_index->AddTexture ( _T ( "KeyIndex.png" ) );
 		m_index->SetPos ( VEC2 ( m_base_x, BASE_Y - CHIP_H ) );
@@ -45,7 +45,7 @@ namespace GAME
 		GRPLST_INSERT_MAIN ( m_index );
 
 		//---------------------------------------------------------------
-		//ƒL[“ü—Í
+		//ã‚­ãƒ¼å…¥åŠ›
 		m_grp = make_shared < GrpAcv > ();
 		m_grp->AddTexture ( _T ( "10_10_white.png" ) );
 		m_grp->SetZ ( Z_SYS - 0.01f );
@@ -54,11 +54,11 @@ namespace GAME
 		GRPLST_INSERT_MAIN ( m_grp );
 
 		//-----------------------------------------------------
-		//‹éŒ`ŠÇ— ( 8í—Ş * 60[FPS] )
-		//c 60FPS
+		//çŸ©å½¢ç®¡ç† ( 8ç¨®é¡ * 60[FPS] )
+		//ç¸¦ 60FPS
 		for ( UINT frame = 0; frame < NUM_DISP_INPUT; ++ frame )
 		{
-			//‰¡ 8í—Ş
+			//æ¨ª 8ç¨®é¡
 			for ( UINT i = 0; i < INPUT_NUM; ++ i )
 			{
 				P_Object pOb = make_shared < GameObject > ();
@@ -66,7 +66,7 @@ namespace GAME
 				m_vpOb.push_back ( pOb );
 				m_grp->AddpObject ( pOb );
 
-				//‰Šú’lƒ‰ƒ“ƒ_ƒ€
+				//åˆæœŸå€¤ãƒ©ãƒ³ãƒ€ãƒ 
 				if ( 0 == rand () % 2 )
 				{
 					pOb->SetValid ( T );
@@ -80,10 +80,10 @@ namespace GAME
 	{
 	}
 
-	//ƒvƒŒƒCƒ„ID‚É‚æ‚é•\¦‰Šú‰»
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤IDã«ã‚ˆã‚‹è¡¨ç¤ºåˆæœŸåŒ–
 	void DispInput::LoadPlayer ( PLAYER_ID playerID )
 	{
-		//ˆÊ’u
+		//ä½ç½®
 		if ( PLAYER_ID_1 == playerID )
 		{
 			m_base_x = 10;
@@ -98,17 +98,17 @@ namespace GAME
 		m_timer = 0;
 	}
 
-	//XV
+	//æ›´æ–°
 	void DispInput::UpdateInput ( P_CharaInput pCharaInput )
 	{
 		//---------------------------------------------------------------
-		//ƒL[‰ß‹“ü—Í‚Ì•\¦
+		//ã‚­ãƒ¼éå»å…¥åŠ›ã®è¡¨ç¤º
 		++ m_timer;
 
-		//1ƒ}ƒX•ªˆÚ“®‚µ‚½‚çã‚ÉƒVƒtƒg
+		//1ãƒã‚¹åˆ†ç§»å‹•ã—ãŸã‚‰ä¸Šã«ã‚·ãƒ•ãƒˆ
 		if ( 0 < m_timer )
 		{
-			//ã‘‚Ì‚½‚ß‹t‡ƒ‹[ƒv
+			//ä¸Šæ›¸ã®ãŸã‚é€†é †ãƒ«ãƒ¼ãƒ—
 			for ( UINT i = m_vpOb.size () - 1; i >= INPUT_NUM; -- i )
 			{
 				m_vpOb [ i ]->SetValid ( m_vpOb [ i - INPUT_NUM ]->GetValid () );
@@ -118,10 +118,10 @@ namespace GAME
 		}
 
 		//--------------------------
-		//Œ»“ü—Í‚Ì”½‰f
+		//ç¾å…¥åŠ›ã®åæ˜ 
 		V_GAME_KEY vKey = pCharaInput->GetvGameKey ();
 
-		//•\¦ˆÊ’u
+		//è¡¨ç¤ºä½ç½®
 		int i = 0;
 		for ( P_Object pOb: m_vpOb )
 		{
@@ -136,11 +136,11 @@ namespace GAME
 	}
 
 	//-------------------------------------
-	//“à•”—˜—p
-	//n:ƒL[í—Ş, i:[F]
+	//å†…éƒ¨åˆ©ç”¨
+	//n:ã‚­ãƒ¼ç¨®é¡, i:[F]
 	bool DispInput::GetBoolInput ( P_CharaInput pCharaInput, int n, int i )
 	{
-		//Œ»“ü—Í
+		//ç¾å…¥åŠ›
 		const V_GAME_KEY& vKey = pCharaInput->GetvGameKey ();
 
 		bool ret = false;

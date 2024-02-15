@@ -1,13 +1,13 @@
 //=================================================================================================
 //
-// ExeEffect ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		Effect‚P‚Â‚É‚Â‚«‚PŒÂ‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚µÀs‚·‚é
+// ExeEffect ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		Effectï¼‘ã¤ã«ã¤ãï¼‘å€‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—å®Ÿè¡Œã™ã‚‹
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "Chara.h"
@@ -15,45 +15,45 @@
 #include "../Rect/CharaRect.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	class ExeEffect : public TASK_VEC
 	{
 		//------------------------------------------------
-		P_Effect		m_pEffect;		//ÀŒøƒGƒtƒFƒNƒgƒ|ƒCƒ“ƒ^
+		P_Effect		m_pEffect;		//å®ŸåŠ¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
 
-		P_Chara			m_pChara;		//ƒLƒƒƒ‰
-		VP_Branch		m_vpBranch;		//ƒGƒtƒFƒNƒg‚Ì•ªŠò
-		VP_Route		m_vpRoute;		//ƒ‹[ƒg
-
-		//------------------------------------------------
-		P_DispEffect	m_dispEffect;	//•\¦€–ÚŠÇ—
-		bool			m_bDispRect;	//˜g•\¦
+		P_Chara			m_pChara;		//ã‚­ãƒ£ãƒ©
+		VP_Branch		m_vpBranch;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆ†å²
+		VP_Route		m_vpRoute;		//ãƒ«ãƒ¼ãƒˆ
 
 		//------------------------------------------------
-		//ƒpƒ‰ƒ[ƒ^
-		bool		m_active;		//—LŒøƒtƒ‰ƒO
-		bool		m_end;			//I—¹ƒtƒ‰ƒO
+		P_DispEffect	m_dispEffect;	//è¡¨ç¤ºé …ç›®ç®¡ç†
+		bool			m_bDispRect;	//æ è¡¨ç¤º
 
-		UINT		m_frame;		//ÀŒø“à•”ƒtƒŒ[ƒ€(ƒXƒNƒŠƒvƒgID)
-		P_Script	m_pScript;		//ÀŒøƒXƒNƒŠƒvƒgƒ|ƒCƒ“ƒ^
-		VEC2		m_ptEffect;		//ƒGƒtƒFƒNƒgˆÊ’u
+		//------------------------------------------------
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		bool		m_active;		//æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+		bool		m_end;			//çµ‚äº†ãƒ•ãƒ©ã‚°
 
-		VEC2		m_ptGnrt;		//ƒGƒtƒFƒNƒg”­¶ˆÊ’u
-		bool		m_gnrt;			//¶¬
-		bool		m_loop;			//ŒJ•Ô
-		bool		m_sync;			//“¯Šú
+		UINT		m_frame;		//å®ŸåŠ¹å†…éƒ¨ãƒ•ãƒ¬ãƒ¼ãƒ (ã‚¹ã‚¯ãƒªãƒ—ãƒˆID)
+		P_Script	m_pScript;		//å®ŸåŠ¹ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒ³ã‚¿
+		VEC2		m_ptEffect;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä½ç½®
 
-		bool		m_dirRight;	//ƒGƒtƒFƒNƒg‚ÌŒü‚«
-		VEC2		m_vel;	//‘¬“x
-		VEC2		m_acc;	//‰Á‘¬“x
+		VEC2		m_ptGnrt;		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿä½ç½®
+		bool		m_gnrt;			//ç”Ÿæˆ
+		bool		m_loop;			//ç¹°è¿”
+		bool		m_sync;			//åŒæœŸ
 
-		P_CharaRect		m_charaRect;	//˜g
+		bool		m_dirRight;	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‘ã
+		VEC2		m_vel;	//é€Ÿåº¦
+		VEC2		m_acc;	//åŠ é€Ÿåº¦
 
-		bool		m_offset;		//‘ŠE
-		bool		m_hit;			//ƒqƒbƒg
+		P_CharaRect		m_charaRect;	//æ 
+
+		bool		m_offset;		//ç›¸æ®º
+		bool		m_hit;			//ãƒ’ãƒƒãƒˆ
 
 	public:
 		ExeEffect ( P_Effect pEffect, P_Chara pChara, P_EfGnrt pEfGnrt, VEC2 ptChara, bool dirRight );
@@ -63,7 +63,7 @@ namespace GAME
 		void Init ();
 
 		//---------------------------------------------
-		//˜gæ“¾
+		//æ å–å¾—
 		P_CharaRect GetpCharaRect () { return m_charaRect; }
 		//---------------------------------------------
 
@@ -80,10 +80,10 @@ namespace GAME
 			return m_pEffect->GetpScript ( m_frame );
 		}
 
-		//‰Ò“­ŠJn
+		//ç¨¼åƒé–‹å§‹
 		void Drive () { m_active = true; }
 
-		//‰Ò“­’â~
+		//ç¨¼åƒåœæ­¢
 		void Stop ()
 		{
 			m_active = false;
@@ -96,11 +96,11 @@ namespace GAME
 
 //		void SetZ ( float z ) { m_dispEffect.SetZ ( z ); }
 
-		//‘ŠE
+		//ç›¸æ®º
 		void SetOffset ( bool b ) { m_offset = b; }
 		bool GetOffset () const { return m_offset; }
 
-		//ƒqƒbƒg
+		//ãƒ’ãƒƒãƒˆ
 		void SetHit ( bool b ) { m_hit = b; }
 		bool GetHit () const { return m_hit; }
 
@@ -110,7 +110,7 @@ namespace GAME
 		void OffDispRect () { m_bDispRect = false; }
 
 	private :
-		//x‚¾‚¯Œü‚«‚ğ”½‰f‚·‚é
+		//xã ã‘å‘ãã‚’åæ˜ ã™ã‚‹
 		VEC2 Dir ( VEC2 v ) const
 		{
 			if ( m_dirRight ) { return v; }
@@ -118,7 +118,7 @@ namespace GAME
 		}
 	};
 
-	//Œ^•Ê’è‹` ƒGƒCƒŠƒAƒX
+	//å‹åˆ¥å®šç¾© ã‚¨ã‚¤ãƒªã‚¢ã‚¹
 	using ExEf = ExeEffect;
 	using P_ExEf = std::shared_ptr < ExEf >;
 

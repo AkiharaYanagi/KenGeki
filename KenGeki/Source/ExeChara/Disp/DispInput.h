@@ -1,12 +1,12 @@
 //=================================================================================================
 //
-// DispInput ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// DispInput ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "../../GameMain/GameConst.h"
@@ -15,23 +15,23 @@
 #include "../Input/CharaInput.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	class DispInput : public TASK_VEC
 	{
-		//ƒL[“ü—Í•\¦ŒÂ”
-		static const UINT NUM_DISP_INPUT;	//•\¦ƒtƒŒ[ƒ€ŒÂ”
-		static const UINT BASE_Y;			//Šî€ˆÊ’u
-		static const UINT CHIP_W;			//1ŒÂ‚Ì•
-		static const UINT CHIP_H;			//1ŒÂ‚Ì‚
+		//ã‚­ãƒ¼å…¥åŠ›è¡¨ç¤ºå€‹æ•°
+		static const UINT NUM_DISP_INPUT;	//è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ å€‹æ•°
+		static const UINT BASE_Y;			//åŸºæº–ä½ç½®
+		static const UINT CHIP_W;			//1å€‹ã®å¹…
+		static const UINT CHIP_H;			//1å€‹ã®é«˜
 
-		P_PrmRect		m_bg;		//”wŒi
-		P_GrpAcv		m_index;	//Œ©o
+		P_PrmRect		m_bg;		//èƒŒæ™¯
+		P_GrpAcv		m_index;	//è¦‹å‡º
 
-		P_GrpAcv		m_grp;		//“ü—Í•\¦
+		P_GrpAcv		m_grp;		//å…¥åŠ›è¡¨ç¤º
 		VP_Object		m_vpOb;
 
 		UINT			m_timer;
@@ -45,7 +45,7 @@ namespace GAME
 
 		void LoadPlayer ( PLAYER_ID playerID );
 
-		//“ü—ÍXV
+		//å…¥åŠ›æ›´æ–°
 		void UpdateInput ( P_CharaInput pCharaInput );
 
 

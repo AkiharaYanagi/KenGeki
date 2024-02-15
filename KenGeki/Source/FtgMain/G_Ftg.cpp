@@ -1,24 +1,24 @@
 //=================================================================================================
 //
-//	G_Ftg ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	G_Ftg ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "G_Ftg.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	//------------------------------------------
-	//	StaticÀ‘Ì
+	//	Staticå®Ÿä½“
 	//------------------------------------------
-	// ƒVƒ“ƒOƒ‹ƒgƒ“ƒIƒuƒWƒFƒNƒg
+	// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	UP_G_Ftg	G_Ftg::m_inst;
 
 	G_Ftg::G_Ftg ()
@@ -32,28 +32,28 @@ namespace GAME
 	{
 	}
 
-	//ƒLƒƒƒ‰ˆÊ’u‚É‚æ‚é‰æ–Ê•\¦‚ÌŠî€ˆÊ’u
+	//ã‚­ãƒ£ãƒ©ä½ç½®ã«ã‚ˆã‚‹ç”»é¢è¡¨ç¤ºã®åŸºæº–ä½ç½®
 	void G_Ftg:: CulcPosMutualBase ( VEC2 pos1p, VEC2 pos2p )
 	{
-		//–ß’l
+		//æˆ»å€¤
 		float posMutualBase = 0;
 
-		//ˆÊ’u
-		float averagex = (pos1p.x + pos2p.x) * 0.5f;	//’†S
-		float window_half = GAME_WINDOW_WIDTH * 0.5f;	//•\¦ƒEƒBƒ“ƒhƒE‚Ì’†S(”¼•ª)
+		//ä½ç½®
+		float averagex = (pos1p.x + pos2p.x) * 0.5f;	//ä¸­å¿ƒ
+		float window_half = GAME_WINDOW_WIDTH * 0.5f;	//è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­å¿ƒ(åŠåˆ†)
 		m_chara_center_x = averagex;
 
-		//‰æ–Ê’[•\¦ˆ—
+		//ç”»é¢ç«¯è¡¨ç¤ºå‡¦ç†
 
-		//“Áê‰‰o
+		//ç‰¹æ®Šæ¼”å‡º
 
-		//•ÇƒŠƒZƒbƒg
+		//å£ãƒªã‚»ãƒƒãƒˆ
 		if ( m_bResetPos )
 		{
 			posMutualBase = window_half - averagex;
 			m_posMutualBase = VEC2 ( posMutualBase, 0 );
 
-			//•ÇˆÊ’u
+			//å£ä½ç½®
 			m_wall_L = m_chara_center_x - GAME_WIDTH * 0.5f;
 			m_wall_R = m_chara_center_x + GAME_WIDTH * 0.5f;
 
@@ -61,7 +61,7 @@ namespace GAME
 			return;
 		}
 
-		//•Ç‚Ì’†S
+		//å£ã®ä¸­å¿ƒ
 		float wall_center = ( m_wall_L + m_wall_R ) * 0.5f;
 
 
@@ -70,19 +70,19 @@ namespace GAME
 		posMutualBase = window_half - averagex;
 
 #if 1
-		//¶Šñ
-		//‰æ–Ê¶’[‚©‚ç•\¦”¼•ª¶‘¤‚Ì‚Æ‚«
+		//å·¦å¯„
+		//ç”»é¢å·¦ç«¯ã‹ã‚‰è¡¨ç¤ºåŠåˆ†å·¦å´ã®ã¨ã
 		if ( averagex < m_wall_L + window_half )
 		{
 			posMutualBase = 0 - m_wall_L;
 		}
-		//‰EŠñ
-		//‰æ–Ê‰E’[‚©‚ç•\¦”¼•ª‰E‘¤‚Ì‚Æ‚«
+		//å³å¯„
+		//ç”»é¢å³ç«¯ã‹ã‚‰è¡¨ç¤ºåŠåˆ†å³å´ã®ã¨ã
 		else if ( averagex > m_wall_R - window_half )
 		{
 			posMutualBase = GAME_WINDOW_WIDTH - m_wall_R;
 		}
-		//’†‰›
+		//ä¸­å¤®
 		else
 		{
 			posMutualBase = window_half - averagex;
@@ -93,17 +93,17 @@ namespace GAME
 
 
 #if 0
-		//¶Šñ
+		//å·¦å¯„
 		if ( averagex < 0 + window_half )
 		{
 			posMutualBase = 0;
 		}
-		//‰EŠñ
+		//å³å¯„
 		else if ( averagex > GAME_WIDTH - window_half )
 		{
 			posMutualBase = (float)GAME_WINDOW_WIDTH - GAME_WIDTH;
 		}
-		//’†‰›
+		//ä¸­å¤®
 		else
 		{
 			posMutualBase = window_center - averagex;
@@ -111,7 +111,7 @@ namespace GAME
 
 #endif // 0
 
-		//‰æ–Ê•\¦•â³ˆÊ’u
+		//ç”»é¢è¡¨ç¤ºè£œæ­£ä½ç½®
 		m_posMutualBase = VEC2 ( posMutualBase, 0 );
 	}
 

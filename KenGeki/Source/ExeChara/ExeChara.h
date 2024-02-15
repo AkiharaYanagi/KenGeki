@@ -1,14 +1,14 @@
 //=================================================================================================
 //
-// ƒGƒOƒ[ƒLƒƒƒ‰@ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		ƒLƒƒƒ‰‚Ìƒf[ƒ^‚ğó‚¯‚ÄƒQ[ƒ€ã‚ÅÀsiƒtƒŒ[ƒ€–ˆ“®ìA•`‰æj‚·‚é
-//		‘€ì‚ÌˆÊ’u‚È‚Ç‚ğ•Û‘¶‚·‚é
+// ã‚¨ã‚°ã‚¼ã‚­ãƒ£ãƒ©ã€€ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		ã‚­ãƒ£ãƒ©ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘ã¦ã‚²ãƒ¼ãƒ ä¸Šã§å®Ÿè¡Œï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ æ¯å‹•ä½œã€æç”»ï¼‰ã™ã‚‹
+//		æ“ä½œæ™‚ã®ä½ç½®ãªã©ã‚’ä¿å­˜ã™ã‚‹
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "CharaData.h"
@@ -26,282 +26,282 @@
 #include "../FtgMain/Ef/EfPart.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//‘O•ûéŒ¾
+	//å‰æ–¹å®£è¨€
 	class ExeChara;
 	using P_ExeChara = std::shared_ptr < ExeChara >;
 	using WP_ExeChara = std::weak_ptr < ExeChara >;
 
-	//ƒLƒƒƒ‰Às ƒNƒ‰ƒX
+	//ã‚­ãƒ£ãƒ©å®Ÿè¡Œ ã‚¯ãƒ©ã‚¹
 	class ExeChara : public TASK_VEC, public enable_shared_from_this < ExeChara >
 	{
 		//------------------------------------------------
-		//Šî–{ƒf[ƒ^
-		P_Chara			m_pChara;		//ƒLƒƒƒ‰ƒf[ƒ^
-		WP_ExeChara		m_pOther;		//‘ŠèƒLƒƒƒ‰(zŠÂQÆ‚È‚Ì‚Åweak_ptr)
+		//åŸºæœ¬ãƒ‡ãƒ¼ã‚¿
+		P_Chara			m_pChara;		//ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+		WP_ExeChara		m_pOther;		//ç›¸æ‰‹ã‚­ãƒ£ãƒ©(å¾ªç’°å‚ç…§ãªã®ã§weak_ptr)
 
-		PLAYER_ID		m_playerID;		//ƒvƒŒƒCƒ„[ID
-		PLAYER_MODE		m_playerMode;	//ƒvƒŒƒCƒ„[ƒ‚[ƒh(l,CPU,ƒlƒbƒgƒ[ƒN)
-		CHARA_NAME		m_name;			//ƒLƒƒƒ‰–¼
-
-		//------------------------------------------------
-		//•\¦
-		P_DispChara		m_dispChara;	//ƒLƒƒƒ‰‘S”Ê•\¦
+		PLAYER_ID		m_playerID;		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+		PLAYER_MODE		m_playerMode;	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¢ãƒ¼ãƒ‰(äºº,CPU,ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯)
+		CHARA_NAME		m_name;			//ã‚­ãƒ£ãƒ©å
 
 		//------------------------------------------------
-		//“ü—Í
-		P_CharaInput	m_pCharaInput;	//“ü—Í
-		P_PlayerInput	m_pPlayerInput;		//ƒvƒŒƒCƒ„
+		//è¡¨ç¤º
+		P_DispChara		m_dispChara;	//ã‚­ãƒ£ãƒ©å…¨èˆ¬è¡¨ç¤º
+
+		//------------------------------------------------
+		//å…¥åŠ›
+		P_CharaInput	m_pCharaInput;	//å…¥åŠ›
+		P_PlayerInput	m_pPlayerInput;		//ãƒ—ãƒ¬ã‚¤ãƒ¤
 		P_CPUInput		m_pCPUInput;		//CPU
 
 		//------------------------------------------------
-		//ƒXƒNƒŠƒvƒgÀs
-		UINT			m_actionID;		//ÀŒøŒ»İƒAƒNƒVƒ‡ƒ“ID
-		P_Action		m_pAction;		//ÀŒøƒAƒNƒVƒ‡ƒ“ƒ|ƒCƒ“ƒ^
-		UINT			m_frame;		//ÀŒø“à•”ƒtƒŒ[ƒ€(ƒXƒNƒŠƒvƒgID)
-		P_Script		m_pScript;		//ÀŒøƒXƒNƒŠƒvƒgƒ|ƒCƒ“ƒ^
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œ
+		UINT			m_actionID;		//å®ŸåŠ¹ç¾åœ¨ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ID
+		P_Action		m_pAction;		//å®ŸåŠ¹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ã‚¿
+		UINT			m_frame;		//å®ŸåŠ¹å†…éƒ¨ãƒ•ãƒ¬ãƒ¼ãƒ (ã‚¹ã‚¯ãƒªãƒ—ãƒˆID)
+		P_Script		m_pScript;		//å®ŸåŠ¹ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒ³ã‚¿
 
 		//------------------------------------------------
-		//˜g
-		P_CharaRect		m_charaRect;	//˜gƒZƒbƒg
+		//æ 
+		P_CharaRect		m_charaRect;	//æ ã‚»ãƒƒãƒˆ
 
 		//------------------------------------------------
-		//ƒpƒ‰ƒ[ƒ^
-		BtlParam		m_btlPrm;		//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^	
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		BtlParam		m_btlPrm;		//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	
 
 		//------------------------------------------------
-		//ƒGƒtƒFƒNƒgŠÄ—
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç›£ç†
 		P_OprEf			m_oprtEf;
 
 		//------------------------------------------------
-		//ƒQ[ƒ€isó‘Ô(ƒAƒNƒ^, ƒXƒe[ƒg‚ğ•Û‚·‚é)
+		//ã‚²ãƒ¼ãƒ é€²è¡ŒçŠ¶æ…‹(ã‚¢ã‚¯ã‚¿, ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä¿æŒã™ã‚‹)
 		ExeChara_Actor	m_actor;
 
 		//------------------------------------------------
-		//—±qƒGƒtƒFƒNƒg(QÆ)
+		//ç²’å­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ(å‚ç…§)
 		P_EfPart	m_efPart;
 
 	public:
 		ExeChara () = delete;
-		ExeChara ( PLAYER_ID m_playerID );	//ƒvƒŒƒCƒ„IDw’èƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì‚İ
+		ExeChara ( PLAYER_ID m_playerID );	//ãƒ—ãƒ¬ã‚¤ãƒ¤IDæŒ‡å®šã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®ã¿
 		ExeChara ( const ExeChara & rhs ) = delete;
 		~ExeChara ();
 
-		//Šî–{ƒ^ƒXƒNŠÖ”
+		//åŸºæœ¬ã‚¿ã‚¹ã‚¯é–¢æ•°
 		void ParamInit ( P_Param pParam );
 		void Load ();
 		void Init ();
-		void Reset ();	//•œ‹Œ
+		void Reset ();	//å¾©æ—§æ™‚
 		void _Reset ();
 
 
 		//===========================================================
 		//***********************************************************
-		//	–ˆƒtƒŒ[ƒ€MutualChara‚©‚çŒÄ‚Î‚ê‚éå‚ÈƒXƒNƒŠƒvƒgˆ—ŠÖ”‚Ìˆê˜A
+		//	æ¯ãƒ•ãƒ¬ãƒ¼ãƒ MutualCharaã‹ã‚‰å‘¼ã°ã‚Œã‚‹ä¸»ãªã‚¹ã‚¯ãƒªãƒ—ãƒˆå‡¦ç†é–¢æ•°ã®ä¸€é€£
 		//***********************************************************
-		//	« ˆ—‡”Ô
-		void PreScriptMove ();			//	ƒXƒNƒŠƒvƒg‘Oˆ—
-		//MutualChara::Collision ();	//	‘ŠŒİ”»’è (ÚG˜g)
-		void RectMove ();				//	‚Ô‚Â‚©‚èŒãA”»’è˜g‚ğİ’è
-		//MutualChara::Decision ();		//	‘ŠŒİ”»’è (UŒ‚˜gAƒqƒbƒg˜g)
-		void PostScriptMove ();			//	ƒXƒNƒŠƒvƒgŒãˆ—
+		//	â†“ å‡¦ç†é †ç•ª
+		void PreScriptMove ();			//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‰å‡¦ç†
+		//MutualChara::Collision ();	//	ç›¸äº’åˆ¤å®š (æ¥è§¦æ )
+		void RectMove ();				//	ã¶ã¤ã‹ã‚Šå¾Œã€åˆ¤å®šæ ã‚’è¨­å®š
+		//MutualChara::Decision ();		//	ç›¸äº’åˆ¤å®š (æ”»æ’ƒæ ã€ãƒ’ãƒƒãƒˆæ )
+		void PostScriptMove ();			//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¾Œå‡¦ç†
 		//===========================================================
 
 
 		//===========================================================
 		//***********************************************************
-		//State‚©‚çŒÄ‚Î‚ê‚éó‘Ô•Êˆ—
+		//Stateã‹ã‚‰å‘¼ã°ã‚Œã‚‹çŠ¶æ…‹åˆ¥å‡¦ç†
 		//***********************************************************
-		void Input ();			//“ü—Íˆ—
-		void TransitAction ();	//ƒAƒNƒVƒ‡ƒ“ˆÚ€
-		void CalcPos ();		// ˆÊ’uŒvZ		//‚Ô‚Â‚©‚èŒãAˆÊ’u‚ÌC³
-		void CheckLife ();		//ƒ‰ƒCƒt”»’è
-		void UpdateGraphic ();	//ƒOƒ‰ƒtƒBƒbƒNXV
-		void EffectMove ();		//ƒGƒtƒFƒNƒg“®ì
-		void MoveTimer () { m_btlPrm.TimerMove (); }		//ƒ^ƒCƒ}‰Ò“­
+		void Input ();			//å…¥åŠ›å‡¦ç†
+		void TransitAction ();	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ç§»é …
+		void CalcPos ();		// ä½ç½®è¨ˆç®—		//ã¶ã¤ã‹ã‚Šå¾Œã€ä½ç½®ã®ä¿®æ­£
+		void CheckLife ();		//ãƒ©ã‚¤ãƒ•åˆ¤å®š
+		void UpdateGraphic ();	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ›´æ–°
+		void EffectMove ();		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œ
+		void MoveTimer () { m_btlPrm.TimerMove (); }		//ã‚¿ã‚¤ãƒç¨¼åƒ
 		//===========================================================
 
 
 		//------------------------------------------------------------
-		//‘Šè‚ğİ’è
+		//ç›¸æ‰‹ã‚’è¨­å®š
 		void SetpOther ( WP_ExeChara p ) { m_pOther = p; }
 
 		//------------------------------------------------------------
-		//ƒpƒ‰ƒ[ƒ^
-		//@todo ƒXƒNƒŠƒvƒg‚Ì‚Â@ScriptParam_Battle ‚Æ ExeChara‚Ì‚ÂÀŒø’l BtlPrm ‚Ì®—
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		//@todo ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æŒã¤ã€€ScriptParam_Battle ã¨ ExeCharaã®æŒã¤å®ŸåŠ¹å€¤ BtlPrm ã®æ•´ç†
 
 		BtlParam GetBtlPrm () const { return m_btlPrm; }
 
 		void SetPos ( VEC2 v ) { m_btlPrm.SetPos ( v ); }
-		VEC2 GetPos () const { return m_btlPrm.GetPos (); }		//ˆÊ’u‚ğæ“¾
-		bool GetDirRight () const { return m_btlPrm.GetDirRight (); }	//Œü‚«‚ğæ“¾
-		void SetDirRight ( bool b ) { m_btlPrm.SetDirRight ( b ); }		//—§‚¿ó‘Ô‚ÅŒü‚«‚ğİ’è
+		VEC2 GetPos () const { return m_btlPrm.GetPos (); }		//ä½ç½®ã‚’å–å¾—
+		bool GetDirRight () const { return m_btlPrm.GetDirRight (); }	//å‘ãã‚’å–å¾—
+		void SetDirRight ( bool b ) { m_btlPrm.SetDirRight ( b ); }		//ç«‹ã¡çŠ¶æ…‹ã§å‘ãã‚’è¨­å®š
 
 		void BackPt () { m_btlPrm.BackPt (); }
 		void BackPtX () { m_btlPrm.BackPtX (); }
 		void BackMoveX ();
-		void LookOther ();	//‘Šè‚Ì•ûŒü‚ğŒü‚­
+		void LookOther ();	//ç›¸æ‰‹ã®æ–¹å‘ã‚’å‘ã
 
 		//------------------------------------------------
-		//—±qƒGƒtƒFƒNƒg
+		//ç²’å­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		void SetpParticle ( P_EfPart p ) { m_efPart = p; }
 
 		//---------------------------------------------
-		//ƒ‰ƒCƒt‚Oƒ`ƒFƒbƒN
+		//ãƒ©ã‚¤ãƒ•ï¼ãƒã‚§ãƒƒã‚¯
 		bool IsZeroLife () const { return ( 0 >= m_btlPrm.GetLife () ); }
 
 		//------------------------------------------------
-		//ƒGƒtƒFƒNƒg
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-		//ƒGƒtƒFƒNƒgƒŠƒXƒgæ“¾
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆå–å¾—
 		PLP_ExEf GetplpExEf () { return m_oprtEf->GetplpExEf (); }
 
 		//---------------------------------------------
-		//˜g
-		P_CharaRect GetpCharaRect () const { return m_charaRect; }		//˜gæ“¾
+		//æ 
+		P_CharaRect GetpCharaRect () const { return m_charaRect; }		//æ å–å¾—
 
-		void SetCollisionRect ();	//[PreMove] ˆÊ’u‚©‚çÚG˜gİ’è
-		void SetRect ();			//[PostMove] ‘ŠEEUŒ‚E“–‚è ˜gİ’è
-		void ResetRect ();			//ƒŠƒZƒbƒg
+		void SetCollisionRect ();	//[PreMove] ä½ç½®ã‹ã‚‰æ¥è§¦æ è¨­å®š
+		void SetRect ();			//[PostMove] ç›¸æ®ºãƒ»æ”»æ’ƒãƒ»å½“ã‚Š æ è¨­å®š
+		void ResetRect ();			//ãƒªã‚»ãƒƒãƒˆ
 	private:
-		void SetOffsetRect ();	//‘ŠE˜gİ’è
-		void SetAttackRect ();	//UŒ‚˜gİ’è
-		void SetHitRect ();		//“–‚è˜gİ’è
+		void SetOffsetRect ();	//ç›¸æ®ºæ è¨­å®š
+		void SetAttackRect ();	//æ”»æ’ƒæ è¨­å®š
+		void SetHitRect ();		//å½“ã‚Šæ è¨­å®š
 
 	public:
 		//---------------------------------------------
-		//Še’læ“¾
+		//å„å€¤å–å¾—
 		P_Script GetpScript () { return m_pScript; }
 		BtlParam GetBtlParam () const { return m_btlPrm; };
 
 		CHARA_NAME GetCharaName () const { return m_name; }
-		int GetLife () const { return m_btlPrm.GetLife (); }		//ƒ‰ƒCƒtæ“¾
+		int GetLife () const { return m_btlPrm.GetLife (); }		//ãƒ©ã‚¤ãƒ•å–å¾—
 		ACTION_POSTURE GetPosture () const { return m_pAction->GetPosture (); }
 
 
 		//================================================
-		//	ŠO•”‚©‚ç‚Ìó‘Ô•ÏX
+		//	å¤–éƒ¨ã‹ã‚‰ã®çŠ¶æ…‹å¤‰æ›´
 		//================================================
 
-		//ƒfƒ‚—pƒXƒe[ƒgw’è
+		//ãƒ‡ãƒ¢ç”¨ã‚¹ãƒ†ãƒ¼ãƒˆæŒ‡å®š
 		void StartGreeting () { m_actor.StartGreeting (); }
 		void StartGetReady () { m_actor.StartGetReady (); }
 		void StartFighting () { m_actor.StartFighting (); }
 
-		//ˆê’â~
-		void SetWait ( bool b ) { m_btlPrm.SetWait ( b ); }	//“ü—Í‚ğ’â~
-		void SetStop ( bool b ) { m_btlPrm.SetStop ( b ); }	//•`‰æXV‚ğ’â~
+		//ä¸€æ™‚åœæ­¢
+		void SetWait ( bool b ) { m_btlPrm.SetWait ( b ); }	//å…¥åŠ›ã‚’åœæ­¢
+		void SetStop ( bool b ) { m_btlPrm.SetStop ( b ); }	//æç”»æ›´æ–°ã‚’åœæ­¢
 		void SetStopTimer ( UINT i ) {
 			m_btlPrm.GetTmr_Stop ()->SetTargetTime ( i );
 			m_btlPrm.GetTmr_Stop ()->Start ();
 		}
 
-		//ƒqƒbƒgƒXƒgƒbƒv
+		//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—
 		bool IsHitStop () { return m_btlPrm.IsHitStop (); }
 
-		//‘Å‡
+		//æ‰“åˆ
 		bool GetClang () const { return m_btlPrm.GetClang (); }
 		void SetClang ( bool b ) { m_btlPrm.SetClang ( b ); }
 
-		//ˆø”F‘Å‡’â~ŠÔ
+		//å¼•æ•°ï¼šæ‰“åˆåœæ­¢æ™‚é–“
 		void OnClang ( UINT nLurch, CLANG_DECISION_WL clangDecision );
 
-		//‘ŠèEUŒ‚ ¨ ©•ªE‚­‚ç‚¢
-		//‚­‚ç‚¢”­¶
+		//ç›¸æ‰‹ãƒ»æ”»æ’ƒ â†’ è‡ªåˆ†ãƒ»ãã‚‰ã„
+		//ãã‚‰ã„ç™ºç”Ÿ
 		bool IsDamaged () const { return m_btlPrm.GetDamaged (); }
 		void SetDamaged ( bool b ) { m_btlPrm.SetDamaged ( b ); }
 		void OnDamaged ( int damage );
 		void OnDamaged ();
 
-		//©•ªEUŒ‚ -> ‘ŠèE‚­‚ç‚¢
-		//ƒqƒbƒg”­¶
+		//è‡ªåˆ†ãƒ»æ”»æ’ƒ -> ç›¸æ‰‹ãƒ»ãã‚‰ã„
+		//ãƒ’ãƒƒãƒˆç™ºç”Ÿ
 		bool IsHit () const { return m_btlPrm.GetHitEst (); }
 		void SetHit ( bool b ) { m_btlPrm.SetHitEst ( b ); }
 		void OnHit ();
 		void OnEfHit ();
 
 		//-------------------------------------------------
-		//ƒXƒNƒŠƒvƒg‚©‚ç‚Ì•ÏX
-		//ˆÃ“]
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã®å¤‰æ›´
+		//æš—è»¢
 		UINT GetBlackOut () const { return m_btlPrm.GetBlackOut (); }
 		void SetBlackOut ( UINT i ) { m_btlPrm.SetBlackOut ( i ); }
 
-		//’â~
+		//åœæ­¢
 		UINT GetScpStop () const { return m_btlPrm.GetScpStop (); }
 		void SetScpStop ( UINT i ) { m_btlPrm.SetScpStop ( i ); }
 
 		//-------------------------------------------------
 
-		//ŠO•”‚©‚ç‚Ìó‘ÔŠm”F
-		//“ÁêƒAƒNƒVƒ‡ƒ“i–¼‘Ow’èj
+		//å¤–éƒ¨ã‹ã‚‰ã®çŠ¶æ…‹ç¢ºèª
+		//ç‰¹æ®Šã‚¢ã‚¯ã‚·ãƒ§ãƒ³ï¼ˆåå‰æŒ‡å®šï¼‰
 		bool IsNameAction ( tstring nameAction ) const { return m_pAction->IsName ( nameAction ); }
 
-		//ƒ_ƒbƒVƒ…•ªŠò
+		//ãƒ€ãƒƒã‚·ãƒ¥åˆ†å²
 		void OnDashBranch ();
 
 		//-------------------------------------------------
-		//ƒVƒXƒeƒ€
+		//ã‚·ã‚¹ãƒ†ãƒ 
 
-		//ƒgƒŒ[ƒjƒ“ƒOƒ‚[ƒh‰Šú‰»
+		//ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰åˆæœŸåŒ–
 		void TrainingInit ();
 
-		//˜g•\¦Ø‘Ö
+		//æ è¡¨ç¤ºåˆ‡æ›¿
 		void OnDispRect ();
 		void OffDispRect ();
 
-		//CPU‘€ìØ‘Ö
+		//CPUæ“ä½œåˆ‡æ›¿
 		void ControlCPU ();
 		void ControlPlayer ();
 
 	//================================================
-	//	“à•”ŠÖ”
+	//	å†…éƒ¨é–¢æ•°
 	//================================================
 	
 	private:
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		void LoadCharaData ();
 		void LoadInput ();
 
 	public:
-		//ƒAƒNƒVƒ‡ƒ“w’è(State‚©‚çw’è)
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³æŒ‡å®š(Stateã‹ã‚‰æŒ‡å®š)
 		void SetAction ( tstring action_name );
 		void SetAction ( UINT action_id );
 
 	private:
-		//ƒAƒNƒVƒ‡ƒ“‚ÌˆÚ€
-		void TransitAction_Condition_I ( BRANCH_CONDITION CONDITION, bool forced );	//ğŒ‚ğƒ`ƒFƒbƒN‚µ‚ÄˆÚs
-		void TransitAction_Condition_E ( BRANCH_CONDITION CONDITION, bool forced );	//ğŒ‚ğƒ`ƒFƒbƒN‚µ‚ÄˆÚs
-		UINT Check_TransitAction_Condition ( BRANCH_CONDITION CONDITION );	//ƒAƒNƒVƒ‡ƒ“ˆÚs(ğŒƒ`ƒFƒbƒN)
-		bool TranditAction_Command ();	//ƒAƒNƒVƒ‡ƒ“ˆÚ€iƒRƒ}ƒ“ƒh‚ÉŠÖ‚·‚éˆ—j
-		void EndAction ();	//ƒAƒNƒVƒ‡ƒ“ˆÚ€A‘OƒAƒNƒVƒ‡ƒ“‚ÌÅŒã‚Ìˆ—
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ç§»é …
+		void TransitAction_Condition_I ( BRANCH_CONDITION CONDITION, bool forced );	//æ¡ä»¶ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ç§»è¡Œ
+		void TransitAction_Condition_E ( BRANCH_CONDITION CONDITION, bool forced );	//æ¡ä»¶ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ç§»è¡Œ
+		UINT Check_TransitAction_Condition ( BRANCH_CONDITION CONDITION );	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ç§»è¡Œ(æ¡ä»¶ãƒã‚§ãƒƒã‚¯)
+		bool TranditAction_Command ();	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ç§»é …ï¼ˆã‚³ãƒãƒ³ãƒ‰ã«é–¢ã™ã‚‹å‡¦ç†ï¼‰
+		void EndAction ();	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ç§»é …æ™‚ã€å‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®æœ€å¾Œã®å‡¦ç†
 
-		//ƒXƒNƒŠƒvƒgˆ—
-		void ExeScript ();	//ƒXƒNƒŠƒvƒg’Êíˆ—
-		void SetParamFromScript ();	//ƒXƒNƒŠƒvƒg‚©‚çƒpƒ‰ƒ[ƒ^‚ğ”½‰f‚·‚é
-		void Landing ();	//—‰ºE’…’n
-		void SpecialAction ();		//“ÁêƒAƒNƒVƒ‡ƒ“w’è
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‡¦ç†
+		void ExeScript ();	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆé€šå¸¸å‡¦ç†
+		void SetParamFromScript ();	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åæ˜ ã™ã‚‹
+		void Landing ();	//è½ä¸‹ãƒ»ç€åœ°
+		void SpecialAction ();		//ç‰¹æ®Šã‚¢ã‚¯ã‚·ãƒ§ãƒ³æŒ‡å®š
 
 	public:
-		void OverEfPart ();	//EfPartd‚È‚è
+		void OverEfPart ();	//EfParté‡ãªã‚Š
 
 	private:
 
 		//------------------------------------------------
-		//ƒAƒNƒVƒ‡ƒ“‘Ì¨
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä½“å‹¢
 		bool Is_AP_Stand () { return m_pAction->GetPosture () == AP_STAND; }
 		bool Is_AP_Jump () { return m_pAction->GetPosture () == AP_JUMP; }
 		bool Is_AP_Crouch () { return m_pAction->GetPosture () == AP_CROUCH; }
 
 		//------------------------------------------------
-		//ƒAƒNƒVƒ‡ƒ“ƒJƒeƒSƒŠ
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚«ãƒ†ã‚´ãƒª
 
-		//Œ»İƒAƒNƒVƒ‡ƒ“ƒJƒeƒSƒŠæ“¾
+		//ç¾åœ¨ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚«ãƒ†ã‚´ãƒªå–å¾—
 		ACTION_CATEGORY ActCtg () const { return m_pAction->GetCategory (); }
 		bool IsActCtg ( ACTION_CATEGORY ac ) const { return ac == ActCtg (); }
-		//ŠeƒAƒNƒVƒ‡ƒ“‚©‚Ç‚¤‚©
+		//å„ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹
 		bool IsAttacking () const
 		{
 			return
@@ -320,7 +320,7 @@ namespace GAME
 
 		//------------------------------------------------
 #if 0
-		//‚Ì‚¯‚¼‚èŠÔ
+		//ã®ã‘ãã‚Šæ™‚é–“
 		void SetLurch ( UINT n ) { if ( 0 != n ) { m_lurch = n;  } }
 		bool LurchTimer ();
 

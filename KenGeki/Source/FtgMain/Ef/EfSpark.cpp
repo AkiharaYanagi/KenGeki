@@ -1,16 +1,16 @@
 //=================================================================================================
 //
-//	EfSpark ƒ\[ƒXƒtƒ@ƒCƒ‹
+//	EfSpark ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "EfSpark.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
@@ -18,30 +18,30 @@ namespace GAME
 	{
 		AddTexture ( _T ( "Ef_Spark.png" ) );
 
-		//ƒOƒ‰ƒtƒBƒbƒNƒIƒuƒWƒFƒNƒg‚ğ‰Šú‰»
+		//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’åˆæœŸåŒ–
 		ResetObjectNum ( SPARK_NUM );
 
-		//ƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 		PVP_Object pvpObject = GetpvpObject ();
 		UINT i = 0;
 		for ( P_Object pOb : * pvpObject )
 		{
 			PrmEfSpark prm;
 			
-			//ˆÊ’u
+			//ä½ç½®
 			prm.m_pos.x = 0;
 			prm.m_pos.y = 0;
 
-			//Šp“x
+			//è§’åº¦
 			float rad = D3DX_2PI / SPARK_NUM;
 			float rad_i = rad * i;
 			prm.m_angle = rad_i;
 
-			//cos((‹ß—)ƒÎ/2)‚ğ§Œä
+			//cos((è¿‘ä¼¼)Ï€/2)ã‚’åˆ¶å¾¡
 			float c = cosf ( rad_i );
 			if ( D3DX_PI_HALF - 0.01 < rad_i && rad_i < D3DX_PI_HALF + 0.01 ) { c = 0; }
 
-			//sin((‹ß—)ƒÎ)‚ğ§Œä
+			//sin((è¿‘ä¼¼)Ï€)ã‚’åˆ¶å¾¡
 			float s = sinf ( rad_i );
 			if ( 3.14f < rad_i && rad_i < 3.15f ) { s = 0; }
 
@@ -74,17 +74,17 @@ namespace GAME
 		{
 			if ( ! pOb->GetValid () ) { continue; }
 
-			//ˆÊ’uŒvZ
+			//ä½ç½®è¨ˆç®—
 			VEC2 prePos = m_vPrm[i].m_pos;
-			m_vPrm[i].m_vel += -0.03f * m_vPrm[i].m_vel;	//Œ¸Š
+			m_vPrm[i].m_vel += -0.03f * m_vPrm[i].m_vel;	//æ¸›è¡°
 			m_vPrm[i].m_vel += m_vPrm[i].m_G;
 			m_vPrm[i].m_pos += m_vPrm[i].m_vel;
 
-			//Šî€ˆÊ’u + •â³ˆÊ’u + ŠO•”•â³ˆÊ’u + ŒÂ•ÊˆÊ’u
+			//åŸºæº–ä½ç½® + è£œæ­£ä½ç½® + å¤–éƒ¨è£œæ­£ä½ç½® + å€‹åˆ¥ä½ç½®
 			VEC2 prePosMatrix = GetCalcPos ( i );
 			SetPosMatrix ( i, m_vPrm[i].m_pos );
 
-			//ƒoƒEƒ“ƒh
+			//ãƒã‚¦ãƒ³ãƒ‰
 			VEC2 pos = GetCalcPos ( i );
 			if ( PLAYER_BASE_Y < pos.y )
 			{
@@ -93,14 +93,14 @@ namespace GAME
 				SetPosMatrix ( i, prePosMatrix );
 			}
 
-			//‰ñ“]
+			//å›è»¢
 //			float rad = D3DX_2PI / SPARK_NUM;
 //			float rad = atan2f ( m_sparkPos[i].y - prePos.y, m_sparkPos[i].x - prePos.x );
 			float rad = atan2f ( m_vPrm[i].m_pos.y - prePos.y, m_vPrm[i].m_pos.x - prePos.x );
 //			(*pvpMatrix)[i]->SetRadian ( D3DX_PI_HALF + rad * i );
 			pOb->SetRadian ( D3DX_PI_HALF + rad );
 
-			//ƒCƒ“ƒfƒbƒNƒX
+			//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 			++ i;
 		}
 		SetDispBase ( G_BASE_POS () );
@@ -110,7 +110,7 @@ namespace GAME
 
 	void EfSpark::On ( VEC2 center )
 	{
-		//‰ŠúˆÊ’u‚Æ‰‘¬‚ğƒŠƒZƒbƒg
+		//åˆæœŸä½ç½®ã¨åˆé€Ÿã‚’ãƒªã‚»ãƒƒãƒˆ
 		PVP_Object pvpObject = GetpvpObject ();
 		UINT i = 0;
 		for ( P_Object pOb : *pvpObject )
@@ -119,7 +119,7 @@ namespace GAME
 			pOb->SetFadeOut ( 60 );
 			m_vPrm[i].m_pos = VEC2 ( 0, 0 );
 			m_vPrm[i].m_vel = m_vPrm[i].m_startVel;
-			//ƒCƒ“ƒfƒbƒNƒX
+			//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 			++i;
 		}
 

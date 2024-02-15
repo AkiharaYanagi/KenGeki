@@ -1,22 +1,22 @@
 //=================================================================================================
 //
-// DispRect ƒ\[ƒXƒtƒ@ƒCƒ‹
+// DispRect ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "DispRect.h"
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	DispRect::DispRect () 
 	{
-		//˜g•\Ž¦‚ð‰Šú‰»
+		//æž è¡¨ç¤ºã‚’åˆæœŸåŒ–
 		m_pvpGrpCRect = make_shared < VP_PrmRect > ();
 		m_pvpGrpARect = make_shared < VP_PrmRect > ();
 		m_pvpGrpHRect = make_shared < VP_PrmRect > ();
@@ -69,8 +69,8 @@ namespace GAME
 		InitRect ();
 
 		//----------------------------------------------------
-		//@info		GRPLST‚É“®“I‚É’Ç‰Á‚·‚é‚Æ‚«‚ÍŠù‚É‘S‘Ì‚ªLoad()‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA
-		//			–¾Ž¦“I‚ÉLoad()‚ª•K—v
+		//@info		GRPLSTã«å‹•çš„ã«è¿½åŠ ã™ã‚‹ã¨ãã¯æ—¢ã«å…¨ä½“ãŒLoad()ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€
+		//			æ˜Žç¤ºçš„ã«Load()ãŒå¿…è¦
 		//----------------------------------------------------
 
 		OnRect ();
@@ -91,7 +91,7 @@ namespace GAME
 
 	DispRect::~DispRect ()
 	{
-		//I—¹Žž‚ÉƒOƒ‰ƒtƒBƒbƒNƒ^ƒXƒN‚ðŠO‚·
+		//çµ‚äº†æ™‚ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¹ã‚¯ã‚’å¤–ã™
 		for ( UINT i = 0; i < NUM_RECT; ++i )
 		{
 			GRPLST_REMOVE_MAIN ( (*m_pvpGrpCRect)[i] );
@@ -99,7 +99,7 @@ namespace GAME
 			GRPLST_REMOVE_MAIN ( (*m_pvpGrpHRect)[i] );
 			GRPLST_REMOVE_MAIN ( (*m_pvpGrpORect)[i] );
 		}
-		//‰ð•ú
+		//è§£æ”¾
 		for ( UINT i = 0; i < NUM_RECT; ++i )
 		{
 			m_pvpGrpCRect->clear ();
@@ -109,13 +109,13 @@ namespace GAME
 		}
 	}
 
-	//ŽÀŒø˜gÝ’è
+	//å®ŸåŠ¹æž è¨­å®š
 	void DispRect::SetCharaRect ( P_CharaRect pCharaRect )
 	{
 		mp_CharaRect = pCharaRect;
 	}
 
-	//XV
+	//æ›´æ–°
 	void DispRect::Update ()
 	{
 		SetCRect ( mp_CharaRect->GetpvCRect () );
@@ -124,7 +124,7 @@ namespace GAME
 		SetORect ( mp_CharaRect->GetpvORect () );
 	}
 
-	//•\Ž¦˜g‚Ì‰Šú‰»
+	//è¡¨ç¤ºæž ã®åˆæœŸåŒ–
 	void DispRect::InitRect ()
 	{
 		for ( P_PrmRect p : * m_pvpGrpCRect ) { p->SetZero (); }
@@ -133,7 +133,7 @@ namespace GAME
 		for ( P_PrmRect p : * m_pvpGrpORect ) { p->SetZero (); }
 	}
 
-	//•\Ž¦
+	//è¡¨ç¤º
 	void DispRect::OnRect ()
 	{
 		for ( P_PrmRect p : * m_pvpGrpCRect ) { p->SetValid ( true ); }
@@ -142,7 +142,7 @@ namespace GAME
 		for ( P_PrmRect p : * m_pvpGrpORect ) { p->SetValid ( true ); }
 	}
 
-	//”ñ•\Ž¦
+	//éžè¡¨ç¤º
 	void DispRect::OffRect ()
 	{
 		for ( P_PrmRect p : * m_pvpGrpCRect ) { p->SetValid ( false ); }
@@ -151,10 +151,10 @@ namespace GAME
 		for ( P_PrmRect p : * m_pvpGrpORect ) { p->SetValid ( false ); }
 	}
 
-	//ŽÀŒø˜g‚©‚ç•\Ž¦˜g‚ÖÝ’u
+	//å®ŸåŠ¹æž ã‹ã‚‰è¡¨ç¤ºæž ã¸è¨­ç½®
 	void DispRect::SetGrpRect ( PVP_PrmRect pvpGrpRect, PV_RECT pvRect )
 	{
-		float bx = G_BASE_POS().x;	//Šî€ˆÊ’u
+		float bx = G_BASE_POS().x;	//åŸºæº–ä½ç½®
 
 		UINT i = 0;
 		for ( P_PrmRect p : * pvpGrpRect )

@@ -1,51 +1,51 @@
 //=================================================================================================
 //
-// ƒLƒƒƒ‰ƒŒƒNƒg@ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		ƒLƒƒƒ‰‚É‚¨‚¯‚é˜g‚ğŠÄ—‚·‚é
+// ã‚­ãƒ£ãƒ©ãƒ¬ã‚¯ãƒˆã€€ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		ã‚­ãƒ£ãƒ©ã«ãŠã‘ã‚‹æ ã‚’ç›£ç†ã™ã‚‹
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 #include "Game.h"
 #include "../../FtgMain/FtgConst.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//ƒNƒ‰ƒX
+	//ã‚¯ãƒ©ã‚¹
 	class CharaRect
 	{
-		//ÀŒø˜g(ƒXƒNƒŠƒvƒg‚©‚çƒLƒƒƒ‰ˆÊ’u“™‚ğ‰ÁZ‚µ‚½’l)
-		PV_RECT		m_pvCRect;	//ÚG˜g
-		PV_RECT		m_pvARect;	//UŒ‚˜g
-		PV_RECT		m_pvHRect;	//“–‚è˜g
-		PV_RECT		m_pvORect;	//‘ŠE˜g
+		//å®ŸåŠ¹æ (ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã‚­ãƒ£ãƒ©ä½ç½®ç­‰ã‚’åŠ ç®—ã—ãŸå€¤)
+		PV_RECT		m_pvCRect;	//æ¥è§¦æ 
+		PV_RECT		m_pvARect;	//æ”»æ’ƒæ 
+		PV_RECT		m_pvHRect;	//å½“ã‚Šæ 
+		PV_RECT		m_pvORect;	//ç›¸æ®ºæ 
 
 	public:
 		CharaRect ();
 		CharaRect ( const CharaRect & rhs ) = delete;
 		~CharaRect ();
 
-		//˜gİ’è
-		void ResetAllRect ();				//‘SÀŒø˜g‚ÌƒŠƒZƒbƒg
+		//æ è¨­å®š
+		void ResetAllRect ();				//å…¨å®ŸåŠ¹æ ã®ãƒªã‚»ãƒƒãƒˆ
 
 		void ResetCRect () { ZeroVecRect ( m_pvCRect ); }
 		void ResetARect () { ZeroVecRect ( m_pvARect ); }
 		void ResetHRect () { ZeroVecRect ( m_pvHRect ); }
 		void ResetORect () { ZeroVecRect ( m_pvORect ); }
 
-		//˜g”z—ñæ“¾ ( size == ExeChara::CONST_CHARA::NUM_RECT )
+		//æ é…åˆ—å–å¾— ( size == ExeChara::CONST_CHARA::NUM_RECT )
 		PV_RECT GetpvCRect () { return m_pvCRect; }
 		PV_RECT GetpvARect () { return m_pvARect; }
 		PV_RECT GetpvHRect () { return m_pvHRect; }
 		PV_RECT GetpvORect () { return m_pvORect; }
 
-		//ƒXƒNƒŠƒvƒg‚©‚çÀŒø˜g‚Öİ’u
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰å®ŸåŠ¹æ ã¸è¨­ç½®
 		void SetpvRect ( PV_RECT pvRectActual, PV_RECT pvRectScript, bool dir, VEC2 pos );
 		void SetCRect ( PV_RECT crect, bool dir, VEC2 pos );
 		void SetARect ( PV_RECT arect, bool dir, VEC2 pos );
@@ -53,7 +53,7 @@ namespace GAME
 		void SetORect ( PV_RECT orect, bool dir, VEC2 pos );
 
 #if 0
-		//ÀŒø˜g‚©‚ç•\¦˜g‚Öİ’u
+		//å®ŸåŠ¹æ ã‹ã‚‰è¡¨ç¤ºæ ã¸è¨­ç½®
 		void SetGrpRect ( PrmRect grpRect [], RECT rect [], float dispGameBaseX );
 #endif // 0
 		

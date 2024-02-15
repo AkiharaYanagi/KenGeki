@@ -1,31 +1,31 @@
 //=================================================================================================
 //
-//	EfParticle �\�[�X�t�@�C��
+//	EfParticle ソースファイル
 //
 //=================================================================================================
 
 //-------------------------------------------------------------------------------------------------
-// �w�b�_�t�@�C���̃C���N���[�h
+// ヘッダファイルのインクルード
 //-------------------------------------------------------------------------------------------------
 #include "EfParticle.h"
 
 //-------------------------------------------------------------------------------------------------
-// ��`
+// 定義
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
-	//�����͕����E���x�Ƃ��Ƀ����_��
-	//���̌����ł��̏�ɗh��Ȃ����������
+	//初速は方向・速度ともにランダム
+	//一定の減衰でその場に揺れながら微速落下
 
 	EfParticle::EfParticle ()
 	{
 		AddTexture ( _T ( "Ef_Particle.png" ) );
 
-		//�O���t�B�b�N�I�u�W�F�N�g��������
+		//グラフィックオブジェクトを初期化
 		ResetObjectNum ( SPARK_NUM );
 
 		//-----------------------------------------------------
-		//�p�x�������p�����_�}�C�U
+		//角度初期化用ランダマイザ
 		std::vector < UINT > v_rnd_ui;
 		v_rnd_ui.reserve ( SPARK_NUM );
 		for ( UINT i = 0; i < SPARK_NUM; ++ i )
@@ -41,29 +41,29 @@ namespace GAME
 		}
 		//-----------------------------------------------------
 
-		//�p�����[�^��������
+		//パラメータを初期化
 		UINT i = 0;
 		PVP_Object pvpOb = GetpvpObject ();
 		for ( P_Object pOb : * GetpvpObject () )
 		{
 			PrmEfParticle prm;
 			
-			//�ʒu
+			//位置
 			prm.m_pos.x = 0;
 			prm.m_pos.y = 0;
 
-			//�p�x
+			//角度
 			float rad = D3DX_2PI / SPARK_NUM;
 //			float rad_i = rad * i;
 			float rad_i = rad * v_rnd_ui [ i ];
 			prm.m_angle = rad_i;
 			pOb->SetRadian ( D3DX_PI_HALF + rad_i );
 
-			//cos((�ߎ�)��/2)�𐧌�
+			//cos((近似)π/2)を制御
 			float c = cosf ( rad_i );
 			if ( D3DX_PI_HALF - 0.01 < rad_i && rad_i < D3DX_PI_HALF + 0.01 ) { c = 0; }
 
-			//sin((�ߎ�)��)�𐧌�
+			//sin((近似)π)を制御
 			float s = sinf ( rad_i );
 			if ( 3.14f < rad_i && rad_i < 3.15f ) { s = 0; }
 
@@ -98,10 +98,10 @@ namespace GAME
 		{
 			if ( ! pOb->GetValid () ) { continue; }
 
-			//�ʒu�v�Z
+			//位置計算
 //			VEC2 prePos = m_vPrm[i].m_pos;
 
-			m_vPrm[i].m_vel += -0.03f * m_vPrm[i].m_vel;	//����
+			m_vPrm[i].m_vel += -0.03f * m_vPrm[i].m_vel;	//減衰
 			m_vPrm[i].m_vel += m_vPrm[i].m_G;
 			m_vPrm[i].m_pos += m_vPrm[i].m_vel;
 
@@ -112,12 +112,12 @@ namespace GAME
 				m_vPrm [ i ].m_flag = F;
 			}
 
-			//��ʒu + �␳�ʒu + �O���␳�ʒu + �ʈʒu
+			//基準位置 + 補正位置 + 外部補正位置 + 個別位置
 //			VEC2 prePosMatrix = GetCalcPos ( i );
 
 			SetPosMatrix ( i, m_vPrm[i].m_pos );
 
-			//�C���f�b�N�X
+			//インデックス
 			++ i;
 		}
 
@@ -126,7 +126,7 @@ namespace GAME
 //			( *pvpObject ) [ i ]->SetValid ( m_vPrm [ i ].m_flag );
 		}
 		
-		//���݃L�����N�^�ʒu�ɂ���ʕ␳�ʒu
+		//相互キャラクタ位置による画面補正位置
 		SetDispBase ( G_BASE_POS () );
 
 		GrpEf::Move ();
@@ -136,7 +136,7 @@ namespace GAME
 	{
 		//TRACE_F ( _T("EfParticle::On\n") );
 
-		//�����ʒu�Ə��������Z�b�g
+		//初期位置と初速をリセット
 		UINT i = 0;
 		UINT count = 0;
 		const UINT COUNT_MAX = 30;
@@ -144,7 +144,7 @@ namespace GAME
 		PVP_Object pvpObject = GetpvpObject ();
 		for ( P_Object pOb : *pvpObject )
 		{
-			//��ғ���Ԃ̂��̂��ĉғ�
+			//非稼働状態のものを再稼働
 //			if ( ! pOb->GetValid () )
 			if ( ! m_vPrm [ i ].m_flag )
 			{
@@ -154,11 +154,11 @@ namespace GAME
 				m_vPrm [ i ].m_startPos = center;
 				m_vPrm[i].m_vel = m_vPrm[i].m_startVel;
 
-				//�ғ��C���f�b�N�X
+				//稼働インデックス
 				if ( ++ count >= COUNT_MAX ) { break; }
 			}
 
-			//�S�̃C���f�b�N�X
+			//全体インデックス
 			++i;
 		}
 
