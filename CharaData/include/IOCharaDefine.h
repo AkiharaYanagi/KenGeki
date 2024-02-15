@@ -1,32 +1,32 @@
 //=================================================================================================
 //
-// IOCharaDefine ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		‹¤’Ê’è‹`
+// IOCharaDefine ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		å…±é€šå®šç¾©
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Chara.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//=================================
-	//ƒtƒ@ƒCƒ‹Œ`Ž®‚Ìƒo[ƒWƒ‡ƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	enum { CHARA_VERSION = 110 };
 	//=================================
 
 	//-------------------------------------------
-	//Document(ƒ‹[ƒg)‰º‚ÌƒGƒŒƒƒ“ƒg‚ÍChara‚Ì‚Ý
+	//Document(ãƒ«ãƒ¼ãƒˆ)ä¸‹ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã¯Charaã®ã¿
 
 	//-------------------------------------------
-	//Chara‰º‚ÌƒGƒŒƒƒ“ƒg
+	//Charaä¸‹ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 	enum ELEM_CHARA
 	{
 		ELEM_CHARA_VER		,
@@ -40,13 +40,13 @@ namespace GAME
 	};
 
 	//-------------------------------------------
-	//–¼‘O‚Ì‚Ý‚Ì‹¤’ÊƒAƒgƒŠƒrƒ…[ƒg
+	//åå‰ã®ã¿ã®å…±é€šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	enum ATTR_NAME
 	{
 		ATTR_NAME_0 = 0,
 	};
 
-	//ƒAƒNƒVƒ‡ƒ“‰º‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä¸‹ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	enum ATTR_ACTION
 	{
 		ATTR_ACTION_NAME		, 
@@ -58,7 +58,7 @@ namespace GAME
 	};
 
 	//-------------------------------------------
-	//ƒXƒNƒŠƒvƒg‰º‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸‹ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	enum ATTR_SCRIPT
 	{
 		ATTR_SCRIPT_GROUP,
@@ -77,14 +77,14 @@ namespace GAME
 		ATTR_SCRIPT_STOP,
 	};
 
-	//ƒXƒNƒŠƒvƒg“àƒ‹[ƒg‚ÌID
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ãƒ«ãƒ¼ãƒˆã®ID
 	enum
 	{
 		ATTR_SCRIPT_ROUTE_NAME = 0,
 		ATTR_SCRIPT_ROUTE_ID = 1,
 	};
 
-	//ƒXƒNƒŠƒvƒg‰º‚ÌƒGƒŒƒƒ“ƒg
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸‹ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 	enum
 	{
 		ELEM_SCRIPT_ROUTE, 
@@ -95,22 +95,22 @@ namespace GAME
 		ELEM_SCRIPT_ORECT, 
 	};
 
-	//ƒRƒ}ƒ“ƒh‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	//ã‚³ãƒžãƒ³ãƒ‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	enum
 	{
 		ATTR_COMMAND_NAME,
 		ATTR_COMMAND_LIMIT,
 	};
 
-	//ƒQ[ƒ€ƒL[ƒRƒ}ƒ“ƒh‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	//ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ã‚³ãƒžãƒ³ãƒ‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	enum
 	{
 		ATTR_GAMEKEY_NOT,
-		ATTR_GAMEKEY_LVR_ST,	//ˆÈ~GAME_KEY_LEVER_NUM‚ð‰ÁŽZ
-		ATTR_GAMEKEY_BTN_ST,	//ˆÈ~GAME_KEY_BUTTON_NUM‚ð‰ÁŽZ
+		ATTR_GAMEKEY_LVR_ST,	//ä»¥é™GAME_KEY_LEVER_NUMã‚’åŠ ç®—
+		ATTR_GAMEKEY_BTN_ST,	//ä»¥é™GAME_KEY_BUTTON_NUMã‚’åŠ ç®—
 	};
 
-	//ƒuƒ‰ƒ“ƒ`‚ÌƒAƒgƒŠƒrƒ…[ƒg—ñ‹“
+	//ãƒ–ãƒ©ãƒ³ãƒã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆåˆ—æŒ™
 	enum
 	{
 		ATTR_BRANCH_NAME,

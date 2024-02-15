@@ -1,69 +1,69 @@
 //=================================================================================================
 //
-//	Action ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		ƒXƒNƒŠƒvƒg‚Ìˆê˜AAŒÅ—L‚Ì’l‚ğ’Ç‰Á
+//	Action ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ä¸€é€£ã€å›ºæœ‰ã®å€¤ã‚’è¿½åŠ 
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Chara_Const.h"
 #include "Sequence.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	//==================================================================================
-	//	ŸƒAƒNƒVƒ‡ƒ“‘®«
+	//	â—†ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å±æ€§
 	//		STAND, MOVE, DASH, ATTACK_L, ATTACK_M, ATTACK_H, CLANG, AVOID, DOTTY, DAMAGED, DEMO, OTHER
 	//
 	//==================================================================================
 
 	//================================================================
-	//	ƒAƒNƒVƒ‡ƒ“		ŠeƒtƒŒ[ƒ€‚ÌƒXƒNƒŠƒvƒgƒŠƒXƒg‚ğ‚Â
-	//		„°[]ƒXƒNƒŠƒvƒg
-	//		„°ŸƒAƒNƒVƒ‡ƒ“
-	//		„°Á”ïƒoƒ‰ƒ“ƒX’l
-	//		„°ƒAƒNƒVƒ‡ƒ“‘Ì¨
-	//		„°ƒAƒNƒVƒ‡ƒ“‘®«
+	//	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³		å„ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒªã‚¹ãƒˆã‚’æŒã¤
+	//		â”£[]ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	//		â”£æ¬¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+	//		â”£æ¶ˆè²»ãƒãƒ©ãƒ³ã‚¹å€¤
+	//		â”£ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä½“å‹¢
+	//		â”£ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å±æ€§
 	//================================================================
 	
 	class Action : public Sequence
 	{
-		ACTION_CATEGORY		m_category;		//ƒAƒNƒVƒ‡ƒ“‘®«
-		ACTION_POSTURE		m_posture;		//ƒAƒNƒVƒ‡ƒ“‘Ì¨
-		UINT				m_hitNum;		//ƒqƒbƒg”
-		UINT				m_hitPitch;		//ƒqƒbƒgŠÔŠu
-		int					m_balance;		//ƒoƒ‰ƒ“ƒX’l
+		ACTION_CATEGORY		m_category;		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å±æ€§
+		ACTION_POSTURE		m_posture;		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä½“å‹¢
+		UINT				m_hitNum;		//ãƒ’ãƒƒãƒˆæ•°
+		UINT				m_hitPitch;		//ãƒ’ãƒƒãƒˆé–“éš”
+		int					m_balance;		//ãƒãƒ©ãƒ³ã‚¹å€¤
 
 	public:
 		Action ();
 		Action ( const Action & rhs ) = delete;
 		~Action ();
 
-		//ƒAƒNƒVƒ‡ƒ“‘®«
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å±æ€§
 		ACTION_CATEGORY GetCategory () const { return m_category; }
 		void SetCategory ( ACTION_CATEGORY category ) { m_category = category; }
 
-		//ƒAƒNƒVƒ‡ƒ“‘Ì¨
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä½“å‹¢
 		ACTION_POSTURE GetPosture () const { return m_posture; }
 		void SetPosture ( ACTION_POSTURE posture ) { m_posture = posture; }
 
-		//ƒqƒbƒg”
+		//ãƒ’ãƒƒãƒˆæ•°
 		UINT GetHitNum () const { return m_hitNum; }
 		void SetHitNum ( UINT n ) { m_hitNum = n; }
 
-		//ƒqƒbƒgŠÔŠu
+		//ãƒ’ãƒƒãƒˆé–“éš”
 		UINT GetHitPitch () const { return m_hitPitch; }
 		void SetHitPitch ( UINT n ) { m_hitPitch = n; }
 
-		//ƒoƒ‰ƒ“ƒX’l
+		//ãƒãƒ©ãƒ³ã‚¹å€¤
 		int GetBalance () { return m_balance; }
 		void SetBalance ( int i ) { m_balance = i; }
 };

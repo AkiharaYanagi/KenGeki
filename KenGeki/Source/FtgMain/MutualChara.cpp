@@ -17,7 +17,7 @@
 namespace GAME
 {
 	MutualChara::MutualChara ()
-		: m_scpStop ( 0 ), m_blackOut ( 0 )
+		: m_winner ( WINNER::WINNER_DRAW )
 	{
 		m_decision = make_shared < Decision > ();
 

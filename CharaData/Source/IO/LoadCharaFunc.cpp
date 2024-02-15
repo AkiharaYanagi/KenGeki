@@ -1,6 +1,6 @@
 //=================================================================================================
 //
-// LoadCharaFunc ƒ\[ƒXƒtƒ@ƒCƒ‹
+// LoadCharaFunc ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #include "LoadCharaFunc.h"
@@ -8,76 +8,76 @@ using namespace std;
 using namespace std::placeholders;
 
 //-------------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 using LCF = LoadCharaFunc;
 
 	//========================================================
-	//ƒhƒLƒ…ƒƒ“ƒg‚©‚çƒXƒNƒŠƒvƒg‚É•ÏŠ·‚·‚é
+	//ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«å¤‰æ›ã™ã‚‹
 	//========================================================
 	void LoadCharaFunc::_DocumentToChara ( const Document & document, Chara & ch )
 	{
-		//ƒ‹[ƒg‰º‚Ì‘€ì—pˆêƒGƒŒƒƒ“ƒg”z—ñ
+		//ãƒ«ãƒ¼ãƒˆä¸‹ã®æ“ä½œç”¨ä¸€æ™‚ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆé…åˆ—
 		const PVP_Element pvpElemRt = document.Root()->GetpvpElement ();
 
 		//---------------------------------------------------------------
-		//ƒ‹[ƒg -> ƒLƒƒƒ‰
+		//ãƒ«ãƒ¼ãƒˆ -> ã‚­ãƒ£ãƒ©
 		P_Element pElemChara = pvpElemRt->at ( 0 );
 		PVP_Element pvpeCh = pElemChara->GetpvpElement ();
 
 		//---------------------------------------------------------------
-		//ƒo[ƒWƒ‡ƒ“
+		//ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		P_Element pElemVer = pvpeCh->at ( ELEM_CHARA_VER );
 
 		//---------------------------------------------------------------
-		//ƒƒCƒ“ƒCƒ[ƒWƒŠƒXƒg‚ÌƒGƒŒƒƒ“ƒg
+		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		P_Element pElemMainImage = pvpeCh->at ( EL_MAIN_IMAGE_LIST );
 		UINT sizeMainTexture = m_utl._ElemToUINT ( pElemMainImage, 0 );
 		ch.GetpvpMainTexture()->resize ( sizeMainTexture );
-		m_utl.ElemToNameArray ( pElemMainImage, m_vMainImageName );		//–¼‘O‚Ì•Û‘¶
+		m_utl.ElemToNameArray ( pElemMainImage, m_vMainImageName );		//åå‰ã®ä¿å­˜
 
-		//EfƒCƒ[ƒWƒŠƒXƒg‚ÌƒGƒŒƒƒ“ƒg
+		//Efã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		P_Element pElemEfImage = pvpeCh->at ( EL_EF_IMAGE_LIST );
 		UINT sizeEfTexture = m_utl._ElemToUINT ( pElemEfImage, 0 );
 		ch.GetpvpEfTexture()->resize ( sizeEfTexture );
-		m_utl.ElemToNameArray ( pElemEfImage, m_vEfImageName );		//–¼‘O‚Ì•Û‘¶
+		m_utl.ElemToNameArray ( pElemEfImage, m_vEfImageName );		//åå‰ã®ä¿å­˜
 
 		//---------------------------------------------------------------
-		//ƒAƒNƒVƒ‡ƒ“”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		ElemAry ( pvpeCh->at ( EL_ACTION ), ch, bind ( & LCF::_ElemToActionC, this, _1, _2 ) );
 		m_utl.ElemToNameArray ( pvpeCh->at ( EL_ACTION ), m_vActionName );
 
 		//---------------------------------------------------------------
-		//ƒGƒtƒFƒNƒg”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		ElemAry ( pvpeCh->at ( EL_EFFECT ), ch, bind ( & LCF::_ElemToEffect, this, _1, _2 ) );
 		m_utl.ElemToNameArray ( pvpeCh->at ( EL_EFFECT ), m_vEffectName );
 
 		//---------------------------------------------------------------
-		//ƒRƒ}ƒ“ƒh”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//ã‚³ãƒãƒ³ãƒ‰é…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		ElemAry ( pvpeCh->at ( EL_COMMAND ), ch, bind ( & LCF::_ElemToCommand, this, _1, _2 ) );
 		m_utl.ElemToNameArray ( pvpeCh->at ( EL_COMMAND ), m_vCommandName );
 
-		//ƒuƒ‰ƒ“ƒ`”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//ãƒ–ãƒ©ãƒ³ãƒé…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		ElemAry ( pvpeCh->at ( EL_BRANCH ), ch, bind ( & LCF::_ElemToBranch, this, _1, _2 ) );
 		m_utl.ElemToNameArray ( pvpeCh->at ( EL_BRANCH ), m_vBranchName );
 
-		//ƒ‹[ƒg”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//ãƒ«ãƒ¼ãƒˆé…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		ElemAry ( pvpeCh->at ( EL_ROUTE ), ch, bind ( & LCF::_ElemToRoute, this, _1, _2 ) );
 		m_utl.ElemToNameArray ( pvpeCh->at ( EL_ROUTE ), m_vRouteName );
 
 		//---------------------------------------------------------------
-		//ƒXƒNƒŠƒvƒg“à‚Ìƒ‹[ƒg (ƒAƒNƒVƒ‡ƒ“‚ÆƒRƒ}ƒ“ƒh‚Ì“ÇŒãAindex‚©‚çÀŒøƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Äİ’è‚·‚é)
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®ãƒ«ãƒ¼ãƒˆ (ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚³ãƒãƒ³ãƒ‰ã®èª­è¾¼å¾Œã€indexã‹ã‚‰å®ŸåŠ¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¦è¨­å®šã™ã‚‹)
 		_LoadRouteInScript ( ch );
 	}
 
 
 	//-------------------------------------------------------------------
-	//	“à•”g—pŠÖ”
+	//	å†…éƒ¨ä½¿ç”¨é–¢æ•°
 	//-------------------------------------------------------------------
 
-	//ƒGƒŒƒƒ“ƒg‚ª‚ÂqƒGƒŒƒƒ“ƒg”z—ñ‚ÉŠe“ÇŠÖ”‚ğÀs‚·‚é
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãŒæŒã¤å­ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆé…åˆ—ã«å„èª­è¾¼é–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹
 	void LoadCharaFunc::ElemAry ( P_Element pElem, Chara & ch, FP_ElemToCharaParam fp )
 	{
 		const PVP_Element pvpElem = pElem->GetpvpElement ();
@@ -87,93 +87,93 @@ using LCF = LoadCharaFunc;
 		}
 	}
 
-	//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒAƒNƒVƒ‡ƒ“‚ğ“Ç‚İ‚İAƒLƒƒƒ‰‚É’Ç‰Á‚·‚é
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã¿ã€ã‚­ãƒ£ãƒ©ã«è¿½åŠ ã™ã‚‹
 	void LoadCharaFunc::_ElemToActionC ( const P_Element pElem, Chara & ch )
 	{
-		P_Action pAction = make_shared < Action > ();	//‘ã“ü—p‚ÌV‹KƒAƒNƒVƒ‡ƒ“
+		P_Action pAction = make_shared < Action > ();	//ä»£å…¥ç”¨ã®æ–°è¦ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 
 		//---------------------------
-		//attribute”z—ñƒ|ƒCƒ“ƒ^
+		//attributeé…åˆ—ãƒã‚¤ãƒ³ã‚¿
 		const PVP_Attribute pvpAttrAction = pElem->GetpvpAttribute ();
 
-		//ƒAƒNƒVƒ‡ƒ“ "–¼‘O"
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ "åå‰"
 		pAction->SetName ( pvpAttrAction->at ( ATTR_ACTION_NAME )->GetValue () );
 
 
-		//UINT ŸƒAƒNƒVƒ‡ƒ“ID (I—¹‚É‚¨‚¯‚éŸƒAƒNƒVƒ‡ƒ“‚ÌƒŠƒXƒg“àƒCƒ“ƒfƒbƒNƒX)
+		//UINT æ¬¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ID (çµ‚äº†æ™‚ã«ãŠã‘ã‚‹æ¬¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒªã‚¹ãƒˆå†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 		pAction->SetNextID (m_utl._AttrToUINT (pvpAttrAction->at (ATTR_ACTION_ID)));
 
-		//tstring ŸƒAƒNƒVƒ‡ƒ“–¼ (I—¹‚É‚¨‚¯‚éŸƒAƒNƒVƒ‡ƒ“‚Ì–¼‘O)
+		//tstring æ¬¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å (çµ‚äº†æ™‚ã«ãŠã‘ã‚‹æ¬¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®åå‰)
 		pAction->SetNextName ( pvpAttrAction->at (ATTR_ACTION_ID)->GetValue () );
 
 
-		//ƒAƒNƒVƒ‡ƒ“‘®«
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å±æ€§
 		UINT indexCategory = m_utl._AttrToUINT ( (*pvpAttrAction)[ATTR_ACTION_CATEGORY] );
 		ACTION_CATEGORY category = static_cast <ACTION_CATEGORY> (indexCategory);
 		pAction->SetCategory ( category );
 
-		//ƒAƒNƒVƒ‡ƒ“‘Ì¨
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä½“å‹¢
 		ACTION_POSTURE ap = m_utl._AttrToACTION_POSTURE ( (*pvpAttrAction)[ATTR_ACTION_POSTURE] );
 		pAction->SetPosture ( ap );
 
-		//int Á”ïƒoƒ‰ƒ“ƒX’l
+		//int æ¶ˆè²»ãƒãƒ©ãƒ³ã‚¹å€¤
 //		pAction->SetBalance ( _AttrToInt ( (*pvpAttrAction)[ATTR_ACTION_BALANCE] ) );
 
 		//---------------------------
 
-		//<Action>“à‚ÌElement
-		//	<Script>@...•s’è”
+		//<Action>å†…ã®Element
+		//	<Script>ã€€...ä¸å®šæ•°
 		const PVP_Element pvpElemScript = pElem->GetpvpElement ();
 		UINT _frame = 0;
 		for ( P_Element pe : *pvpElemScript )
 		{
-			P_Script pScript = make_shared < Script > ();		//İ’è—pƒXƒNƒŠƒvƒg‚ğ¶¬
-			_ElemToScript ( pe, pScript, _frame ++ );		//ƒGƒŒƒƒ“ƒg‚©‚çƒXƒNƒŠƒvƒg‚ğ“Ç
-			pAction->AddpScript ( pScript );			//ƒAƒNƒVƒ‡ƒ“‚ÉƒXƒNƒŠƒvƒg‚ğ’Ç‰Á
+			P_Script pScript = make_shared < Script > ();		//è¨­å®šç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ç”Ÿæˆ
+			_ElemToScript ( pe, pScript, _frame ++ );		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èª­è¾¼
+			pAction->AddpScript ( pScript );			//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è¿½åŠ 
 		}
 
 		//---------------------------
 
-		ch.AddpAction ( pAction );			//ƒLƒƒƒ‰‚ÉƒAƒNƒVƒ‡ƒ“‚ğ’Ç‰Á
+		ch.AddpAction ( pAction );			//ã‚­ãƒ£ãƒ©ã«ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
 	}
 
-	//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒGƒtƒFƒNƒg‚ğ“Ç‚İ‚İAƒLƒƒƒ‰‚É’Ç‰Á‚·‚é
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã¿ã€ã‚­ãƒ£ãƒ©ã«è¿½åŠ ã™ã‚‹
 	void LoadCharaFunc::_ElemToEffect ( const P_Element pElem, Chara & ch )
 	{
-		P_Effect pEffect = make_shared < Effect > ();	//‘ã“ü—p‚ÌV‹KƒGƒtƒFƒNƒg
+		P_Effect pEffect = make_shared < Effect > ();	//ä»£å…¥ç”¨ã®æ–°è¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		//---------------------------
 
-		//attribute”z—ñƒ|ƒCƒ“ƒ^
+		//attributeé…åˆ—ãƒã‚¤ãƒ³ã‚¿
 		const PVP_Attribute pvpAttrAction = pElem->GetpvpAttribute ();
 
-		//<Effect>“à‚ÌElement
-		//	<Script>@...•s’è”
+		//<Effect>å†…ã®Element
+		//	<Script>ã€€...ä¸å®šæ•°
 		const PVP_Element pvpElemScript = pElem->GetpvpElement ();
 		UINT _frame = 0;
 		for ( P_Element pe : * pvpElemScript )
 		{
-			P_Script pScript = make_shared < Script > ();		//İ’è—pƒXƒNƒŠƒvƒg‚ğ¶¬
-			_ElemToScript ( pe, pScript, _frame ++ );		//ƒGƒŒƒƒ“ƒg‚©‚çƒXƒNƒŠƒvƒg‚ğ“Ç
-			pEffect->AddpScript ( pScript );			//ƒGƒtƒFƒNƒg‚ÉƒXƒNƒŠƒvƒg‚ğ’Ç‰Á
+			P_Script pScript = make_shared < Script > ();		//è¨­å®šç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ç”Ÿæˆ
+			_ElemToScript ( pe, pScript, _frame ++ );		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èª­è¾¼
+			pEffect->AddpScript ( pScript );			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è¿½åŠ 
 		}
 		//---------------------------
 
-		ch.AddpEffect ( pEffect );			//ƒLƒƒƒ‰‚ÉƒGƒtƒFƒNƒg‚ğ’Ç‰Á
+		ch.AddpEffect ( pEffect );			//ã‚­ãƒ£ãƒ©ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¿½åŠ 
 	}
 
 	void LoadCharaFunc::_ElemToScript ( const P_Element pElem, const P_Script pScript, UINT frame )
 	{
 		//-----------------------------------------------------------------------------
-		//ì‹Æ—pƒAƒgƒŠƒrƒ…[ƒg”z—ñƒ|ƒCƒ“ƒ^
+		//ä½œæ¥­ç”¨ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆé…åˆ—ãƒã‚¤ãƒ³ã‚¿
 		const PVP_Attribute pAttr = pElem->GetpvpAttribute ();
 
-		//ƒtƒŒ[ƒ€”
+		//ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 		pScript->SetFrame ( frame );
 
-		//ƒOƒ‹[ƒv(ÀŒø‚Å‚Í—p‚¢‚È‚¢)
+		//ã‚°ãƒ«ãƒ¼ãƒ—(å®ŸåŠ¹ã§ã¯ç”¨ã„ãªã„)
 
-		//ƒCƒ[ƒWID
-//		//–¼‘O‚ğID‚É•ÏŠ·
+		//ã‚¤ãƒ¡ãƒ¼ã‚¸ID
+//		//åå‰ã‚’IDã«å¤‰æ›
 //		tstring tstrImageName = pAttr->at ( ATTR_SCRIPT_IMAGE_ID )->GetValue ();
 //		pScript->SetImageIndex ( m_utl.IndexOf ( m_vMainImageName, tstrImageName ) );
 		pScript->SetImageIndex ( m_utl._AttrToUINT ( pAttr->at ( ATTR_SCRIPT_IMAGE_ID ) ) );
@@ -192,12 +192,12 @@ using LCF = LoadCharaFunc;
 //		pScript->SetAcc ( acc );
 		pScript->m_prmBattle.Acc = acc;
 
-		//ŒvZó‘Ô
+		//è¨ˆç®—çŠ¶æ…‹
 		CLC_ST clcSt = m_utl._AttrToCLC_ST ( pAttr->at ( ATTR_SCRIPT_CLCST ) );
 		pScript->m_prmBattle.CalcState = clcSt;
 
 		//----------------------------------------------------
-		//ƒpƒ‰ƒ[ƒ^
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 		//power
 		int power = m_utl._AttrToInt ( pAttr->at ( ATTR_SCRIPT_POWER ) );
@@ -216,10 +216,10 @@ using LCF = LoadCharaFunc;
 		pScript->m_prmStaging.Stop = stop;
 
 		//-----------------------------------------------------------------------------
-		//ƒXƒNƒŠƒvƒg“à•”‚ÌƒGƒŒƒƒ“ƒg
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…éƒ¨ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		const PVP_Element pvpElemInScript = pElem->GetpvpElement ();
 
-		//ƒ‹[ƒg”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//ãƒ«ãƒ¼ãƒˆé…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		P_Element pElemVecRoute = pvpElemInScript->at ( ELEM_SCRIPT_ROUTE );
 		PVP_Element pvpElemRouteName = pElemVecRoute->GetpvpElement ();
 		for ( P_Element pe : * pvpElemRouteName )
@@ -229,21 +229,21 @@ using LCF = LoadCharaFunc;
 			pScript->AddRouteID ( i );
 		}
 
-		//EFƒWƒFƒlƒŒ[ƒg”z—ñ‚ÌƒGƒŒƒƒ“ƒg
+		//EFã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆé…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		P_Element pElemVecEfGnrt = pvpElemInScript->at ( ELEM_SCRIPT_EFGNRT );
 		_ElemToEfGnrtArray ( pElemVecEfGnrt, pScript );
 
-		//˜g“Ç
+		//æ èª­è¾¼
 		_LoadRectAll ( pvpElemInScript, pScript );
 	}
 
-	//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒRƒ}ƒ“ƒh‚ğ“Ç‚İ‚Ş
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿è¾¼ã‚€
 	void LoadCharaFunc::_ElemToCommand ( const P_Element pElem, Chara & ch )
 	{
-		P_Command pCommand = make_shared < Command > ();	//‘ã“ü—p‚ÌV‹Kì¬
+		P_Command pCommand = make_shared < Command > ();	//ä»£å…¥ç”¨ã®æ–°è¦ä½œæˆ
 	
 		//------------------------------------------------------------
-		//ƒAƒgƒŠƒrƒ…[ƒg”z—ñ
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆé…åˆ—
 		const PVP_Attribute pvpAttrCommand = pElem->GetpvpAttribute ();
 
 		//Name
@@ -256,13 +256,13 @@ using LCF = LoadCharaFunc;
 		pCommand->SetLimitTime ( limitTime );
 
 		//------------------------------------------------------------
-		//ƒGƒŒƒƒ“ƒg
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 
-		//qElement‚Í_GameKey‚ğ•s’è”•Û
+		//å­Elementã¯_GameKeyã‚’ä¸å®šæ•°ä¿æŒ
 		const PVP_Element pvpElemGameKey = pElem->GetpvpElement ();
 		for ( P_Element pe : * pvpElemGameKey )
 		{
-			_GameKeyCommand gameKeyCmd;	//ƒRƒs[‰Â
+			_GameKeyCommand gameKeyCmd;	//ã‚³ãƒ”ãƒ¼å¯
 			_ElemToGameKeyCmd ( pe, gameKeyCmd );
 			pCommand->AddGameKey ( gameKeyCmd );
 		}
@@ -271,18 +271,18 @@ using LCF = LoadCharaFunc;
 		ch.AddpCommand ( pCommand );
 	}
 
-	//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒQ[ƒ€ƒL[ƒRƒ}ƒ“ƒh‚ğ“Ç‚İ‚Ş
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿è¾¼ã‚€
 	void LoadCharaFunc::_ElemToGameKeyCmd ( const P_Element pElem, _GameKeyCommand & gameKeyCmd )
 	{
-		//ì‹Æ—p
+		//ä½œæ¥­ç”¨
 		const PVP_Attribute pvpAttrGameKey = pElem->GetpvpAttribute ();
 
-		//”Û’èƒtƒ‰ƒO
+		//å¦å®šãƒ•ãƒ©ã‚°
 		gameKeyCmd.SetNot ( m_utl._AttrToBool ( pvpAttrGameKey->at ( ATTR_GAMEKEY_NOT ) ) );
 
-		//•¶š—ñ‚ğ“Ç‚İ‚ñ‚ÅENUM‚É•ÏŠ·‚·‚é
+		//æ–‡å­—åˆ—ã‚’èª­ã¿è¾¼ã‚“ã§ENUMã«å¤‰æ›ã™ã‚‹
 		int index = ATTR_GAMEKEY_LVR_ST;
-		//ELvr
+		//ãƒ»Lvr
 		for ( UINT i = 0; i < (UINT)_GameKey::LVR_NUM; ++ i )
 		{
 			tstring strGameLvr = pvpAttrGameKey->at ( index + i )->GetValue ();
@@ -290,7 +290,7 @@ using LCF = LoadCharaFunc;
 		}
 		index += _GameKey::LVR_NUM;
 
-		//EBtn
+		//ãƒ»Btn
 		for ( UINT i = 0; i < (UINT)_GameKey::BTN_NUM; ++ i )
 		{
 			tstring strGameKey = pvpAttrGameKey->at ( index + i )->GetValue();
@@ -312,37 +312,37 @@ using LCF = LoadCharaFunc;
 	
 	void LoadCharaFunc::_ElemToBranch ( const P_Element pElem, Chara & ch )
 	{
-		P_Branch pBranch = make_shared < Branch > ();	//‘ã“ü—p‚ÌV‹Kì¬
+		P_Branch pBranch = make_shared < Branch > ();	//ä»£å…¥ç”¨ã®æ–°è¦ä½œæˆ
 
 		//------------------------------------------------------------
-		//ƒuƒ‰ƒ“ƒ`‚ÌƒAƒgƒŠƒrƒ…[ƒg
+		//ãƒ–ãƒ©ãƒ³ãƒã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 		const PVP_Attribute pa = pElem->GetpvpAttribute ();
 
-		//•ªŠòğŒ
+		//åˆ†å²æ¡ä»¶
 		UINT indexCondition = m_utl._AttrToUINT ( pa->at ( ATTR_BRANCH_CONDITION ) );
 		pBranch->SetCondition ( (BRANCH_CONDITION)indexCondition );
 
-		//ğŒƒRƒ}ƒ“ƒhƒCƒ“ƒfƒbƒNƒX
+		//æ¡ä»¶ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		UINT indexCommand = m_utl._AttrToUINT ( pa->at ( ATTR_BRANCH_COMMAND_ID ) );
 		pBranch->SetIndexCommand ( indexCommand );
 
-		//‘JˆÚæƒV[ƒNƒGƒ“ƒXƒCƒ“ƒfƒbƒNƒX
+		//é·ç§»å…ˆã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		UINT indexAction = m_utl._AttrToUINT ( pa->at ( ATTR_BRANCH_SEQUENCE_ID ) );
 		pBranch->SetIndexSequence ( indexAction );
 
-		//‘JˆÚæƒXƒNƒŠƒvƒgƒCƒ“ƒfƒbƒNƒX
+		//é·ç§»å…ˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		UINT indexFrame = m_utl._AttrToUINT ( pa->at ( ATTR_BRANCH_FRAME_INDEX ) );
 		pBranch->SetIndexFrame ( indexFrame );
 
 		//------------------------------------------------------------
-		ch.AddpBranch ( pBranch );			//ƒLƒƒƒ‰‚É’Ç‰Á
+		ch.AddpBranch ( pBranch );			//ã‚­ãƒ£ãƒ©ã«è¿½åŠ 
 	}
 
 	void LoadCharaFunc::_ElemToRoute ( const P_Element pElem, Chara & ch )
 	{
-		P_Route pRoute = make_shared < Route > ();	//‘ã“ü—p‚ÌV‹Kì¬
+		P_Route pRoute = make_shared < Route > ();	//ä»£å…¥ç”¨ã®æ–°è¦ä½œæˆ
 		//------------------------------------------------------------
-		//ƒ‹[ƒg‚ÌƒGƒŒƒƒ“ƒg
+		//ãƒ«ãƒ¼ãƒˆã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		P_Element pElemBlanchNameListNum = pElem->GetpvpElement ()->at ( 0 );
 		const PVP_Element pvpElemBlanchNameList = pElemBlanchNameListNum->GetpvpElement ();
 		for ( P_Element pe : * pvpElemBlanchNameList )
@@ -352,46 +352,46 @@ using LCF = LoadCharaFunc;
 			pRoute->AddBranchID ( i );
 		}
 		//------------------------------------------------------------
-		ch.AddpRoute ( pRoute );			//ƒLƒƒƒ‰‚É’Ç‰Á
+		ch.AddpRoute ( pRoute );			//ã‚­ãƒ£ãƒ©ã«è¿½åŠ 
 	}
 
-	//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çEFƒWƒFƒlƒŒ[ƒg‚ğ“Ç‚İ‚Ş
+	//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰EFã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆã‚’èª­ã¿è¾¼ã‚€
 	void LoadCharaFunc::_ElemToEfGnrtArray ( const P_Element pElem, const P_Script & pScript )
 	{
-		//EFƒWƒFƒlƒŒ[ƒg”z—ñ‚ÌƒGƒŒƒƒ“ƒg”z—ñ
+		//EFã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆé…åˆ—ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆé…åˆ—
 		const PVP_Element pvpElemEfGnrt = pElem->GetpvpElement ();
 		for ( P_Element pe : * pvpElemEfGnrt )
 		{
-			P_EfGnrt pEfGnrt = make_shared < EffectGenerate > ();			//‘ã“ü—p‚ÉV‹Kì¬
+			P_EfGnrt pEfGnrt = make_shared < EffectGenerate > ();			//ä»£å…¥ç”¨ã«æ–°è¦ä½œæˆ
 			_ElemToEfGnrt ( pe, pEfGnrt );
-			pScript->AddpEfGnrt ( pEfGnrt );			//ƒXƒNƒŠƒvƒg‚É’Ç‰Á
+			pScript->AddpEfGnrt ( pEfGnrt );			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«è¿½åŠ 
 		}
 	}
 
 	void LoadCharaFunc::_ElemToEfGnrt ( const P_Element pElem, const P_EfGnrt & pEfGnrt )
 	{
-		///EFƒWƒFƒlƒŒ[ƒg‚ÌƒAƒgƒŠƒrƒ…[ƒg
+		///EFã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 		const PVP_Attribute pa = pElem->GetpvpAttribute();
 
-		//ƒAƒgƒŠƒrƒ…[ƒg—ñ‹“
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆåˆ—æŒ™
 		enum { NAME, INDEX, POS_X, POS_Y, POS_Z, GNRT, LOOP, SYNC, };
 
-		//w’èEfƒCƒ“ƒfƒbƒNƒX
+		//æŒ‡å®šEfã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		pEfGnrt->SetIndex ( m_utl._AttrToUINT ( pa->at ( INDEX ) ) );
 
-		//¶¬ˆÊ’u
+		//ç”Ÿæˆä½ç½®
 		pEfGnrt->SetPos ( m_utl._AttrToVec2 ( pa->at ( POS_X ), pa->at ( POS_Y ) ) );
 
-		//zˆÊ’u
+		//zä½ç½®
 		pEfGnrt->SetZ ( m_utl._AttrToFloat ( pa->at ( POS_Z ) ) );
 
-		//¶¬
+		//ç”Ÿæˆ
 		pEfGnrt->SetGnrt ( m_utl._AttrToBool ( pa->at ( GNRT ) ) );
 
-		//ŒJ•Ô
+		//ç¹°è¿”
 		pEfGnrt->SetLoop ( m_utl._AttrToBool ( pa->at ( LOOP ) ) );
 
-		//“¯Šú
+		//åŒæœŸ
 		pEfGnrt->SetSync ( m_utl._AttrToBool ( pa->at ( SYNC ) ) );
 	}
 
@@ -399,59 +399,59 @@ using LCF = LoadCharaFunc;
 	//------------------------------------------------------------
 
 
-	//˜g“Ç
+	//æ èª­è¾¼
 #if 0
-	//ŠÖ”ƒ|ƒCƒ“ƒ^
+	//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
 	void LoadCharaUtl::_LoadRect ( const P_Element pElemRect, P_Script pScript, void (Script::* const pFuncAddRect)(RECT) )
 	{
-		//ƒAƒgƒŠƒrƒ…[ƒg‚ÍƒTƒCƒY‚Ì‚İ
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯ã‚µã‚¤ã‚ºã®ã¿
 		const PVP_Attribute pvecpAttrVecRect = pElemRect->GetpvpAttribute();
 		UINT sizeRect = _AttrToUINT ( (*pvecpAttrVecRect)[0] );
 
 		const PVP_Element pvecpElemRect = pElemRect->GetpvpElement();
 
-		//˜g
+		//æ 
 		for ( UINT i = 0; i < sizeRect; ++i )
 		{
-			//ƒGƒŒƒƒ“ƒg
+			//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 			P_Element pElem = (*pvecpElemRect)[i];
 
-			//ƒAƒgƒŠƒrƒ…[ƒg
+			//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 			const PVP_Attribute pa = pElem->GetpvpAttribute();
 			RECT rect = _AttrToRect ( (*pa)[0], (*pa)[1], (*pa)[2], (*pa)[3] );
 			
-			//ŠÖ”ƒ|ƒCƒ“ƒ^‚ÅŠe˜g‚Éİ’è
+			//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã§å„æ ã«è¨­å®š
 			(pScript->*pFuncAddRect)( rect );
 		}
 	}
 #endif // 0
-	//ˆø”FƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^, ƒXƒNƒŠƒvƒgƒ|ƒCƒ“ƒ^, ˜g‚ğİ’è‚·‚éScript“à‚ÌŠÖ”ƒIƒuƒWƒFƒNƒg
-	//İ’è—pŠÖ”‚ğstd::function‚Åw’è
+	//å¼•æ•°ï¼šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿, ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒ³ã‚¿, æ ã‚’è¨­å®šã™ã‚‹Scriptå†…ã®é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	//è¨­å®šç”¨é–¢æ•°ã‚’std::functionã§æŒ‡å®š
 	void LoadCharaFunc::_LoadRect ( const P_Element pElemRect, P_Script pScript, FP_SetRect fp_SetRect )
 	{
-		//ƒAƒgƒŠƒrƒ…[ƒg‚ÍƒTƒCƒY‚Ì‚İ
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯ã‚µã‚¤ã‚ºã®ã¿
 		const PVP_Attribute pvpAttrVecRect = pElemRect->GetpvpAttribute ();
 		UINT sizeRect = m_utl._AttrToUINT ( (*pvpAttrVecRect)[0] );
 
-		//ƒGƒŒƒƒ“ƒg
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 		const PVP_Element pvpElemRect = pElemRect->GetpvpElement ();
 
-		//˜g
+		//æ 
 		for ( UINT i = 0; i < sizeRect; ++i )
 		{
-			//ƒGƒŒƒƒ“ƒg
+			//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆ
 			P_Element pElem = (*pvpElemRect)[i];
 
-			//ƒAƒgƒŠƒrƒ…[ƒg
+			//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 			const PVP_Attribute pa = pElem->GetpvpAttribute();
 			RECT rect = m_utl._AttrToRect ( (*pa)[0], (*pa)[1], (*pa)[2], (*pa)[3] );
 			
-			//FP_SetRect‚ÍpScript‚ÆŠÖ˜A•t‚¯‚Ä‚ ‚é‚Ì‚Å‚»‚Ì‚Ü‚ÜŒÄ‚Ño‚·
+			//FP_SetRectã¯pScriptã¨é–¢é€£ä»˜ã‘ã¦ã‚ã‚‹ã®ã§ãã®ã¾ã¾å‘¼ã³å‡ºã™
 			fp_SetRect ( rect );
 		}
 	}
 
-	//ˆø”FƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^, ˜g‚ğİ’è‚·‚éScript“à‚ÌŠÖ”ƒIƒuƒWƒFƒNƒg
+	//å¼•æ•°ï¼šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿, æ ã‚’è¨­å®šã™ã‚‹Scriptå†…ã®é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	void LoadCharaFunc::_LoadRect ( const P_Element pElemRect, FP_SetRect fp_SetRect )
 	{
 		const PVP_Element pvpElemRect = pElemRect->GetpvpElement ();
@@ -459,14 +459,14 @@ using LCF = LoadCharaFunc;
 		{
 			const PVP_Attribute pa = pElem->GetpvpAttribute();
 			RECT rect = m_utl._AttrToRect ( pa->at(0), pa->at(1), pa->at(2), pa->at(3) );
-			fp_SetRect ( rect );	//FP_SetRect‚ÍpScript‚ÆŠÖ˜A•t‚¯‚Ä‚ ‚é‚Ì‚Å‚»‚Ì‚Ü‚ÜŒÄ‚Ño‚·
+			fp_SetRect ( rect );	//FP_SetRectã¯pScriptã¨é–¢é€£ä»˜ã‘ã¦ã‚ã‚‹ã®ã§ãã®ã¾ã¾å‘¼ã³å‡ºã™
 		}
 	}
 
 	void LoadCharaFunc::_LoadRectAll ( const PVP_Element pvpElem, const P_Script & pScript )
 	{
 #if 0
-		//ŠÖ”ƒ|ƒCƒ“ƒ^‚Åw’è‚·‚é
+		//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã§æŒ‡å®šã™ã‚‹
 		_LoadRect ( (*cpvpElemInScript)[CRECT], pScript, &Script::AddCRect );
 		_LoadRect ( (*cpvpElemInScript)[ARECT], pScript, &Script::AddARect );
 		_LoadRect ( (*cpvpElemInScript)[HRECT], pScript, &Script::AddHRect );
@@ -480,7 +480,7 @@ using LCF = LoadCharaFunc;
 		FP_SetRect func_o = std::bind ( & Script::AddORect, pScript, std::placeholders::_1 );
 #endif // 0
 
-		//ƒ‰ƒ€ƒ_®
+		//ãƒ©ãƒ ãƒ€å¼
 		FP_SetRect func_c = [ & pScript ] ( RECT r ) { pScript->AddCRect ( r ); };
 		_LoadRect ( pvpElem->at ( ELEM_SCRIPT_CRECT ), pScript, func_c );
 
@@ -496,7 +496,7 @@ using LCF = LoadCharaFunc;
 
 
 	//------------------------------------------------------------
-	//ƒXƒNƒŠƒvƒg“àƒ‹[ƒg (ƒAƒNƒVƒ‡ƒ“‚ÆƒRƒ}ƒ“ƒh‚Ì“ÇŒãAindex‚©‚çÀŒøƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Äİ’è‚·‚é)
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ãƒ«ãƒ¼ãƒˆ (ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚³ãƒãƒ³ãƒ‰ã®èª­è¾¼å¾Œã€indexã‹ã‚‰å®ŸåŠ¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¦è¨­å®šã™ã‚‹)
 	void LoadCharaFunc::_LoadRouteInScript ( Chara & ch )
 	{
 #if 0
@@ -518,10 +518,10 @@ using LCF = LoadCharaFunc;
 	}
 
 #if 0
-	//Šî–{ó‘ÔƒAƒNƒVƒ‡ƒ“ID
+	//åŸºæœ¬çŠ¶æ…‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ID
 	void LoadCharaFunc::_ElemToBasicActionID ( const P_Element pElem, Chara & ch )
 	{
-		//Šî–{ó‘ÔƒAƒNƒVƒ‡ƒ“ID (name‚Í”ò‚Î‚·)
+		//åŸºæœ¬çŠ¶æ…‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ID (nameã¯é£›ã°ã™)
 		const PVP_Element pvpElemBasicAction = pElem->GetpvpElement ();
 //		P_Element pElemBasicAction = pvpElemBasicAction->at ( 0 );
 		for ( UINT i = 0; i < BASIC_ACTION_NUM; ++ i )
@@ -533,28 +533,28 @@ using LCF = LoadCharaFunc;
 #endif // 0
 
 	//------------------------------------------------------------
-	//ƒCƒ[ƒWƒA[ƒJƒCƒu“Ç
+	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–èª­è¾¼
 	void LoadCharaFunc::_LoadImage ( ifstream & ifstrm, PVP_TxBs pvpTexture )
 	{
-		//ƒCƒ[ƒW‚ÌŒÂ”‚Åƒ‹[ƒv
+		//ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å€‹æ•°ã§ãƒ«ãƒ¼ãƒ—
 		UINT size = pvpTexture->size ();
 		for ( UINT i = 0; i < size; ++ i )
 		{
-			//ƒCƒ[ƒW‚ÌŒÂ•ÊƒTƒCƒY‚ğ“Ç
+			//ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å€‹åˆ¥ã‚µã‚¤ã‚ºã‚’èª­è¾¼
 			UINT imageSize = 0;
 			ifstrm.read ( (char*)&imageSize, sizeof ( UINT ) );
 
-			//ˆê—Ìˆæ‚ÌŠm•Û‚©‚çAƒCƒ[ƒW–{‘Ì‚Ì“Ç
+			//ä¸€æ™‚é ˜åŸŸã®ç¢ºä¿ã‹ã‚‰ã€ã‚¤ãƒ¡ãƒ¼ã‚¸æœ¬ä½“ã®èª­è¾¼
 			char* imageBuf = new char [ imageSize ];
 			ifstrm.read ( imageBuf, imageSize );
 
-			//ƒƒ‚ƒŠã‚Ìƒf[ƒ^‚©‚çƒQ[ƒ€ƒeƒNƒXƒ`ƒƒ‚É•ÏŠ·
+			//ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚²ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«å¤‰æ›
 			P_TxMem pGameTexture = make_shared < TxMem > ( (LPCVOID)imageBuf, imageSize );
 
-			//ˆê—Ìˆæ‚Í‰ğ•ú‚·‚é
+			//ä¸€æ™‚é ˜åŸŸã¯è§£æ”¾ã™ã‚‹
 			delete[] imageBuf;
 
-			//ƒLƒƒƒ‰“à•”‚ÌƒeƒNƒXƒ`ƒƒƒŠƒXƒg‚É‰Á‚¦‚é
+			//ã‚­ãƒ£ãƒ©å†…éƒ¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚¹ãƒˆã«åŠ ãˆã‚‹
 			(*pvpTexture) [ i ] = pGameTexture;
 		}
 	}

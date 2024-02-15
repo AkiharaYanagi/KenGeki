@@ -1018,103 +1018,6 @@ namespace GAME
 #if 0
 	void ExeChara::OnDamaged ( int damage )
 	{
-		bool hit = true;
-		bool guard = false;
-
-		//回避判定
-#if 0
-		//攻撃中でなく、下要素が入力されているとき
-		//ダッシュ中、よろけ中なども除外する (歩きは可能)
-		if ( !IsAttacking () && !( GetActionName () == Chara::DOTTY ) )
-		{
-			if ( IsInput2E () )
-			{
-				//避けに移項
-				TransitAction ( m_pChara->GetBsAction ( Chara::AVOID ) );
-
-				//ヒットストップの設定
-				m_hitstop = 15;
-
-				//エフェクトの発生
-//				float dispGameBaseX = GetDispGameBaseX ();	//画面端による表示基準位置
-				m_dispChara.OnAvoid ( m_ptChara, m_dirRight );
-
-				//SE
-				SoundArchiver::instance ()->Play ( 2 );
-
-				//自分のバランス減少・追加分
-				int balanceDamage0 = 200 - damage;		//ダメージの逆数(L>M>H)
-				if ( m_balance < balanceDamage0 ) { balanceDamage0 = m_balance; }	//現在値以上は表示制限
-				m_balance -= balanceDamage0;
-
-				//相手のバランス減少
-				int balanceDamage = damage;		//ダメージ分バランス減少(L<M<H)
-				int balance = m_pOther->GetBalance ();
-				if ( balance < balanceDamage ) { balanceDamage = balance; }	//現在値以上は表示制限
-				m_pOther->AddbBalance ( -1 * balanceDamage );
-
-				return;
-			}
-		}
-#endif // 0
-
-		//ガード発生
-#if 0
-		//攻撃中でないとき
-		//ダッシュ中、よろけ中なども除外する (歩きは可能)
-		if ( !IsAttacking () && !IsDamaged () )
-		{
-			//上中下段　分岐処理
-			ACTION_POSTURE ap = m_pOther.lock ()->GetPosture ();
-
-			//後方向が入力されているとき
-			if ( m_pCharaInput->IsInput4 () )
-			{
-				//相手の状態で分岐
-				switch ( ap )
-				{
-				case AP_STAND:	hit = false; guard = true; break;
-				case AP_CROUCH: hit = true; guard = false; break;
-				case AP_JUMP:	hit = false; guard = true; break;
-				}
-			}
-
-			//後下方向が入力されているとき
-			if ( m_pCharaInput->IsInput1 () )
-			{
-				//相手の状態で分岐
-				switch ( ap )
-				{
-				case AP_STAND:	hit = false; guard = true; break;
-				case AP_CROUCH: hit = false; guard = true; break;
-				case AP_JUMP:	hit = true; guard = false; break;
-				}
-			}
-
-		}
-
-		//--------------------------------------------------------
-
-		//ガード成立
-		if ( guard )
-		{
-			tstring act;
-			switch ( m_pAction->GetPosture () )
-			{
-			case AP_STAND:	act.assign ( _T ( "S_Guard" ) ); break;
-			case AP_CROUCH: act.assign ( _T ( "C_Guard" ) ); break;
-			case AP_JUMP:	act.assign ( _T ( "J_Guard" ) ); break;
-			}
-			TransitAction ( m_pChara->GetActionID ( act ) );
-
-			m_FirstEf = true;				//初回のみエフェクト発生
-			m_tmrHitstop->Start ();				//ヒットストップの設定
-
-			//SE
-			SOUND->Play ( SE_Guard );
-		}
-#endif // 0
-
 		//くらい時 ( ガードをしていない ) && ( 強制変更されていない )
 		if ( hit && ! m_btlPrm.GetForcedChange () )
 		{
@@ -1210,6 +1113,105 @@ namespace GAME
 		//m_btlPrm.SetHitEst ( true );		//攻撃成立フラグ
 		//m_btlPrm.GetTmr_HitStop ()->Start ();		//ヒットストップの設定
 		m_btlPrm.OnHit ();
+
+		//==========================================================
+		bool hit = true;
+		bool guard = false;
+
+
+		//ガード発生
+		//攻撃中でないとき
+		//ダッシュ中、よろけ中なども除外する (歩きは可能)
+		if ( !IsAttacking () && !IsDamaged () )
+		{
+			//上中下段　分岐処理
+			ACTION_POSTURE ap = m_pOther.lock ()->GetPosture ();
+
+			//後方向が入力されているとき
+			if ( m_pCharaInput->IsInput4 () )
+			{
+				//相手の状態で分岐
+				switch ( ap )
+				{
+				case AP_STAND:	guard = T; break;
+				case AP_CROUCH: guard = F; break;
+				case AP_JUMP:	guard = T; break;
+			}
+		}
+
+		//後下方向が入力されているとき
+		if ( m_pCharaInput->IsInput1 () )
+		{
+			//相手の状態で分岐
+			switch ( ap )
+			{
+			case AP_STAND:	guard = T; break;
+			case AP_CROUCH: guard = T; break;
+			case AP_JUMP:	guard = F; break;
+			}
+		}
+
+		hit = ! guard;
+
+		//ガード成立
+		if ( guard )
+		{
+			tstring act_name;
+			switch ( m_pAction->GetPosture () )
+			{
+			case AP_STAND:	act_name.assign ( _T ( "Std_Guard" ) ); break;
+			case AP_CROUCH: act_name.assign ( _T ( "Crc_Guard" ) ); break;
+			case AP_JUMP:	act_name.assign ( _T ( "Jmp_Guard" ) ); break;
+			}
+			SetAction ( m_pChara->GetActionID ( act_name ) );
+
+//			m_FirstEf = true;				//初回のみエフェクト発生
+//			m_tmrHitstop->Start ();				//ヒットストップの設定
+			m_btlPrm.GetTmr_HitStop ()->Start ();		//ヒットストップの設定
+
+			//SE
+//			SOUND->Play ( SE_Guard );
+		}
+
+
+		//--------------------------------------------------------
+		//回避判定
+#if 0
+		//攻撃中でなく、下要素が入力されているとき
+		//ダッシュ中、よろけ中なども除外する (歩きは可能)
+		if ( !IsAttacking () && !( GetActionName () == Chara::DOTTY ) )
+		{
+			if ( IsInput2E () )
+			{
+				//避けに移項
+				TransitAction ( m_pChara->GetBsAction ( Chara::AVOID ) );
+
+				//ヒットストップの設定
+				m_hitstop = 15;
+
+				//エフェクトの発生
+				//				float dispGameBaseX = GetDispGameBaseX ();	//画面端による表示基準位置
+				m_dispChara.OnAvoid ( m_ptChara, m_dirRight );
+
+				//SE
+				SoundArchiver::instance ()->Play ( 2 );
+
+				//自分のバランス減少・追加分
+				int balanceDamage0 = 200 - damage;		//ダメージの逆数(L>M>H)
+				if ( m_balance < balanceDamage0 ) { balanceDamage0 = m_balance; }	//現在値以上は表示制限
+				m_balance -= balanceDamage0;
+
+				//相手のバランス減少
+				int balanceDamage = damage;		//ダメージ分バランス減少(L<M<H)
+				int balance = m_pOther->GetBalance ();
+				if ( balance < balanceDamage ) { balanceDamage = balance; }	//現在値以上は表示制限
+				m_pOther->AddbBalance ( -1 * balanceDamage );
+
+				return;
+			}
+		}
+#endif // 0
+		}
 	}
 
 	//エフェクトヒット発生(攻撃成立側)

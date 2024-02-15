@@ -1,48 +1,48 @@
 //=================================================================================================
 //
-// Command ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//	ƒQ[ƒ€“ü—ÍƒL[‚Ì”z—ñ‚ğ“Á’è‚Ì‘g‚İ‡‚í‚¹‚Å•Û‚·‚é
-//	ÀÛ‚É“ü—Í‚³‚ê‚½‚à‚Ì‚Ì‹L˜^‚ÆAƒXƒNƒŠƒvƒg•ªŠò‚ÌğŒ‚É—p‚¢‚é
+// Command ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//	ã‚²ãƒ¼ãƒ å…¥åŠ›ã‚­ãƒ¼ã®é…åˆ—ã‚’ç‰¹å®šã®çµ„ã¿åˆã‚ã›ã§ä¿æŒã™ã‚‹
+//	å®Ÿéš›ã«å…¥åŠ›ã•ã‚ŒãŸã‚‚ã®ã®è¨˜éŒ²ã¨ã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ†å²ã®æ¡ä»¶ã«ç”¨ã„ã‚‹
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Define.h"
 #include "_GameKeyCommand.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
 	class Command
 	{
-		tstring			m_name;			//–¼‘O
-		V_GAME_KEY_CMD	m_vecGameKey;	//ƒL[”z—ñ
-		UINT			m_limitTime;	//“ü—Íó•tŠÔ
+		tstring			m_name;			//åå‰
+		V_GAME_KEY_CMD	m_vecGameKey;	//ã‚­ãƒ¼é…åˆ—
+		UINT			m_limitTime;	//å…¥åŠ›å—ä»˜æ™‚é–“
 
 	public:
 		Command ();
-		Command ( const Command & rhs ) = delete;	//ƒRƒs[‹Ö~
+		Command ( const Command & rhs ) = delete;	//ã‚³ãƒ”ãƒ¼ç¦æ­¢
 		~Command ();
 
-		//”äŠr
+		//æ¯”è¼ƒ
 		bool Compare ( const V_GAME_KEY & vecGameKey, bool dirRight );
 
-		//–¼‘O
+		//åå‰
 		tstring GetName () const { return m_name; }
 		void SetName ( tstring name ) { m_name.assign ( name ); }
 
-		//ƒL[”z—ñ
+		//ã‚­ãƒ¼é…åˆ—
 		void AddGameKey ( _GameKeyCommand gkc ) { m_vecGameKey.push_back ( gkc ); }
 		void SetaGameKey ( _GameKeyCommand gkca [], UINT size );
 
-		//“ü—Íó•tŠÔ
+		//å…¥åŠ›å—ä»˜æ™‚é–“
 		UINT GetLimitTime () const { return m_limitTime; }
 		void SetLimitTime ( UINT limitTime ) { m_limitTime = limitTime; }
 	};

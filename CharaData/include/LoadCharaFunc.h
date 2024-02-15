@@ -1,6 +1,6 @@
 //=================================================================================================
 //
-// LoadCharaFunc ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// LoadCharaFunc ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
@@ -10,91 +10,91 @@
 #include "LoadCharaUtl.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//------------------------------------------------------------
-	//	LoadChara‚Å—p‚¢‚éŠÖ”ŒQ
+	//	LoadCharaã§ç”¨ã„ã‚‹é–¢æ•°ç¾¤
 	//------------------------------------------------------------
 	class LoadCharaFunc
 	{
-		//	“à•”g—pŠÖ”
+		//	å†…éƒ¨ä½¿ç”¨é–¢æ•°
 		LoadCharaUtl	m_utl;
 
-		//ŠÖ”ƒIƒuƒWƒFƒNƒgŒ^‚ğ’è‹`
-		//	P_Element‚©‚çChara‚Ì’l‚ğ“Ç‚İ‚ŞŠÖ”F–ß’lvoid, ˆø” P_Element, Chara
+		//é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹ã‚’å®šç¾©
+		//	P_Elementã‹ã‚‰Charaã®å€¤ã‚’èª­ã¿è¾¼ã‚€é–¢æ•°ï¼šæˆ»å€¤void, å¼•æ•° P_Element, Chara
 		using FP_ElemToCharaParam = std::function < void ( const P_Element, Chara & ) > ;
 
-		//ƒGƒŒƒƒ“ƒg‚ª‚ÂƒGƒŒƒƒ“ƒg”z—ñ‚ÉŠe“ÇŠÖ”‚ğÀs‚·‚é
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãŒæŒã¤ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆé…åˆ—ã«å„èª­è¾¼é–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹
 		void ElemAry ( const P_Element pElem, Chara & ch, FP_ElemToCharaParam fp );
 
 		//----------------------------------
-		//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒCƒ[ƒWƒŠƒXƒg‚ğ“Ç‚İ‚Ş
-		//ƒf[ƒ^“Ç@ˆê•Ï”
-		UINT	m_nMainImage;		//ƒƒCƒ“ƒCƒ[ƒWƒŠƒXƒg‚ÌŒÂ”
-		UINT	m_nEfImage;		//EfƒCƒ[ƒWƒŠƒXƒg‚ÌŒÂ”
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚€
+		//ãƒ‡ãƒ¼ã‚¿èª­è¾¼ã€€ä¸€æ™‚å¤‰æ•°
+		UINT	m_nMainImage;		//ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã®å€‹æ•°
+		UINT	m_nEfImage;		//Efã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã®å€‹æ•°
 
-		//ƒCƒ[ƒW–¼
+		//ã‚¤ãƒ¡ãƒ¼ã‚¸å
 		std::vector < tstring > m_vMainImageName;
 		std::vector < tstring > m_vEfImageName;
 
 		//------------------------------------------------------------
-		//ƒAƒNƒVƒ‡ƒ“
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 		V_STR	m_vActionName;
 		void _ElemToActionC ( const P_Element pElem, Chara & ch );
 
-		//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒGƒtƒFƒNƒg‚ğ“Ç‚İ‚Ş
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€
 		V_STR	m_vEffectName;
 		void _ElemToEffect ( const P_Element pElem, Chara & ch );
 
-		//ƒXƒNƒŠƒvƒg
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 		void _ElemToScript ( const P_Element pElem, const P_Script pScript, UINT frame );
 
-		//ƒRƒ}ƒ“ƒh
+		//ã‚³ãƒãƒ³ãƒ‰
 		V_STR	m_vCommandName;
 		void _ElemToCommand ( const P_Element pElem, Chara & ch );
 
-		//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çƒQ[ƒ€ƒL[ƒRƒ}ƒ“ƒh‚ğ“Ç‚İ‚Ş
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚²ãƒ¼ãƒ ã‚­ãƒ¼ã‚³ãƒãƒ³ãƒ‰ã‚’èª­ã¿è¾¼ã‚€
 		void _ElemToGameKeyCmd ( const P_Element pElem, _GameKeyCommand & gameKeyCmd );
 		_GameKeyCommand::GAME_KEY_STATE StrToKeyState ( tstring str );
 
-		//ƒuƒ‰ƒ“ƒ`
+		//ãƒ–ãƒ©ãƒ³ãƒ
 		V_STR	m_vBranchName;
 		void _ElemToBranch ( const P_Element pElem, Chara & ch );
 
-		//ƒ‹[ƒg
+		//ãƒ«ãƒ¼ãƒˆ
 		V_STR	m_vRouteName;
 		void _ElemToRoute ( const P_Element pElem, Chara & ch );
 
-		//Šî–{ó‘ÔƒAƒNƒVƒ‡ƒ“ID
+		//åŸºæœ¬çŠ¶æ…‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ID
 		void _ElemToBasicActionID ( const P_Element pElem, Chara & ch );
 
 
 		//------------------------------------------------------------
-		//˜g“Ç
+		//æ èª­è¾¼
 #if 0
-		//ˆø”FƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^, ƒXƒNƒŠƒvƒgƒ|ƒCƒ“ƒ^, ˜g‚ğİ’è‚·‚éScript“à‚ÌŠÖ”ƒ|ƒCƒ“ƒ^
+		//å¼•æ•°ï¼šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿, ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒ³ã‚¿, æ ã‚’è¨­å®šã™ã‚‹Scriptå†…ã®é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
 		void _LoadRect ( const P_Element pElem, P_Script pScript, void(Script::* const pFuncAddRect)( RECT ) );
 #endif // 0
-		//ŠÖ”Œ^‚ğ’è‹`
-		//	ƒNƒ‰ƒXScript‚É‚¨‚¯‚éRect‚ğİ’è‚·‚éŠÖ”F–ß’lvoid, ˆø”RECT
+		//é–¢æ•°å‹ã‚’å®šç¾©
+		//	ã‚¯ãƒ©ã‚¹Scriptã«ãŠã‘ã‚‹Rectã‚’è¨­å®šã™ã‚‹é–¢æ•°ï¼šæˆ»å€¤void, å¼•æ•°RECT
 		using FP_SetRect = std::function < void ( RECT ) >;
 
-		//ˆø”FƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^, ƒXƒNƒŠƒvƒgƒ|ƒCƒ“ƒ^, ˜g‚ğİ’è‚·‚éScript“à‚ÌŠÖ”ƒIƒuƒWƒFƒNƒg
+		//å¼•æ•°ï¼šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿, ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒ³ã‚¿, æ ã‚’è¨­å®šã™ã‚‹Scriptå†…ã®é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		void _LoadRect ( const P_Element pElem, P_Script pSrcipt, FP_SetRect fp_SetRect );
-		//ˆø”FƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^, ˜g‚ğİ’è‚·‚éScript“à‚ÌŠÖ”ƒIƒuƒWƒFƒNƒg
+		//å¼•æ•°ï¼šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿, æ ã‚’è¨­å®šã™ã‚‹Scriptå†…ã®é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		void _LoadRect ( const P_Element pElem, FP_SetRect fp_SetRect );
 
-		//˜g‚Ì“Ç
+		//æ ã®èª­è¾¼
 		void _LoadRectAll ( const PVP_Element pvpElem, const P_Script & pScript );
 
 		//------------------------------------------------------------
-		//ƒXƒNƒŠƒvƒg“à‚Ìƒ‹[ƒg (ƒAƒNƒVƒ‡ƒ“‚ÆƒRƒ}ƒ“ƒh‚Ì“ÇŒãAindex‚©‚çÀŒøƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Äİ’è‚·‚é)
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®ãƒ«ãƒ¼ãƒˆ (ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚³ãƒãƒ³ãƒ‰ã®èª­è¾¼å¾Œã€indexã‹ã‚‰å®ŸåŠ¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¦è¨­å®šã™ã‚‹)
 		void _LoadRouteInScript ( Chara & ch );
 
-		//ƒGƒŒƒƒ“ƒgƒ|ƒCƒ“ƒ^‚©‚çEFƒWƒFƒlƒŒ[ƒg‚ğ“Ç‚İ‚Ş
-		void _ElemToEfGnrtArray ( const P_Element pElem, const P_Script & pScript );	//”z—ñ
+		//ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰EFã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆã‚’èª­ã¿è¾¼ã‚€
+		void _ElemToEfGnrtArray ( const P_Element pElem, const P_Script & pScript );	//é…åˆ—
 		void _ElemToEfGnrt ( const P_Element pElem, const P_EfGnrt & pEfGnrt );
 
 
@@ -103,10 +103,10 @@ namespace GAME
 		LoadCharaFunc ( const LoadCharaFunc & rhs ) = delete;
 		~LoadCharaFunc () = default;
 
-		//Document‚©‚çƒLƒƒƒ‰‚É•ÏŠ·‚·‚é
+		//Documentã‹ã‚‰ã‚­ãƒ£ãƒ©ã«å¤‰æ›ã™ã‚‹
 		void _DocumentToChara ( const Document & document, Chara & ch );
 
-		//ƒCƒ[ƒWƒA[ƒJƒCƒu“Ç
+		//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–èª­è¾¼
 		void _LoadImage ( ifstream& pIfstrm, PVP_TxBs pvpTexture );
 	};
 

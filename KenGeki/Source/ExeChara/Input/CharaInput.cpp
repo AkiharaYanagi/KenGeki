@@ -19,7 +19,7 @@ namespace GAME
 
 	//コンストラクタ
 	CharaInput::CharaInput ()
-		: m_playerID ( PLAYER_ID_1 )
+		: m_playerID ( PLAYER_ID_1 ), m_cpu ( F )
 	{
 		for ( UINT i = 0; i < m_vGameKeyNum; ++i )
 		{
@@ -40,10 +40,10 @@ namespace GAME
 		_GameKey gameKey;
 
 		//上下前後
-		bool bKey8 = false;	//上
-		bool bKey2 = false;	//下
-		bool bKey4 = false;	//後(右向き時)
-		bool bKey6 = false;	//前(右向き時)
+		bool bKey8 = F;	//上
+		bool bKey2 = F;	//下
+		bool bKey4 = F;	//後(右向き時)
+		bool bKey6 = F;	//前(右向き時)
 
 		if ( PLAYER_ID_1 == m_playerID )
 		{
@@ -81,56 +81,56 @@ namespace GAME
 		// コマンド指定では12369874順
 
 		//斜め優先
-		if ( bKey4 && bKey2 )	{ gameKey.SetLvr ( _GameKey::LVR_1, true ); }
-		if ( bKey2 )			{ gameKey.SetLvr ( _GameKey::LVR_2, true ); }
-		if ( bKey6 && bKey2 )	{ gameKey.SetLvr ( _GameKey::LVR_3, true ); }
-		if ( bKey6 )			{ gameKey.SetLvr ( _GameKey::LVR_6, true ); }
-		if ( bKey8 && bKey6 )	{ gameKey.SetLvr ( _GameKey::LVR_9, true ); }
-		if ( bKey8 )			{ gameKey.SetLvr ( _GameKey::LVR_8, true ); }
-		if ( bKey8 && bKey4 )	{ gameKey.SetLvr ( _GameKey::LVR_7, true ); }
-		if ( bKey4 )			{ gameKey.SetLvr ( _GameKey::LVR_4, true ); }
+		if ( bKey4 && bKey2 )	{ gameKey.SetLvr ( _GameKey::LVR_1, T ); }
+		if ( bKey2 )			{ gameKey.SetLvr ( _GameKey::LVR_2, T ); }
+		if ( bKey6 && bKey2 )	{ gameKey.SetLvr ( _GameKey::LVR_3, T ); }
+		if ( bKey6 )			{ gameKey.SetLvr ( _GameKey::LVR_6, T ); }
+		if ( bKey8 && bKey6 )	{ gameKey.SetLvr ( _GameKey::LVR_9, T ); }
+		if ( bKey8 )			{ gameKey.SetLvr ( _GameKey::LVR_8, T ); }
+		if ( bKey8 && bKey4 )	{ gameKey.SetLvr ( _GameKey::LVR_7, T ); }
+		if ( bKey4 )			{ gameKey.SetLvr ( _GameKey::LVR_4, T ); }
 
 
 		//==============================================================================
 		//ボタン
-		bool bButton0 = false; bool bButton1 = false; bool bButton2 = false; bool bButton3 = false;
-		bool bButton4 = false; bool bButton5 = false; bool bButton6 = false; bool bButton7 = false;
+		bool bBtn0 = F; bool bBtn1 = F; bool bBtn2 = F; bool bBtn3 = F;
+		bool bBtn4 = F; bool bBtn5 = F; bool bBtn6 = F; bool bBtn7 = F;
 
 		if ( PLAYER_ID_1 == m_playerID )
 		{
-			bButton0 = CFG_IS_KEY ( _P1_BTN0 );
-			bButton1 = CFG_IS_KEY ( _P1_BTN1 );
-			bButton2 = CFG_IS_KEY ( _P1_BTN2 );
-			bButton3 = CFG_IS_KEY ( _P1_BTN3 );
-			bButton4 = CFG_IS_KEY ( _P1_BTN4 );
-			bButton5 = CFG_IS_KEY ( _P1_BTN5 );
-			bButton6 = CFG_IS_KEY ( _P1_BTN6 );
-			bButton7 = CFG_IS_KEY ( _P1_BTN7 );
+			bBtn0 = CFG_IS_KEY ( _P1_BTN0 );
+			bBtn1 = CFG_IS_KEY ( _P1_BTN1 );
+			bBtn2 = CFG_IS_KEY ( _P1_BTN2 );
+			bBtn3 = CFG_IS_KEY ( _P1_BTN3 );
+			bBtn4 = CFG_IS_KEY ( _P1_BTN4 );
+			bBtn5 = CFG_IS_KEY ( _P1_BTN5 );
+			bBtn6 = CFG_IS_KEY ( _P1_BTN6 );
+			bBtn7 = CFG_IS_KEY ( _P1_BTN7 );
 		}
 		else if ( PLAYER_ID_2 == m_playerID )
 		{
-			bButton0 = CFG_IS_KEY ( _P2_BTN0 );
-			bButton1 = CFG_IS_KEY ( _P2_BTN1 );
-			bButton2 = CFG_IS_KEY ( _P2_BTN2 );
-			bButton3 = CFG_IS_KEY ( _P2_BTN3 );
-			bButton4 = CFG_IS_KEY ( _P2_BTN4 );
-			bButton5 = CFG_IS_KEY ( _P2_BTN5 );
-			bButton6 = CFG_IS_KEY ( _P2_BTN6 );
-			bButton7 = CFG_IS_KEY ( _P2_BTN7 );
+			bBtn0 = CFG_IS_KEY ( _P2_BTN0 );
+			bBtn1 = CFG_IS_KEY ( _P2_BTN1 );
+			bBtn2 = CFG_IS_KEY ( _P2_BTN2 );
+			bBtn3 = CFG_IS_KEY ( _P2_BTN3 );
+			bBtn4 = CFG_IS_KEY ( _P2_BTN4 );
+			bBtn5 = CFG_IS_KEY ( _P2_BTN5 );
+			bBtn6 = CFG_IS_KEY ( _P2_BTN6 );
+			bBtn7 = CFG_IS_KEY ( _P2_BTN7 );
 		}
 
 
-		gameKey.SetBtn ( 0, bButton0 );
-		gameKey.SetBtn ( 1, bButton1 );
-		gameKey.SetBtn ( 2, bButton2 );
-		gameKey.SetBtn ( 3, bButton3 );
-		gameKey.SetBtn ( 4, bButton4 );
-		gameKey.SetBtn ( 5, bButton5 );
-		gameKey.SetBtn ( 6, bButton6 );
-		gameKey.SetBtn ( 7, bButton7 );
+		gameKey.SetBtn ( 0, bBtn0 );
+		gameKey.SetBtn ( 1, bBtn1 );
+		gameKey.SetBtn ( 2, bBtn2 );
+		gameKey.SetBtn ( 3, bBtn3 );
+		gameKey.SetBtn ( 4, bBtn4 );
+		gameKey.SetBtn ( 5, bBtn5 );
+		gameKey.SetBtn ( 6, bBtn6 );
+		gameKey.SetBtn ( 7, bBtn7 );
 
 
-		//前回のキーを今回にも保存する
+		//現状を前回のキーに保存する
 		gameKey.ReservePrevious ( m_vGameKey[0] );
 
 
@@ -139,7 +139,7 @@ namespace GAME
 		{
 			m_vGameKey[i] = m_vGameKey[i - 1];
 		}
-		m_vGameKey[0] = gameKey;
+		m_vGameKey[0] = gameKey;	//最後に先頭に記録
 	}
 
 
@@ -241,6 +241,17 @@ namespace GAME
 		{
 			m_vGameKey [ i ] = vKey [ i ];
 		}
+	}
+
+
+	const bool CharaInput::IsInput4 () const 
+	{
+		return m_vGameKey[0].GetLvr ( _GameKey::LVR_4 );
+	}
+
+	const bool CharaInput::IsInput1 () const 
+	{
+		return m_vGameKey[0].GetLvr ( _GameKey::LVR_1 );
 	}
 
 

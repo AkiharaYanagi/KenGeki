@@ -59,6 +59,12 @@ namespace GAME
 		//優先リストの参照を得る
 		const std::vector < UINT > & GetvCompID () const { return m_vCompID; }
 
+
+		//後ろ入れ状態 [レバー方向:４]かどうか
+		const bool IsInput4 () const;
+
+		//後ろ斜め下 入れ状態[レバー方向:1]かどうか
+		const bool IsInput1 () const;
 	};
 
 	using P_CharaInput = std::shared_ptr < CharaInput >;

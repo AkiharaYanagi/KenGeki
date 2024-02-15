@@ -34,14 +34,14 @@ namespace GAME
 
 		//-------------------------------------------------
 		//ファイティング：1p2p共通スクリプト処理
-		UINT	m_scpStop;		//スクリプトからのストップ
+		UINT	m_scpStop {0};		//スクリプトからのストップ
 		P_Timer	m_tmrHitstop;		//ヒットストップ
 
 		//暗転ウェイト
-		UINT	m_blackOut;		//暗転
+		UINT	m_blackOut {0};		//暗転
 
 		//勝者
-		WINNER	m_winner;
+		WINNER	m_winner { WINNER::WINNER_DRAW };
 
 	public:
 		MutualChara ();

@@ -1,13 +1,13 @@
 //=================================================================================================
 //
-//	Script ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		–ˆƒtƒŒ[ƒ€‚Éˆ—‚·‚é’l
+//	Script ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«å‡¦ç†ã™ã‚‹å€¤
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Define.h"
@@ -21,41 +21,39 @@
 #include "ScriptParam_Staging.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	//================================================================
-	//	ŸƒXƒNƒŠƒvƒg		ƒLƒƒƒ‰‚É‚¨‚¯‚éƒAƒNƒVƒ‡ƒ“‚Ì‚PƒtƒŒ[ƒ€‚Ì’l
-	//		„°ƒtƒŒ[ƒ€”
-	//		„°ƒCƒ[ƒWID
-	//		„°‰æ‘œ•\¦ˆÊ’u
-	//		„°ŒvZó‘Ô(‘±/‘ã“ü/‰ÁZ)
-	//		„°[]ƒ‹[ƒg
-	//		„°[]ÚG˜g
-	//		„°[]UŒ‚˜g
-	//		„°[]“–‚è˜g
-	//		„°[]‘ŠE˜g
-	//		„°[]ƒGƒtƒFƒNƒg”­¶
+	//	â—†ã‚¹ã‚¯ãƒªãƒ—ãƒˆ		ã‚­ãƒ£ãƒ©ã«ãŠã‘ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã®å€¤
+	//		â”£ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	//		â”£ã‚¤ãƒ¡ãƒ¼ã‚¸ID
+	//		â”£ç”»åƒè¡¨ç¤ºä½ç½®
+	//		â”£è¨ˆç®—çŠ¶æ…‹(æŒç¶š/ä»£å…¥/åŠ ç®—)
+	//		â”£[]ãƒ«ãƒ¼ãƒˆ
+	//		â”£[]æ¥è§¦æ 
+	//		â”£[]æ”»æ’ƒæ 
+	//		â”£[]å½“ã‚Šæ 
+	//		â”£[]ç›¸æ®ºæ 
+	//		â”£[]ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿ
 	//
 	//================================================================
 
-	//ƒNƒ‰ƒX
+	//ã‚¯ãƒ©ã‚¹
 	class Script
 	{
-		UINT	m_frame;		//©g‚ÌŠY“–ƒtƒŒ[ƒ€”
-		UINT	m_imageIndex;	//ƒCƒ[ƒWID
+		UINT	m_frame {0};		//è‡ªèº«ã®è©²å½“ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+		UINT	m_imageIndex {0};	//ã‚¤ãƒ¡ãƒ¼ã‚¸ID
+		VEC2	m_pos {0, 0};		//ç”»åƒè¡¨ç¤ºä½ç½®
 
-		VEC2	m_pos;			//‰æ‘œ•\¦ˆÊ’u
-//		CLC_ST	m_CalcState;	//ŒvZó‘Ô
+		PV_RECT	m_pvCRect;		//æ¥è§¦æ ãƒªã‚¹ãƒˆ
+		PV_RECT	m_pvARect;		//æ”»æ’ƒæ ãƒªã‚¹ãƒˆ
+		PV_RECT	m_pvHRect;		//å½“ã‚Šæ ãƒªã‚¹ãƒˆ
+		PV_RECT	m_pvORect;		//ç›¸æ®ºæ ãƒªã‚¹ãƒˆ
 
-		PV_RECT	m_pvCRect;		//ÚG˜gƒŠƒXƒg
-		PV_RECT	m_pvARect;		//UŒ‚˜gƒŠƒXƒg
-		PV_RECT	m_pvHRect;		//“–‚è˜gƒŠƒXƒg
-		PV_RECT	m_pvORect;		//‘ŠE˜gƒŠƒXƒg
-
-		V_UINT		m_vRouteID;		//ƒ‹[ƒgƒŠƒXƒg
-		PVP_EfGnrt	m_pvpEfGnrt;	//EfƒWƒFƒlƒŒ[ƒgƒŠƒXƒg
+		V_UINT		m_vRouteID;		//ãƒ«ãƒ¼ãƒˆãƒªã‚¹ãƒˆ
+		PVP_EfGnrt	m_pvpEfGnrt;	//Efã‚¸ã‚§ãƒãƒ¬ãƒ¼ãƒˆãƒªã‚¹ãƒˆ
 
 	public:
 		Script ();
@@ -65,45 +63,31 @@ namespace GAME
 		void Make ();
 		void Rele ();
 
-		//ŠY“–ƒtƒŒ[ƒ€”
+		//è©²å½“ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 		void SetFrame ( UINT frame ) { m_frame = frame; }
 		UINT GetFrame () const { return m_frame; }
 
-		//ƒCƒ[ƒWID
+		//ã‚¤ãƒ¡ãƒ¼ã‚¸ID
 		void SetImageIndex ( UINT index ) { m_imageIndex = index; }
 		UINT GetImageIndex () const { return m_imageIndex; }
 
-		//‰æ‘œ•\¦ˆÊ’u
+		//ç”»åƒè¡¨ç¤ºä½ç½®
 		void SetPos ( VEC2 pos ) { m_pos = pos; }
 		VEC2 GetPos () const { return m_pos; }
 
-#if 0
-		//‘¬“x
-		void SetVel ( VEC2 vel ) { m_vel = vel; }
-		VEC2 GetVel () const { return m_vel; }
-
-		//‰Á‘¬“x
-		void SetAcc ( VEC2 acc ) { m_acc = acc; }
-		VEC2 GetAcc () const { return m_acc; }
-
-		//ŒvZó‘Ô
-		void SetCalcState ( CLC_ST clcSt ) { m_CalcState = clcSt; }
-		CLC_ST GetCalcState () const { return m_CalcState; }
-#endif // 0
-
-		//ƒ‹[ƒg
+		//ãƒ«ãƒ¼ãƒˆ
 		void AddRouteID ( UINT i ) { m_vRouteID.push_back ( i ); }
 		void SetRouteID ( unique_ptr < UINT[] > up_aryUint, UINT size );
 		const V_UINT & GetcvRouteID () const { return m_vRouteID; }
 		V_UINT & GetvRouteID () { return m_vRouteID; }
 
-		//EfGnrtƒŠƒXƒg
+		//EfGnrtãƒªã‚¹ãƒˆ
 		PVP_EfGnrt GetpvpEfGnrt () const { return m_pvpEfGnrt; }
 
-		//EfGnrtƒŠƒXƒg‚É’Ç‰Á
+		//EfGnrtãƒªã‚¹ãƒˆã«è¿½åŠ 
 		void AddpEfGnrt ( P_EfGnrt pEfGnrt ) { m_pvpEfGnrt->push_back ( pEfGnrt ); }
 
-		//ÚG˜g, UŒ‚˜g, “–‚è˜g, ‘ŠE˜g
+		//æ¥è§¦æ , æ”»æ’ƒæ , å½“ã‚Šæ , ç›¸æ®ºæ 
 		PV_RECT GetpvCRect () const { return m_pvCRect; }
 		PV_RECT GetpvARect () const { return m_pvARect; }
 		PV_RECT GetpvHRect () const { return m_pvHRect; }
@@ -113,9 +97,9 @@ namespace GAME
 		void AddHRect ( RECT hrect ) { m_pvHRect->push_back ( hrect ); }
 		void AddORect ( RECT orect ) { m_pvORect->push_back ( orect ); }
 
-		//’l
-		ScriptParam_Battle		m_prmBattle;	//í“¬ƒpƒ‰ƒ[ƒ^
-		ScriptParam_Staging		m_prmStaging;	//‰‰oƒpƒ‰ƒ[ƒ^
+		//å€¤
+		ScriptParam_Battle		m_prmBattle;	//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		ScriptParam_Staging		m_prmStaging;	//æ¼”å‡ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	};
 
 

@@ -1,22 +1,22 @@
 //=================================================================================================
 //
-//	Chara_Const ƒwƒbƒ_ƒtƒ@ƒCƒ‹
-//		Chara‹¤’Ê’è‹`
+//	Chara_Const ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+//		Charaå…±é€šå®šç¾©
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 
-	//ƒAƒNƒVƒ‡ƒ“‘®«
+	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å±žæ€§
 	enum ACTION_CATEGORY
 	{
 		AC_NEUTRAL, AC_MOVE, AC_JUMP, AC_DASH,
@@ -33,46 +33,46 @@ namespace GAME
 		ACTION_CATEGORY_NUM
 	};
 
-	//ƒAƒNƒVƒ‡ƒ“‘Ì¨ ’è‹`
+	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä½“å‹¢ å®šç¾©
 	enum ACTION_POSTURE
 	{
 		AP_STAND, AP_CROUCH, AP_JUMP
 	};
 
-	//ŒvŽZó‘Ô(CalcState)
+	//è¨ˆç®—çŠ¶æ…‹(CalcState)
 	enum CLC_ST
 	{
-		CLC_MAINTAIN,	//Ž‘±
-		CLC_SUBSTITUDE,	//‘ã“ü
-		CLC_ADD,		//‰ÁŽZ
+		CLC_MAINTAIN,	//æŒç¶š
+		CLC_SUBSTITUDE,	//ä»£å…¥
+		CLC_ADD,		//åŠ ç®—
 	};
 
-	//ƒuƒ‰ƒ“ƒ`ðŒ
+	//ãƒ–ãƒ©ãƒ³ãƒæ¡ä»¶
 	enum BRANCH_CONDITION
 	{
-		BRC_CMD,	//ƒRƒ}ƒ“ƒh¬—§
-		BRC_GRD,	//’…’n
+		BRC_CMD,	//ã‚³ãƒžãƒ³ãƒ‰æˆç«‹
+		BRC_GRD,	//ç€åœ°
 
-		BRC_DMG,	//Ž©•ª‚ª‹ò‚ç‚¢
-		BRC_HIT_I,	//‘ŠŽè‚Éƒqƒbƒg(Ž©g‚ð•ÏX)
-		BRC_HIT_E,	//‘ŠŽè‚Éƒqƒbƒg(‘ŠŽè‚ð•ÏX)
+		BRC_DMG,	//è‡ªåˆ†ãŒå–°ã‚‰ã„
+		BRC_HIT_I,	//ç›¸æ‰‹ã«ãƒ’ãƒƒãƒˆ(è‡ªèº«ã‚’å¤‰æ›´)
+		BRC_HIT_E,	//ç›¸æ‰‹ã«ãƒ’ãƒƒãƒˆ(ç›¸æ‰‹ã‚’å¤‰æ›´)
 
-		//‘ÅŒ‚‚ªƒqƒbƒg¨ƒoƒ‰ƒ“ƒX’lŽQÆ¨‚O‚È‚ç¬—§
-		BRC_THR_I,	//“Š‚°¬—§ (ƒQ[ƒ€ƒƒCƒ“Žw’è)
-		BRC_THR_E,	//“Š‚°¬—§ (ƒQ[ƒ€ƒƒCƒ“Žw’è)
+		//æ‰“æ’ƒãŒãƒ’ãƒƒãƒˆâ†’ãƒãƒ©ãƒ³ã‚¹å€¤å‚ç…§â†’ï¼ãªã‚‰æˆç«‹
+		BRC_THR_I,	//æŠ•ã’æˆç«‹ (ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³æŒ‡å®š)
+		BRC_THR_E,	//æŠ•ã’æˆç«‹ (ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³æŒ‡å®š)
 
-		BRC_OFS,	//‘ŠŽEŽž
-		BRC_END,	//ƒV[ƒNƒGƒ“ƒXI—¹Žž
+		BRC_OFS,	//ç›¸æ®ºæ™‚
+		BRC_END,	//ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹çµ‚äº†æ™‚
 
-		//‘¼A“ÁŽêƒtƒ‰ƒO‚ðƒQ[ƒ€ƒƒCƒ“‚ÅÝ’è‚Å‚«‚é
+		//ä»–ã€ç‰¹æ®Šãƒ•ãƒ©ã‚°ã‚’ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã§è¨­å®šã§ãã‚‹
 		//FLG_0, 
-		BRC_DASH,		//ƒ_ƒbƒVƒ…‘ŠŽE
+		BRC_DASH,		//ãƒ€ãƒƒã‚·ãƒ¥ç›¸æ®º
 	};
 
-	//‘¼ŒŸõ—p
+	//ä»–æ¤œç´¢ç”¨
 	enum
 	{
-		NO_ACTION = 0xFFFF0001,		//ŒŸõ—pƒtƒ‰ƒO
+		NO_ACTION = 0xFFFF0001,		//æ¤œç´¢ç”¨ãƒ•ãƒ©ã‚°
 	};
 
 

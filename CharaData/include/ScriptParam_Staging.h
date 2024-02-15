@@ -1,89 +1,97 @@
 //=================================================================================================
 //
-//	ScriptParam_Staging ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+//	ScriptParam_Staging ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //=================================================================================================
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------------------------------
 //#include "Game.h"
 #include "Define.h"
 #include "DxDefine.h"
 
 //-------------------------------------------------------------------------------------------------
-// éŒ¾
+// å®£è¨€
 //-------------------------------------------------------------------------------------------------
 namespace GAME
 {
 	struct ScriptParam_Staging
 	{
 	public:
-		//‰‰o(‘S‘Ì)
-		UINT	BlackOut;		//ˆÃ“][F]
-		UINT	Vibration;		//U“®[F](‘S‘Ì)
-		UINT	Stop;			//’â~[F](‘S‘Ì)
+		//æ¼”å‡º(å…¨ä½“)
+		UINT	BlackOut;		//æš—è»¢[F]
+		UINT	Vibration;		//æŒ¯å‹•[F](å…¨ä½“)
+		UINT	Stop;			//åœæ­¢[F](å…¨ä½“)
 
 		//------
-		//‰‰o(ŒÂ•Ê)
-		int		Rotate;				//‰ñ“][rad]
-		VEC2	Rotate_center;		//‰ñ“]’†S(x,y)
-		UINT	AfterImage_N;		//c‘œ[ŒÂ]
-		UINT	AfterImage_time;	//c‘œ[F] ‘±
-		UINT	AfterImage_pitch;	//c‘œ[F] pitch
-		UINT	Vibration_S;		//U“®[F](ŒÂ•Ê)
-		_CLR	Color;				//F’²•ÏX
-		UINT	Color_time;			//F’²•ÏX[F] ‘±
+		//æ¼”å‡º(å€‹åˆ¥)
+		int		Rotate;				//å›è»¢[rad]
+		VEC2	Rotate_center;		//å›è»¢ä¸­å¿ƒ(x,y)
+		UINT	AfterImage_N;		//æ®‹åƒ[å€‹]
+		UINT	AfterImage_time;	//æ®‹åƒ[F] æŒç¶š
+		UINT	AfterImage_pitch;	//æ®‹åƒ[F] pitch
+		UINT	Vibration_S;		//æŒ¯å‹•[F](å€‹åˆ¥)
+		_CLR	Color;				//è‰²èª¿å¤‰æ›´
+		UINT	Color_time;			//è‰²èª¿å¤‰æ›´[F] æŒç¶š
 
+		//------
+		UINT	ID_SE;				//SEã®æŒ‡å®š
+
+		//=======================================
 		ScriptParam_Staging ();
 		ScriptParam_Staging ( const ScriptParam_Staging & rhs ) = delete;
 		~ScriptParam_Staging ();
-
-
+		//=======================================
 
 
 		//---------------------------------------------------------
-		//ˆÃ“]
+		//æš—è»¢
 		UINT GetBlackOut () const { return BlackOut; }
 		void SetBlackOut ( UINT blackout ) { BlackOut = blackout; }
 
-		//U“®
+		//æŒ¯å‹•
 		UINT GetVibration () const { return Vibration; }
 		void SetVibration ( UINT viberation ) { Vibration = viberation; }
 
-		//’â~
+		//åœæ­¢
 		UINT GetStop () const { return Stop; }
 		void SetStop ( UINT stop ) { Stop = stop; }
 
 		//---------------------------------------------------------
-		//‰ñ“]
+		//å›è»¢
 		int GetRadian () const { return Rotate; }
 		void SetStop ( int rad ) { Rotate = rad; }
 
-		//c‘œ[F] pitch
+		//æ®‹åƒ[F] pitch
 		int GetAfterImage_pitch () const { return AfterImage_pitch; }
 		void SetAfterImage_pitch ( int pitch ) { AfterImage_pitch = pitch; }
 
-		//c‘œ[ŒÂ]
+		//æ®‹åƒ[å€‹]
 		int GetAfterImage_N () const { return AfterImage_N; }
 		void SetAfterImage_N ( int n ) { AfterImage_N = n; }
 
-		//c‘œ[F] ‘±
+		//æ®‹åƒ[F] æŒç¶š
 		int GetAfterImage_time () const { return AfterImage_time; }
 		void SetAfterImage_time ( int time ) { AfterImage_time = time; }
 
-		//U“®[F](ŒÂ•Ê)
+		//æŒ¯å‹•[F](å€‹åˆ¥)
 		int GetVibration_S () const { return Vibration_S; }
 		void SetVibration_S ( int time ) { Vibration_S = time; }
 
-		//F’²
+		//è‰²èª¿
 		_CLR GetColor () const { return Color; }
 		void SetColor ( _CLR clr ) { Color = clr; }
 
-		//F’²•ÏX[F] ‘±
+		//è‰²èª¿å¤‰æ›´[F] æŒç¶š
 		int GetColor_time () const { return Color_time; }
 		void SetColor_time ( int time ) { Color_time = time; }
+
+		//---------------------------------------------------------
+		//SE
+		UINT GetID_SE () const { return ID_SE; }
+		void SetID_SE ( UINT id ) { ID_SE = id; }
 	};
 
 
