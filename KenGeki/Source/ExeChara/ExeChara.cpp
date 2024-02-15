@@ -126,9 +126,12 @@ namespace GAME
 		//表示
 		//@info Move()中のTransit()の後に遷移し、
 		//		再度Move()は呼ばれずDraw()が呼ばれるため、ここで手動の初期化が必要(Init()は呼ばれる)
+#if 0
 		m_dispChara->UpdateMainImage ( m_pScript, GetPos (), GetDirRight () );
 		//入力表示更新
 		m_dispChara->UpdateInput ( m_pCharaInput );
+#endif // 0
+		m_dispChara->Update ( m_pScript, m_btlPrm, m_pCharaInput );
 
 		TASK_VEC::Init ();
 	}
@@ -156,8 +159,12 @@ namespace GAME
 		m_pAction = m_pChara->GetpAction ( m_actionID );
 		m_pScript = m_pAction->GetpScript ( m_frame );
 
+		//表示の更新
+#if 0
 		//メイン イメージ
 		m_dispChara->UpdateMainImage ( m_pScript, GetPos (), GetDirRight () );
+#endif // 0
+		m_dispChara->Update ( m_pScript, m_btlPrm, m_pCharaInput );
 
 		//エフェクト イメージ
 		m_oprtEf->PostScriptMove ( GetPos (), GetDirRight () );
@@ -260,109 +267,10 @@ namespace GAME
 
 	//================================================
 	//エフェクト
-
-#if 0
-	//エフェクト処理の生成
-	void ExeChara::MakeEfOprt ()
-	{
-		//エフェクト処理にキャラポインタを設定
-		m_oprtEf->SetpChara ( m_pChara );
-
-		//すべてのアクションとスクリプトを巡回
-		PVP_Action pvpAction = m_pChara->GetpvpAction ();
-		for ( P_Action pAction : ( * pvpAction ) )
-		{
-			PVP_Script pvpScript = pAction->GetpvpScript ();
-			for ( P_Script pScript : ( * pvpScript ) )
-			{
-				PVP_EfGnrt pvpEfGnrt = pScript->GetpvpEfGnrt ();
-				for ( P_EfGnrt pEfGnrt : ( * pvpEfGnrt ) )
-				{
-					//非生成なら初回に登録しておき、IDで稼働状態にする
-					if ( ! pEfGnrt->GetGnrt () )
-					{
-						//エフェクトインデックスの取得
-						UINT index = pEfGnrt->GetIndex ();
-
-						//エフェクトの取得
-						P_Effect pEf = m_pChara->GetpEffect ( index );
-
-						//エフェクト管理に渡してIDを得る
-						//						UINT id = m_oprtEf.Addstd::vectorEffect ( pEf, pEfGnrt->GetZ () );
-
-						//IDを記録
-						//						pEfGnrt->SetID ( id );
-					}
-				}
-			}
-		}
-	}
-#endif // 0
-
 	void ExeChara::EffectMove ()
 	{
 		m_oprtEf->MoveEffect ( m_pScript, m_btlPrm );
-#if 0
-		//エフェクト生成と動作
-		if ( m_btlPrm.GetFirstEf () )	//ヒット後の初回のみは動作
-		{
-			m_oprtEf->GenerateEffect ( m_pScript, m_btlPrm );
-			m_btlPrm.SetFirstEf ( F );
-		}
-		else
-		{
-			if ( ! m_btlPrm.GetTmr_HitStop ()->IsActive () )	//ヒットストップ時は生成しない
-			{
-				//EffectGenerate ();
-				m_oprtEf->GenerateEffect ( m_pScript, m_btlPrm );
-			}
-		}
-
-		//エフェクト動作
-		m_oprtEf->PreScriptMove ();
-
-		//エフェクト同期
-		m_oprtEf->PostScriptMove ( m_btlPrm.GetPos (), m_btlPrm.GetDirRight () );
-#endif // 0
 	}
-
-#if 0
-	//エフェクト生成
-	void ExeChara::EffectGenerate ()
-	{
-		//発生
-		PVP_EfGnrt  pvpEfGnrt = m_pScript->GetpvpEfGnrt ();
-		for ( P_EfGnrt pEfGnrt : ( *pvpEfGnrt ) )
-		{
-			//生成用なら
-			if ( pEfGnrt->GetGnrt () )
-			{
-				//エフェクトインデックスの取得
-				UINT index = pEfGnrt->GetIndex ();
-				//エフェクトの取得
-				P_Effect pEf = m_pChara->GetpEffect ( index );
-				//リストに追加
-				m_oprtEf->AddListEffect ( pEf, pEfGnrt, m_btlPrm.GetPos (), m_btlPrm.GetDirRight () );
-			}
-			else //再利用なら
-			{
-				int i = 0;
-#if false
-				//エフェクトインデックスの取得
-				UINT index = pEfGnrt->GetIndex ();
-				//エフェクトの取得
-				P_Effect pEf = m_pChara->GetpEffect ( index );
-				//稼働中かどうか
-				if ( !m_oprtEf.IsActive ( pEf ) )
-				{
-					m_oprtEf.DriveEffect ( pEf );
-				}
-#endif // false
-			}
-		}
-	}
-#endif // 0
-
 
 	//================================================
 	//ライフ判定
@@ -385,24 +293,20 @@ namespace GAME
 	//グラフィック更新
 	void ExeChara::UpdateGraphic ()
 	{
+		m_dispChara->Update ( m_pScript, m_btlPrm, m_pCharaInput );
+#if 0
 		//メインイメージ
 		m_dispChara->UpdateMainImage ( m_pScript, m_btlPrm.GetPos (), m_btlPrm.GetDirRight () );
 
 		//入力表示更新
 		m_dispChara->UpdateInput ( m_pCharaInput );
 
-		//共通グラフィック
-		if ( ! m_btlPrm.GetTmr_Stop ()->IsActive () )
-		{
-			//スクリプトからの停止
-			m_btlPrm.SetScpStop ( m_pScript->m_prmStaging.Stop );
-		}
-
 		//ゲージ更新
 		m_dispChara->UpdateGauge ( m_btlPrm );
 
 		//ヒット数更新
 		m_dispChara->UpdateChainHitNum ( m_btlPrm.GetChainHitNum () );
+#endif // 0
 	}
 
 
@@ -535,18 +439,31 @@ namespace GAME
 		{
 			//遷移先チェック
 			P_Action pAct = m_pChara->GetpAction ( indexAction );
+
+			//やられ状態のとき空中チェック
+			bool bDai = m_pChara->GetActionID ( _T("ダメージ大") ) == indexAction ;
+			bool bSyou = m_pChara->GetActionID ( _T("ダメージ小") ) == indexAction ;
+
+			if ( bDai || bSyou )
+			{
+				ACTION_POSTURE ap = m_pOther.lock()->GetPosture ();
+				if ( ap == ACTION_POSTURE::AP_JUMP )
+				{
+					indexAction = m_pChara->GetActionID ( _T("空中やられ") );
+				}
+			}
+
+			//スクリプト
 			P_Script pScr = pAct->GetpScript ( 0 );
-
-			//相手を変更
-			m_pOther.lock ()->SetAction ( indexAction );	//遷移
-			m_pOther.lock ()->m_btlPrm.SetForcedChange ( forced );
-
-
 
 			//@todo のけぞり時間を指定してある場合、相手に適用
 			if ( m_pScript->m_prmBattle.Warp != 0 )
 			{
 			}
+
+			//相手を変更
+			m_pOther.lock ()->SetAction ( indexAction );	//遷移
+			m_pOther.lock ()->m_btlPrm.SetForcedChange ( forced );
 		}
 	}
 
@@ -665,8 +582,17 @@ namespace GAME
 	//スクリプトからパラメータを反映する
 	void ExeChara::SetParamFromScript ()
 	{
+		//------------------------------------------------
 		//暗転
 		m_btlPrm.SetBlackOut ( m_pScript->m_prmStaging.BlackOut );
+
+		//------------------------------------------------
+		//スクリプト停止
+		if ( ! m_btlPrm.GetTmr_Stop ()->IsActive () )
+		{
+			//スクリプトからの停止
+			m_btlPrm.SetScpStop ( m_pScript->m_prmStaging.Stop );
+		}
 	}
 
 	//====================================================================================

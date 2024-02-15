@@ -44,9 +44,6 @@ namespace GAME
 		//キャラを設定する
 		void SetpChara ( const P_Chara pChara );
 
-		//メインイメージの更新
-		void UpdateMainImage ( P_Script pScript, VEC2 ptChara, bool dirRight );
-
 		//表示枠設定
 		void SetpCharaRect ( P_CharaRect pCharaRect );
 
@@ -60,18 +57,25 @@ namespace GAME
 		void SetControl_PLAYER () { m_frontEnd->SetPlayer (); }
 		void SetControl_CPU () { m_frontEnd->SetCPU (); }
 
-
 		//ゲージ類の表示部のみ初期化
 		void LoadPlayer ( PLAYER_ID playerID );
+
+
+		//更新
+		void Update ( P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt );
+
+	private:
+		//メインイメージの更新
+		void UpdateMainImage ( P_Script pScript, VEC2 ptChara, bool dirRight );
 
 		//ゲージ類更新
 		void UpdateGauge ( BtlParam btlPrm );
 
-		//ヒット数更新
-		void UpdateChainHitNum ( UINT n );
-
 		//入力更新
 		void UpdateInput ( P_CharaInput p ) { m_dispInput->UpdateInput ( p ); }
+
+		//ヒット数更新
+		void UpdateChainHitNum ( UINT n );
 	};
 
 

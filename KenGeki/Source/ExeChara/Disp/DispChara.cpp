@@ -79,6 +79,23 @@ namespace GAME
 		m_dispRect->SetCharaRect ( pCharaRect );
 	}
 
+	//全体更新
+	void DispChara::Update ( P_Script pScp, const BtlParam & btlprm, P_CharaInput pChIpt )
+	{
+		//メインイメージの更新
+		UpdateMainImage ( pScp, btlprm.GetPos (), btlprm.GetDirRight () );
+
+		//ゲージ類更新
+		UpdateGauge ( btlprm );
+
+		//入力更新
+		UpdateInput ( pChIpt );
+
+		//ヒット数更新
+		UpdateChainHitNum ( btlprm.GetChainHitNum () );
+	}
+
+
 	//毎フレームにおけるメインイメージの更新
 	void DispChara::UpdateMainImage ( P_Script pScript, VEC2 posChara, bool dirRight )
 	{
@@ -99,14 +116,13 @@ namespace GAME
 		m_frontEnd->UpdateMainImage ( posChara );
 	}
 
-
 	//ゲージ類更新
 	void DispChara::UpdateGauge ( BtlParam btlPrm )
 	{
 		m_frontEnd->UpdateGauge ( btlPrm );
 	}
 
-	//ゲージ類更新
+	//ヒット数更新
 	void DispChara::UpdateChainHitNum ( UINT n )
 	{
 		m_frontEnd->UpdateHitNum ( n );
