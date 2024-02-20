@@ -192,6 +192,7 @@
     <ClCompile Include="Source\ExeChara\ExeChara_Load.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara_State.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp" />
     <ClCompile Include="Source\ExeChara\Input\CharaInput.cpp" />
     <ClCompile Include="Source\ExeChara\Input\CPUInput.cpp" />
     <ClCompile Include="Source\ExeChara\Input\PlayerInput.cpp" />

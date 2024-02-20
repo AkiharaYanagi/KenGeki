@@ -284,6 +284,9 @@
     <ClCompile Include="Source\ExeChara\ExeChara_Event.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt">
