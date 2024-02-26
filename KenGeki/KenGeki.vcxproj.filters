@@ -141,13 +141,7 @@
     <ClInclude Include="Source\ExeChara\ExeChara.h">
       <Filter>ExeChara</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ExeChara\ExeChara_Actor.h">
-      <Filter>ExeChara</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ExeChara\ExeChara_Common.h">
-      <Filter>ExeChara</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ExeChara\ExeChara_State.h">
       <Filter>ExeChara</Filter>
     </ClInclude>
     <ClInclude Include="Source\ExeChara\BtlParam.h">
@@ -164,6 +158,12 @@
     </ClInclude>
     <ClInclude Include="Source\Menu\YesNo_Menu.h">
       <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExCh_State.h">
+      <Filter>ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExCh_Actor.h">
+      <Filter>ExeChara</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,12 +257,6 @@
     <ClCompile Include="Source\ExeChara\ExeChara.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_Actor.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_State.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ExeChara\BtlParam.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
@@ -285,6 +279,15 @@
       <Filter>ExeChara</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExCh_Actor.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExCh_State.cpp">
+      <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Special.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
   </ItemGroup>
