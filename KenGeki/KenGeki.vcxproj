@@ -148,6 +148,7 @@
     <ClInclude Include="Source\ExeChara\Input\CPUInput.h" />
     <ClInclude Include="Source\ExeChara\Input\PlayerInput.h" />
     <ClInclude Include="Source\ExeChara\Rect\CharaRect.h" />
+    <ClInclude Include="Source\FtgMain\BG.h" />
     <ClInclude Include="Source\FtgMain\Decision.h" />
     <ClInclude Include="Source\FtgMain\Ef\EfClang.h" />
     <ClInclude Include="Source\FtgMain\Ef\EfHit.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="Source\ExeChara\Input\CPUInput.cpp" />
     <ClCompile Include="Source\ExeChara\Input\PlayerInput.cpp" />
     <ClCompile Include="Source\ExeChara\Rect\CharaRect.cpp" />
+    <ClCompile Include="Source\FtgMain\BG.cpp" />
     <ClCompile Include="Source\FtgMain\Decision.cpp" />
     <ClCompile Include="Source\FtgMain\Ef\EfClang.cpp" />
     <ClCompile Include="Source\FtgMain\Ef\EfHit.cpp" />

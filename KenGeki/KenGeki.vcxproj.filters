@@ -7,11 +7,17 @@
     <Filter Include="FtgMain">
       <UniqueIdentifier>{00daefbc-1697-4ccb-8749-5ee6b34e4bf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ExeChara">
-      <UniqueIdentifier>{7d5088ad-a745-413e-85f4-775da0b5450a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FtgMain\Ef">
       <UniqueIdentifier>{eae2306e-5145-42da-a18d-643259e14d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{bb1efcae-b5f6-4997-9c84-030e526c88ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Document">
+      <UniqueIdentifier>{d2910e88-cf3b-40f2-bfc7-8b5e7f4b04e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExeChara">
+      <UniqueIdentifier>{7d5088ad-a745-413e-85f4-775da0b5450a}</UniqueIdentifier>
     </Filter>
     <Filter Include="ExeChara\Disp">
       <UniqueIdentifier>{82dc41f8-21d9-4b3d-b031-e595e670b0f7}</UniqueIdentifier>
@@ -24,12 +30,6 @@
     </Filter>
     <Filter Include="ExeChara\Rect">
       <UniqueIdentifier>{4c63ec74-ded8-4866-b134-3ad96c85ac7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Menu">
-      <UniqueIdentifier>{bb1efcae-b5f6-4997-9c84-030e526c88ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_Document">
-      <UniqueIdentifier>{d2910e88-cf3b-40f2-bfc7-8b5e7f4b04e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +168,9 @@
     <ClInclude Include="Source\FtgMain\FtgDemo_State.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FtgMain\BG.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -294,6 +297,9 @@
       <Filter>ExeChara</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\FtgDemo_State.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\BG.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
