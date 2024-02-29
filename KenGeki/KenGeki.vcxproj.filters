@@ -165,6 +165,9 @@
     <ClInclude Include="Source\ExeChara\ExCh_Actor.h">
       <Filter>ExeChara</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FtgMain\FtgDemo_State.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -289,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Special.cpp">
       <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\FtgDemo_State.cpp">
+      <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
