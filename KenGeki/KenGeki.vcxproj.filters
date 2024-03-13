@@ -31,6 +31,9 @@
     <Filter Include="ExeChara\Rect">
       <UniqueIdentifier>{4c63ec74-ded8-4866-b134-3ad96c85ac7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{1cd294db-503d-4ba4-a279-9cdb3edd8414}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameMain\GameConst.h">
@@ -171,6 +174,9 @@
     <ClInclude Include="Source\FtgMain\BG.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Title\Title.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -301,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="Source\FtgMain\BG.cpp">
       <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Title\Title.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
