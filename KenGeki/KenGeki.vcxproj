@@ -130,6 +130,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CharaSele\CharaSele.h" />
+    <ClInclude Include="Source\CharaSele\CharaSeleConst.h" />
+    <ClInclude Include="Source\CharaSele\CharaSele_Player.h" />
     <ClInclude Include="Source\ExeChara\BtlParam.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispChara.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h" />
@@ -179,6 +182,8 @@
     <ClInclude Include="Source\Title\Title.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\CharaSele\CharaSele.cpp" />
+    <ClCompile Include="Source\CharaSele\CharaSele_Player.cpp" />
     <ClCompile Include="Source\ExeChara\BtlParam.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispChara.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispFrontEnd.cpp" />

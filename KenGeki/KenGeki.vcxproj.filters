@@ -34,6 +34,9 @@
     <Filter Include="Title">
       <UniqueIdentifier>{1cd294db-503d-4ba4-a279-9cdb3edd8414}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CharaSele">
+      <UniqueIdentifier>{c8084fe4-f3b4-4ccd-9d16-88f256d313e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameMain\GameConst.h">
@@ -177,6 +180,15 @@
     <ClInclude Include="Source\Title\Title.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CharaSele\CharaSele.h">
+      <Filter>CharaSele</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CharaSele\CharaSeleConst.h">
+      <Filter>CharaSele</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CharaSele\CharaSele_Player.h">
+      <Filter>CharaSele</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -310,6 +322,12 @@
     </ClCompile>
     <ClCompile Include="Source\Title\Title.cpp">
       <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CharaSele\CharaSele.cpp">
+      <Filter>CharaSele</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CharaSele\CharaSele_Player.cpp">
+      <Filter>CharaSele</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
