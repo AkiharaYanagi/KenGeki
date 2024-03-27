@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KenGeki", "KenGeki\KenGeki.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CharaData", "CharaData\CharaData.vcxproj", "{F1300661-3730-482A-95BD-7EE2168C1D40}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "KenGeki_Setup", "KenGeki_Setup\KenGeki_Setup.vdproj", "{C1DD13CD-5197-4B55-B99B-92197EF49B91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSettings", "GameSettings\GameSettings.csproj", "{C99B1490-67DD-49BF-8EDD-DF8CC601E671}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +35,18 @@ Global
 		{F1300661-3730-482A-95BD-7EE2168C1D40}.Release|x64.Build.0 = Release|Win32
 		{F1300661-3730-482A-95BD-7EE2168C1D40}.Release|x86.ActiveCfg = Release|Win32
 		{F1300661-3730-482A-95BD-7EE2168C1D40}.Release|x86.Build.0 = Release|Win32
+		{C1DD13CD-5197-4B55-B99B-92197EF49B91}.Debug|x64.ActiveCfg = Debug
+		{C1DD13CD-5197-4B55-B99B-92197EF49B91}.Debug|x86.ActiveCfg = Debug
+		{C1DD13CD-5197-4B55-B99B-92197EF49B91}.Release|x64.ActiveCfg = Release
+		{C1DD13CD-5197-4B55-B99B-92197EF49B91}.Release|x86.ActiveCfg = Release
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Debug|x64.ActiveCfg = Debug|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Debug|x64.Build.0 = Debug|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Debug|x86.ActiveCfg = Debug|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Debug|x86.Build.0 = Debug|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Release|x64.ActiveCfg = Release|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Release|x64.Build.0 = Release|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Release|x86.ActiveCfg = Release|x86
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
