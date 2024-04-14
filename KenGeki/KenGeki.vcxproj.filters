@@ -254,9 +254,6 @@
     <ClCompile Include="Source\ExeChara\Disp\DispMainImage.cpp">
       <Filter>ExeChara\Disp</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ExeChara\Disp\DispRect.cpp">
-      <Filter>ExeChara\Disp</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ExeChara\Effect\ExeEffect.cpp">
       <Filter>ExeChara\Effect</Filter>
     </ClCompile>
@@ -328,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="Source\CharaSele\CharaSele_Player.cpp">
       <Filter>CharaSele</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispRect.cpp">
+      <Filter>ExeChara\Disp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
