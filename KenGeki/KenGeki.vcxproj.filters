@@ -189,6 +189,9 @@
     <ClInclude Include="Source\CharaSele\CharaSele_Player.h">
       <Filter>CharaSele</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FtgMain\FtgGrp.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -328,6 +331,12 @@
     </ClCompile>
     <ClCompile Include="Source\ExeChara\Disp\DispRect.cpp">
       <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\FtgGrp.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Transit_Special.cpp">
+      <Filter>ExeChara</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

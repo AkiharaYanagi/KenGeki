@@ -162,6 +162,7 @@
     <ClInclude Include="Source\FtgMain\FtgConst.h" />
     <ClInclude Include="Source\FtgMain\FtgDemo.h" />
     <ClInclude Include="Source\FtgMain\FtgDemo_State.h" />
+    <ClInclude Include="Source\FtgMain\FtgGrp.h" />
     <ClInclude Include="Source\FtgMain\FtgMain.h" />
     <ClInclude Include="Source\FtgMain\G_Ftg.h" />
     <ClInclude Include="Source\FtgMain\MutualChara.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara_Special.cpp" />
     <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp" />
+    <ClCompile Include="Source\ExeChara\ExeChara_Transit_Special.cpp" />
     <ClCompile Include="Source\ExeChara\Input\CharaInput.cpp" />
     <ClCompile Include="Source\ExeChara\Input\CPUInput.cpp" />
     <ClCompile Include="Source\ExeChara\Input\PlayerInput.cpp" />
@@ -216,6 +218,7 @@
     <ClCompile Include="Source\FtgMain\Fighting.cpp" />
     <ClCompile Include="Source\FtgMain\FtgDemo.cpp" />
     <ClCompile Include="Source\FtgMain\FtgDemo_State.cpp" />
+    <ClCompile Include="Source\FtgMain\FtgGrp.cpp" />
     <ClCompile Include="Source\FtgMain\FtgMain.cpp" />
     <ClCompile Include="Source\FtgMain\G_Ftg.cpp" />
     <ClCompile Include="Source\FtgMain\MutualChara.cpp" />
