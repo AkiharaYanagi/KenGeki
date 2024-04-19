@@ -37,6 +37,9 @@
     <Filter Include="CharaSele">
       <UniqueIdentifier>{c8084fe4-f3b4-4ccd-9d16-88f256d313e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExeChara\ExeChara">
+      <UniqueIdentifier>{26107a80-90b2-4e9d-9e71-0845d727da3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameMain\GameConst.h">
@@ -144,12 +147,6 @@
     <ClInclude Include="Source\ExeChara\Rect\CharaRect.h">
       <Filter>ExeChara\Rect</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ExeChara\ExeChara.h">
-      <Filter>ExeChara</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ExeChara\ExeChara_Common.h">
-      <Filter>ExeChara</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ExeChara\BtlParam.h">
       <Filter>ExeChara</Filter>
     </ClInclude>
@@ -191,6 +188,15 @@
     </ClInclude>
     <ClInclude Include="Source\FtgMain\FtgGrp.h">
       <Filter>FtgMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExeChara.h">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\ExeChara_Common.h">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\TimerSlow.h">
+      <Filter>ExeChara</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -278,9 +284,6 @@
     <ClCompile Include="Source\ExeChara\Rect\CharaRect.cpp">
       <Filter>ExeChara\Rect</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ExeChara\BtlParam.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
@@ -293,25 +296,10 @@
     <ClCompile Include="Source\Menu\PauseMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_Load.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_Event.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ExeChara\ExCh_Actor.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExCh_State.cpp">
-      <Filter>ExeChara</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\ExeChara_Special.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\FtgDemo_State.cpp">
@@ -335,7 +323,28 @@
     <ClCompile Include="Source\FtgMain\FtgGrp.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Event.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Load.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Special.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Transit_Special.cpp">
+      <Filter>ExeChara\ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\TimerSlow.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
   </ItemGroup>
