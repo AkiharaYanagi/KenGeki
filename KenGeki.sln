@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KenGeki", "KenGeki\KenGeki.vcxproj", "{254A19F5-5FA9-4780-A9B6-C41BD0EA2219}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C99B1490-67DD-49BF-8EDD-DF8CC601E671} = {C99B1490-67DD-49BF-8EDD-DF8CC601E671}
+		{F1300661-3730-482A-95BD-7EE2168C1D40} = {F1300661-3730-482A-95BD-7EE2168C1D40}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CharaData", "CharaData\CharaData.vcxproj", "{F1300661-3730-482A-95BD-7EE2168C1D40}"
 EndProject

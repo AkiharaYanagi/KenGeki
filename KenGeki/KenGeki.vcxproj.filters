@@ -72,9 +72,6 @@
     <ClInclude Include="Source\GameMain\WinMain.h">
       <Filter>GameMain</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FtgMain\Decision.h">
-      <Filter>FtgMain</Filter>
-    </ClInclude>
     <ClInclude Include="Source\FtgMain\Fighting.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
@@ -198,6 +195,9 @@
     <ClInclude Include="Source\ExeChara\TimerSlow.h">
       <Filter>ExeChara</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\KenGeki_020\KenGeki_020\Source\FtgMain\Decision.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -214,9 +214,6 @@
     </ClCompile>
     <ClCompile Include="Source\GameMain\WinMain.cpp">
       <Filter>GameMain</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FtgMain\Decision.cpp">
-      <Filter>FtgMain</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\Fighting.cpp">
       <Filter>FtgMain</Filter>
@@ -346,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="Source\ExeChara\TimerSlow.cpp">
       <Filter>ExeChara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\KenGeki_020\KenGeki_020\Source\FtgMain\Decision.cpp">
+      <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
