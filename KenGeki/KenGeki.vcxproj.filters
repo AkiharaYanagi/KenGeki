@@ -37,7 +37,7 @@
     <Filter Include="CharaSele">
       <UniqueIdentifier>{c8084fe4-f3b4-4ccd-9d16-88f256d313e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ExeChara\ExeChara">
+    <Filter Include="ExeChara\Main">
       <UniqueIdentifier>{26107a80-90b2-4e9d-9e71-0845d727da3a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -187,15 +187,15 @@
       <Filter>FtgMain</Filter>
     </ClInclude>
     <ClInclude Include="Source\ExeChara\ExeChara.h">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClInclude>
     <ClInclude Include="Source\ExeChara\ExeChara_Common.h">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClInclude>
     <ClInclude Include="Source\ExeChara\TimerSlow.h">
       <Filter>ExeChara</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\KenGeki_020\KenGeki_020\Source\FtgMain\Decision.h">
+    <ClInclude Include="Source\FtgMain\Decision.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
   </ItemGroup>
@@ -321,30 +321,30 @@
       <Filter>FtgMain</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Event.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Load.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Rect.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Special.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Transit.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\ExeChara_Transit_Special.cpp">
-      <Filter>ExeChara\ExeChara</Filter>
+      <Filter>ExeChara\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\TimerSlow.cpp">
       <Filter>ExeChara</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\KenGeki_020\KenGeki_020\Source\FtgMain\Decision.cpp">
+    <ClCompile Include="Source\FtgMain\Decision.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
