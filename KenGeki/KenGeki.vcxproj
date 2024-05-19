@@ -137,6 +137,7 @@
     <ClInclude Include="Source\CharaSele\CharaSele_Player.h" />
     <ClInclude Include="Source\ExeChara\BtlParam.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispChara.h" />
+    <ClInclude Include="Source\ExeChara\Disp\DispChara_Const.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispGauge.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispInput.h" />

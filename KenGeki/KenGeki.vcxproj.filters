@@ -198,6 +198,9 @@
     <ClInclude Include="Source\FtgMain\Decision.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispChara_Const.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
