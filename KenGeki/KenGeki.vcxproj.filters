@@ -201,6 +201,9 @@
     <ClInclude Include="Source\ExeChara\Disp\DispChara_Const.h">
       <Filter>ExeChara\Disp</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispAccel.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -349,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="Source\FtgMain\Decision.cpp">
       <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispAccel.cpp">
+      <Filter>ExeChara\Disp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
