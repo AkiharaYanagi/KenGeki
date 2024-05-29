@@ -204,6 +204,9 @@
     <ClInclude Include="Source\ExeChara\Disp\DispAccel.h">
       <Filter>ExeChara\Disp</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FtgMain\BattleTime.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -355,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="Source\ExeChara\Disp\DispAccel.cpp">
       <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\BattleTime.cpp">
+      <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
