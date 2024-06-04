@@ -78,7 +78,7 @@
     <ClInclude Include="Source\FtgMain\FtgConst.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FtgMain\FtgDemo.h">
+    <ClInclude Include="Source\FtgMain\FtgDemo_Actor.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
     <ClInclude Include="Source\FtgMain\FtgMain.h">
@@ -207,6 +207,9 @@
     <ClInclude Include="Source\FtgMain\BattleTime.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FtgMain\Round.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -227,7 +230,7 @@
     <ClCompile Include="Source\FtgMain\Fighting.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FtgMain\FtgDemo.cpp">
+    <ClCompile Include="Source\FtgMain\FtgDemo_Actor.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\FtgMain.cpp">
@@ -360,6 +363,9 @@
       <Filter>ExeChara\Disp</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\BattleTime.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\Round.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
