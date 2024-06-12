@@ -376,3 +376,7 @@ FodyWeavers.xsd
 CharaData/library/CharaData_debug.lib
 CharaData/library/CharaData_debug.idb
 *.lib
+CharaData/library/CharaData_debug.idb
+CharaData/library/CharaData_debug.lib
+*.idb
+*.lib
