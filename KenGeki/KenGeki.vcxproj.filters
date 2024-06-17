@@ -40,6 +40,9 @@
     <Filter Include="ExeChara\Main">
       <UniqueIdentifier>{26107a80-90b2-4e9d-9e71-0845d727da3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Result">
+      <UniqueIdentifier>{b4d2ca41-5aee-4b59-a4e8-bca64662eaf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameMain\GameConst.h">
@@ -82,9 +85,6 @@
       <Filter>FtgMain</Filter>
     </ClInclude>
     <ClInclude Include="Source\FtgMain\FtgMain.h">
-      <Filter>FtgMain</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FtgMain\G_Ftg.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
     <ClInclude Include="Source\FtgMain\MutualChara.h">
@@ -210,6 +210,12 @@
     <ClInclude Include="Source\FtgMain\Round.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Result\Result.h">
+      <Filter>Result</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FtgMain\G_Ftg.h">
+      <Filter>FtgMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -234,9 +240,6 @@
       <Filter>FtgMain</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\FtgMain.cpp">
-      <Filter>FtgMain</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FtgMain\G_Ftg.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\MutualChara.cpp">
@@ -366,6 +369,12 @@
       <Filter>FtgMain</Filter>
     </ClCompile>
     <ClCompile Include="Source\FtgMain\Round.cpp">
+      <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Result\Result.cpp">
+      <Filter>Result</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FtgMain\G_Ftg.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
   </ItemGroup>
