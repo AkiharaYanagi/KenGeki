@@ -216,6 +216,7 @@
     <ClInclude Include="Source\FtgMain\G_Ftg.h">
       <Filter>FtgMain</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -382,5 +383,11 @@
     <Text Include="ReadMe.txt">
       <Filter>00_Document</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KenGeki.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="KenGeki.ico" />
   </ItemGroup>
 </Project>

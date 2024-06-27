@@ -380,3 +380,5 @@ CharaData/library/CharaData_debug.idb
 CharaData/library/CharaData_debug.lib
 *.idb
 *.lib
+*.lib
+*.idb
