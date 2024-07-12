@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\KenGeki_020\KenGeki_020\Source\ExeChara\Disp\DispFrontEnd.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\CharaSele\CharaSele.h" />
     <ClInclude Include="Source\CharaSele\CharaSeleConst.h" />
@@ -140,7 +141,6 @@
     <ClInclude Include="Source\ExeChara\Disp\DispAccel.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispChara.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispChara_Const.h" />
-    <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispGauge.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispInput.h" />
     <ClInclude Include="Source\ExeChara\Disp\DispMainImage.h" />
@@ -192,12 +192,12 @@
     <ClInclude Include="Source\Title\Title.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\KenGeki_020\KenGeki_020\Source\ExeChara\Disp\DispFrontEnd.cpp" />
     <ClCompile Include="Source\CharaSele\CharaSele.cpp" />
     <ClCompile Include="Source\CharaSele\CharaSele_Player.cpp" />
     <ClCompile Include="Source\ExeChara\BtlParam.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispAccel.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispChara.cpp" />
-    <ClCompile Include="Source\ExeChara\Disp\DispFrontEnd.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispInput.cpp" />
     <ClCompile Include="Source\ExeChara\Disp\DispMainImage.cpp" />

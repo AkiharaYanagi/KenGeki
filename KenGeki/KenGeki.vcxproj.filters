@@ -111,12 +111,6 @@
     <ClInclude Include="Source\ExeChara\Disp\DispChara.h">
       <Filter>ExeChara\Disp</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h">
-      <Filter>ExeChara\Disp</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ExeChara\Disp\DispGauge.h">
-      <Filter>ExeChara\Disp</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ExeChara\Disp\DispInput.h">
       <Filter>ExeChara\Disp</Filter>
     </ClInclude>
@@ -217,6 +211,12 @@
       <Filter>FtgMain</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\KenGeki_020\KenGeki_020\Source\ExeChara\Disp\DispFrontEnd.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExeChara\Disp\DispGauge.h">
+      <Filter>ExeChara\Disp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameMain\GameSettingFile.cpp">
@@ -262,12 +262,6 @@
       <Filter>FtgMain\Ef</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\Disp\DispChara.cpp">
-      <Filter>ExeChara\Disp</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\Disp\DispFrontEnd.cpp">
-      <Filter>ExeChara\Disp</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp">
       <Filter>ExeChara\Disp</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExeChara\Disp\DispInput.cpp">
@@ -377,6 +371,12 @@
     </ClCompile>
     <ClCompile Include="Source\FtgMain\G_Ftg.cpp">
       <Filter>FtgMain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\KenGeki_020\KenGeki_020\Source\ExeChara\Disp\DispFrontEnd.cpp">
+      <Filter>ExeChara\Disp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp">
+      <Filter>ExeChara\Disp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
