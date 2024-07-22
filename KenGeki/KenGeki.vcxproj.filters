@@ -211,10 +211,10 @@
       <Filter>FtgMain</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="..\..\KenGeki_020\KenGeki_020\Source\ExeChara\Disp\DispFrontEnd.h">
+    <ClInclude Include="Source\ExeChara\Disp\DispGauge.h">
       <Filter>ExeChara\Disp</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ExeChara\Disp\DispGauge.h">
+    <ClInclude Include="Source\ExeChara\Disp\DispFrontEnd.h">
       <Filter>ExeChara\Disp</Filter>
     </ClInclude>
   </ItemGroup>
@@ -372,10 +372,10 @@
     <ClCompile Include="Source\FtgMain\G_Ftg.cpp">
       <Filter>FtgMain</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\KenGeki_020\KenGeki_020\Source\ExeChara\Disp\DispFrontEnd.cpp">
+    <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp">
       <Filter>ExeChara\Disp</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ExeChara\Disp\DispGauge.cpp">
+    <ClCompile Include="Source\ExeChara\Disp\DispFrontEnd.cpp">
       <Filter>ExeChara\Disp</Filter>
     </ClCompile>
   </ItemGroup>
